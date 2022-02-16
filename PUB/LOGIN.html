@@ -6,12 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>World Tour</title>
     <style>
-      * {
-        background-image: url("1.jpg");
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-      }
+      
       img {
         display: block;
         margin-left: auto;
@@ -36,15 +31,19 @@
     </style>
   </head>
   <body>
-    <he><h1>Pack Your Bags</h1></he>
-    <br />
-    <form action="index.html">
-      <label for="gmail">USERNAME:</label>
-      <input type="text" name="username" id="gmail" /><br /><br />
-      <label for="password">PASSWORD:</label>
-      <input type="password" name="password" id="password" /><br /><br />
-      <input type="submit" value="login" />
-    </form>
+    <div class="login-form-container">
+      <i class="fas fa-times" id="form-close"></i>
+        <form action="">
+          <h3>login</h3>
+          <input type="email" class="box" placeholder="Enter your email">
+          <input type="password" class="box" placeholder="Enter your password">
+          <input type="submit" value="login now" class="btn">
+          <input type="checkbox" id="remember">
+          <label for="remember">remember me</label>
+          <p>forget password? <a href="#">Click here...</a></p>
+          <p>don't have an account? <a href="#">register now</a></p>
+        </form>
+    </div>
     <p class="cus">Customer service: 9398717554</p>
   </body>
 </html>
