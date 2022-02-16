@@ -290,33 +290,6 @@ header .search-bar-container label:hover{
 .home .controls .vid-btn.active{
     background: var(--orange);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* media Query */
 @media(max-width:1200px){
     html{
@@ -364,28 +337,3 @@ header .search-bar-container label:hover{
         font-size: 50%;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
