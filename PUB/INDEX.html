@@ -1,52 +1,78 @@
-<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>World Tour</title>
-    <style>
-      * {
-        background-image: url("1.jpg");
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-      }
-      img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 500px;
-      }
-      h1 {
-        
-        color: rgb(104, 143, 226);
-        text-align: center;
-        margin-top: 15%;
-        font-size: 200px;
-      }
-      form {
-        background-color: rgb(201, 33, 33);
-        text-align: center;
-        margin-bottom: 10%;
-      }
-      .cus {
-        font-size: smaller;
-        font-family: "Times New Roman", Times, serif;
-        text-align: center;
-      }
-    </style>
-  </head>
-  <body>
-    <he><h1>Pack Your Bags</h1></he>
-    <br />
-    <form action="https://www.google.com/">
-      <label for="gmail">USERNAME:</label>
-      <input type="text" name="username" id="gmail" /><br /><br />
-      <label for="password">PASSWORD:</label>
-      <input type="password" name="password" id="password" /><br /><br />
-      <input type="submit" value="login" />
-    </form>
-    <p class="cus">Customer service: 9398717554</p>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tours and Travel Landing Page</title>
+    <!-- Custom CSS Link... -->
+    <link rel="stylesheet" href="style.css"> 
+    <!-- Font Awesome Link... -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <!-- Header Section Starts here... -->
+  <header>
+      <div id="menu-bar" class="fas fa-bars"></div>
+
+      <a href="#" class="logo"><span>PACK YOUR BAGS</span></a>
+      <nav class="navbar">
+          <a href="#Home">Home</a>
+          <a href="#book">Book</a>
+          <a href="#packages">Packages</a>
+          <a href="#services">Services</a>
+          <a href="#review">Reviews</a> 
+          <a href="#contact">Contact</a>
+      </nav>
+      <div class="icons">
+          <i class="fas fa-search" id="search-btn"></i>
+          <i class="fas fa-user" id="login-btn"></i>
+      </div>
+      <form action="" class="search-bar-container">
+          <input type="search" id="search-bar" placeholder="Search here..">
+          <label for="search-bar" class="fas fa-search"></label>
+      </form>
+  </header>
+  <!-- Header Section Ends here... -->
+
+  <!-- Login Form Container Starts... -->
+  <div class="login-form-container">
+    <i class="fas fa-times" id="form-close"></i>
+      <form action="">
+        <h3>login</h3>
+        <input type="email" class="box" placeholder="Enter your email">
+        <input type="password" class="box" placeholder="Enter your password">
+        <input type="submit" value="login now" class="btn">
+        <input type="checkbox" id="remember">
+        <label for="remember">remember me</label>
+        <p>forget password? <a href="#">Click here...</a></p>
+        <p>don't have an account? <a href="#">register now</a></p>
+      </form>
+  </div>
+  <!-- Login Form Container Ends... -->
+
+  <!-- Home Section Starts... -->
+  <section class="home" id="home">
+      <div class="content">
+          <h3>travelling is worthwhile</h3>
+          <p>discover new places with us, adventure awaits</p>
+          <a href="#" class="btn">discover more</a>
+      </div>
+      <div class="controls">
+          <span class="vid-btn active" data-src="images/vid-1.mp4"></span>
+          <span class="vid-btn" data-src="images/vid-2.mp4"></span>
+          <span class="vid-btn" data-src="images/vid-3.mp4"></span>
+          <span class="vid-btn" data-src="images/vid-4.mp4"></span>
+          <span class="vid-btn" data-src="images/vid-5.mp4"></span>
+      </div>
+      <div class="video-container">
+          <video src="images/vid-1.mp4" id="video-slider" loop autoplay></video>
+      </div>
+  </section>
+    <!-- Home Section Ends... -->
+
+
+    <!-- Custom JS link.... -->
+    <script src="script.js">
+    </script>
+</body>
 </html>
