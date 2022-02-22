@@ -160,7 +160,7 @@ header .search-bar-container label:hover{
     margin: 2rem;
     padding: 1.5rem 2rem;
     border-radius: .5rem;
-    background: rgba(128, 128, 128, 0.747);
+    background: rgba(145, 145, 145, 0.651);
     width: 50rem;
 }
 
@@ -255,12 +255,10 @@ header .search-bar-container label:hover{
     font-size: 5rem;
     color: white;
     text-transform: uppercase;
-    text-shadow: 0 .3rem .5rem rgba(0,0,0,.1);
 }
 
 .page .content h3{
     font-size: 5rem;
-    text-shadow: 0 .3rem .5rem rgba(250, 248, 248, 0.904);
 }
 
 .home .content p{
