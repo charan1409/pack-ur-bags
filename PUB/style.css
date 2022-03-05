@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,700;1,400&display=swap");
 :root {
-  --orange: #ffa500;
+  --orange: #d0f57fea;
 }
 
 * {
@@ -13,11 +13,6 @@
   border: none;
   text-decoration: none;
   transition: all 0.2s linear;
-}
-
-*::selection {
-  background: var(--orange);
-  color: white;
 }
 
 html {
@@ -58,8 +53,7 @@ section {
 }
 
 .btn:hover {
-  background: rgba(255, 165, 0, 0.2);
-  color: var(--orange);
+  background: rgba(103, 243, 48, 0.493);
 }
 
 header {
@@ -149,11 +143,9 @@ header .search-bar-container label:hover {
 
 .login-form-container {
   position: fixed;
-  /* top:-120%;left: 0; */
   min-height: 100vh;
   width: 100%;
   z-index: 1000;
-  /* background: rgba(0,0,0,.7); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -189,10 +181,6 @@ header .search-bar-container label:hover {
   text-transform: none;
 }
 
-.login-form-container form .box:focus {
-  border-color: var(--blue);
-}
-
 .login-form-container form #remember {
   margin: 2rem 0;
 }
@@ -219,15 +207,6 @@ header .search-bar-container label:hover {
 .login-form-container form p a:hover {
   color: #333;
   text-decoration: underline;
-}
-
-.login-form-container #form-close {
-  position: absolute;
-  top: 2rem;
-  right: 3rem;
-  font-size: 5rem;
-  color: white;
-  cursor: pointer;
 }
 
 #menu-bar {
