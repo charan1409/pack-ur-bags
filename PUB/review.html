@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Review</title>
     <!-- Custom CSS Link... -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css\style.css">
+    <link rel="stylesheet" href="css\review.css">
     <!-- Font Awesome Link... -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="js\review.js"></script>
+
 </head>
+
+
 <body>
     <header>
         <div id="menu-bar" class="fas fa-bars"></div>
@@ -24,5 +30,65 @@
             <a href="contact.html">Contact</a>
         </nav>
     </header>
+    <section class="review" id="review">
+
+        <h1 class="heading">
+            <span>r</span>
+            <span>e</span>
+            <span>v</span>
+            <span>i</span>
+            <span>e</span>
+            <span>w</span>
+        </h1>
+        <h2>YOU CAN SHARE YOUR EXPERIENCES WITH US </h2>
+        <table>
+            <colgroup>
+                <col span="1" style="width: 15%;">
+                <col span="1" style="width: 70%;">
+            </colgroup>
+            <tr>
+                <th>
+                    Your review
+                </th>
+                <th>
+                    <p>Previous reviews:</p>
+                </th>
+            </tr>
+            <tr>
+                <td rowspan="10">
+                    
+                        <br>
+                        <label for="review1">REVIEW HERE:</label><br>
+                        <textarea id="review1" name="review1" placeholder="Write here.."></textarea><br>
+                        <br>
+                        <br><input type="submit" onclick="poster()">
+                    
+                </td>
+                <td>
+                    
+            </tr>
+            <tr>
+                <td>
+                    I've visited Red fort, one of the gmost significant monuments in India and it is breathtaking thanks to this
+                    website
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    It felt good to be lost in the right direction, thank you "PACK U'R BAGS"
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    I've visited Charminar, one of the greatest monuments of the decade and it is amazing thanks to this
+                    website
+                </td>
+            </tr>
+        </table>
+    </section>
+
+
+    <h1 id="posting"></h1>
 </body>
+
 </html>
