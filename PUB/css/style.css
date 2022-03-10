@@ -309,9 +309,7 @@ header .search-bar-container label:hover {
 /* Booking CSS Starts HERE */
 
 /* Class Book */
-body{
-  margin-top: 5%;
-}
+
 .book .row{
   margin: 2;
   display: flex;
