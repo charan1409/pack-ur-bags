@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,700;1,400&display=swap");
 :root{
-  --orange:#ffa500;
+  --orange:#00b7ff;
 }
 
 * {
@@ -492,7 +492,3 @@ header .search-bar-container label:hover {
 .services .box-container .box:hover{
   box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
 }
-
-
-/* gallery */
-
