@@ -65,7 +65,7 @@ section {
   background: #033747e3;
   color: white;
   padding: 0.8rem 3rem;
-  border:.2rem solid var(--orange);
+  /* border:.2rem solid var(--orange); */
   cursor: pointer;
   font-size: 1.7rem;
 }
@@ -109,10 +109,10 @@ header .navbar a {
   font-size: 2rem;
   margin: 0 0.8rem;
 }
-/* 
+
 header .navbar a:hover {
   color: var(--orange);
-} */
+}
 
 header .icons i {
   font-size: 2.5rem;
