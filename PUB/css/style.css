@@ -2,6 +2,73 @@
 :root{
   --orange:#ffbb00e3;
 }
+/* arrow up */
+#arrow i {
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+  cursor: pointer;
+  background-color: #00a8b4;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50px;
+}
+
+
+/* header animations in vedio */
+.home_header_info h1 {
+  font-size: 45px;
+  padding: 20px 0px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.home_header_info p {
+  font-size: 15px;
+  line-height: 30px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.home_header_info a {
+  background-color: #fff;
+  color: #00a8b4;
+  text-decoration: none;
+  padding: 17px 45px;
+  margin-top: 25px;
+  display: inline-block;
+  font-size: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.home_header_info a:hover {
+  color: #fff;
+}
+
+.home_header_info a:after {
+  content: "Read More";
+  background-color: #00a8b4;
+  width: 0%;
+  font-size: 15px;
+  height: 100%;
+  line-height: 50px;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.5s ease;
+  right: 0;
+}
+
+.home_header_info a:hover:after {
+  width: 100%;
+}
+
 
 * {
   font-family: "Nunito", sans-serif;

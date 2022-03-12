@@ -41,4 +41,3 @@ formClose.addEventListener('click', () =>{
 //         document.querySelector('video-slider').src = src;
 //     });
 // });
-
