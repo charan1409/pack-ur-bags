@@ -17,6 +17,11 @@
   border-radius: 50px;
 }
 
+header a:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
 
 /* header animations in vedio */
 .home_header_info h1 {
