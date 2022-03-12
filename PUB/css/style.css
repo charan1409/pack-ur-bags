@@ -44,7 +44,7 @@ section {
   background: none;
 }
 
-.login-btn {
+/* .login-btn {
   display: inline-block;
   margin-top: 1rem;
   background: #020202;
@@ -56,7 +56,7 @@ section {
 
 .login-btn:hover {
   background: rgba(54, 54, 53, 0.774);
-}
+} */
 
 .btn {
   display: inline-block;
@@ -163,21 +163,29 @@ header .search-bar-container label:hover {
   color: var(--orange);
 }
 
-.login-form-container {
+/* .form-container {
   position: fixed;
-  min-height: 100vh;
-  width: 100%;
+  height: 60%;
+  min-width: 90%;
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.login-form-container.active {
+#login {
+  left: 10px;
+}
+
+#register {
+  left: 450px;
+}
+
+.form-container.active {
   top: 0;
 }
 
-.login-form-container form {
+.form-container form {
   margin: 2rem;
   padding: 1.5rem 2rem;
   border-radius: 0.5rem;
@@ -185,7 +193,7 @@ header .search-bar-container label:hover {
   width: 50rem;
 }
 
-.login-form-container form h3 {
+.form-container form h3 {
   font-size: 3rem;
   color: solid black;
   text-transform: uppercase;
@@ -193,7 +201,16 @@ header .search-bar-container label:hover {
   padding: 1rem 0;
 }
 
-.login-form-container form .box {
+.form-container form h3 {
+  font-size: 3rem;
+  color: solid black;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+
+.form-container form .box {
   width: 100%;
   padding: 1rem;
   font-size: 1.7rem;
@@ -203,33 +220,33 @@ header .search-bar-container label:hover {
   text-transform: none;
 }
 
-.login-form-container form #remember {
+.form-container form #remember {
   margin: 2rem 0;
 }
 
-.login-form-container form label {
+.form-container form label {
   font-size: 1.5rem;
 }
 
-.login-form-container form .btn {
+.form-container form .btn {
   display: block;
   width: 100%;
 }
 
-.login-form-container form p {
+.form-container form p {
   padding: 0.5rem 0;
   font-size: 1.5rem;
   color: solid black;
 }
 
-.login-form-container form p a {
+.form-container form p a {
   color: var(--blue);
 }
 
-.login-form-container form p a:hover {
+.form-container form p a:hover {
   color: #333;
   text-decoration: underline;
-}
+} */
 
 #menu-bar {
   color: white;

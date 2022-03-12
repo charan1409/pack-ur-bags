@@ -33,12 +33,22 @@ formClose.addEventListener('click', () =>{
     loginForm.classList.remove('active');
 });
 
-// videoBtn.forEach(btn =>{
-//     btn.addEventListener('click', ()=>{
-//         document.querySelector('.controls .active').classList.remove('active');
-//         btn.classList.add('active');
-//         let src = btn.getAttribute('data-src');
-//         document.querySelector('video-slider').src = src;
-//     });
-// });
+function login(){
+    let x = document.getElementById("login");
+    let y = document.getElementById("register");
+    let z = document.getElementById("stat-btn")
 
+    x.style.left = "0";
+    y.style.left = "600px";
+    z.style.left = "40px";
+}
+
+function register(){
+    let x = document.getElementById("login");
+    let y = document.getElementById("register");
+    let z = document.getElementById("stat-btn")
+
+    x.style.left = "-600px";
+    y.style.left = "0";
+    z.style.left = "270px";
+}

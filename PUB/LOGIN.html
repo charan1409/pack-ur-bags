@@ -8,53 +8,52 @@
   <title>World Tour</title>
   <!-- Custom CSS Link... -->
   <link rel="stylesheet" href="css\style.css">
+  <link rel="stylesheet" href="css\login.css">
   <!-- Font Awesome Link... -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
 
   <link rel="icon" href="images/fav1.png">
-
-  <style>
-    body {
-      background-image: url(images/3.jpg);
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-
-    img {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 500px;
-    }
-
-    h1 {
-      color: rgb(104, 143, 226);
-      text-align: center;
-      margin-top: 15%;
-      font-size: 200px;
-    }
-
-    form {
-      font-size: 75%;
-      text-align: center;
-      margin-top: 15%;
-    }
-
-    .cus {
-      font-size: small;
-      font-family: "Times New Roman", Times, serif;
-      text-align: center;
-    }
-
-    .bold {
-      font-weight: bold;
-    }
-  </style>
+  
 </head>
 
 <body>
-  <div class="login-form-container">
-    <form action="index.html">
+  <header>
+    <a href="INDEX.html" class="logo"><span>PACK YOUR BAGS</span></a>
+</header>
+  <div class="form-container">
+    <div class="top-btn">
+      <div id="stat-btn"></div>
+      <button type="button" class="toggle-btn" onclick="login()">Sign in</button>
+      <button type="button" class="toggle-btn" onclick="register()">Sign up</button>
+    </div>
+    <form id="login" action="INDEX.html">
+      <input type="text" class="box" placeholder="Enter your email"> <br>
+      <input type="password" class="box" placeholder="Enter your password"> <br>
+      <input type="submit" value="login now" class="login-btn"> <br> <br>
+      <div>
+        <input type="checkbox" id="remember">
+        <label for="remember">remember me</label> <br>
+        <p>forget password? <a href="#">Click here</a></p>
+        <!-- <p>don't have an account? <a href="register.html">register now</a></p>  -->
+        <p class="cus">Customer service: 9398717554</p>
+      </div>
+    </form>
+
+    <form id="register" action="LOGIN.html">
+      <input type="text" class="box" placeholder="Enter your name"> <br>
+      <input type="email" class="box" placeholder="Enter your email"> <br>
+      <input type="password" class="box" placeholder="Enter your password"> <br>
+      <input type="password" class="box" placeholder="Confirm your password"> <br>
+      <input type="checkbox" id="remember">
+      <label for="remember">Yes, I want to receive promotions from Pack Your Bags</label> <br>
+      <input type="submit" value="Register now" class="login-btn"> <br> <br>
+
+      <p>Have an account already? <a href="LOGIN.html">Login</a></p>
+      <p class="cus">Customer service: 9398717554</p>
+    </form>
+  </div>
+  <!-- <div class="form-container">
+    <form id="login" >
       <h2 style="font-size: 300%;">login</h2>
       <input type="text" class="box" placeholder="Enter your email"> <br>
       <input type="password" class="box" placeholder="Enter your password"> <br>
@@ -63,11 +62,29 @@
         <input type="checkbox" id="remember">
         <label for="remember">remember me</label> <br>
         <p>forget password? <a href="#">Click here</a></p>
-        <p>don't have an account? <a href="register.html">register now</a></p>
+        <p>don't have an account? <br>
+           <a href="register.html">register now</a></p> 
+        <button class="login-btn" onclick="register()">register now</button>
         <p class="cus">Customer service: 9398717554</p>
       </div>
     </form>
   </div>
+
+  <div class="form-container"> 
+    <form id="register" action="LOGIN.html">
+      <h2 style="font-size: 300%;">register</h2>
+      <input type="text" class="box" placeholder="Enter your name"> <br>
+      <input type="email" class="box" placeholder="Enter your email"> <br>
+      <input type="password" class="box" placeholder="Enter your password"> <br>
+      <input type="password" class="box" placeholder="Confirm your password"> <br>
+      <input type="checkbox" id="remember">
+      <label for="remember">Yes, I want to receive promotions from Pack Your Bags</label> <br>
+      <input type="submit" value="Register now" class="login-btn"> <br> <br>
+
+      <p>Have an account already? <a href="LOGIN.html">Login</a></p>
+      <p class="cus">Customer service: 9398717554</p>
+    </form>
+  </div> -->
 
 
   <script src="js\script.js">
