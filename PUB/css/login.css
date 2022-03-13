@@ -1,6 +1,10 @@
 body {
-  /* background-image: url(images/2.jpg); */
-  background-color: rgba(34, 30, 30, 0.095);
+  /* background-color: rgba(34, 30, 30, 0.095); */
+  
+}
+
+.top {
+  background-image: url(images/login.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
