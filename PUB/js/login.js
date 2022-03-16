@@ -35,3 +35,30 @@ function register() {
   y.style.left = "0";
   z.style.left = "270px";
 }
+
+function validate_email() {
+  let email = document.getElementById("email").value;
+  let log = document.getElementById("login");
+  let pas = document.getElementById("pas").value;
+  if (email == ''){
+    alert("please enter ur email")
+    log.action = ""
+    return false
+  }
+  if (email.includes("@")) {
+      console.log('Every Thing Fine')
+      if (pas == ''){
+        alert("please enter ur password")
+        log.action = ""
+      }
+      return true
+  }
+  alert("bad email")
+  log.action = ""
+  
+  return false
+}
+
+function validation(){
+  
+}
