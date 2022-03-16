@@ -120,14 +120,14 @@ section {
   display: inline-block;
   margin-top: 1rem;
   background:var(--orange);
-  background: #f6fa04d7;
+  background: #fad504e7;
   color: white;
   padding: 0.8rem 3rem;
   /* border:.2rem solid var(--orange); */
   cursor: pointer;
   font-size: 1.7rem;
   font-weight: bold;
-
+  border-radius: 20px;
 
 }
 
