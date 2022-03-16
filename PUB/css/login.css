@@ -3,6 +3,12 @@
   
 } */
 
+#log {
+  background-color: #ffffff10;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
 .top {
   background-image: url(images/login.jpg);
   background-repeat: no-repeat;
