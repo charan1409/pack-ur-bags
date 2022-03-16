@@ -2,8 +2,9 @@
 :root{
   --orange:#ffbb00e3;
 }
+
 /* arrow up */
-#arrow i {
+.arrow i {
   position: fixed;
   bottom: 20px;
   right: 25px;
