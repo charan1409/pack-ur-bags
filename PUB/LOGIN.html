@@ -27,12 +27,12 @@
         <button type="button" class="toggle-btn" onclick="login()">Sign in</button>
         <button type="button" class="toggle-btn" onclick="register()">Sign up</button>
       </div>
-      <form id="login" action="INDEX.html">
-        <input type="text" class="box" placeholder="Enter your email"> <br>
-        <input type="password" class="box" placeholder="Enter your password"> <br>
+      <form id="login" action="INDEX.html" onsubmit="validate_email()">
+        <input type="text" class="box" id="email" placeholder="Enter your email"> <br>
+        <input type="password" class="box" id="pas" placeholder="Enter your password"> <br>
         <input type="submit" value="login now" class="login-btn"> <br> <br> <br>
         <div>
-          <input type="checkbox" id="rememberl">
+          <input type="checkbox" id="remember">
           <label for="remember">remember me</label> <br> <br>
           <p>forget password? <a href="#">Click here</a></p> <br>
           <!-- <p>don't have an account? <a href="register.html">register now</a></p>  -->
@@ -41,13 +41,13 @@
         </div>
       </form>
 
-      <form id="register" action="LOGIN.html">
-        <input type="text" class="box" placeholder="Enter your name"> <br>
-        <input type="email" class="box" placeholder="Enter your email"> <br>
-        <input type="password" class="box" placeholder="Enter your password"> <br>
-        <input type="password" class="box" placeholder="Confirm your password"> <br>
-        <input type="checkbox" id="remember">
-        <label for="remember">Yes, I want to receive promotions from Pack Your Bags</label> <br>
+      <form id="register" action="LOGIN.html" onsubmit="validation()">
+        <input type="text" class="box" id="sname" placeholder="Enter your name"> <br>
+        <input type="text" class="box" id="smail" placeholder="Enter your email"> <br>
+        <input type="password" class="box" id="spass" placeholder="Enter your password"> <br>
+        <input type="password" class="box" id="spass2" placeholder="Confirm your password"> <br>
+        <input type="checkbox" id="remember1">
+        <label for="remember1">Yes, I want to receive promotions from Pack Your Bags</label> <br>
         <input type="submit" value="Register now" class="login-btn"> <br> <br>
 
         <p>Have an account already? <a href="LOGIN.html">Login</a></p>
