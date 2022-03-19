@@ -1,66 +1,66 @@
-
+/* 
 body{
-    margin-top: 5%;
-}
+    margin: 10%;
+} */
 
 .night {
     margin: 0;
     padding: 0;
 }
 
-.packages .box-container{
+ .box-container{
+     margin: 5%;
     display: flex;
     flex-wrap: wrap;
     gap:2rem;
   }
   
-  .packages .box-container .box{
-    flex:1 1 30rem;
-    border-radius: .5rem;
+   .box-container .box{
+    /* flex:1 1 30rem; */
+    border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
   }
   
-  .packages .box-container .box img{
-    height: 25rem;
-    width:100%;
+   .box-container .box img{
+    height: 30rem;
+    width: 40rem;
     object-fit: cover;
+    padding: 2%;
   }
   
-  .packages .box-container .box .content{
+   .box-container .box .content{
+    margin-left: 20%;
     padding:2rem;
   }
   
-  .packages .box-container .box .content h3{
+   .box-container .box .content h3{
     font-size:2rem;
     color:#333;
   }
   
-  .packages .box-container .box .content h3 i{
+   .box-container .box .content h3 i{
     color:var(--orange);
   }
   
-  .packages .box-container .box .content p{
+   .box-container .box .content p{
     font-size:1.7rem;
     color:#666;
     padding:1rem 0;
   }
   
-  .packages .box-container .box .content .stars i{
-
-
-
+   .box-container .box .content .stars i{
     font-size:1.7rem;
     color:var(--orange);
   }
   
-  .packages .box-container .box .content .price{
+   .box-container .box .content .price{
     font-size: 2rem;
     color:#333;
     padding-top: 1rem;
   }
   
-  .packages .box-container .box .content .price span{
+   .box-container .box .content .price span{
     color:#666;
     font-size: 1.5rem;
     text-decoration: line-through;
