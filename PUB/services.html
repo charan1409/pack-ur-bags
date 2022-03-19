@@ -6,10 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Service</title>
-  <link rel="stylesheet" href="css\style.css" />
-  <link rel="stylesheet" href="css\services.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/services.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <link rel="icon" href="css/images/fav1.png">
+  <script src="js/script.js"></script>
 </head>
 
 <body>
@@ -37,116 +38,191 @@
       <span>s</span>
     </h1>
     <h2 class="residence" id="residence">Select your Stay</h2>
-    <div class="box-container">
-      <div class="box">
-        <img src="css/images/Gateway Hotel.webp" alt="Gateway Hotel" />
-        <div class="content">
-          <h1 class="hotel">Gateway Hotel</h1>
-          <h3><i class="fas fa-map-marker-alt"></i> Vijayawada</h3>
-          <p>
-            Located in the financial capital of Andhra Pradesh, The Gateway
-            Hotel M G Road offers a rooftop swimming pool and modern rooms
-            with a flat-screen TV.
-          </p>
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
+    <p>Hotels in vijayawada<p>
+    <button onclick="show('c1')" data-inline="true">Show</button>
+        
+        <div class="show" id="c1">
+        <div class="box-container">
+          <div class="box">
+            <img src="css/images/Gateway Hotel.webp" alt="Gateway Hotel" />
+            <div class="content">
+              <h1 class="hotel">Gateway Hotel</h1>
+              <h3><i class="fas fa-map-marker-alt"></i> Vijayawada</h3>
+              <p>
+                Located in the financial capital of Andhra Pradesh, The Gateway
+                Hotel M G Road offers a rooftop swimming pool and modern rooms
+                with a flat-screen TV.
+              </p>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="price">₹1200.00 <span>₹1900.00</span></div>
+              <a href="#" class="btn">Check Availabilty</a>
+            </div>
+          </div>  
+          <div class="box">
+            <img src="css/images/Novotel.webp" alt="Novotel" />
+            <div class="content">
+              <h1 class="hotel">Novotel</h1>
+              <h3><i class="fas fa-map-marker-alt"></i> Vijayawada</h3>
+              <p>
+                Novotel Vijayawada Varun has a restaurant, outdoor swimming pool,
+                a fitness centre and bar in Vijayawāda. With free WiFi, this
+                5-star hotel offers a shared lounge and a concierge service.
+              </p>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="price">₹2200.00 <span>₹2500.00</span></div>
+              <a href="#" class="btn">Check Availabilty</a>
+            </div>
           </div>
-          <div class="price">₹1200.00 <span>₹1900.00</span></div>
-          <a href="#" class="btn">Check Availabilty</a>
+        <div class="box">
+            <img src="css/images/Taj Ganges.webp" alt="Taj Ganges" />
+            <div class="content">
+              <h1 class="hotel">Taj Ganges</h1>
+              <h3><i class="fas fa-map-marker-alt"></i> Vijayawada</h3>
+              <p>
+                Spread over 40 acres of tropical gardens, Taj Ganges, Varanasi is a peaceful getaway in the ancient temple
+                city of Varanasi. Offering an outdoor pool and a spa, it also has 24-hour room service.
+              </p>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="price">₹4000.00 <span>₹4500.00</span></div>
+              <a href="#" class="btn">Check Availabilty</a>
+            </div>
+          </div>
         </div>
-      </div>
+      </div>  
+      <hr>
 
+      <p>Hotels in Hyderabad</p>
+      <button onclick="show('c4')">Show</button>
+      <div class="show" id="c4">
+        <div class="box-container">
+          <div class="box">
+            <p>to be updated soon</p>
 
-      <div class="box">
-        <img src="css/images/Novotel.webp" alt="Novotel" />
-        <div class="content">
-          <h1 class="hotel">Novotel</h1>
-          <h3><i class="fas fa-map-marker-alt"></i> Vijayawada</h3>
-          <p>
-            Novotel Vijayawada Varun has a restaurant, outdoor swimming pool,
-            a fitness centre and bar in Vijayawāda. With free WiFi, this
-            5-star hotel offers a shared lounge and a concierge service.
-          </p>
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
           </div>
-          <div class="price">₹2200.00 <span>₹2500.00</span></div>
-          <a href="#" class="btn">Check Availabilty</a>
         </div>
       </div>
+      <hr>
 
-      <div class="box">
-        <img src="css/images/Siolim Holiday Apartments.webp" alt="Siolim Holiday Apartments" />
-        <div class="content">
-          <h1 class="hotel">Siolim Holiday Apartments</h1>
-          <h3><i class="fas fa-map-marker-alt"></i>Goa</h3>
-          <p>
-            Located just 4 km from the Morjim Beach and Vagator, Siolim
-            Holiday Apartments is a self-catering accommodation located in
-            Siolim. Free WiFi access is available.
-          </p>
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
+      <p>Hotels in Goa<p>
+      <button onclick="show('c2')">Show</button>
+      <div class="show" id="c2">
+        <div class="box-container">
+          <div class="box">
+             <img src="css/images/Siolim Holiday Apartments.webp" alt="Siolim Holiday Apartments" />
+             <div class="content">
+               <h1 class="hotel">Siolim Holiday Apartments</h1>
+               <h3><i class="fas fa-map-marker-alt"></i>Goa</h3>
+               <p>
+                 Located just 4 km from the Morjim Beach and Vagator, Siolim
+                 Holiday Apartments is a self-catering accommodation located in
+                 Siolim. Free WiFi access is available.
+               </p>
+               <div class="stars">
+                 <i class="fas fa-star"></i>
+                 <i class="fas fa-star"></i>
+                 <i class="fas fa-star"></i>
+                 <i class="fas fa-star"></i>
+                 <i class="far fa-star"></i>
+               </div>
+               <div class="price">₹2850.00 <span>₹3000.00</span></div>
+               <a href="#" class="btn">Check Availabilty</a>
+             </div>
+           </div>
+       </div>
+      </div>
+      <hr>
+
+      <p>Hotels in mumbai<p>
+      <button onclick="show('c3')">Show</button>
+      <div class="show" id="c3">
+        <div class="box-container">
+          <div class="box">
+            <img src="css/images/The Taj Mahal Palace.webp" alt="The Taj Mahal Palace" width="2px">
+            <div class="content">
+              <h1 class="hotel">The Taj Mahal Palace</h1>
+              <h3><i class="fas fa-map-marker-alt"></i>Mumbai</h3>
+              <div>
+                <p>
+                  Built in 1903, the iconic Taj Mahal Palace stands majestically opposite the Gateway of India, overlooking
+                  the Arabian Sea.
+                </p>
+              </div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="price">₹5550.00 <span>₹6000.00</span></div>
+              <a href="#" class="btn">Check Availabilty</a>
+            </div>
           </div>
-          <div class="price">₹2850.00 <span>₹3000.00</span></div>
-          <a href="#" class="btn">Check Availabilty</a>
+      </div>
+      </div>
+      <hr>
+
+      <p>Hotels in Delhi</p>
+      <button onclick="show('c5')">Show</button>
+      <div class="show" id="c5">
+        <div class="box-container">
+          <div class="box">
+
+          </div>
         </div>
       </div>
-      <div class="box">
-        <img src="css/images/The Taj Mahal Palace.webp" alt="The Taj Mahal Palace" width="2px">
-        <div class="content">
-          <h1 class="hotel">The Taj Mahal Palace</h1>
-          <h3><i class="fas fa-map-marker-alt"></i>Mumbai</h3>
-          <div>
-            <p>
-              Built in 1903, the iconic Taj Mahal Palace stands majestically opposite the Gateway of India, overlooking
-              the Arabian Sea.
-            </p>
+      <hr>
+
+      <p>Hotels in Chennai</p>
+      <button onclick="show('c6')">Show</button>
+      <div class="show" id="c6">
+        <div class="box-container">
+          <div class="box">
+
           </div>
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-          <div class="price">₹5550.00 <span>₹6000.00</span></div>
-          <a href="#" class="btn">Check Availabilty</a>
         </div>
       </div>
-      <div class="box">
-        <img src="css/images/Taj Ganges.webp" alt="Taj Ganges" />
-        <div class="content">
-          <h1 class="hotel">Taj Ganges</h1>
-          <h3><i class="fas fa-map-marker-alt"></i> Vijayawada</h3>
-          <p>
-            Spread over 40 acres of tropical gardens, Taj Ganges, Varanasi is a peaceful getaway in the ancient temple
-            city of Varanasi. Offering an outdoor pool and a spa, it also has 24-hour room service.
-          </p>
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
+      <hr>
+
+      <p>Hotels in Bangalore</p>
+      <button onclick="show('c7')">Show</button>
+      <div class="show" id="c7">
+        <div class="box-container">
+          <div class="box">
+
           </div>
-          <div class="price">₹4000.00 <span>₹4500.00</span></div>
-          <a href="#" class="btn">Check Availabilty</a>
         </div>
       </div>
-    </div>
+      <hr>
+
+      <p>Hotels in Kolkata</p>
+      <button onclick="show('c8')">Show</button>
+      <div class="show" id="c8">
+        <div class="box-container">
+          <div class="box">
+
+          </div>
+        </div>
+      </div>
+      <hr>
 
   </section>
   <a href="#top" class="btn">Jump to Top</a>
