@@ -13,7 +13,7 @@
     <!-- Font Awesome Link... -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="css/images/fav1.png">
-    
+    <script src="js/script.js"></script>
     <style>
         body {
             margin-top: 5%;
@@ -60,15 +60,17 @@
             <form action="">
                 <div class="inputBox">
                     <h3>FROM</h3>
-                    <input type="text" placeholder="Enter your place">
+                    <input type="text" placeholder="Enter your place" required>
                 </div>
                 <div class="inputBox">
                     <h3>TO</h3>
-                    <input type="text" placeholder="Enter a Destination">
+                    <input type="text" placeholder="Enter a Destination" required>
                 </div>
                 <div class="inputBox">
-                    <h3>how many</h3>
-                    <input type="number" placeholder="number of members" min="1" max="20">
+                    <h3>number of adults</h3>
+                    <input type="number" value="1" placeholder="number of members" min="1" max="15" required>
+                    <h3>number of children</h3>
+                    <input type="number" placeholder="number of members" min="1" max="10">
                 </div>
 
                 <table class="inputBox">
