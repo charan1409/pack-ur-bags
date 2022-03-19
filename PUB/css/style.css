@@ -555,7 +555,7 @@ header .search-bar-container label:hover {
 }
 
 .services .box-container .box:hover{
-  box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
+  box-shadow: 0 1rem 2rem rgb(0, 0, 0);
 }
 
 .about p {
