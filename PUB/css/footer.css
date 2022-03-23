@@ -11,12 +11,14 @@
 .structure {
 	display: flex;
 	justify-content: space-around;
+	padding: 2%;
 }
 label {
   font-size: 50px;
 }
 .structure_1 {
-	height: 400px;
+	/* height: 400px; */
+	
 	width: 900px;
 	height: 620px;
 	border-radius: 10px;
@@ -82,7 +84,7 @@ form textarea {
 /* Feed Back */
 .fd_bk {
 	position: relative;
-	margin-top: 150px;
+	margin-top: 50px;
 	margin-left: 100px;
 }
 .fd_bk span{
