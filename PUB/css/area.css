@@ -1,4 +1,4 @@
-.d1 .box-container {
+ .box-container {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
@@ -7,11 +7,11 @@
     object-position: 10%;
   }
   
-  .d1 .read{
+   .read{
     display: none;
   }
   
-  .d1 .box-container .box {
+   .box-container .box {
     flex: 5 5 30rem;
     border-radius: .5rem;
     overflow: hidden;
@@ -19,7 +19,7 @@
     
   }
   
-  .d1 .box-container .box img {
+   .box-container .box img {
     height: 30rem;
     width: 99%;
     position: relative;
@@ -27,394 +27,65 @@
     display: table;
   }
   
-  .d1 .box-container .box .content {
+   .box-container .box .content {
     padding: 4rem;
     /* width: 50%; */
   }
   
-  .d1 .box-container .box .content h3 {
+   .box-container .box .content h3 {
     font-size: 2rem;
     color: #333;
   }
   
-  .d1 .box-container .box .content h3 i {
+   .box-container .box .content h3 i {
     color: var(--orange);
   }
-  .d1 .box-container .box .content p {
+   .box-container .box .content p {
     font-size: 1.7rem;
     color: #666;
     padding: 1rem 0;
   }
-  .d1 .box-container .box .content .stars i {
+   .box-container .box .content .stars i {
     font-size: 1.7rem;
     color: var(--orange);
   }
-  .d1 .box-container .box .content .price {
+   .box-container .box .content .price {
     font-size: 2rem;
     color: #333;
     padding-top: 1rem;
   }
-  .d1 .box-container .box .content .price span {
+   .box-container .box .content .price span {
     color: #666;
     font-size: 1.5rem;
     text-decoration: line-through;
   }
 
-  .d1 h3{
+   h3{
       font-size: 25px;
   }
 
-  .d1 p{
+   p{
       font-size: 20px;
   }
   
-  .d2 .box-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-bottom: 5%;
-    width: 100%;
-    object-position: 10%;
-  }
-  
-  .d2 .read{
-    display: none;
-  }
-  
-  .d2 .box-container .box {
-    flex: 5 5 30rem;
-    border-radius: 2rem;
-    overflow: hidden;
-    box-shadow: 0 1rem 2rem rgba(198, 152, 150, 0.877);
-  }
-  
-  .d2 .box-container .box img {
-    height: 30rem;
-    width: 99%;
-    position: relative;
-    object-fit: cover;
-    display: table;
-  }
-  
-  .d2 .box-container .box .content {
-    padding: 4rem;
-    /* width: 50%; */
-  }
-  
-  .d2 .box-container .box .content h3 {
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .d2 .box-container .box .content h3 i {
-    color: var(--orange);
-  }
-  .d2 .box-container .box .content p {
-    font-size: 1.7rem;
-    color: #666;
-    padding: 1rem 0;
-  }
-  .d2 .box-container .box .content .stars i {
-    font-size: 1.7rem;
-    color: var(--orange);
-  }
-  .d2 .box-container .box .content .price {
-    font-size: 2rem;
-    color: #333;
-    padding-top: 1rem;
-  }
-  .d2 .box-container .box .content .price span {
-    color: #666;
-    font-size: 1.5rem;
-    text-decoration: line-through;
-  }
-
-  .d2 h3{
-      font-size: 25px;
-  }
-
-  .d2 p{
-      font-size: 20px;
-  }
-  
-  .d3 .box-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-bottom: 5%;
-    width: 100%;
-    object-position: 10%;
-  }
-  
-  .d3 .read{
-    display: none;
-  }
-  
-  .d3 .box-container .box {
-    flex: 5 5 30rem;
-    border-radius: 2rem;
-    overflow: hidden;
-    box-shadow: 0 1rem 2rem rgba(198, 152, 150, 0.877);
-  }
-  
-  .d3 .box-container .box img {
-    height: 30rem;
-    width: 99%;
-    position: relative;
-    object-fit: cover;
-    display: table;
-  }
-  
-  .d3 .box-container .box .content {
-    padding: 4rem;
-    /* width: 50%; */
-  }
-  
-  .d3 .box-container .box .content h3 {
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .d3 .box-container .box .content h3 i {
-    color: var(--orange);
-  }
-  .d3 .box-container .box .content p {
-    font-size: 1.7rem;
-    color: #666;
-    padding: 1rem 0;
-  }
-  .d3 .box-container .box .content .stars i {
-    font-size: 1.7rem;
-    color: var(--orange);
-  }
-  .d3 .box-container .box .content .price {
-    font-size: 2rem;
-    color: #333;
-    padding-top: 1rem;
-  }
-  .d3 .box-container .box .content .price span {
-    color: #666;
-    font-size: 1.5rem;
-    text-decoration: line-through;
-  }
-
-  .d3 h3{
-      font-size: 25px;
-  }
-
-  .d3 p{
-      font-size: 20px;
-  }
-  
-  .d4 .box-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-bottom: 5%;
-    width: 100%;
-    object-position: 10%;
-  }
-  
-  .d4 .read{
-    display: none;
-  }
-  
-  .d4 .box-container .box {
-    flex: 5 5 30rem;
-    border-radius: 2rem;
-    overflow: hidden;
-    box-shadow: 0 1rem 2rem rgba(198, 152, 150, 0.877);
-  }
-  
-  .d4 .box-container .box img {
-    height: 30rem;
-    width: 99%;
-    position: relative;
-    object-fit: cover;
-    display: table;
-  }
-  
-  .d4 .box-container .box .content {
-    padding: 4rem;
-    /* width: 50%; */
-  }
-  
-  .d4 .box-container .box .content h3 {
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .d4 .box-container .box .content h3 i {
-    color: var(--orange);
-  }
-  .d4 .box-container .box .content p {
-    font-size: 1.7rem;
-    color: #666;
-    padding: 1rem 0;
-  }
-  .d4 .box-container .box .content .stars i {
-    font-size: 1.7rem;
-    color: var(--orange);
-  }
-  .d4 .box-container .box .content .price {
-    font-size: 2rem;
-    color: #333;
-    padding-top: 1rem;
-  }
-  .d4 .box-container .box .content .price span {
-    color: #666;
-    font-size: 1.5rem;
-    text-decoration: line-through;
-  }
-
-  .d4 h3{
-      font-size: 25px;
-  }
-
-  .d4 p{
-      font-size: 20px;
-  }
-  
-  .d5 .box-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-bottom: 5%;
-    width: 100%;
-    object-position: 10%;
-  }
-  
-  .d5 .read{
-    display: none;
-  }
-  
-  .d5 .box-container .box {
-    flex: 5 5 30rem;
-    border-radius: 2rem;
-    overflow: hidden;
-    box-shadow: 0 1rem 2rem rgba(198, 152, 150, 0.877);
-  }
-  
-  .d5 .box-container .box img {
-    height: 30rem;
-    width: 99%;
-    position: relative;
-    object-fit: cover;
-    display: table;
-  }
-  
-  .d5 .box-container .box .content {
-    padding: 4rem;
-    /* width: 50%; */
-  }
-  
-  .d5 .box-container .box .content h3 {
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .d5 .box-container .box .content h3 i {
-    color: var(--orange);
-  }
-  .d5 .box-container .box .content p {
-    font-size: 1.7rem;
-    color: #666;
-    padding: 1rem 0;
-  }
-  .d5 .box-container .box .content .stars i {
-    font-size: 1.7rem;
-    color: var(--orange);
-  }
-  .d5 .box-container .box .content .price {
-    font-size: 2rem;
-    color: #333;
-    padding-top: 1rem;
-  }
-  .d5 .box-container .box .content .price span {
-    color: #666;
-    font-size: 1.5rem;
-    text-decoration: line-through;
-  }
-
-  .d5 h3{
-      font-size: 25px;
-  }
-
-  .d5 p{
-      font-size: 20px;
-  }
-  
-  .d6 .box-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-bottom: 5%;
-    width: 100%;
-    object-position: 10%;
-  }
-  
-  .d6 .read{
-    display: none;
-  }
-  
-  .d6 .box-container .box {
-    flex: 5 5 30rem;
-    border-radius: 2rem;
-    overflow: hidden;
-    box-shadow: 0 1rem 2rem rgba(198, 152, 150, 0.877);
-  }
-  
-  .d6 .box-container .box img {
-    height: 30rem;
-    width: 99%;
-    position: relative;
-    object-fit: cover;
-    display: table;
-  }
-  
-  .d6 .box-container .box .content {
-    padding: 4rem;
-    /* width: 50%; */
-  }
-  
-  .d6 .box-container .box .content h3 {
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .d6 .box-container .box .content h3 i {
-    color: var(--orange);
-  }
-  .d6 .box-container .box .content p {
-    font-size: 1.7rem;
-    color: #666;
-    padding: 1rem 0;
-  }
-  .d6 .box-container .box .content .stars i {
-    font-size: 1.7rem;
-    color: var(--orange);
-  }
-  .d6 .box-container .box .content .price {
-    font-size: 2rem;
-    color: #333;
-    padding-top: 1rem;
-  }
-  .d6 .box-container .box .content .price span {
-    color: #666;
-    font-size: 1.5rem;
-    text-decoration: line-through;
-  }
-
-  .d6 h3{
-      font-size: 25px;
-  }
-
-  .d6 p{
-      font-size: 20px;
-  }
-
+ 
   hr{
     background-color: #020202;
     height: 1px;
     border: none;
+  }
+
+  .btn1 {
+    display: inline-block;
+    margin-top: 0.5rem;
+    background:var(--orange);
+    background: #04a8fae7;
+    color: white;
+    padding: 0.7rem 2rem;
+    /* border:.2rem solid var(--orange); */
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 20px;
+  
   }
