@@ -1,0 +1,91 @@
+ .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    width: 100%;
+    object-position: 10%;
+  }
+  
+   .read{
+    display: none;
+  }
+  
+   .box-container .box {
+    flex: 5 5 30rem;
+    border-radius: .5rem;
+    overflow: hidden;
+    box-shadow: 0 1rem 2rem rgba(198, 152, 150, 0.877);
+    
+  }
+  
+   .box-container .box img {
+    height: 30rem;
+    width: 99%;
+    position: relative;
+    object-fit: cover;
+    display: table;
+  }
+  
+   .box-container .box .content {
+    padding: 4rem;
+    /* width: 50%; */
+  }
+  
+   .box-container .box .content h3 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+   .box-container .box .content h3 i {
+    color: var(--orange);
+  }
+   .box-container .box .content p {
+    font-size: 1.7rem;
+    color: #666;
+    padding: 1rem 0;
+  }
+   .box-container .box .content .stars i {
+    font-size: 1.7rem;
+    color: var(--orange);
+  }
+   .box-container .box .content .price {
+    font-size: 2rem;
+    color: #333;
+    padding-top: 1rem;
+  }
+   .box-container .box .content .price span {
+    color: #666;
+    font-size: 1.5rem;
+    text-decoration: line-through;
+  }
+
+   h3{
+      font-size: 25px;
+  }
+
+   p{
+      font-size: 20px;
+  }
+  
+ 
+  hr{
+    background-color: #020202;
+    height: 1px;
+    border: none;
+  }
+
+  .btn1 {
+    display: inline-block;
+    margin-top: 0.5rem;
+    background:var(--orange);
+    background: #04a8fae7;
+    color: white;
+    padding: 0.7rem 2rem;
+    /* border:.2rem solid var(--orange); */
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 20px;
+  
+  }
