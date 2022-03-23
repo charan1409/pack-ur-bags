@@ -1,17 +1,24 @@
 
 /* Contact Us */
 
-.contact_us_cls {
-	/* background-image: linear-gradient(rgba(146, 240, 232, 0.7),rgba(0,0,0,0)); */
-	background-image: linear-gradient(#1314148c,#EEEEEE);
+.cont {
+	background-image: url(images/cont_us.jpeg);
+	background-repeat: no-repeat;
+	background-size: cover;
+  }
 
-	background-color: url();
-}
+  #cont_id {
+	/* background-color: #ffffff10; */
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+  }
+
 
 .structure {
 	display: flex;
 	justify-content: space-around;
 	padding: 2%;
+	/* background-image: url(); */
 }
 label {
   font-size: 50px;
@@ -20,10 +27,10 @@ label {
 	/* height: 400px; */
 	
 	width: 900px;
-	height: 620px;
+	height: 520px;
 	border-radius: 10px;
 	box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.623);
-	background: rgba(255, 255, 0, 0.26);
+	background: rgba(0, 162, 255, 0.26);
 }
 .structure_1 form {
 	margin: 5%;
@@ -63,7 +70,7 @@ form textarea {
 }
 #fsubmit {
 	margin-top: 20px; 
-	background: linear-gradient(to right, #fa37a2, #2a27df);
+	background: linear-gradient(to right, #2a27df,#afa2a9);
 	border-radius: 5px;
 	border-style: none;
 	outline: none;
