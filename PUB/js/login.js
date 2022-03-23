@@ -96,3 +96,13 @@ function validate_email() {
 
 
 // }
+
+function validate(){
+  let a = document.getElementById('spass').value
+  let b = document.getElementById('spass2').value
+
+  if (a != b){
+    alert('Please re-enter the same password');
+
+  }
+}
