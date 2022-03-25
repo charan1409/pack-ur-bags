@@ -361,7 +361,9 @@
     font-size: 1.5rem;
     text-decoration: line-through;
   }
-
+  h1{
+    font-size: 20px;
+  }
    h3{
       font-size: 25px;
   }
