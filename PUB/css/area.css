@@ -21,7 +21,7 @@
     height: 30rem;
     width: 100%;
     position: relative;
-    object-fit: cover;
+    object-fit: fill;
     display: table;
   }
   
