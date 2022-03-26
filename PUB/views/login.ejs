@@ -28,8 +28,8 @@
         <button type="button" class="toggle-btn" onclick="register()">Sign up</button>
       </div>
       <form id="login" action="/" onsubmit="validate_email()">
-        <input type="text" class="box" id="email" placeholder="Enter your email"> <br>
-        <input type="password" class="box" id="pas" placeholder="Enter your password"> <br>
+        <input type="text" class="box" id="email" name="inemail" placeholder="Enter your email"> <br>
+        <input type="password" class="box" id="pas" name="inpass" placeholder="Enter your password"> <br>
         <input type="submit" value="login now" class="login-btn"> <br> <br> <br>
         <div>
           <input type="checkbox" id="remember">
@@ -42,10 +42,10 @@
       </form>
 
       <form id="register" action="login" onsubmit="">
-        <input type="text" class="box" id="sname" placeholder="Enter your name" required> <br>
-        <input type="text" class="box" id="smail" placeholder="Enter your email" required> <br>
-        <input type="password" class="box" id="spass" placeholder="Enter your password" required> <br>
-        <input type="password" class="box" id="spass2" placeholder="Confirm your password" required> <br>
+        <input type="text" class="box" id="sname" name="upname" placeholder="Enter your name" required> <br>
+        <input type="text" class="box" id="smail" name="upemail" placeholder="Enter your email" required> <br>
+        <input type="password" class="box" id="spass" name="uppass1" placeholder="Enter your password" required> <br>
+        <input type="password" class="box" id="spass2" name="uppass2" placeholder="Confirm your password" required> <br>
         <input type="checkbox" id="remember1">
         <label for="remember1">Yes, I want to receive promotions from Pack Your Bags</label> <br>
         <input type="submit" value="Register now" id="reg" class="login-btn" onclick="validate()"> <br> <br>
