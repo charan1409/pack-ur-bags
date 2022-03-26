@@ -1,0 +1,158 @@
+/* body {
+  background-color: rgba(34, 30, 30, 0.095);
+  
+} */
+
+#log {
+  background-color: #ffffff10;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.top {
+  background-image: url(./../img/images/login.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+form {
+  font-size: 75%;
+  text-align: center;
+  transform-style: preserve-3d;
+}
+
+.form-container {
+  position: relative;
+  height: 550px;
+  width: 600px;
+  background: rgba(145, 145, 145, 0.651);
+  padding: 30px;
+  overflow: hidden;
+  perspective: 1000px;
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.623);
+  animation-name: moving;
+  animation-duration: 1s;
+  margin-top: 9%;
+  margin-left: 30%;
+  margin-bottom: 8%;
+}
+
+@keyframes moving {
+  from {bottom: 100px;}
+  to {bottom: 0;}
+}
+
+.top-btn{
+  width: 500px;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.toggle-btn{
+  padding: 10px 30px;
+  cursor: pointer;
+  position: relative;
+  margin: 0 40px;
+  background: transparent;
+  font-size: 25px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.reg-btn{
+  padding: 10px 30px;
+  cursor: pointer;
+  position: relative;
+  margin: 0 40px;
+  background: transparent;
+  font-size: 15px;
+}
+
+.reg-btn:hover{
+  color: #333;
+  text-decoration: underline;
+}
+
+#stat-btn{
+  top: 60px;
+  left: 40px;
+  position: absolute;
+  background: orange;
+  width: 180px;
+  height: 4px;
+  transition: .5s;
+}
+  
+#login {
+  left: 0;
+}
+  
+#register {
+  margin-top: 4%;
+  left: 600px;
+  bottom: 380px;
+}
+  
+.form-container form {
+  position: relative;
+  margin: 0 2rem;
+  padding: 1.5rem 2rem;
+  border-radius: 0.5rem;
+  width: 50rem;
+  height: 70%;
+  transition: .5s;
+}
+  
+.form-container .box {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.7rem;
+  color: rgb(51, 51, 51);
+  margin: 0.6rem 0;
+  border: 0.1rem solid rgba(0, 0, 0, 0.3);
+  text-transform: none;
+}
+
+.form-container .login-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  background: #020202;
+  color: white;
+  padding: 0.8rem 3rem;
+  cursor: pointer;
+  font-size: 1.7rem;
+  border-radius: 20px;
+}
+
+.form-container .login-btn:hover {
+  background: rgba(54, 54, 53, 0.774);
+}
+  
+#remember {
+  margin: 2rem 0;
+}
+  
+.form-container form label {
+  font-size: 1.5rem;
+}
+  
+.form-container .btn {
+  display: block;
+  width: 100%;
+}
+  
+.form-container p {
+  padding: 0.5rem 0;
+  font-size: 1.5rem;
+  color: solid black;
+  font-weight: 500;
+}
+  
+.form-container a {
+  color: var(--blue);
+}
+  
+.form-container a:hover {
+  color: #333;
+  text-decoration: underline;
+}
+  

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World Tour</title>
+  <!-- Custom CSS Link... -->
+  <link rel="stylesheet" href="css\style.css">
+  <link rel="stylesheet" href="css\login.css">
+  <link rel="stylesheet" href="css\footer.css">
+  <link rel="icon" href="css/images/fav1.png">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+
+  <section class="top">
+    <header>
+      <a href="#log" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
+    </header>
+    <div id="log" class="form-container">
+      <div class="top-btn">
+        <div id="stat-btn"></div>
+        <button type="button" class="toggle-btn" onclick="login()">Sign in</button>
+        <button type="button" class="toggle-btn" onclick="register()">Sign up</button>
+      </div>
+      <form id="login" action="/" onsubmit="validate_email()">
+        <input type="text" class="box" id="email" placeholder="Enter your email"> <br>
+        <input type="password" class="box" id="pas" placeholder="Enter your password"> <br>
+        <input type="submit" value="login now" class="login-btn"> <br> <br> <br>
+        <div>
+          <input type="checkbox" id="remember">
+          <label for="remember">remember me</label> <br> <br>
+          <p>forget password? <a href="#">Click here</a></p> <br>
+          <!-- <p>don't have an account? <a href="register.html">register now</a></p>  -->
+          <button type="button" class="reg-btn" onclick="register()">don't have an account ?</button>
+          <p>Customer service: 9398717554</p>
+        </div>
+      </form>
+
+      <form id="register" action="login" onsubmit="">
+        <input type="text" class="box" id="sname" placeholder="Enter your name" required> <br>
+        <input type="text" class="box" id="smail" placeholder="Enter your email" required> <br>
+        <input type="password" class="box" id="spass" placeholder="Enter your password" required> <br>
+        <input type="password" class="box" id="spass2" placeholder="Confirm your password" required> <br>
+        <input type="checkbox" id="remember1">
+        <label for="remember1">Yes, I want to receive promotions from Pack Your Bags</label> <br>
+        <input type="submit" value="Register now" id="reg" class="login-btn" onclick="validate()"> <br> <br>
+
+        <p>Have an account already? <a href="login">Login</a></p>
+        <p class="cus">Customer service: 9398717554</p>
+      </form>
+    </div>
+
+  </section>
+
+
+  <section class="footer" id="footer">
+    <div class="box-container">
+      <div class="box">
+        <p>
+          PLAN YOUR HOLIDAYS WITH OUR ASSISTANCE,
+          JUST FILL IN YOUR DETAILS.
+        </p>
+        <div class="share">
+          <a href="#" class="fab fa-facebook-f"></a>
+          <a href="#" class="fab fa-twitter"></a>
+          <a href="#" class="fab fa-instagram"></a>
+          <a href="#" class="fab fa-linkedin"></a>
+        </div>
+      </div>
+
+      <div class="box">
+        <h3>quick links</h3>
+        <a href="#home" class="links">
+          <i class="fas fa-arrow-right"></i> home
+        </a>
+        <a href="#about" class="links">
+          <i class="fas fa-arrow-right"></i> about
+        </a>
+        <a href="#services" class="links">
+          <i class="fas fa-arrow-right"></i> services
+        </a>
+        <a href="#gallery" class="links">
+          <i class="fas fa-arrow-right"></i> gallery
+        </a>
+      </div>
+
+      <div class="box">
+        <h3>contact info</h3>
+        <p><i class="fas fa-map"></i> indian institute of information technology sricity, andra pradesh</p>
+        <p><i class="fas fa-phone"></i> +91-93987 17554</p>
+        <p><i class="fas fa-envelope"></i> packyourbag@gmail.com </p>
+        <p><i class="fas fa-clock"></i> 7:00am - 10:00pm</p>
+      </div>
+
+      <div class="box">
+        <h3>newsletter</h3>
+        <p>subscribe for latest updates</p>
+        <form action="">
+          <input type="email" name="" placeholder="enter your email" class="email" id="" />
+          <input type="submit" value="subscribe" class="btn" />
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div class="credit">
+    Copyright © 2022 Created By <span>IIITS STUDENTS</span> | all rights reserved !!
+  </div>
+
+  <!-- footer section ends -->
+  <script src="js\login.js">
+  </script>
+
+</html>

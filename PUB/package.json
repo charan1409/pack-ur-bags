@@ -1,0 +1,23 @@
+{
+  "name": "ffsd_project",
+  "version": "1.0.0",
+  "description": "project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon tutorial.js"
+  },
+  "author": "Rahul",
+  "license": "ISC",
+  "dependencies": {
+    "body": "^5.1.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "mjs": "^1.0.0",
+    "module": "^1.2.5",
+    "mongoose": "^6.2.8",
+    "nodemon": "^2.0.15",
+    "parser": "^0.1.4",
+    "progress": "^2.0.3"
+  }
+}
