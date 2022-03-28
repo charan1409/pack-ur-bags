@@ -78,33 +78,37 @@ app.get("/services", function(req, res){
     res.render('services');
 });
 
+// let upemail
+// let upname
+// let uppass1
+// app.post("/login", function(req, res){
 
-app.post("/login", function(req, res){
-
-    let inemail = (req.body.inemail);
-    let inpass = (req.body.inpass);
-    let upname = (req.body.upname);
-    let upemail = (req.body.upemail);
-    let uppass1 = (req.body.uppass1);
-    let uppass2 = (req.body.uppass2);
+//     let inemail = (req.body.inemail);
+//     let inpass = (req.body.inpass);
+//     upname = (req.body.upname);
+//     upemail = (req.body.upemail);
+//     uppass1 = (req.body.uppass1);
+//     let uppass2 = (req.body.uppass2);
 
 
-    res.write("Your Email is : "+ inemail + "\n");
-    res.write("Your Password is : "+ inpass + "\n");
-    res.write("Your Name:  "+ upname + "\n");
-    res.write("Your Email is : "+ upemail + "\n");
-    res.write("Your pass1: "+ uppass1 + "\n");
-    res.write("Your pass2: "+ uppass2 + "\n");
+//     res.write("Your Email is : "+ inemail + "\n");
+//     res.write("Your Password is : "+ inpass + "\n");
+//     res.write("Your Name:  "+ upname + "\n");
+//     res.write("Your Email is : "+ upemail + "\n");
+//     res.write("Your pass1: "+ uppass1 + "\n");
+//     res.write("Your pass2: "+ uppass2 + "\n");
 
-    res.end();
-})
+//     res.end();
+// })
 
 app.listen(port, function(){
     console.log("server is runnig on the port 3000");
 });
 
 const sqlite3 = require('sqlite3')
-const path = require('path')
+const path = require('path');
+const req = require("express/lib/request");
+const res = require("express/lib/response");
 const db_name = path.join(__dirname, "data", "data.db");
 const db = new sqlite3.Database(db_name, err =>{
 if(err){
@@ -127,8 +131,31 @@ return console.log(err.message)
 console.log("FSD User table created successfully")
 })
 
-function dataentry(){
-    let email = document.getElementById("email").value;
-    let log = document.getElementById("login");
-    let pas = document.getElementById("pas").value;
-}
+app.get("/Create",(req,res)=>{
+    res.render("login", {model:{}});
+})
+const datins = 'INSERT INTO users (username, email, password) VALUES (?,?,?);'
+app.post("/login",(req,res) => {
+    const book = [req.body.upname,req.body.upemail,req.body.uppass1];
+    db.run(datins,book,  err =>{
+        if(err){
+            console.log(err.message);
+        } else{
+            console.log('Data inserted successfully');
+        }
+        res.redirect("/");
+    })
+})
+
+app.get("/FSD", (req, res) =>{
+    const sql = "SELECT * FROM users";
+    db.all(sql, (err, rows)=>{
+    if (err){
+    return console.log(err.message);
+    
+    }
+    res.render("fdata", {model: rows});
+    res.render()
+    })
+    
+    })
