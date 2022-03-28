@@ -81,12 +81,12 @@ app.get("/services", function(req, res){
 
 app.post("/login", function(req, res){
 
-    var inemail = (req.body.inemail);
-    var inpass = (req.body.inpass);
-    var upname = (req.body.upname);
-    var upemail = (req.body.upemail);
-    var uppass1 = (req.body.uppass1);
-    var uppass2 = (req.body.uppass2);
+    let inemail = (req.body.inemail);
+    let inpass = (req.body.inpass);
+    let upname = (req.body.upname);
+    let upemail = (req.body.upemail);
+    let uppass1 = (req.body.uppass1);
+    let uppass2 = (req.body.uppass2);
 
 
     res.write("Your Email is : "+ inemail + "\n");
@@ -126,3 +126,9 @@ return console.log(err.message)
 }
 console.log("FSD User table created successfully")
 })
+
+function dataentry(){
+    let email = document.getElementById("email").value;
+    let log = document.getElementById("login");
+    let pas = document.getElementById("pas").value;
+}
