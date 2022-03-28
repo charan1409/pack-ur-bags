@@ -1,63 +1,62 @@
 .d1 .box-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-bottom: 0%;
-    width: 100%;
-    object-position: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 5%;
+  width: 100%;
+  object-position: 10%;
 }
-  
-.d1 .box-container .box {
-    flex: 1 30rem;
-    height: 700px;
-    /* border-radius: .5rem; */
-    overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 1rem 2rem rgba(133, 125, 125, 0.877);
-    
-  }
-  
-.d1 .box-container .box img {
-    height: 30rem;
-    width: 100%;
-    position: relative;
-    object-fit: fill;
-    display: table;
-  }
-  
-  .d1 .box-container .box .content {
-    padding: 4rem;
-    /* width: 50%; */
-  }
-  
-  .d1 .box-container .box .content h3 {
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .d1 .box-container .box .content h3 i {
-    color: var(--orange);
-  }
 
-  .d1 .box-container .box .content p {
-    font-size: 1.7rem;
-    color: #666;
-    padding: 1rem 0;
-  }
-  .d1 .box-container .box .content .stars i {
-    font-size: 1.7rem;
-    color: var(--orange);
-  }
-  .d1 .box-container .box .content .price {
-    font-size: 2rem;
-    color: #333;
-    padding-top: 1rem;
-  }
-  .d1 .box-container .box .content .price span {
-    color: #666;
-    font-size: 1.5rem;
-    text-decoration: line-through;
-  }
+.d1 .box-container .box {
+  flex: 5 5 30rem;
+  border-radius: .5rem;
+  overflow: hidden;
+  box-shadow: 0 1rem 2rem rgba(198, 152, 150, 0.877);
+  
+}
+
+.d1 .box-container .box img {
+  height: 30rem;
+  width: 99%;
+  position: relative;
+  object-fit: cover;
+  display: table;
+}
+
+.d1 .box-container .box .content {
+  padding: 4rem;
+  /* width: 50%; */
+}
+
+.d1 .box-container .box .content h3 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.d1 .box-container .box .content h3 i {
+  color: var(--orange);
+}
+
+.d1 .box-container .box .content p {
+  font-size: 1.7rem;
+  color: #666;
+  padding: 1rem 0;
+}
+.d1 .box-container .box .content .stars i {
+  font-size: 1.7rem;
+  color: var(--orange);
+}
+.d1 .box-container .box .content .price {
+  font-size: 2rem;
+  color: #333;
+  padding-top: 1rem;
+}
+.d1 .box-container .box .content .price span {
+  color: #666;
+  font-size: 1.5rem;
+  text-decoration: line-through;
+}
+
 
 
 .d2 .box-container {
