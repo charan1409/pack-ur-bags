@@ -102,3 +102,27 @@ app.post("/login", function(req, res){
 app.listen(port, function(){
     console.log("server is runnig on the port 3000");
 });
+
+const sqlite3 = require('sqlite3')
+const path = require('path')
+const db_name = path.join(__dirname, "data", "data.db");
+const db = new sqlite3.Database(db_name, err =>{
+if(err){
+return console.log(err.message);
+}
+console.log("FSD Database Connected")
+});
+
+const regdata = `CREATE TABLE IF NOT EXISTS users(
+    slno INTEGER PRIMARY KEY AUTOINCREMENT,
+    username VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password varchar(100) NOT NULL
+    );`;
+
+db.run(regdata, err=>{
+if(err){
+return console.log(err.message)
+}
+console.log("FSD User table created successfully")
+})
