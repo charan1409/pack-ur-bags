@@ -42,14 +42,14 @@
         </div>
       </form>
 
-      <form id="register" action="login" onsubmit="">
+      <form id="register" action="/login" onsubmit="" method="post">
         <input type="text" class="box" id="sname" name="upname" placeholder="Enter your name" required> <br>
         <input type="text" class="box" id="smail" name="upemail" placeholder="Enter your email" required> <br>
         <input type="password" class="box" id="spass" name="uppass1" placeholder="Enter your password" required> <br>
         <input type="password" class="box" id="spass2" name="uppass2" placeholder="Confirm your password" required> <br>
         <input type="checkbox" id="remember1">
         <label for="remember1">Yes, I want to receive promotions from Pack Your Bags</label> <br>
-        <input type="submit" value="Register now" id="reg" class="login-btn" onclick="validate() & dataentry()"> <br> <br>
+        <input type="submit" value="Register now" id="reg" class="login-btn" onclick="validate()"> <br> <br>
 
         <p>Have an account already? <a href="login">Login</a></p>
         <p class="cus">Customer service: 9398717554</p>
