@@ -60,46 +60,16 @@ function validate_email() {
 }
 
 
-// function validation() {
-//   let name = document.getElementById("sname").value;
-//   let mail = document.getElementById("smail").value;
-//   let pass = document.getElementById("spass").value;
-//   let pass2 = document.getElementById("spass2").value;
-//   let log = document.getElementById("register");
-
-
-//   if (mail == '') {
-//     alert("please enter ur name");
-//     log.action = ""
-//     return true
-//   }
-
-//   if (mail == '') {
-//     alert("please enter ur email");    
-//     return false
-//   }
-
-//   if (mail.includes("@")) {
-//     console.log('Every Thing Fine');
-//     if (pass == '') {
-//       alert("please enter ur password for creating");
-//       log.action = "register"
-//     }
-//     if (pass !== pass2){
-//       alert("Please re-enter correct password");
-//     }
-//     return true
-//   }
-
-//   alert("bad email")
-//     log.action = "register"
-
-
-// }
-
 function validate(){
   let a = document.getElementById('spass').value
   let b = document.getElementById('spass2').value
+
+  let mail = document.getElementById("smail").value;
+  if (!(mail.includes("@"))) {
+    alert("bad email")
+
+  }
+
 
   if (a != b){
     alert('Please re-enter the same password');
