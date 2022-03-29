@@ -4,7 +4,7 @@ const app = express();
 const port = 3000
 
 const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Static Files
 app.use(express.static('public'))
@@ -17,64 +17,64 @@ app.set('views', './views')
 app.set('view engine', 'ejs')
 
 
-app.get("/", function(req, res){
+app.get("/", function (req, res) {
     res.render('index');
 });
 
-app.get("/login", function(req, res){
+app.get("/login", function (req, res) {
     res.render('login');
 });
 
-app.get("/beach", function(req, res){
+app.get("/beach", function (req, res) {
     res.render('beach');
 });
 
-app.get("/book", function(req, res){
+app.get("/book", function (req, res) {
     res.render('book');
 });
 
-app.get("/countryside", function(req, res){
+app.get("/countryside", function (req, res) {
     res.render('countryside');
 });
 
-app.get("/cultural", function(req, res){
+app.get("/cultural", function (req, res) {
     res.render('cultural');
 });
 
-app.get("/desert", function(req, res){
+app.get("/desert", function (req, res) {
     res.render('desert');
 });
 
-app.get("/forest", function(req, res){
+app.get("/forest", function (req, res) {
     res.render('forest');
 });
 
-app.get("/hillstation", function(req, res){
+app.get("/hillstation", function (req, res) {
     res.render('hillstation');
 });
 
-app.get("/island", function(req, res){
+app.get("/island", function (req, res) {
     res.render('island');
 });
 
-app.get("/winter", function(req, res){
+app.get("/winter", function (req, res) {
     res.render('winter');
 });
 
 
-app.get("/review", function(req, res){
+app.get("/review", function (req, res) {
     res.render('review');
 });
 
-app.get("/package", function(req, res){
+app.get("/package", function (req, res) {
     res.render('package');
 });
 
-app.get("/profile", function(req, res){
+app.get("/profile", function (req, res) {
     res.render('profile');
 });
 
-app.get("/services", function(req, res){
+app.get("/services", function (req, res) {
     res.render('services');
 });
 
@@ -101,8 +101,8 @@ app.get("/services", function(req, res){
 //     res.end();
 // })
 
-app.listen(port, function(){
-    console.log("server is runnig on the port 3000");
+app.listen(port, function () {
+    console.log("server is running on the port 3000");
 });
 
 const sqlite3 = require('sqlite3')
@@ -110,11 +110,11 @@ const path = require('path');
 const req = require("express/lib/request");
 const res = require("express/lib/response");
 const db_name = path.join(__dirname, "data", "data.db");
-const db = new sqlite3.Database(db_name, err =>{
-if(err){
-return console.log(err.message);
-}
-console.log("FSD Database Connected")
+const db = new sqlite3.Database(db_name, err => {
+    if (err) {
+        return console.log(err.message);
+    }
+    console.log("FSD Database Connected")
 });
 
 const regdata = `CREATE TABLE IF NOT EXISTS users(
@@ -124,38 +124,38 @@ const regdata = `CREATE TABLE IF NOT EXISTS users(
     password varchar(100) NOT NULL
     );`;
 
-db.run(regdata, err=>{
-if(err){
-return console.log(err.message)
-}
-console.log("FSD User table created successfully")
+db.run(regdata, err => {
+    if (err) {
+        return console.log(err.message)
+    }
+    console.log("FSD User table created successfully")
 })
 
-app.get("/Create",(req,res)=>{
-    res.render("login", {model:{}});
+app.get("/Create", (req, res) => {
+    res.render("login", { model: {} });
 })
 const datins = 'INSERT INTO users (username, email, password) VALUES (?,?,?);'
-app.post("/login",(req,res) => {
-    const book = [req.body.upname,req.body.upemail,req.body.uppass1];
-    db.run(datins,book,  err =>{
-        if(err){
+app.post("/login", (req, res) => {
+    const book = [req.body.upname, req.body.upemail, req.body.uppass1];
+    db.run(datins, book, err => {
+        if (err) {
             console.log(err.message);
-        } else{
+        } else {
             console.log('Data inserted successfully');
         }
         res.redirect("/");
     })
 })
 
-app.get("/FSD", (req, res) =>{
+app.get("/FSD", (req, res) => {
     const sql = "SELECT * FROM users";
-    db.all(sql, (err, rows)=>{
-    if (err){
-    return console.log(err.message);
-    
-    }
-    res.render("fdata", {model: rows});
-    res.render()
+    db.all(sql, (err, rows) => {
+        if (err) {
+            return console.log(err.message);
+
+        }
+        res.render("fdata", { model: rows });
+        res.render()
     })
-    
-    })
+
+})
