@@ -100,6 +100,13 @@ function validate(){
   let a = document.getElementById('spass').value
   let b = document.getElementById('spass2').value
 
+  let mail = document.getElementById("smail").value;
+  if (!(mail.includes("@"))) {
+    alert("bad email")
+
+  }
+
+
   if (a != b){
     alert('Please re-enter the same password');
 
