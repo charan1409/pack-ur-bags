@@ -10,7 +10,8 @@
   <link rel="stylesheet" href="css\style.css">
   <link rel="stylesheet" href="css\login.css">
   <link rel="stylesheet" href="css\footer.css">
-  <link rel="icon" href="css/images/fav1.png">
+  <link rel="icon" href="img/images/fav1.png">
+
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -22,12 +23,13 @@
       <a href="#log" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
     </header>
     <div id="log" class="form-container">
+      <p id="temp"></p>
       <div class="top-btn">
         <div id="stat-btn"></div>
         <button type="button" class="toggle-btn" onclick="login()">Sign in</button>
         <button type="button" class="toggle-btn" onclick="register()">Sign up</button>
       </div>
-      <form id="login" action="/" onsubmit="validate_email()">
+      <form id="login" action="/login" onsubmit="validate_email()" method="post">
         <input type="text" class="box" id="email" name="inemail" placeholder="Enter your email"> <br>
         <input type="password" class="box" id="pas" name="inpass" placeholder="Enter your password"> <br>
         <input type="submit" value="login now" class="login-btn"> <br> <br> <br>
@@ -41,14 +43,14 @@
         </div>
       </form>
 
-      <form id="register" action="login" onsubmit="">
+      <form id="register" action="/register" onsubmit="" method="post">
         <input type="text" class="box" id="sname" name="upname" placeholder="Enter your name" required> <br>
         <input type="text" class="box" id="smail" name="upemail" placeholder="Enter your email" required> <br>
         <input type="password" class="box" id="spass" name="uppass1" placeholder="Enter your password" required> <br>
         <input type="password" class="box" id="spass2" name="uppass2" placeholder="Confirm your password" required> <br>
         <input type="checkbox" id="remember1">
         <label for="remember1">Yes, I want to receive promotions from Pack Your Bags</label> <br>
-        <input type="submit" value="Register now" id="reg" class="login-btn" onclick="validate() & dataentry()"> <br> <br>
+        <input type="submit" value="Register now" id="reg" class="login-btn" onclick="validate()"> <br> <br>
 
         <p>Have an account already? <a href="login">Login</a></p>
         <p class="cus">Customer service: 9398717554</p>
@@ -113,7 +115,7 @@
   </div>
 
   <!-- footer section ends -->
+  
   <script src="js\login.js">
   </script>
-
 </html>
