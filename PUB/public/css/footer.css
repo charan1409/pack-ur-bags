@@ -50,7 +50,6 @@
   }
 
   #cont_id {
-	/* background-color: #ffffff10; */
 	backdrop-filter: blur(12px);
 	-webkit-backdrop-filter: blur(12px);
   }
@@ -60,14 +59,11 @@
 	display: flex;
 	justify-content: space-around;
 	padding: 2%;
-	/* background-image: url(); */
 }
 label {
   font-size: 50px;
 }
 .structure_1 {
-	/* height: 400px; */
-	
 	width: 900px;
 	height: 620px;
 	border-radius: 10px;

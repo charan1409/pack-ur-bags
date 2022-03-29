@@ -25,59 +25,6 @@ header a:hover {
   text-transform: uppercase;
 }
 
-
-/* header animations in vedio */
-.home_header_info h1 {
-  font-size: 45px;
-  padding: 20px 0px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-.home_header_info p {
-  font-size: 15px;
-  line-height: 30px;
-  width: 80%;
-  margin: 0 auto;
-}
-
-.home_header_info a {
-  background-color: #fff;
-  color: #00a8b4;
-  text-decoration: none;
-  padding: 17px 45px;
-  margin-top: 25px;
-  display: inline-block;
-  font-size: 14px;
-  position: relative;
-  overflow: hidden;
-}
-
-.home_header_info a:hover {
-  color: #fff;
-}
-
-.home_header_info a:after {
-  content: "Read More";
-  background-color: #00a8b4;
-  width: 0%;
-  font-size: 15px;
-  height: 100%;
-  line-height: 50px;
-  color: #fff;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: all 0.5s ease;
-  right: 0;
-}
-
-.home_header_info a:hover:after {
-  width: 100%;
-}
-
-
 * {
   font-family: "Nunito", sans-serif;
   padding: 0;
@@ -118,7 +65,7 @@ section {
 .heading span .space {
   background: none;
 }
-
+/* Buttons CSS */
 .btn {
   display: inline-block;
   margin-top: 1rem;
@@ -126,7 +73,6 @@ section {
   background: #fad504e7;
   color: white;
   padding: 0.8rem 3rem;
-  /* border:.2rem solid var(--orange); */
   cursor: pointer;
   font-size: 1.7rem;
   font-weight: bold;
@@ -137,7 +83,7 @@ section {
 .btn:hover {
   background: rgba(235, 219, 129, 0.678);
 }
-
+/* Nav Bar STYLE */
 header {
   position: fixed;
   top: 0;
@@ -159,10 +105,6 @@ header .logo {
   color: white;
   text-transform: uppercase;
 }
-
-/* .logoc {
-  color: yellow;
-} */
 
 header .logo span {
   color: var(--orange);
