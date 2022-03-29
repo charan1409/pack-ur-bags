@@ -59,7 +59,6 @@ function validate_email() {
   return false
 }
 
-
 // function validation() {
 //   let name = document.getElementById("sname").value;
 //   let mail = document.getElementById("smail").value;

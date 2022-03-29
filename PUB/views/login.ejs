@@ -23,12 +23,13 @@
       <a href="#log" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
     </header>
     <div id="log" class="form-container">
+      <p id="temp"></p>
       <div class="top-btn">
         <div id="stat-btn"></div>
         <button type="button" class="toggle-btn" onclick="login()">Sign in</button>
         <button type="button" class="toggle-btn" onclick="register()">Sign up</button>
       </div>
-      <form id="login" action="/" onsubmit="validate_email()">
+      <form id="login" action="/login" onsubmit="validate_email()" method="post">
         <input type="text" class="box" id="email" name="inemail" placeholder="Enter your email"> <br>
         <input type="password" class="box" id="pas" name="inpass" placeholder="Enter your password"> <br>
         <input type="submit" value="login now" class="login-btn"> <br> <br> <br>
@@ -42,7 +43,7 @@
         </div>
       </form>
 
-      <form id="register" action="/login" onsubmit="" method="post">
+      <form id="register" action="/register" onsubmit="" method="post">
         <input type="text" class="box" id="sname" name="upname" placeholder="Enter your name" required> <br>
         <input type="text" class="box" id="smail" name="upemail" placeholder="Enter your email" required> <br>
         <input type="password" class="box" id="spass" name="uppass1" placeholder="Enter your password" required> <br>
@@ -114,7 +115,7 @@
   </div>
 
   <!-- footer section ends -->
+  
   <script src="js\login.js">
   </script>
-
 </html>
