@@ -109,6 +109,7 @@ function validate(){
 
   if (a != b){
     alert('Please re-enter the same password');
-
+    return false;
+    // document.getElementById("login").action = "";
   }
 }

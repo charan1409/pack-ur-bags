@@ -114,7 +114,6 @@ const db = new sqlite3.Database(db_name, err => {
     if (err) {
         return console.log(err.message);
     }
-    console.log("FSD Database Connected")
 });
 const regdata = `CREATE TABLE IF NOT EXISTS users(
     username VARCHAR(100) NOT NULL UNIQUE,
@@ -126,7 +125,6 @@ db.run(regdata, err => {
     if (err) {
         return console.log(err.message)
     }
-    console.log("Table created successfully")
 })
 
 app.get("/Create", (req, res) => {
@@ -140,15 +138,13 @@ app.post("/register", (req, res) => {
     db.run(datins, book, err => {
         if (err) {
             a = 1;
-            // alert("Details already exists");
-            // res.render("/login");
         } else {
             console.log('Row inserted successfully');
         }
         if (a == 1) {
             console.log("details already exists");
         }
-        res.redirect("/");
+        res.redirect("/login");
     })
 })
 
