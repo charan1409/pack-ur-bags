@@ -50,8 +50,8 @@
   }
 
   #cont_id {
-	backdrop-filter: blur(12px);
-	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
   }
 
 
@@ -60,9 +60,11 @@
 	justify-content: space-around;
 	padding: 2%;
 }
+
 label {
   font-size: 50px;
 }
+
 .structure_1 {
 	width: 900px;
 	height: 620px;
@@ -70,18 +72,21 @@ label {
 	box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.623);
 	background: rgba(0, 162, 255, 0.26);
 }
+
 .structure_1 form {
 	margin: 5%;
 	margin-top: 40px;
 	width: 90%;
 	height: 90%;
 }
+
 .structure_1 form label {
 	position: absolute;
 	color: #2E3D49;
 	font-size: 10px;
 	font-weight: 800;
 }
+
 .structure_1 form input {
 	padding: 15px;
 	margin-bottom: 10px;
@@ -92,9 +97,11 @@ label {
 	color: #2E3D49;
 	font-weight: 600;
 }
+
 .star {
 	color: red;
 }
+
 form textarea {
 	width: 100%;
 	height: 100px;
