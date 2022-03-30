@@ -131,6 +131,7 @@ app.post("/login", (req, res) => {
     const mail = req.body.inemail;
     const pass = req.body.inpass;
     db.each('SELECT * FROM users;', (err, row) => {
+        console.log(row);
         if (err) {
             console.log(err);
         }
