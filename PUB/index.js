@@ -131,15 +131,20 @@ app.post("/login", (req, res) => {
     const mail = req.body.inemail;
     const pass = req.body.inpass;
     db.each('SELECT * FROM users;', (err, row) => {
+        // console.log(row);
         if (err) {
             console.log(err);
         }
         const logdet = new Map();
         logdet.set(row.email, row.password)
-        if(logdet.get(mail) == pass){
-            res.redirect("/");
-        } else{
-            return res.render('login');
-            }
+        logdet.forEach((key,value) => {
+            console.log(key+" "+value);
+            if(logdet.get(mail) == pass){
+                res.redirect("/");
+            } 
+            else{
+                return res.render('login');
+                }
+        });
     })
 })
