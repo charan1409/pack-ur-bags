@@ -1,9 +1,16 @@
 const express = require("express");
+const flash=require('connect-flash');
 const app = express();
+const mongoose=require('mongoose');
 const port = 3000
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//connect to mongo
+mongoose.connect('mongodb+srv://fsdgrp17:fsdproject@grp17.5urlr.mongodb.net/grp17?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false})
+.then(()=>console.log('MongoDb  Connected...'))
+.catch(err=>console.log(err));
 
 // Static Files
 app.use(express.static('public'))
@@ -77,74 +84,86 @@ app.get("/services", function(req, res){
 })
 
 app.listen(port, function () {
-    console.log("server is runnig on the port 3000");
+    console.log("server is running on the port 3000");
 });
 
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
-const req = require("express/lib/request");
-const res = require("express/lib/response");
-const db_name = path.join(__dirname, "data", "data.db");
-const db = new sqlite3.Database(db_name, err => {
-    if (err) {
-        return console.log(err.message);
-    }
-    console.log("FSD Database Connected")
-});
-const regdata = `CREATE TABLE IF NOT EXISTS users(
-    username VARCHAR(100) NOT NULL UNIQUE,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    password varchar(100) NOT NULL
-    );`;
+app.use(flash());
 
-db.run(regdata, err => {
-    if (err) {
-        return console.log(err.message)
-    }
-    console.log("Table created successfully")
-})
+app.use((req,res,next)=>{
+    res.locals.success_msg=req.flash('success_msg');
+    res.locals.error_msg=req.flash('error_msg');
+    res.locals.error=req.flash('error');
+    next();
+    });
 
-app.get("/Create", (req, res) => {
-    res.render("login", { model: {} });
-})
-const datins = 'INSERT INTO users (username, email, password) VALUES (?,?,?);'
-const logdat = "SELECT * FROM users WHERE email = ?;"
-app.post("/register", (req, res) => {
-    let a = 0;
-    const book = [req.body.upname, req.body.upemail, req.body.uppass1];
-    db.run(datins, book, err => {
-        if (err) {
-            a = 1;
-            // alert("Details already exists");
-            // res.render("/login");
-        } else {
-            console.log('Row inserted successfully');
-        }
-        if (a == 1) {
-            console.log("details already exists");
-        }
-        res.redirect("/");
-    })
-})
+//routes
+app.use('/users',require('./routes/users'));
 
-app.post("/login", (req, res) => {
-    const mail = req.body.inemail;
-    const pass = req.body.inpass;
-    db.each('SELECT * FROM users;', (err, row) => {
-        // console.log(row);
-        if (err) {
-            console.log(err);
-        }
-        const logdet = new Map();
-        logdet.set(row.email, row.password)
-        logdet.forEach((key,value) => {
-            console.log(key+" "+value);
-            if(logdet.get(mail) == pass){
-                res.redirect("/");
-            } 
-            else{
-                return res.render('login');
-                }
-        });
-    })
-})
+// const sqlite3 = require('sqlite3');
+// const path = require('path');
+// const req = require("express/lib/request");
+// const res = require("express/lib/response");
+// const db_name = path.join(__dirname, "data", "data.db");
+// const db = new sqlite3.Database(db_name, err => {
+//     if (err) {
+//         return console.log(err.message);
+//     }
+//     console.log("FSD Database Connected")
+// });
+// const regdata = `CREATE TABLE IF NOT EXISTS users(
+//     username VARCHAR(100) NOT NULL UNIQUE,
+//     email VARCHAR(100) NOT NULL UNIQUE,
+//     password varchar(100) NOT NULL
+//     );`;
+
+// db.run(regdata, err => {
+//     if (err) {
+//         return console.log(err.message)
+//     }
+//     console.log("Table created successfully")
+// })
+
+// app.get("/Create", (req, res) => {
+//     res.render("login", { model: {} });
+// })
+// const datins = 'INSERT INTO users (username, email, password) VALUES (?,?,?);'
+// const logdat = "SELECT * FROM users WHERE email = ?;"
+// app.post("/register", (req, res) => {
+//     let a = 0;
+//     const book = [req.body.upname, req.body.upemail, req.body.uppass1];
+//     db.run(datins, book, err => {
+//         if (err) {
+//             a = 1;
+//             // alert("Details already exists");
+//             // res.render("/login");
+//         } else {
+//             console.log('Row inserted successfully');
+//         }
+//         if (a == 1) {
+//             console.log("details already exists");
+//         }
+//         res.redirect("/");
+//     })
+// })
+
+// app.post("/login", (req, res) => {
+//     const mail = req.body.inemail;
+//     const pass = req.body.inpass;
+//     db.each('SELECT * FROM users;', (err, row) => {
+//         // console.log(row);
+//         if (err) {
+//             console.log(err);
+//         }
+//         const logdet = new Map();
+//         logdet.set(row.email, row.password)
+//         logdet.forEach((key,value) => {
+//             console.log(key+" "+value);
+//             if(logdet.get(mail) == pass){
+//                 res.redirect("/");
+//             } 
+//             else{
+//                 return res.render('login');
+//                 }
+//         });
+//     })
+// })
