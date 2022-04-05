@@ -67,16 +67,20 @@ router.get('/login',(req,res)=>res.render('login'));
 
  //register handle
  router.post('/register',(req,res)=>{
-    const {upname,upemail,uppass1,uppass2}=req.body;
+    // const {upname,upemail,uppass1,uppass2}=req.body;
+    const inemail = req.body.upname;
+    const inname = req.body.upemail;
+    const inpass1 = req.body.uppass1;
+    const inpass2 = req.body.uppass2
     console.log("Registering is called");
     let errors=[];
     //check required fields
-    if(!upname||!upemail||!uppass1||!uppass2){
+    if(!inname||!inemail||!inpass1||!inpass2){
         errors.push({msg:'please fill in all fields'});
     }
 
     //check password match
-    if(uppass1!==uppass2){
+    if(inpass1!==inpass2){
     errors.push({msg:'Password do not match'});
     }
     //check pass length
@@ -94,11 +98,11 @@ router.get('/login',(req,res)=>res.render('login'));
     //  });
     // }else{
         //validation passed
-        User.findOne({email:upemail})
+        User.findOne({email:inemail})
         .then(user=>{
             if(user){
             //User exists
-            console.log(user.upname);
+            console.log(user.name);
             errors.push({msg:'Email is already registered'});
             res.render('login',{
                 errors,
@@ -108,14 +112,15 @@ router.get('/login',(req,res)=>res.render('login'));
                uppass2
             });
             }else{
+                console.log(inname);
              const newUser=new User({
-                upname,
-                upemail,
-               uppass1
-
-             });
+                name:inname,
+                email:inemail,
+                password:inpass1
+            });
             //save user
             newUser.save().then(user=>{
+                console.log(newUser);
                 // req.flash('success_msg','you are now registered and can log in');
                 res.redirect('/login');
             })

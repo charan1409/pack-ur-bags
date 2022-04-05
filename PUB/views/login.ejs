@@ -29,7 +29,6 @@
         <button type="button" class="toggle-btn" onclick="login()">Sign in</button>
         <button type="button" class="toggle-btn" onclick="register()">Sign up</button>
       </div>
-      <%- include ('/massages.ejs');%>
       <form id="login" action="/users/login" onsubmit="validate_email()" method="post">
         <input type="text" class="box" id="email" name="inemail" placeholder="Enter your email"> <br>
         <input type="password" class="box" id="pas" name="inpass" placeholder="Enter your password"> <br>
@@ -43,7 +42,6 @@
           <p>Customer service: 9398717554</p>
         </div>
       </form>
-      <%- include ('/messages.ejs');%>
       <form id="register" action="/users/register" onsubmit="" method="post">
         <input type="text" class="box" id="sname" name="upname" placeholder="Enter your name" required> <br>
         <input type="text" class="box" id="smail" name="upemail" placeholder="Enter your email" required> <br>
