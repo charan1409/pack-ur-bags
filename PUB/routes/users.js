@@ -8,7 +8,7 @@ const User=require('../schemas/user');
 router.get('/login',(req,res)=>res.render('login'));
 
 //register Page
-//  router.get('/register',(req,res)=>res.render('register'));
+router.get('/register',(req,res)=>res.render('/register'));
 
 //  login handle
  router.post('/login', (req, res) => {
@@ -68,8 +68,8 @@ router.get('/login',(req,res)=>res.render('login'));
  //register handle
  router.post('/register',(req,res)=>{
     // const {upname,upemail,uppass1,uppass2}=req.body;
-    const inemail = req.body.upname;
-    const inname = req.body.upemail;
+    const inname = req.body.upname;
+    const inemail = req.body.upemail;
     const inpass1 = req.body.uppass1;
     const inpass2 = req.body.uppass2
     console.log("Registering is called");
@@ -102,14 +102,14 @@ router.get('/login',(req,res)=>res.render('login'));
         .then(user=>{
             if(user){
             //User exists
-            console.log(user.name);
+            console.log(user.email);
             errors.push({msg:'Email is already registered'});
-            res.render('login',{
+            res.render('register',{
                 errors,
-                upname,
-                upemail,
-               uppass1,
-               uppass2
+                inname,
+                inemail,
+               inpass1,
+               inpass2
             });
             }else{
                 console.log(inname);
