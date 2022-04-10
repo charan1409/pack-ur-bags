@@ -1,17 +1,17 @@
-const express=require('express');
-const router=express.Router();
-const bodyParser=require('body-parser');
+const express = require('express');
+const router = express.Router();
+const bodyParser = require('body-parser');
 
-const User=require('../schemas/user');
+const User = require('../schemas/user');
 
 //login Page
-router.get('/login',(req,res)=>res.render('login'));
+router.get('/login', (req, res) => res.render('login'));
 
 //register Page
-router.get('/register',(req,res)=>res.render('/register'));
+router.get('/register', (req, res) => res.render('/register'));
 
 //  login handle
- router.post('/login', (req, res) => {
+router.post('/login', (req, res) => {
     const inemail = req.body.inemail;
     const inpassword = req.body.inpass
     let errors = [];
@@ -20,7 +20,7 @@ router.get('/register',(req,res)=>res.render('/register'));
         .then(user => {
             if (!user) {
                 errors.push({ msg: 'email is not registerd' });
-        res.redirect('/login')
+                res.render('login', { errors });
 
             }
             console.log(user);
@@ -29,118 +29,70 @@ router.get('/register',(req,res)=>res.render('/register'));
                 res.redirect('/');
             } else {
                 errors.push({ msg: 'Incorrect password or email' });
-        res.redirect('/login')
-
+                res.render('login', { errors })
             }
         })
         .catch(err => console.log(err));
-    if (errors.length > 0) {
-        // res.render('/login', {
-        //     errors,
-        //     email,
-        //     password,
-        // }
-        res.redirect('/login')
-        // );
-    }
 })
 
-// router.post('/login', function (req, res, next) {
-// 	// console.log("log");
-// 	console.log(req.body);
-// 	User.findOne({email:req.body.inemail},function(err,data){
-//         console.log(data);
-// 		if(data){
-// 			if(data.password===req.body.inpass){
-// 				//console.log("Done Login");
-// 				//console.log(req.session.userId);
-// 				return res.redirect('/');
-				
-// 			}else{
-// 				res.send({"Success":"Wrong password!"});
-// 			}
-// 		}else{
-// 			res.send({"Success":"This user name  Is not regestered!"});
-// 		}
-// 	});
-// });
-
- //register handle
- router.post('/register',(req,res)=>{
-    // const {upname,upemail,uppass1,uppass2}=req.body;
+//register handle
+router.post('/register', (req, res) => {
     const inname = req.body.upname;
     const inemail = req.body.upemail;
     const inpass1 = req.body.uppass1;
     const inpass2 = req.body.uppass2
-    console.log("Registering is called");
-    let errors=[];
+    let errors = [];
     //check required fields
-    if(!inname||!inemail||!inpass1||!inpass2){
-        errors.push({msg:'please fill in all fields'});
+    if (!inname || !inemail || !inpass1 || !inpass2) {
+        errors.push({ msg: 'please fill in all fields' });
+        res.render('login', { errors })
     }
 
     //check password match
-    if(inpass1!==inpass2){
-    errors.push({msg:'Password do not match'});
+    if (inpass1 !== inpass2) {
+        errors.push({ msg: 'Password do not match' });
+        res.render('login', { errors })
     }
     //check pass length
-    // if(password.length()<6){
-    //     errors.push({msg:'Password should be atleast 6 charcaters'});
-
-    // }
-    // if(errors.length()>0){
-    //  res.render('register',{
-    //   errors,
-    //   name,
-    //   email,
-    //   password,
-    //   password2
-    //  });
-    // }else{
-        //validation passed
-        User.findOne({email:inemail})
-        .then(user=>{
-            if(user){
-            //User exists
-            console.log(user.email);
-            errors.push({msg:'Email is already registered'});
-            res.render('register',{
-                errors,
-                inname,
-                inemail,
-               inpass1,
-               inpass2
-            });
-            }else{
+    if (inpass1.length < 6) {
+        errors.push({ msg: 'Password should be atleast 6 charcaters' });
+        res.render('login', { errors })
+    }
+    User.findOne({ email: inemail })
+        .then(user => {
+            if (user) {
+                //User exists
+                console.log(user.email);
+                errors.push('Email is already registered');
+                res.render('register', { errors });
+            } else {
                 console.log(inname);
-             const newUser=new User({
-                name:inname,
-                email:inemail,
-                password:inpass1
-            });
-            //save user
-            newUser.save().then(user=>{
-                console.log(newUser);
-                // req.flash('success_msg','you are now registered and can log in');
-                res.redirect('/login');
-            })
-            .catch(err=>console.log(err));
-            //  //hash password
-            // bcrypt.genSalt(10,(err,salt)=>
-            // bcrypt.hash(newUser.password,salt,(err,hash)=>{
-            // if(err) throw err;
-            //  // Set password to hashed
-            // newUser.password=hash;
-            // //save user
-            // newUser.save().then(user=>{
-            //     req.flash('success_msg','you are now registered and can log in');
-            //     res.redirect('/users/login');
-            // })
-            // .catch(err=>console.log(err));
-            // }))
+                const newUser = new User({
+                    name: inname,
+                    email: inemail,
+                    password: inpass1
+                });
+                //save user
+                newUser.save().then(user => {
+                    console.log(newUser);
+                    res.redirect('/login');
+                })
+                    .catch(err => console.log(err));
+                //  //hash password
+                // bcrypt.genSalt(10,(err,salt)=>
+                // bcrypt.hash(newUser.password,salt,(err,hash)=>{
+                // if(err) throw err;
+                //  // Set password to hashed
+                // newUser.password=hash;
+                // //save user
+                // newUser.save().then(user=>{
+                //     req.flash('success_msg','you are now registered and can log in');
+                //     res.redirect('/users/login');
+                // })
+                // .catch(err=>console.log(err));
+                // }))
             }
         });
-    // }
 
 
 });
@@ -161,11 +113,11 @@ router.get('/register',(req,res)=>res.render('/register'));
 //         .then(user=>{
 //             if(user){
 //             //User exists
-           
+
 //             var payload={
 //                 id:user.id,
 //                 email:user.email
-           
+
 //         };
 //        var secret=user.password+'-'+'1506868106675';
 //        console.log(secret);
@@ -185,7 +137,7 @@ router.get('/register',(req,res)=>res.render('/register'));
 //     console.log('Email sent: ' + info.response);
 //   }
 // })
-        
+
 // }
 //         })
 //     }
@@ -193,10 +145,6 @@ router.get('/register',(req,res)=>res.render('/register'));
 //             res.send('email adress is missing');
 //         }
 // });
-    
-  
-
-
 
 // router.get('/resetpassword/:id/:token', function(req, res) {
 //     // TODO: Fetch user from database using
@@ -204,10 +152,10 @@ router.get('/register',(req,res)=>res.render('/register'));
 //     User.findOne({_id:req.params.id})
 //     .then(user=>{
 //         if(user){
-          
+
 //             var secret = user.password + '-' + '1506868106675';
 //             var payload = jwt.decode(req.params.token, secret);
-            
+
 //             res.send('<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">'+
 //            '<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>'+
 //            ' <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><style>body{background-image: url("http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg")}'+
@@ -228,14 +176,10 @@ router.get('/register',(req,res)=>res.render('/register'));
 //         '<div class="form-group"><input type="submit"class="btn float-right login_btn" value="Reset Password" />' +
 //     '</div></div></div></div></form></body></html>');
 
-            
+
 //         }
 //     })
-    
-    
-  
-    
-    
+
 // });
 
 
@@ -244,38 +188,38 @@ router.get('/register',(req,res)=>res.render('/register'));
 //         bcrypt.genSalt(10, function(err, salt) {
 //             bcrypt.hash(user.password, salt, function(err, hash) {
 //               user.password = hash;
-             
+
 //               user.save().then(user=>{
 //                 req.flash('success_msg','Password has been reset Successfully');
 //                 res.redirect('/users/login');
 //               });
-        
+
 //     })
 // })
 // })
-        
-    
+
+
 //           //req.params.id
-    
+
 
 // })
 
 //login Handle
-router.post('/login',(req,res,next)=>{
-passport.authenticate('local',{
-    successRedirect:'/dashboard',
-    failureRedirect:'/users/login',
-    failureFlash:true
-})(req,res,next);
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', {
+        successRedirect: '/dashboard',
+        failureRedirect: '/users/login',
+        failureFlash: true
+    })(req, res, next);
 });
 
 //Logout Handle
-router.get('/logout',(req,res)=>{
+router.get('/logout', (req, res) => {
     req.logOut();
-    req.flash('success_msg','You are logout');
+    req.flash('success_msg', 'You are logout');
     res.redirect('/users/login');
 });
 
 
 
-module.exports=router;
+module.exports = router;

@@ -1,4 +1,5 @@
 const express = require("express");
+// const session=require('express-session');
 const flash=require('connect-flash');
 const app = express();
 const mongoose=require('mongoose');
@@ -16,6 +17,13 @@ mongoose.connect('mongodb+srv://fsdgrp17:fsdproject@grp17.5urlr.mongodb.net/grp1
 app.use(express.static('public'))
 app.set('views', './views')
 app.set('view engine', 'ejs')
+
+//Express Session
+// app.use(session({
+//     secret:'secret',
+//     resave:true,
+//     saveUninitialized:true
+// }));
 
 
 app.get("/", function (req, res) {
