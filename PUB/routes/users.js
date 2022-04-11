@@ -8,7 +8,7 @@ const User = require('../schemas/user');
 router.get('/login', (req, res) => res.render('login'));
 
 //register Page
-router.get('/register', (req, res) => res.render('/register'));
+router.get('/register', (req, res) => res.render('register'));
 
 //  login handle
 router.post('/login', (req, res) => {
