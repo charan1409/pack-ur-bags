@@ -23,13 +23,14 @@ router.post('/login', (req, res) => {
                 res.render('login', { errors });
 
             }
-            console.log(user);
             //Match Password
-            if (inpassword === user.password) {
-                res.redirect('/');
-            } else {
-                errors.push({ msg: 'Incorrect password or email' });
-                res.render('login', { errors })
+            if(user){
+                if (inpassword === user.password) {
+                    res.redirect('/');
+                } else {
+                    errors.push({ msg: 'Incorrect password or email' });
+                    res.render('login', { errors })
+                }
             }
         })
         .catch(err => console.log(err));
@@ -45,25 +46,26 @@ router.post('/register', (req, res) => {
     //check required fields
     if (!inname || !inemail || !inpass1 || !inpass2) {
         errors.push({ msg: 'please fill in all fields' });
-        res.render('login', { errors })
+        res.render('register', { errors })
     }
 
     //check password match
     if (inpass1 !== inpass2) {
         errors.push({ msg: 'Password do not match' });
-        res.render('login', { errors })
+        res.render('register', { errors })
     }
     //check pass length
     if (inpass1.length < 6) {
         errors.push({ msg: 'Password should be atleast 6 charcaters' });
-        res.render('login', { errors })
+        res.render('register', { errors })
     }
-    User.findOne({ email: inemail })
+    else{
+        User.findOne({ email: inemail })
         .then(user => {
             if (user) {
                 //User exists
                 console.log(user.email);
-                errors.push('Email is already registered');
+                errors.push({msg:'Email is already registered'});
                 res.render('register', { errors });
             } else {
                 console.log(inname);
@@ -80,7 +82,8 @@ router.post('/register', (req, res) => {
                     .catch(err => console.log(err));
             }
         });
-
+    }
+    
 
 });
 
