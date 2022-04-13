@@ -11,9 +11,12 @@
         <a href="#review">Reviews</a>
         <a href="#cont">Contact</a>
     </nav>
-    <div class="icons">
+    <div class="icons navbar">
         <i class="fas fa-search" id="search-btn"></i>
         <a href="login"><i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
+        <% if(locals.user != null) {%>
+        <a href="/">LogOut</a>
+        <% } %>
     </div>
     <form action="" class="search-bar-container">
         <input type="search" id="search-bar" placeholder="Search here..">
