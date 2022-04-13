@@ -1,11 +1,11 @@
 const mongoose=require('mongoose');
 
 const contSchema=new mongoose.Schema({
-    fname:{
+    firstname:{
         type:String,
         // required:true
     },
-    lname:{
+    lastname:{
         type:String,
         // required:true
     },
@@ -16,7 +16,7 @@ const contSchema=new mongoose.Schema({
     msg:{
         type:String,
     },
-    adddet:{
+    add:{
         type:String,
         // required:true
     }

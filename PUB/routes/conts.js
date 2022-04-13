@@ -5,15 +5,17 @@ const cont = require('../schemas/cont');
 
 router.get('/views/index/con', (req, res) => res.render('con'));
 router.post('/con',(req, res) => {
-    // const fname = req.body.fname;
-    // const mail = req.body.mail;
-    // const det = req.body.details;
+    const fname = req.body.fname;
+    const lname = req.body.lname;
+    const email = req.body.mail;
+    const message = req.body.msg;
+    const det = req.body.adddet;
     const newcon = new cont({
-        fname: req.body.fname,
-        lname: req.body.lname,
-        email: req.body.mail,
-        message: req.body.msg,
-        detail: req.body.adddet
+        firstname: fname,
+        lastname: lname,
+        mail: email,
+        msg: message,
+        add: det,
     });
     //save user
     newcon.save().then(cont => {
