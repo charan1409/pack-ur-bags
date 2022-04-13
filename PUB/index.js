@@ -95,6 +95,10 @@ app.get("/services", function(req, res){
     res.render('services');
 })
 
+app.get("/fd", function(req, res){
+    res.render('fd');
+})
+
 app.listen(port, function () {
     console.log("server is running on the port 3000");
 });
@@ -110,6 +114,7 @@ app.use(flash());
 
 //routes
 app.use('/users',require('./routes/users'));
+app.use('/feedback',require('./routes/feedback'));
 
 // const sqlite3 = require('sqlite3');
 // const path = require('path');
