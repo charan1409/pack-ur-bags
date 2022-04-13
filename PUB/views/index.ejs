@@ -432,22 +432,22 @@
 
                 <div class="structure">
                     <div class="structure_1" id="cont_id">
-                        <form action="" method="">
-                            <label style="font-size: 17px;">First Name <span class="star">*</span></label><br>
+                        <form action="/conts/con" method="post">
+                            <label style="font-size: 17px;" name="fname">First Name <span class="star">*</span></label><br>
                             <br>
 
                             <input type="text" name="" style="margin-right: 10px; width: 400px" required="required"><br>
 
-                            <label style="font-size: 17px;">Last Name <span class="star">*</span></label><br><br>
+                            <label style="font-size: 17px;" name="lname">Last Name <span class="star">*</span></label><br><br>
 
                             <input type="text" name="lname" style="width: 400px" required="required"><br>
 
-                            <label style="font-size: 17px;">Email <span class="star">*</span></label><br><br>
+                            <label style="font-size: 17px;" name="mail">Email <span class="star">*</span></label><br><br>
                             <input type="email" name="mail" style="width: 500px" required="required"><br>
 
-                            <label style="font-size: 17px;">Message <span class="star">*</span></label><br><br>
+                            <label style="font-size: 17px;" name="msg">Message <span class="star">*</span></label><br><br>
                             <input type="text" name="message" style="width: 100%" required="required"><br>
-                            <label style="font-size: 17px;">Additional Details</label><br><br>
+                            <label style="font-size: 17px;" name="adddet">Additional Details</label><br><br>
                             <textarea name="addtional"></textarea><br>
                             <button type="submit" id="fsubmit" style="font-size: 20px;">Send Message</button>
                         </form>
@@ -472,9 +472,9 @@
                     <input type="text" name="fname" class="fname" required="required"><br>
                     <label>Email</label><br><br>
                     <input type="email" name="mail" required="required"><br>
-                    <label>Additional Details</label><br><br>
+                    <label>Feedback</label><br><br>
                     <textarea name="details"></textarea><br>
-                    <button type="submit" id="fsubmit" style="font-size: 20px;">Send Message</button>
+                    <button type="submit" id="fsubmit" style="font-size: 20px;">Submit feedback</button>
                 </form>
             </div>
         </div>

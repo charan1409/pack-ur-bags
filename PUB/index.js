@@ -115,7 +115,7 @@ app.use(flash());
 //routes
 app.use('/users',require('./routes/users'));
 app.use('/feedback',require('./routes/feedback'));
-
+app.use('/conts',require('./routes/conts'));
 // const sqlite3 = require('sqlite3');
 // const path = require('path');
 // const req = require("express/lib/request");
