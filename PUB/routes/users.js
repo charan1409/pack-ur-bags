@@ -26,7 +26,7 @@ router.post('/login', (req, res) => {
             //Match Password
             if(user){
                 if (inpassword === user.password) {
-                    res.redirect('/');
+                    res.render('index',{user});
                 } else {
                     errors.push({ msg: 'Incorrect password or email' });
                     res.render('login', { errors })
