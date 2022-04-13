@@ -252,7 +252,7 @@ form textarea {
   
   .footer .box-container .box p i {
     padding-right: 0.5rem;
-    color: #29d9d5;
+    color: #d9bc29;
   }
   
   .footer .box-container .box .share {
@@ -266,14 +266,14 @@ form textarea {
     font-size: 2rem;
     border-radius: 50%;
     font-size: 1.7rem;
-    border: 0.2rem solid #29d9d5;
-    color: #29d9d5;
+    border: 0.2rem solid #d9c729;
+    color: #d9c229;
     margin-right: 0.5rem;
     text-align: center;
   }
   
   .footer .box-container .box .share a:hover {
-    background: #29d9d5;
+    background: #d9bc29;
     color: #111;
   }
   
@@ -285,7 +285,7 @@ form textarea {
   }
   
   .footer .box-container .box .links:hover {
-    color: #29d9d5;
+    color: #d6d929;
   }
   
   .footer .box-container .box .links:hover i {
@@ -294,13 +294,13 @@ form textarea {
   
   .footer .box-container .box .links i {
     padding-right: 0.5rem;
-    color: #29d9d5;
+    color: #d9d929;
   }
   
   .footer .box-container .box form .email {
     width: 100%;
     border-radius: 5rem;
-    border: 0.2rem solid #29d9d5;
+    border: 0.2rem solid #d9c429;
     background: none;
     font-size: 1.5rem;
     text-transform: none;
@@ -318,5 +318,5 @@ form textarea {
   }
   
   .credit span {
-    color: #29d9d5;
+    color: #d9ca29;
   }

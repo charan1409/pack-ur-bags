@@ -15,7 +15,7 @@ searchBtn.addEventListener('click', () =>{
 });
 
 function show(id){
-    var x = document.getElementById(id);
+    let x = document.getElementById(id);
     if (x.style.display === 'block') {
       x.style.display = 'none';
     } else {
@@ -23,6 +23,15 @@ function show(id){
     }
 }
 
+function valid(){
+  let a = document.getElementById('dd');
+  let b = document.getElementById('ad');
+  if(b<a){
+    console.log("invalid date");
+  } else{
+    console.log(a,b);
+  }
+}
 
 // REVIEW
 var swiper = new Swiper(".review-slider", {

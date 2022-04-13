@@ -9,7 +9,7 @@ router.post('/con',(req, res) => {
     const lname = req.body.lname;
     const email = req.body.mail;
     const message = req.body.msg;
-    const det = req.body.additional;
+    const det = req.body.adddet;
     const newcon = new cont({
         firstname: fname,
         lastname: lname,
