@@ -9,13 +9,13 @@ router.post('/con',(req, res) => {
     const lname = req.body.lname;
     const email = req.body.mail;
     const message = req.body.msg;
-    const det = req.body.adddet;
+    const det = req.body.additional;
     const newcon = new cont({
         firstname: fname,
         lastname: lname,
         mail: email,
-        msg: message,
-        add: det,
+       msg: message,
+       add: det
     });
     //save user
     newcon.save().then(cont => {

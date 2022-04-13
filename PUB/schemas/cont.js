@@ -7,18 +7,17 @@ const contSchema=new mongoose.Schema({
     },
     lastname:{
         type:String,
-        // required:true
+       // required:true
     },
     mail:{
         type:String,
-        // required:true
+       // required:true
     },
     msg:{
         type:String,
     },
     add:{
         type:String,
-        // required:true
     }
 });
 const cont=mongoose.model('cont',contSchema);
