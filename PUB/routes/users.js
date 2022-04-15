@@ -39,25 +39,6 @@ router.post('/login', (req, res) => {
         })
         .catch(err => console.log(err));
     }
-    // User.findOne({ email: req.body.inemail })
-
-    //     .then(user => {
-    //         if (!user) {
-    //             errors.push({ msg: 'email is not registerd' });
-    //             res.render('login', { errors });
-
-    //         }
-    //         //Match Password
-    //         if(user){
-    //             if (inpassword === user.password) {
-    //                 res.render('index',{user});
-    //             } else {
-    //                 errors.push({ msg: 'Incorrect password or email' });
-    //                 res.render('login', { errors })
-    //             }
-    //         }
-    //     })
-    //     .catch(err => console.log(err));
 })
 
 //register handle
