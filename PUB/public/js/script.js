@@ -26,8 +26,9 @@ function show(id){
 function valid(){
   let a = document.getElementById('dd');
   let b = document.getElementById('ad');
-  if(b<a){
-    console.log("invalid date");
+  console.log("called");
+  if((Date.parse(b))<(Date.parse(a))){
+    alert("invalid date");
   } else{
     console.log(a,b);
   }

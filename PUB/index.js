@@ -103,6 +103,10 @@ app.get("/book", function(req, res){
     res.render('book');
 })
 
+app.get("/profile", function(req, res){
+    res.render('profile');
+})
+
 app.listen(port, function () {
     console.log("server is running on the port 3000");
 });
