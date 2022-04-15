@@ -83,9 +83,9 @@ app.get("/package", function (req, res) {
     res.render('package');
 });
 
-app.get("/profile", function (req, res) {
-    res.render('profile');
-});
+// app.get("/profile", function (req, res) {
+//     res.render('profile');
+// });
 
 app.get("/services", function (req, res) {
     res.render('services');
@@ -124,6 +124,7 @@ app.use(flash());
 app.use('/users',require('./routes/users'));
 app.use('/feedback',require('./routes/feedback'));
 app.use('/conts',require('./routes/conts'));
+app.use('/profile',require('./routes/profile'));
 // const sqlite3 = require('sqlite3');
 // const path = require('path');
 // const req = require("express/lib/request");

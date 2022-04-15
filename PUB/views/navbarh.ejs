@@ -18,7 +18,7 @@
             <!-- <a href="/">LogOut</a> -->
             <% } %>
         <% if(locals.user != null) {%>
-        <a href="/profile"><i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
+        <a href="/profile/profile/<%=user.email%>"><i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
         <a href="/">LogOut</a>
         <% } %>
     </div>
