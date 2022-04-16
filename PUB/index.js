@@ -42,41 +42,41 @@ app.get("/register", function (req, res) {
     res.render('register');
 });
 
-app.get("/beach", function (req, res) {
-    res.render('beach');
-});
+// app.get("/beach", function (req, res) {
+//     res.render('beach');
+// });
 
-app.get("/book", function (req, res) {
-    res.render('book');
-});
+// app.get("/book", function (req, res) {
+//     res.render('book');
+// });
 
-app.get("/countryside", function (req, res) {
-    res.render('countryside');
-});
+// app.get("/countryside", function (req, res) {
+//     res.render('countryside');
+// });
 
-app.get("/cultural", function (req, res) {
-    res.render('cultural');
-});
+// app.get("/cultural", function (req, res) {
+//     res.render('cultural');
+// });
 
-app.get("/desert", function (req, res) {
-    res.render('desert');
-});
+// app.get("/desert", function (req, res) {
+//     res.render('desert');
+// });
 
-app.get("/forest", function (req, res) {
-    res.render('forest');
-});
+// app.get("/forest", function (req, res) {
+//     res.render('forest');
+// });
 
-app.get("/hillstation", function (req, res) {
-    res.render('hillstation');
-});
+// app.get("/hillstation", function (req, res) {
+//     res.render('hillstation');
+// });
 
-app.get("/island", function (req, res) {
-    res.render('island');
-});
+// app.get("/island", function (req, res) {
+//     res.render('island');
+// });
 
-app.get("/winter", function (req, res) {
-    res.render('winter');
-});
+// app.get("/winter", function (req, res) {
+//     res.render('winter');
+// });
 
 
 app.get("/review", function (req, res) {
@@ -130,6 +130,7 @@ app.use('/feedback',require('./routes/feedback'));
 app.use('/conts',require('./routes/conts'));
 app.use('/profile',require('./routes/profile'));
 app.use('/index',require('./routes/index'));
+app.use('/places',require('./routes/places'));
 // const sqlite3 = require('sqlite3');
 // const path = require('path');
 // const req = require("express/lib/request");
