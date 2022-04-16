@@ -68,5 +68,13 @@ router.get('/winter/:id',(req,res)=>{
     })
 
 })
+router.get('/book/:id',(req,res)=>{
+    const email = req.params.id
+    User.findOne({ email: email})
+    .then(user=>{
+        res.render('book',{user})
+    })
+
+})
 
 module.exports = router;

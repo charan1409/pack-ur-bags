@@ -39,14 +39,14 @@ var maxDate = year + "-" + month + "-" + tdate;
 document.getElementById("dd").setAttribute("min", maxDate);
 
 
-function valid(){
-    var x = document.getElementById('dd').value;
-    console.log(x);
-    var y = document.getElementById('ad').value;
-    if ((Date.parse(y))<(Date.parse(x))){
-        alert("Please select correct Arrival date");
-    }
-}
+// function valid(){
+//     var x = document.getElementById('dd').value;
+//     console.log(x);
+//     var y = document.getElementById('ad').value;
+//     if ((Date.parse(y))<(Date.parse(x))){
+//         alert("Please select correct Arrival date");
+//     }
+// }
 
 // var prevDate = x + "-" + y + "-" + z;
 // document.getElementById("ad").setAttribute("min", prevDate);
