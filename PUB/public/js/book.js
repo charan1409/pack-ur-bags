@@ -37,6 +37,8 @@ if (tdate < 10) {
 }
 var maxDate = year + "-" + month + "-" + tdate;
 document.getElementById("dd").setAttribute("min", maxDate);
+document.getElementById("ad").setAttribute("min", maxDate);
+
 
 
 // function valid(){
