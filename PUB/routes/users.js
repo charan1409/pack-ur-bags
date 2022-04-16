@@ -93,13 +93,13 @@ router.post('/register', (req, res) => {
 });
 
 //login Handle
-router.post('/login', (req, res, next) => {
-    passport.authenticate('local', {
-        successRedirect: '/dashboard',
-        failureRedirect: '/users/login',
-        failureFlash: true
-    })(req, res, next);
-});
+// router.post('/login', (req, res, next) => {
+//     passport.authenticate('local', {
+//         successRedirect: '/dashboard',
+//         failureRedirect: '/users/login',
+//         failureFlash: true
+//     })(req, res, next);
+// });
 
 router.get('/index/:id',(req,res)=>{
     const email = req.params.id
@@ -111,11 +111,11 @@ router.get('/index/:id',(req,res)=>{
 })
 
 //Logout Handle
-router.get('/logout', (req, res) => {
-    req.logOut();
-    req.flash('success_msg', 'You are logout');
-    res.redirect('/users/login');
-});
+// router.get('/logout', (req, res) => {
+//     req.logOut();
+//     req.flash('success_msg', 'You are logout');
+//     res.redirect('/users/login');
+// });
 
 
 
