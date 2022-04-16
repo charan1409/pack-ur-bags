@@ -54,6 +54,13 @@ router.post('/register', (req, res) => {
     const inpass1 = req.body.uppass1;
     const inpass2 = req.body.uppass2
     let errors = [];
+
+    // Email Format
+    if (!(inemail.includes("@") && inemail.includes("."))) {
+            errors.push({ msg: 'please use proper email' });
+            res.render('register', { errors })
+    }
+
     //check required fields
     if (!inname || !inemail || !inpass1 || !inpass2) {
         errors.push({ msg: 'please fill in all fields' });
