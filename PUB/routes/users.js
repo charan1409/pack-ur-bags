@@ -19,11 +19,11 @@ router.post('/login', (req, res) => {
         errors.push({ msg: 'please fill in all fields' });
         res.render('login', { errors })
     }
-    let mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
-    if (!(inemail.match(mailformat))) {
-        errors.push({ msg: 'invalid email' });
-        res.render('login', { errors });
-    }
+    // let mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
+    // if (!(inemail.match(mailformat))) {
+    //     errors.push({ msg: 'invalid email' });
+    //     res.render('login', { errors });
+    // }
     else {
         User.findOne({ email: req.body.inemail })
 
