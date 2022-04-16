@@ -18,26 +18,32 @@ router.post('/login', (req, res) => {
     if (!inemail || !inpassword) {
         errors.push({ msg: 'please fill in all fields' });
         res.render('login', { errors })
-    } else{
+    }
+    let mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
+    if (!(inemail.match(mailformat))) {
+        errors.push({ msg: 'invalid email' });
+        res.render('login', { errors });
+    }
+    else {
         User.findOne({ email: req.body.inemail })
 
-        .then(user => {
-            if (!user) {
-                errors.push({ msg: 'email is not registerd' });
-                res.render('login', { errors });
+            .then(user => {
+                if (!user) {
+                    errors.push({ msg: 'email is not registerd' });
+                    res.render('login', { errors });
 
-            }
-            //Match Password
-            if(user){
-                if (inpassword === user.password) {
-                    res.render('index',{user});
-                } else {
-                    errors.push({ msg: 'Incorrect password or email' });
-                    res.render('login', { errors })
                 }
-            }
-        })
-        .catch(err => console.log(err));
+                //Match Password
+                if (user) {
+                    if (inpassword === user.password) {
+                        res.render('index', { user });
+                    } else {
+                        errors.push({ msg: 'Incorrect password or email' });
+                        res.render('login', { errors })
+                    }
+                }
+            })
+            .catch(err => console.log(err));
     }
 })
 
@@ -64,31 +70,31 @@ router.post('/register', (req, res) => {
         errors.push({ msg: 'Password should be atleast 6 charcaters' });
         res.render('register', { errors })
     }
-    else{
+    else {
         User.findOne({ email: inemail })
-        .then(user => {
-            if (user) {
-                //User exists
-                console.log(user.email);
-                errors.push({msg:'Email is already registered'});
-                res.render('register', { errors });
-            } else {
-                console.log(inname);
-                const newUser = new User({
-                    name: inname,
-                    email: inemail,
-                    password: inpass1
-                });
-                //save user
-                newUser.save().then(user => {
-                    console.log(newUser);
-                    res.redirect('/login');
-                })
-                    .catch(err => console.log(err));
-            }
-        });
+            .then(user => {
+                if (user) {
+                    //User exists
+                    console.log(user.email);
+                    errors.push({ msg: 'Email is already registered' });
+                    res.render('register', { errors });
+                } else {
+                    console.log(inname);
+                    const newUser = new User({
+                        name: inname,
+                        email: inemail,
+                        password: inpass1
+                    });
+                    //save user
+                    newUser.save().then(user => {
+                        console.log(newUser);
+                        res.redirect('/login');
+                    })
+                        .catch(err => console.log(err));
+                }
+            });
     }
-    
+
 
 });
 
@@ -101,12 +107,12 @@ router.post('/register', (req, res) => {
 //     })(req, res, next);
 // });
 
-router.get('/index/:id',(req,res)=>{
+router.get('/index/:id', (req, res) => {
     const email = req.params.id
-    User.findOne({ email: email})
-    .then(user=>{
-        res.render('index',{user})
-    })
+    User.findOne({ email: email })
+        .then(user => {
+            res.render('index', { user })
+        })
 
 })
 

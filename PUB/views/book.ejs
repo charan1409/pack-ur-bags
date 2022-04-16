@@ -46,6 +46,13 @@
             </div>
 
             <form action="/book/book" method="post">
+                <% if(locals.errors != null) {%>
+                    <% errors.forEach(function(error) { %>
+                  <div class="alert alert-danger log-alert" id="msg">
+                    <strong>Error! </strong> <%=error.msg%>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  </div>
+                  <% }); %> <% } %>
                 <div class="inputBox">
                     <h3>FROM</h3>
                     <input type="text" name="from" placeholder="Enter your place" required>
