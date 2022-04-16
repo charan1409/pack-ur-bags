@@ -101,6 +101,15 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
+router.get('/index/:id',(req,res)=>{
+    const email = req.params.id
+    User.findOne({ email: email})
+    .then(user=>{
+        res.render('index',{user})
+    })
+
+})
+
 //Logout Handle
 router.get('/logout', (req, res) => {
     req.logOut();

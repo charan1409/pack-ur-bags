@@ -129,6 +129,7 @@ app.use('/users',require('./routes/users'));
 app.use('/feedback',require('./routes/feedback'));
 app.use('/conts',require('./routes/conts'));
 app.use('/profile',require('./routes/profile'));
+app.use('/index',require('./routes/index'));
 // const sqlite3 = require('sqlite3');
 // const path = require('path');
 // const req = require("express/lib/request");
