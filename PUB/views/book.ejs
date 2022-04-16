@@ -65,16 +65,19 @@
                     <div class="arrival">
                         <th>
                             <h3>Departure</h3>
-                            <input type="date" id="dd">
+                            <input type="date" id="dd" min="">
                         </th>
                         <th>
                             <h3>Arrival</h3>
-                            <input type="date" id="ad">
+                            <input type="date" id="ad" min="">
                         </th>
                     </div>
                 </table>
 
                 <input type="submit" class="book-btn" value="book now" onclick="valid()">
+                
+                <!-- <input type="submit" class="book-btn" value="book now"> -->
+
             </form>
 
         </div>
@@ -82,7 +85,7 @@
     </section>
 
     <%- include('footer'); %>
-    <script src="/js/script.js"></script>
+    <script src="/js/book.js"></script>
 </body>
 
 </html>
