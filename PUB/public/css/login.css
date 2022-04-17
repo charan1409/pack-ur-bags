@@ -1,3 +1,8 @@
+a {
+  text-decoration: none;
+}
+
+
 #log {
   background-color: #ffffff10;
   backdrop-filter: blur(12px);
