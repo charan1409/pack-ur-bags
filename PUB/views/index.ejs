@@ -41,12 +41,12 @@
         <!-- Home Section Starts... -->
         <section class="home" id="home">
             <div class="content">
-                <% if(locals.user != null) {%>
-                <h3>Welcome <%=user.name %>!</h3>
-                <% } %>
-                <h3>travelling is worthwhile</h3>
-                <p>discover new places with us, adventure awaits</p>
-                <a href="#gallery" class="btn">discover more</a>
+                <% if(locals.user !=null) {%>
+                    <h3>Welcome <%=user.name %>!</h3>
+                    <% } %>
+                        <h3>travelling is worthwhile</h3>
+                        <p>discover new places with us, adventure awaits</p>
+                        <a href="#gallery" class="btn">discover more</a>
             </div>
             <div class="video-container">
                 <video src="/img/images/vid-1.mp4" loop autoplay muted></video>
@@ -436,19 +436,24 @@
                 <div class="structure">
                     <div class="structure_1" id="cont_id">
                         <form action="/conts/con" method="post">
-                            <label style="font-size: 17px;" name="fname">First Name <span class="star">*</span></label><br>
+                            <label style="font-size: 17px;" name="fname">First Name <span
+                                    class="star">*</span></label><br>
                             <br>
 
-                            <input type="text" name="fname" style="margin-right: 10px; width: 400px" required="required"><br>
+                            <input type="text" name="fname" style="margin-right: 10px; width: 400px"
+                                required="required"><br>
 
-                            <label style="font-size: 17px;" name="lname">Last Name <span class="star">*</span></label><br><br>
+                            <label style="font-size: 17px;" name="lname">Last Name <span
+                                    class="star">*</span></label><br><br>
 
                             <input type="text" name="lname" style="width: 400px" required="required"><br>
 
-                            <label style="font-size: 17px;" name="mail">Email <span class="star">*</span></label><br><br>
+                            <label style="font-size: 17px;" name="mail">Email <span
+                                    class="star">*</span></label><br><br>
                             <input type="email" name="mail" style="width: 500px" required="required"><br>
 
-                            <label style="font-size: 17px;" name="msg">Message <span class="star">*</span></label><br><br>
+                            <label style="font-size: 17px;" name="msg">Message <span
+                                    class="star">*</span></label><br><br>
                             <input type="text" name="msg" style="width: 100%" required="required"><br>
                             <label style="font-size: 17px;" name="adddet">Additional Details</label><br><br>
                             <textarea name="addtional"></textarea><br>

@@ -13,7 +13,7 @@
     <!-- Font Awesome Link... -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="/img/images/fav1.png">
-    
+
     <style>
         body {
             margin-top: 5%;
@@ -22,77 +22,81 @@
 </head>
 
 <body>
-  <%- include('navbar'); %>
-    <!-- Header Section Ends here... -->
-    <!-- Booking Section -->
+    <%- include('navbar'); %>
+        <!-- Header Section Ends here... -->
+        <!-- Booking Section -->
 
-    <section class="book" id="book">
+        <section class="book" id="book">
 
-        <h1 class="heading">
-            <span>b</span>
-            <span>o</span>
-            <span>o</span>
-            <span>k</span>
-            <span class="space"></span>
-            <span>n</span>
-            <span>o</span>
-            <span>w</span>
-        </h1>
+            <h1 class="heading">
+                <span>b</span>
+                <span>o</span>
+                <span>o</span>
+                <span>k</span>
+                <span class="space"></span>
+                <span>n</span>
+                <span>o</span>
+                <span>w</span>
+            </h1>
 
-        <div class="row">
+            <div class="row">
 
-            <div class="image">
-                <img src="/img/images/booking.jpeg" alt="">
+                <div class="image">
+                    <img src="/img/images/booking.jpeg" alt="">
+                </div>
+
+                <form action="/book/book" method="post">
+                    <% if(locals.errors !=null) {%>
+                        <% errors.forEach(function(error) { %>
+                            <div class="alert alert-danger log-alert" id="msg">
+                                <strong>Error! </strong>
+                                <%=error.msg%>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                            <% }); %>
+                                <% } %>
+                                    <div class="inputBox">
+                                        <h3>FROM</h3>
+                                        <input type="text" name="from" placeholder="Enter your place" required>
+                                    </div>
+                                    <div class="inputBox">
+                                        <h3>TO</h3>
+                                        <input type="text" name="dest" placeholder="Enter a Destination" required>
+                                    </div>
+                                    <div class="inputBox">
+                                        <h3>number of adults</h3>
+                                        <input type="number" name="adult" value="1" placeholder="number of members"
+                                            min="1" max="15" required>
+                                        <h3>number of children</h3>
+                                        <input type="number" name="child" value="0" placeholder="number of members"
+                                            min="0" max="10">
+                                    </div>
+
+                                    <table class="inputBox">
+                                        <div class="arrival">
+                                            <th>
+                                                <h3>Departure</h3>
+                                                <input type="date" name="date1" id="dd" min="">
+                                            </th>
+                                            <th>
+                                                <h3>Arrival</h3>
+                                                <input type="date" name="date2" id="ad" min="">
+                                            </th>
+                                        </div>
+                                    </table>
+
+                                    <input type="submit" class="book-btn" value="book now" onclick="valid()">
+
+                                    <!-- <input type="submit" class="book-btn" value="book now"> -->
+
+                </form>
+
             </div>
 
-            <form action="/book/book" method="post">
-                <% if(locals.errors != null) {%>
-                    <% errors.forEach(function(error) { %>
-                  <div class="alert alert-danger log-alert" id="msg">
-                    <strong>Error! </strong> <%=error.msg%>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                  </div>
-                  <% }); %> <% } %>
-                <div class="inputBox">
-                    <h3>FROM</h3>
-                    <input type="text" name="from" placeholder="Enter your place" required>
-                </div>
-                <div class="inputBox">
-                    <h3>TO</h3>
-                    <input type="text" name="dest" placeholder="Enter a Destination" required>
-                </div>
-                <div class="inputBox">
-                    <h3>number of adults</h3>
-                    <input type="number" name="adult" value="1" placeholder="number of members" min="1" max="15" required>
-                    <h3>number of children</h3>
-                    <input type="number" name="child" value="0" placeholder="number of members" min="0" max="10">
-                </div>
+        </section>
 
-                <table class="inputBox">
-                    <div class="arrival">
-                        <th>
-                            <h3>Departure</h3>
-                            <input type="date" name="date1" id="dd" min="">
-                        </th>
-                        <th>
-                            <h3>Arrival</h3>
-                            <input type="date" name="date2" id="ad" min="">
-                        </th>
-                    </div>
-                </table>
-
-                <input type="submit" class="book-btn" value="book now" onclick="valid()">
-                
-                <!-- <input type="submit" class="book-btn" value="book now"> -->
-
-            </form>
-
-        </div>
-
-    </section>
-
-    <%- include('footer'); %>
-    <script src="/js/book.js"></script>
+        <%- include('footer'); %>
+            <script src="/js/book.js"></script>
 </body>
 
 </html>

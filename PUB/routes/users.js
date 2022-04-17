@@ -57,8 +57,8 @@ router.post('/register', (req, res) => {
 
     // Email Format
     if (!(inemail.includes("@") && inemail.includes("."))) {
-            errors.push({ msg: 'please use proper email' });
-            res.render('register', { errors })
+        errors.push({ msg: 'please use proper email' });
+        res.render('register', { errors })
     }
 
     //check required fields
