@@ -95,7 +95,8 @@ router.post('/register', (req, res) => {
                     //save user
                     newUser.save().then(user => {
                         console.log(newUser);
-                        res.redirect('/login');
+                        errors.push({ msg: 'Successful registration' });
+                        res.render('login',{errors});
                     })
                         .catch(err => console.log(err));
                 }
