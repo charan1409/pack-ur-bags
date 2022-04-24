@@ -16,48 +16,48 @@ form.addEventListener('mouseleave', function () {
 
 });
 
-function login() {
-  let x = document.getElementById("login");
-  let y = document.getElementById("register");
-  let z = document.getElementById("stat-btn")
+// function login() {
+//   let x = document.getElementById("login");
+//   let y = document.getElementById("register");
+//   let z = document.getElementById("stat-btn")
 
-  x.style.left = "0";
-  y.style.left = "600px";
-  z.style.left = "40px";
-}
+//   x.style.left = "0";
+//   y.style.left = "600px";
+//   z.style.left = "40px";
+// }
 
-function register() {
-  let x = document.getElementById("login");
-  let y = document.getElementById("register");
-  let z = document.getElementById("stat-btn")
+// function register() {
+//   let x = document.getElementById("login");
+//   let y = document.getElementById("register");
+//   let z = document.getElementById("stat-btn")
 
-  x.style.left = "-600px";
-  y.style.left = "0";
-  z.style.left = "270px";
-}
+//   x.style.left = "-600px";
+//   y.style.left = "0";
+//   z.style.left = "270px";
+// }
 
-function validate_email() {
-  let email = document.getElementById("email").value;
-  let log = document.getElementById("login");
-  let pas = document.getElementById("pas").value;
-  if (email == '') {
-    alert("please enter ur email")
-    log.action = "/users/login"
-    return true
-  }
-  if (email.includes("@") && email.includes(".")) {
-    console.log('Every Thing Fine')
-    if (pas == '') {
-      alert("please enter ur password");
-      log.action = "/users/login"
-    }
-    return true
-  }
-  alert("bad email")
-  log.action = "/users/login"
+// function validate_email() {
+//   let email = document.getElementById("email").value;
+//   let log = document.getElementById("login");
+//   let pas = document.getElementById("pas").value;
+//   if (email == '') {
+//     alert("please enter ur email")
+//     log.action = "/users/login"
+//     return true
+//   }
+//   if (email.includes("@") && email.includes(".")) {
+//     console.log('Every Thing Fine')
+//     if (pas == '') {
+//       alert("please enter ur password");
+//       log.action = "/users/login"
+//     }
+//     return true
+//   }
+//   alert("bad email")
+//   log.action = "/users/login"
 
-  return false
-}
+//   return false
+// }
 
 // function validate(){
 //   let mail = document.getElementById("smail").value;

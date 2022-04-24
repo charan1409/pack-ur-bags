@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-
+const {check , validationResult} = require('express-validator');
 const User = require('../schemas/user');
 
 //login Page
@@ -15,10 +15,15 @@ router.post('/login', (req, res) => {
     const inemail = req.body.inemail;
     const inpassword = req.body.inpass
     let errors = [];
+    // check('inemail').isEmail()
     if (!inemail || !inpassword) {
         errors.push({ msg: 'please fill in all fields' });
         res.render('login', { errors })
     }
+    // } else if(validationResult(req) != null){
+    //     errors.push({msg : 'invalid email'});
+    //     res.render('login',{errors})
+    // }
     // let mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
     // if (!(inemail.match(mailformat))) {
     //     errors.push({ msg: 'invalid email' });
@@ -59,24 +64,25 @@ router.post('/register', (req, res) => {
     let errors = [];
 
     // Email Format
-    if (!(inemail.includes("@") && inemail.includes("."))) {
+    check('inemail').isEmail()
+    if (validationResult(req) != null) {
         errors.push({ msg: 'please use proper email' });
         res.render('register', { errors })
     }
 
     //check required fields
-    if (!inname || !inemail || !inpass1 || !inpass2) {
+    else if (!inname || !inemail || !inpass1 || !inpass2) {
         errors.push({ msg: 'please fill in all fields' });
         res.render('register', { errors })
     }
 
     //check password match
-    if (inpass1 !== inpass2) {
+    else if (inpass1 !== inpass2) {
         errors.push({ msg: 'Password do not match' });
         res.render('register', { errors })
     }
     //check pass length
-    if (inpass1.length < 6) {
+    else if (inpass1.length < 6) {
         errors.push({ msg: 'Password should be atleast 6 charcaters' });
         res.render('register', { errors })
     }
