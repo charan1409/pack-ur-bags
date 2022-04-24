@@ -15,10 +15,25 @@ router.get('/users/:id',(req,res)=>{
         }
     })
 })
-
+router.get('/adminprofile/:id',(req,res)=>{
+    let mail = req.params.id
+    User.findOne({ email: mail})
+    .then(user=>{
+        res.render('adminprofile',{user})
+    })
+})
+router.get('/bookings/:id',(req,res)=>{
+    let mail = req.params.id
+    book.find({},(err,data)=>{
+        if(data){
+            res.render('bookings',{model: data})
+        } else{
+            console.log(err);
+        }
+    })
+})
 router.get('/remove/:id',(req,res)=>{
     let mail = req.params.id
-    console.log(mail);
     User.findOneAndDelete({email: mail},(err,doc)=>{
         if(err){
             console.log(err);
@@ -37,6 +52,14 @@ router.get('/remove/:id',(req,res)=>{
 
 router.get('/adminland',(req,res)=>{
     User.findOne({ email: email })
+        .then(user => {
+            res.render('adminland', { user })
+        })
+})
+
+router.get('/adminland/:id',(req,res)=>{
+    let mail = req.params.id
+    User.findOne({ email: mail })
         .then(user => {
             res.render('adminland', { user })
         })

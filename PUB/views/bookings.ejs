@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>user details</title>
+    <title>booking details</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/gallery.css">
     <link rel="stylesheet" href="/css/places.css">
@@ -39,43 +39,26 @@
         <a href="/" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
         <nav class="navbar">
             <a href="/admins/adminland">Home</a>
-            <!-- <a href="/users/users">users list</a> -->
-            <!-- <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#bottom">Reviews</a>
-            <a href="#bottom">Contact</a> -->
         </nav>
-        <!-- <div class="icons navbar">
-            <i class="fas fa-search" id="search-btn"></i>
-            <% if(locals.user == null) {%>
-                <a href="login"><i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
-                <a href="/">LogOut</a>
-                <% } %>
-            <% if(locals.user != null) {%>
-            <a href="/profile/profile/<%=user.email%>"><i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
-            <a href="/">LogOut</a>
-            <% } %>
-        </div>
-        <form action="" class="search-bar-container">
-            <input type="search" id="search-bar" placeholder="Search here..">
-            <label for="search-bar" class="fas fa-search"></label>
-        </form> -->
     </header>
     <table>
         <tr>
-            <th>name</th>
-            <th>email</th>
-            <th>age</th>
             <th>from</th>
+            <th>to</th>
+            <th>adults</th>
+            <th>children</th>
+            <th>fromdate</th>
+            <th>todate</th>
         </tr>
         <% for(const i of model) 
         {%> 
             <tr>
-                <td><%- i. name %></td>
-                <td><%- i. email %></td>
-                <td><%- i. age %></td>
-                <td><%- i. from%></td>
-                <td><a href="/admins/remove/<%= i.email%>"><button class="btn">remove</button></a></td>
+                <td><%- i. from %></td>
+                <td><%- i. to %></td>
+                <td><%- i. adults %></td>
+                <td><%- i. children%></td>
+                <td><%- i. fromdate%></td>
+                <td><%- i. todate%></td>
             </tr>
         <%}%>
     </table>
