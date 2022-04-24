@@ -36,28 +36,28 @@ function register() {
   z.style.left = "270px";
 }
 
-function validate_email() {
-  let email = document.getElementById("email").value;
-  let log = document.getElementById("login");
-  let pas = document.getElementById("pas").value;
-  if (email == '') {
-    alert("please enter ur email")
-    log.action = "/users/login"
-    return true
-  }
-  if (email.includes("@") && email.includes(".")) {
-    console.log('Every Thing Fine')
-    if (pas == '') {
-      alert("please enter ur password");
-      log.action = "/users/login"
-    }
-    return true
-  }
-  alert("bad email")
-  log.action = "/users/login"
+// function validate_email() {
+//   let email = document.getElementById("email").value;
+//   let log = document.getElementById("login");
+//   let pas = document.getElementById("pas").value;
+//   if (email == '') {
+//     alert("please enter ur email")
+//     log.action = "/users/login"
+//     return true
+//   }
+//   if (email.includes("@") && email.includes(".")) {
+//     console.log('Every Thing Fine')
+//     if (pas == '') {
+//       alert("please enter ur password");
+//       log.action = "/users/login"
+//     }
+//     return true
+//   }
+//   alert("bad email")
+//   log.action = "/users/login"
 
-  return false
-}
+//   return false
+// }
 
 // function validate(){
 //   let mail = document.getElementById("smail").value;
