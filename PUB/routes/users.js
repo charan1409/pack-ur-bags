@@ -15,14 +15,15 @@ router.post('/login', (req, res) => {
     const inemail = req.body.inemail;
     const inpassword = req.body.inpass
     let errors = [];
-    check('inemail').isEmail()
+    // check('inemail').isEmail()
     if (!inemail || !inpassword) {
         errors.push({ msg: 'please fill in all fields' });
         res.render('login', { errors })
-    } else if(validationResult(req) != null){
-        errors.push({msg : 'invalid email'});
-        res.render('login',{errors})
     }
+    // } else if(validationResult(req) != null){
+    //     errors.push({msg : 'invalid email'});
+    //     res.render('login',{errors})
+    // }
     // let mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
     // if (!(inemail.match(mailformat))) {
     //     errors.push({ msg: 'invalid email' });

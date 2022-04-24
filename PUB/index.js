@@ -1,6 +1,6 @@
 const express = require("express");
 const session=require('express-session');
-const flash=require('connect-flash');
+// const flash=require('connect-flash');
 const app = express();
 const mongoose=require('mongoose');
 const port = 3000
@@ -115,15 +115,6 @@ app.listen(port, function () {
     console.log("server is running on the port 3000");
 });
 
-app.use(flash());
-
-// app.use((req,res,next)=>{
-//     res.locals.success_msg=req.flash('success_msg');
-//     res.locals.error_msg=req.flash('error_msg');
-//     res.locals.error=req.flash('error');
-//     next();
-//     });
-
 //routes
 app.use('/users',require('./routes/users'));
 app.use('/feedback',require('./routes/feedback'));
@@ -132,73 +123,4 @@ app.use('/profile',require('./routes/profile'));
 app.use('/index',require('./routes/index'));
 app.use('/places',require('./routes/places'));
 app.use('/book',require('./routes/book'));
-// app.use('/add',require('./routes/hotel1'));
-// app.use('/find',require('./routes/places1'));
-// const sqlite3 = require('sqlite3');
-// const path = require('path');
-// const req = require("express/lib/request");
-// const res = require("express/lib/response");
-// const db_name = path.join(__dirname, "data", "data.db");
-// const db = new sqlite3.Database(db_name, err => {
-//     if (err) {
-//         return console.log(err.message);
-//     }
-//     console.log("FSD Database Connected")
-// });
-// const regdata = `CREATE TABLE IF NOT EXISTS users(
-//     username VARCHAR(100) NOT NULL UNIQUE,
-//     email VARCHAR(100) NOT NULL UNIQUE,
-//     password varchar(100) NOT NULL
-//     );`;
-
-// db.run(regdata, err => {
-//     if (err) {
-//         return console.log(err.message)
-//     }
-//     console.log("Table created successfully")
-// })
-
-// app.get("/Create", (req, res) => {
-//     res.render("login", { model: {} });
-// })
-// const datins = 'INSERT INTO users (username, email, password) VALUES (?,?,?);'
-// const logdat = "SELECT * FROM users WHERE email = ?;"
-// app.post("/register", (req, res) => {
-//     let a = 0;
-//     const book = [req.body.upname, req.body.upemail, req.body.uppass1];
-//     db.run(datins, book, err => {
-//         if (err) {
-//             a = 1;
-//             // alert("Details already exists");
-//             // res.render("/login");
-//         } else {
-//             console.log('Row inserted successfully');
-//         }
-//         if (a == 1) {
-//             console.log("details already exists");
-//         }
-//         res.redirect("/");
-//     })
-// })
-
-// app.post("/login", (req, res) => {
-//     const mail = req.body.inemail;
-//     const pass = req.body.inpass;
-//     db.each('SELECT * FROM users;', (err, row) => {
-//         // console.log(row);
-//         if (err) {
-//             console.log(err);
-//         }
-//         const logdet = new Map();
-//         logdet.set(row.email, row.password)
-//         logdet.forEach((key,value) => {
-//             console.log(key+" "+value);
-//             if(logdet.get(mail) == pass){
-//                 res.redirect("/");
-//             } 
-//             else{
-//                 return res.render('login');
-//                 }
-//         });
-//     })
-// })
+app.use('/admins',require('./routes/admins'));
