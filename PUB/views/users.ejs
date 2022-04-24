@@ -20,7 +20,12 @@
             height: 50px;
             text-align: center;
         }
+        th {
+            font-size:20px;
+
+        }
         td{
+            font-size:15px;
             width: 500px;
             height: 50px;
         }
@@ -28,7 +33,7 @@
             background-color: black;
             color: white;
             height: 30px;
-            width: 1000px;
+            width: 100px;
         }
     </style>
 </head>
@@ -65,16 +70,13 @@
         <tr>
             <th>name</th>
             <th>email</th>
-            <th>age</th>
-            <th>from</th>
+            <th>REMOVE USER</th>
         </tr>
         <% for(const i of model) 
         {%> 
             <tr>
                 <td><%- i. name %></td>
-                <td><%- i. email %></td>
-                <td><%- i. age %></td>
-                <td><%- i. from%></td>
+                <td style="text-transform:none;"><%- i. email %></td>
                 <td><a href="/admins/remove/<%= i.email%>"><button class="btn">remove</button></a></td>
             </tr>
         <%}%>
