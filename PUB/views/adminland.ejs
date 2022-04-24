@@ -1,0 +1,118 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tours and Travel Landing Page</title>
+
+    <!-- For zoom-in and fade-up -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- Custom CSS Link... -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/gallery.css">
+    <link rel="stylesheet" href="/css/places.css">
+    <link rel="stylesheet" href="/css/footer.css">
+
+
+
+    <!-- Font Awesome Link... -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- FAVICON  -->
+    <link rel="icon" href="/img/images/fav1.png">
+
+    <!-- Script for animation and swiper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</head>
+
+<body>
+
+
+    <div class="arrow" id="arrow">
+        <a href="#home"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+    </div>
+
+    <header>
+        <div id="menu-bar" class="fas fa-bars"></div>
+    
+        <a href="/" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#find">Add places</a>
+            <a href="#bottom">remove users</a>
+            <!-- <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#bottom">Reviews</a>
+            <a href="#bottom">Contact</a> -->
+        </nav>
+        <div class="icons navbar">
+            <!-- <i class="fas fa-search" id="search-btn"></i> -->
+            <% if(locals.user == null) {%>
+                <a href="login"><i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
+                <a href="/">LogOut</a>
+                <% } %>
+            <% if(locals.user != null) {%>
+            <a href="/profile/profile/<%=user.email%>"><i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
+            <a href="/">LogOut</a>
+            <% } %>
+        </div>
+        <form action="" class="search-bar-container">
+            <input type="search" id="search-bar" placeholder="Search here..">
+            <label for="search-bar" class="fas fa-search"></label>
+        </form>
+    </header>
+    <!-- Header Section Ends here... -->
+
+        <!-- Home Section Starts... -->
+        <section class="home" id="home">
+            <div class="content">
+                <% if(locals.user != null) {%>
+                <h3>Welcome <%=user.name %>!</h3>
+                <% } %>
+                <h3>travelling is worthwhile</h3>
+                <p>discover new places with us, adventure awaits</p>
+                <a href="#gallery" class="btn">discover more</a>
+            </div>
+            <div class="video-container">
+                <video src="/img/images/vid-1.mp4" loop autoplay muted></video>
+            </div>
+        </section>
+        <!-- Home Section Ends... -->
+
+        <!-- gallery section starts here -->
+
+        <section class="gallery" id="gallery">
+            <h1 class="heading">
+                <span>a</span>
+                <span>d</span>
+                <span>d</span>
+                <span>p</span>
+                <span>l</span>
+                <span>a</span>
+                <span>c</span>
+                <span>e</span>
+                <span>s</span>
+
+            </h1>
+
+            <form action="/find" method="post">
+                <label for="name">place</label>
+                <input type="text"><br><br>
+                <label for="about">description</label>
+                <input type="text"><br><br>
+                <label for="rating">rating</label>
+                <input type="text"><br><br>
+                <label for="price">price</label>
+                <input type="text"><br><br>
+                <label for="avail">hotels available</label>
+                <input type="text"><br><br>
+                <input type="submit">
+            </form>
+        </section>
+</body>
+
+</html>

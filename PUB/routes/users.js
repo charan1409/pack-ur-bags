@@ -35,8 +35,11 @@ router.post('/login', (req, res) => {
                 }
                 //Match Password
                 if (user) {
-                    if (inpassword === user.password) {
+                    if (inpassword === user.password && inpassword.length >= 6) {
                         res.render('index', { user });
+                    } else if(inpassword === user.password && inpassword.length < 6){
+                        console.log("admin called");
+                        res.render('adminland',{ user });
                     } else {
                         errors.push({ msg: 'Incorrect password or email' });
                         res.render('login', { errors })

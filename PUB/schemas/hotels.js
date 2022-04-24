@@ -1,19 +1,22 @@
 const mongoose=require('mongoose');
 
-const UserSchema=new mongoose.Schema({
-    name:{
+const fdbSchema=new mongoose.Schema({
+    place:{
         type:String,
         // required:true
     },
-    email:{
+    hotel1:{
         type:String,
         // required:true
     },
-    password:{
+    hotel2:{
         type:String,
         // required:true
+    },
+    hotel3: {
+        type:String,
     }
-    
+
 });
-const User=mongoose.model('User',UserSchema);
-module.exports=User;
+const hschema=mongoose.model('hschema',fdbSchema);
+module.exports=hschema;
