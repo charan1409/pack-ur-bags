@@ -144,6 +144,22 @@ form {
   border: none !important;
 }
 
+.log-suc{
+  height: 50px;
+  width: 450px;
+  background-color: rgba(0, 255, 30, 0.948) !important;
+  color: white !important;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3px;
+  padding: 0px 20px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  border: none !important;
+}
+
 .btn-close{
   background-color: white !important;
   color: white !important;

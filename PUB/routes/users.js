@@ -56,16 +56,15 @@ router.post('/login', (req, res) => {
 })
 
 //register handle
-router.post('/register', (req, res) => {
+router.post('/register',check('upemail').isEmail().normalizeEmail(), (req, res) => {
     const inname = req.body.upname;
     const inemail = req.body.upemail;
     const inpass1 = req.body.uppass1;
     const inpass2 = req.body.uppass2
     let errors = [];
-
+    const mailerrors = validationResult(req);
     // Email Format
-    check('inemail').isEmail()
-    if (validationResult(req) != null) {
+    if (!mailerrors.isEmpty()) {
         errors.push({ msg: 'please use proper email' });
         res.render('register', { errors })
     }
@@ -103,9 +102,10 @@ router.post('/register', (req, res) => {
                     });
                     //save user
                     newUser.save().then(user => {
+                        let sucerrors = []
                         console.log(newUser);
-                        errors.push({ msg: 'Successful registration' });
-                        res.render('login',{errors});
+                        sucerrors.push({ sucmsg: 'Successful registration' });
+                        res.render('login',{sucerrors});
                     })
                         .catch(err => console.log(err));
                 }

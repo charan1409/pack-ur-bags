@@ -43,6 +43,15 @@
           </div>
           <% }); %>
             <% } %>
+            <% if(locals.sucerrors !=null) {%>
+              <% sucerrors.forEach(function(error) { %>
+                <div class="alert bg-success log-suc" id="msg">
+                  <strong>success! </strong>
+                  <%=error.sucmsg%>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                <% }); %>
+                  <% } %>
               <form id="login" action="/users/login" method="post">
                 <input type="text" class="box" id="email" name="inemail" placeholder="Enter your email"> <br>
                 <input type="password" class="box" id="pas" name="inpass" placeholder="Enter your password"> <br>
