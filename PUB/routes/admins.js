@@ -16,6 +16,25 @@ router.get('/users/:id',(req,res)=>{
     })
 })
 
+router.get('/remove/:id',(req,res)=>{
+    let mail = req.params.id
+    console.log(mail);
+    User.findOneAndDelete({email: mail},(err,doc)=>{
+        if(err){
+            console.log(err);
+        } else {
+            console.log("deleted"+doc);
+        }
+    })
+    User.find({},(err,data)=>{
+        if(data){
+            res.render('users',{model: data})
+        } else{
+            console.log(err);
+        }
+    })
+})
+
 router.get('/adminland',(req,res)=>{
     User.findOne({ email: email })
         .then(user => {
