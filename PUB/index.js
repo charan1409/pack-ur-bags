@@ -34,6 +34,10 @@ app.get("/payment", function (req, res) {
     res.render('payment');
 });
 
+app.get("/succesful", function (req, res) {
+    res.render('succesful');
+});
+
 app.get("/index", function (req, res) {
     res.render('index');
 });
