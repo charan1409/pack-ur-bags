@@ -50,30 +50,6 @@
     </header>
     <!-- Header Section Ends here... -->
     <section style="margin-top: 50px;">
-        <div class="ScriptTop">
-            <div class="rt-container">
-                <div class="col-rt-4" id="float-right">
-
-                    <!-- Ad Here -->
-
-                </div>
-                <div class="col-rt-2">
-                    <!-- <ul>
-                        <li><a href="/" title="LogOut">LogOut</a></li>
-                    </ul> -->
-                </div>
-            </div>
-        </div>
-
-        <!-- <header class="ScriptHeader">
-            <div class="rt-container">
-                <div class="col-rt-12">
-                    <div class="rt-heading">
-                        <h1>Profile</h1>
-                    </div>
-                </div>
-            </div>
-        </header> -->
 
         <section>
             <div class="rt-container">
@@ -93,11 +69,6 @@
                                                     <%=user.name%>
                                                 </h3>
                                             </div>
-                                            <!-- <div class="card-body">
-                                            <p class="mb-0"><strong class="pr-1">Student ID:</strong>321000001</p>
-                                            <p class="mb-0"><strong class="pr-1">Class:</strong>4</p>
-                                            <p class="mb-0"><strong class="pr-1">Section:</strong>A</p>
-                                        </div> -->
                                         </div>
                                     </div>
                                     <div class="col-lg-8">
@@ -110,28 +81,17 @@
                                                     <tr>
                                                         <th width="30%">Name</th>
                                                         <td width="2%">:</td>
-                                                        <td><%=user.name%></td>
+                                                        <td>
+                                                            <%=user.name%>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <th width="30%">Email</th>
                                                         <td width="2%">:</td>
-                                                        <td><%=user.email%></td>
+                                                        <td>
+                                                            <%=user.email%>
+                                                        </td>
                                                     </tr>
-                                                    <!-- <tr>
-                                                        <th width="30%">Gender</th>
-                                                        <td width="2%">:</td>
-                                                        <td>Male</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th width="30%">DOB</th>
-                                                        <td width="2%">:</td>
-                                                        <td>Group</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th width="30%">blood</th>
-                                                        <td width="2%">:</td>
-                                                        <td>B+</td>
-                                                    </tr> -->
                                                 </table>
                                             </div>
                                         </div>
@@ -145,6 +105,46 @@
                     </div>
                 </div>
         </section>
+    </section>
+    <section>
+        <h1>Your Bookings Will Appear Here...</h1>
+        <% if(locals.model !=null){%>
+            <table>
+                <tr>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Adults</th>
+                    <th>Children</th>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                </tr>
+                <% for (const row of model){%>
+                    <tr>
+                        <td>
+                            <%= row.from%>
+                        </td>
+                        <td>
+                            <%= row.to%>
+                        </td>
+                        <td>
+                            <%= row.adults%>
+                        </td>
+                        <td>
+                            <%= row.children%>
+                        </td>
+                        <td>
+                            <%= row.fromdate%>
+                        </td>
+                        <td>
+                            <%= row.todate%>
+                        </td>
+                        <!-- <td>
+                            <td><a href="/profile/remove/<%= row.email%>"><button class="btn">cancel</button></a></td>
+                        </td> -->
+                    </tr>
+                    <%} %>
+            </table>
+            <%} %>
     </section>
 
 

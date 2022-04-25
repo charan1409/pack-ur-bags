@@ -14,7 +14,8 @@ router.get('/index/:id',(req,res)=>{
 
 })
 
-router.post('/con',(req, res) => {
+router.post('/con/:id',(req, res) => {
+    mail = req.params.id
     const fname = req.body.fname;
     const lname = req.body.lname;
     const email = req.body.mail;
@@ -37,7 +38,8 @@ router.post('/con',(req, res) => {
     })    
 })
 
-router.post('/fd',(req, res) => {
+router.post('/fd/:id',(req, res) => {
+    mail = req.params.id
     const fname = req.body.fname;
     const mail = req.body.mail;
     const det = req.body.details;

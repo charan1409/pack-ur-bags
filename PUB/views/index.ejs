@@ -435,7 +435,7 @@
 
                 <div class="structure">
                     <div class="structure_1" id="cont_id">
-                        <form action="/index/con" method="post">
+                        <form action="/index/con/<%=user.email%>" method="post">
                             <label style="font-size: 17px;" name="fname">First Name <span
                                     class="star">*</span></label><br>
                             <br>
@@ -475,7 +475,7 @@
 
         <div class="feed_box">
             <div class="feed">
-                <form action="/index/fd" method="post">
+                <form action="/index/fd/<%=user.email%>" method="post">
                     <label>Your Name</label><br><br>
                     <input type="text" name="fname" class="fname" required="required"><br>
                     <label>Email</label><br><br>

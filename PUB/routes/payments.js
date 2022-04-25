@@ -15,13 +15,13 @@ router.get('/payment/:id',(req,res)=>{
     })
 
 })
-router.post('/payment',(req, res) => {
+router.post('/payment/:id',(req, res) => {
+    email = req.params.id
     const num  = req.body.number;
     const hold = req.body.holder;
     const mon = req.body.expmon;
     const year = req.body.expyear;
     const cvv = req.body.cvv
-    let errors = [];
     const newpe = new pay({
         number : num,
         name: hold,

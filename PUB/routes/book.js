@@ -23,6 +23,7 @@ router.post('/book',(req, res) => {
     const dated2 = req.body.date2;
     let errors = [];
     const newcon = new book({
+        mail:email,
         from: from1,
         to: to1,
         adults: adult1,

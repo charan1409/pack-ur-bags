@@ -1,6 +1,11 @@
-FOR RUNNING PROJECT:
+Download the Zip folder
+Extract the Zip folder
 
-open new terminal and enter the following command:
-npm start
+Now install all npm packages by the following command:
+(npm i) --> all packages will get installed
 
-Now go to Your browser and type this url : http://localhost:3000/
+
+Open Terminal:
+Start the Project With the Command: npm start
+
+open local browser and enter the URL --> http://localhost:3000/

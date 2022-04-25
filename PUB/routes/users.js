@@ -3,6 +3,7 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const {check , validationResult} = require('express-validator');
 const User = require('../schemas/user');
+const Admin = require('../schemas/admin');
 
 //login Page
 router.get('/login', (req, res) => res.render('login'));
@@ -15,20 +16,10 @@ router.post('/login', (req, res) => {
     const inemail = req.body.inemail;
     const inpassword = req.body.inpass
     let errors = [];
-    // check('inemail').isEmail()
     if (!inemail || !inpassword) {
         errors.push({ msg: 'please fill in all fields' });
         res.render('login', { errors })
     }
-    // } else if(validationResult(req) != null){
-    //     errors.push({msg : 'invalid email'});
-    //     res.render('login',{errors})
-    // }
-    // let mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
-    // if (!(inemail.match(mailformat))) {
-    //     errors.push({ msg: 'invalid email' });
-    //     res.render('login', { errors });
-    // }
     else {
         User.findOne({ email: req.body.inemail })
 
@@ -40,7 +31,9 @@ router.post('/login', (req, res) => {
                 }
                 //Match Password
                 if (user) {
+                    let u = 0
                     if (inpassword === user.password && inpassword.length >= 6) {
+                        u = 1
                         res.render('index', { user });
                     } else if(inpassword === user.password && inpassword.length < 6){
                         console.log("admin called");
