@@ -24,13 +24,23 @@ router.get('/adminprofile/:id',(req,res)=>{
 })
 router.get('/bookings/:id',(req,res)=>{
     let mail = req.params.id
-    book.find({},(err,data)=>{
-        if(data){
-            res.render('bookings',{model: data})
-        } else{
-            console.log(err);
-        }
+    User.findOne({ email: mail})
+    .then(user=>{
+        book.find({},(err,data)=>{
+            if(data){
+                res.render('bookings',{user,model: data})
+            } else{
+                console.log(err);
+            }
+        })
     })
+    // book.find({},(err,data)=>{
+    //     if(data){
+    //         res.render('bookings',{model: data})
+    //     } else{
+    //         console.log(err);
+    //     }
+    // })
 })
 router.get('/remove/:id',(req,res)=>{
     let mail = req.params.id
