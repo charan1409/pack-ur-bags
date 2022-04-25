@@ -121,8 +121,8 @@ app.listen(port, function () {
 
 //routes
 app.use('/users',require('./routes/users'));
-app.use('/feedback',require('./routes/feedback'));
-app.use('/conts',require('./routes/conts'));
+// app.use('/feedback',require('./routes/feedback'));
+// app.use('/conts',require('./routes/conts'));
 app.use('/profile',require('./routes/profile'));
 app.use('/index',require('./routes/index'));
 app.use('/places',require('./routes/places'));
