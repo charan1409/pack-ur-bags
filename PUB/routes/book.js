@@ -47,7 +47,7 @@ router.post('/book',(req, res) => {
                 // const email = req.params.id
                 User.findOne({ email: email})
                 .then(user=>{
-                    res.render('book',{user})
+                    res.render('payment',{user})
                 })
             
             // })
