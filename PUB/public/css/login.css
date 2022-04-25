@@ -73,26 +73,6 @@ form {
   text-decoration: underline;
 }
 
-/* #stat-btn{
-  top: 60px;
-  left: 40px;
-  position: absolute;
-  background: orange;
-  width: 180px;
-  height: 4px;
-  transition: .5s;
-} */
-  
-/* #login {
-  left: 0;
-}
-  
-#register {
-  margin-top: 4%;
-  left: 600px;
-  bottom: 380px;
-} */
-  
 .form-container form {
   position: relative;
   margin: 0 2rem;
