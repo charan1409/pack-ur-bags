@@ -30,6 +30,10 @@ app.get("/", function (req, res) {
     res.render('landing');
 });
 
+app.get("/payment", function (req, res) {
+    res.render('payment');
+});
+
 app.get("/index", function (req, res) {
     res.render('index');
 });
