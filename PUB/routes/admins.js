@@ -3,17 +3,21 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const book = require('../schemas/book');
 const User = require('../schemas/user');
+const Admin = require('../schemas/admin');
 let email = null;
 
 router.get('/users/:id',(req,res)=>{
     email = req.params.id
-    User.find({},(err,data)=>{
-        if(data){
-            res.render('users',{model: data})
-        } else{
-            console.log(err);
-        }
-    })
+    Admin.findOne({email:email})
+     .then(user=>{
+         User.find({},(err,data)=>{
+             if(data){
+                 res.render('users',{user,model: data})
+             } else{
+                 console.log(err);
+             }
+         })
+     })
 })
 router.get('/adminprofile/:id',(req,res)=>{
     let mail = req.params.id
@@ -24,7 +28,7 @@ router.get('/adminprofile/:id',(req,res)=>{
 })
 router.get('/bookings/:id',(req,res)=>{
     let mail = req.params.id
-    User.findOne({ email: mail})
+    Admin.findOne({ email: mail})
     .then(user=>{
         book.find({},(err,data)=>{
             if(data){
@@ -45,19 +49,32 @@ router.get('/bookings/:id',(req,res)=>{
 router.get('/remove/:id',(req,res)=>{
     let mail = req.params.id
     User.findOneAndDelete({email: mail},(err,doc)=>{
+        book.deleteMany({mail:mail}).then(function(){
+            console.log('data deleted');
+        })
         if(err){
             console.log(err);
         } else {
             console.log("deleted"+doc);
         }
     })
-    User.find({},(err,data)=>{
-        if(data){
-            res.render('users',{model: data})
-        } else{
-            console.log(err);
-        }
+    Admin.findOne({ email: email})
+    .then(user=>{
+        User.find({},(err,data)=>{
+            if(data){
+                res.render('users',{user,model: data})
+            } else{
+                console.log(err);
+            }
+        })
     })
+    // User.find({},(err,data)=>{
+    //     if(data){
+    //         res.render('users',{model: data})
+    //     } else{
+    //         console.log(err);
+    //     }
+    // })
 })
 
 router.get('/adminland',(req,res)=>{
@@ -69,7 +86,7 @@ router.get('/adminland',(req,res)=>{
 
 router.get('/adminland/:id',(req,res)=>{
     let mail = req.params.id
-    User.findOne({ email: mail })
+    Admin.findOne({ email: mail })
         .then(user => {
             res.render('adminland', { user })
         })

@@ -16,6 +16,7 @@ router.post('/login', (req, res) => {
     const inemail = req.body.inemail;
     const inpassword = req.body.inpass
     let errors = [];
+    let u = 0;
     if (!inemail || !inpassword) {
         errors.push({ msg: 'please fill in all fields' });
         res.render('login', { errors })
@@ -25,23 +26,36 @@ router.post('/login', (req, res) => {
 
             .then(user => {
                 if (!user) {
-                    errors.push({ msg: 'email is not registerd' });
-                    res.render('login', { errors });
-
+                    // errors.push({ msg: 'email is not registerd' });
+                    // res.render('login', { errors });
+                    u = 1
                 }
                 //Match Password
                 if (user) {
-                    let u = 0
                     if (inpassword === user.password && inpassword.length >= 6) {
-                        u = 1
                         res.render('index', { user });
-                    } else if(inpassword === user.password && inpassword.length < 6){
-                        console.log("admin called");
-                        res.render('adminland',{ user });
-                    } else {
+                    }  
+                    else {
                         errors.push({ msg: 'Incorrect password or email' });
                         res.render('login', { errors })
                     }
+                }
+                if(u!=0){
+                    Admin.findOne({email: req.body.inemail})
+                        .then(user=>{
+                            if(!user){
+                                errors.push({ msg: 'email is not registerd' });
+                                res.render('login', { errors });
+                            }
+                            if (user) {
+                                if(inpassword === user.password){
+                                    res.render('adminland',{ user });
+                                } else {
+                                    errors.push({ msg: 'Incorrect password or email' });
+                                    res.render('login', { errors })
+                                }
+                            }
+                        })
                 }
             })
             .catch(err => console.log(err));
