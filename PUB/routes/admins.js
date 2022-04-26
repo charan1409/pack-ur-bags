@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {check , validationResult} = require('express-validator');
+const { check, validationResult } = require('express-validator');
 const bodyParser = require('body-parser');
 const book = require('../schemas/book');
 const User = require('../schemas/user');
@@ -110,66 +110,80 @@ router.get('/addadmin/:id', (req, res) => {
         })
 })
 
-router.post('/add/:id',check('upemail').isEmail().normalizeEmail(), (req, res) => {
+router.post('/add/:id', check('email').isEmail().normalizeEmail(), (req, res) => {
     let mail = req.params.id
-    Admin.findOne({ email: mail })
-        .then(user => {
-            res.render('addadmin', { user })
-        })
     const inname = req.body.name;
     const inemail = req.body.email;
     const inpass1 = req.body.password1;
     const inpass2 = req.body.password2
     let errors = [];
     const mailerrors = validationResult(req);
-    // Email Format
-    if (!mailerrors.isEmpty()) {
-        errors.push({ msg: 'please use proper email' });
-        res.render('addadmin', { errors })
-    }
+    Admin.findOne({ email: mail })
+        .then(user => {
+            // res.render('addadmin', { user })
+            // })
+            // Email Format
+            if (!mailerrors.isEmpty()) {
+                errors.push({ msg: 'please use proper email' });
+                res.render('addadmin', { errors, user })
+            }
 
-    //check required fields
-    else if (!inname || !inemail || !inpass1 || !inpass2) {
-        errors.push({ msg: 'please fill in all fields' });
-        res.render('addadmin', { errors })
-    }
+            //check required fields
+            else if (!inname || !inemail || !inpass1 || !inpass2) {
+                errors.push({ msg: 'please fill in all fields' });
+                res.render('addadmin', { errors, user })
+            }
 
-    //check password match
-    else if (inpass1 !== inpass2) {
-        errors.push({ msg: 'Password do not match' });
-        res.render('addadmin', { errors })
-    }
-    //check pass length
-    else if (inpass1.length < 6) {
-        errors.push({ msg: 'Password should be atleast 6 charcaters' });
-        res.render('addadmin', { errors })
-    }
-    else {
-        User.findOne({ email: inemail })
-            .then(user => {
-                if (user) {
-                    //User exists
-                    console.log(user.email);
-                    errors.push({ msg: 'Email is already registered' });
-                    res.render('register', { errors });
-                } else {
-                    console.log(inname);
-                    const newUser = new User({
-                        name: inname,
-                        email: inemail,
-                        password: inpass1
-                    });
-                    //save user
-                    newUser.save().then(user => {
-                        let sucerrors = []
-                        console.log(newUser);
-                        sucerrors.push({ sucmsg: 'Successful registration' });
-                        res.render('login', { sucerrors });
-                    })
-                        .catch(err => console.log(err));
-                }
-            });
-    }
+            //check password match
+            else if (inpass1 !== inpass2) {
+                errors.push({ msg: 'Password do not match' });
+                res.render('addadmin', { errors, user })
+            }
+            //check pass length
+            else if (inpass1.length < 6) {
+                errors.push({ msg: 'Password should be atleast 6 charcaters' });
+                res.render('addadmin', { errors, user })
+            }
+            else {
+                let u = 0
+                User.findOne({ email: inemail })
+                    .then(user1 => {
+                        Admin.findOne({ email: inemail })
+                            .then(admin1 => {
+                                if (admin1) {
+                                    //User exists
+                                    console.log(user.email);
+                                    u = 1
+                                    errors.push({ msg: 'Email is already registered' });
+                                    res.render('addadmin', { errors, user });
+                                }
+                                else if (user1) {
+                                    //User exists
+                                    u = 1
+                                    console.log(user.email);
+                                    errors.push({ msg: 'Email is already registered' });
+                                    res.render('addadmin', { errors, user });
+                                } else if(u == 0){
+                                    console.log(inname);
+                                    const newUser = new Admin({
+                                        name: inname,
+                                        email: inemail,
+                                        password: inpass1
+                                    });
+                                    //save user
+                                    newUser.save().then(user => {
+                                        let sucerrors = []
+                                        console.log(newUser);
+                                        sucerrors.push({ sucmsg: 'Successful registration' });
+                                        res.render('addadmin', { sucerrors, user });
+                                    })
+                                }
+                            })
+                            .catch(err => console.log(err));
+                        });
+                    }
+                })
+                .catch(err => console.log(err));
 })
 
 module.exports = router;

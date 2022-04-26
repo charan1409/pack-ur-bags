@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>booking details</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/gallery.css">
     <link rel="stylesheet" href="/css/places.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body{
-            margin-top: 200px;
+            margin-top: 150px;
             background-color: black;
         }
         .adminadd{
@@ -22,9 +27,19 @@
             font-size: 40px;
         }
         .adminadd .adminbox{
-            color: whitesmoke;
-            height: 30px;
+            padding: 0 10px;
+            height: 40px;
             width: 500px;
+            font-size: 20px;
+            text-transform: none;
+        }
+        .btn{
+            color: white;
+            height: 40px;
+            width: 150px;
+        }
+        .err{
+            background-color: white;
         }
     </style>
 </head>
@@ -37,16 +52,38 @@
             <a href="/admins/adminland/<%=locals.user.email%>">Home</a>
         </nav>
     </header>
+    <% if(locals.errors !=null) {%>
+        <% errors.forEach(function(error) { %>
+          <div class="alert alert-danger log-alert err" id="msg">
+            <strong>Error! </strong>
+            <%=error.msg%>
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+          <% }); %>
+            <% } %>
+            <% if(locals.sucerrors !=null) {%>
+              <% sucerrors.forEach(function(error) { %>
+                <div class="alert bg-success log-suc err" id="msg">
+                  <strong>success! </strong>
+                  <%=error.sucmsg%>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                <% }); %>
+                  <% } %>
+    <!-- <div class="err">
+        <h1>errors</h1>
+    </div> -->
     <section class="adminadd">
         <form action="/admins/add/<%=user.email%>" method="post">
             <label for="name">Name: </label>
-            <input type="text" name="name" class="adminbox"><br>
+            <input type="text" name="name" class="adminbox" placeholder="Enter Name"><br>
             <label for="email">Email: </label>
-            <input type="text" name="email" class="adminbox"><br>
+            <input type="text" name="email" class="adminbox" placeholder="Enter Email"><br>
             <label for="password1">Password: </label>
-            <input type="text" name="password1" class="adminbox"><br>
+            <input type="password" name="password1" class="adminbox" placeholder="Enter password with atleast 6 characters"><br>
             <label for="password2">Password: </label>
-            <input type="text" name="password2" class="adminbox">
+            <input type="password" name="password2" class="adminbox" placeholder="confirm your password"><br><br>
+            <button type="submit" value="submit" class="btn">Submit</button>
         </form>
     </section>
 </body>
