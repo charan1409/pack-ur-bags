@@ -120,6 +120,7 @@ router.post('/register',check('upemail').isEmail().normalizeEmail(), (req, res) 
 
 });
 
+// Home Page for printing name
 router.get('/index/:id', (req, res) => {
     const email = req.params.id
     User.findOne({ email: email })
