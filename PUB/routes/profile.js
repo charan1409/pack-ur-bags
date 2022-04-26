@@ -14,7 +14,6 @@ router.get('/profile/:id', (req, res) => {
                 .then(bookings => {
                     fdb.find({email: email})
                         .then(feed=>{
-                            console.log(feed);
                             res.render('profile', { user,model:bookings,feedmodel:feed })
                         })
                 })

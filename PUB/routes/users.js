@@ -26,8 +26,6 @@ router.post('/login', (req, res) => {
 
             .then(user => {
                 if (!user) {
-                    // errors.push({ msg: 'email is not registerd' });
-                    // res.render('login', { errors });
                     u = 1
                 }
                 //Match Password
@@ -122,15 +120,6 @@ router.post('/register',check('upemail').isEmail().normalizeEmail(), (req, res) 
 
 });
 
-//login Handle
-// router.post('/login', (req, res, next) => {
-//     passport.authenticate('local', {
-//         successRedirect: '/dashboard',
-//         failureRedirect: '/users/login',
-//         failureFlash: true
-//     })(req, res, next);
-// });
-
 router.get('/index/:id', (req, res) => {
     const email = req.params.id
     User.findOne({ email: email })
@@ -139,14 +128,5 @@ router.get('/index/:id', (req, res) => {
         })
 
 })
-
-//Logout Handle
-// router.get('/logout', (req, res) => {
-//     req.logOut();
-//     req.flash('success_msg', 'You are logout');
-//     res.redirect('/users/login');
-// });
-
-
 
 module.exports = router;

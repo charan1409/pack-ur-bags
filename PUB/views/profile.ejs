@@ -26,7 +26,7 @@
         td {
             border: 2px solid rgb(16, 107, 6);
             border-collapse: collapse;
-            width: 1200px;
+            width: 600px;
             height: 50px;
             text-align: center;
             color: red;
@@ -67,9 +67,7 @@
         <a href="/" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
         <nav class="navbar">
             <a href="/index/index/<%=user.email%>">Home</a>
-            <a href="#packages">Packages</a>
-            <a href="#d1">Hotels</a>
-            <a href="review">Reviews</a>
+            <a href="#fd">Feedbacks</a>
             <a href="#footer">Contact</a>
         </nav>
     </header>
@@ -170,7 +168,7 @@
             <%} %>
     </section>
 
-    <section>
+    <section id="fd">
         <h1>Your Feedbacks Will Appear Here...</h1>
         <% if(locals.model !=null){%>
             <table>

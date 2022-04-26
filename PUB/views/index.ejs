@@ -42,7 +42,7 @@
         <section class="home" id="home">
             <div class="content">
                 <% if(locals.user !=null) {%>
-                    <h3>Welcome <%=user.name %>!</h3>
+                    <h3>Welcome <%=user.name %> !</h3>
                     <% } %>
                         <h3>travelling is worthwhile</h3>
                         <p>discover new places with us, adventure awaits</p>
@@ -476,10 +476,6 @@
         <div class="feed_box">
             <div class="feed">
                 <form action="/index/fd/<%=user.email%>" method="post">
-                    <!-- <label>Your Name</label><br><br>
-                    <input type="text" name="fname" class="fname" required="required"><br>
-                    <label>Email</label><br><br>
-                    <input type="email" name="mail" required="required"><br> -->
                     <label>Feedback</label><br><br>
                     <textarea name="details"></textarea><br>
                     <button type="submit" id="fsubmit" style="font-size: 20px;">Submit feedback</button>

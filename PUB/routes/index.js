@@ -40,8 +40,6 @@ router.post('/con/:id',(req, res) => {
 
 router.post('/fd/:id',(req, res) => {
     mail = req.params.id
-    // const fname = req.body.fname;
-    // const mail = req.body.mail;
     const det = req.body.details;
     const newfd = new fdb({
         email: mail,

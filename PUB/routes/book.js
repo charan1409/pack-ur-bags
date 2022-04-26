@@ -33,27 +33,18 @@ router.post('/book',(req, res) => {
     });
     if ((Date.parse(dated2))<(Date.parse(dated1))){
         errors.push({msg:'Please select correct Arrival date'})
-        // router.get('/book/:id',(req,res)=>{
         console.log('invalid date');
-            // const email = req.params.id
             User.findOne({ email: email})
             .then(user=>{
                 res.render('book',{user,errors})
             })
-        // res.render('book',{errors})
     }else{
         //save user
         newcon.save().then(book => {
-            // router.get('/book/:id',(req,res)=>{
-                // const email = req.params.id
                 User.findOne({ email: email})
                 .then(user=>{
                     res.render('payment',{user})
                 })
-            
-            // })
-            // console.log(book);
-            // res.redirect('/');
         })
     }
 })

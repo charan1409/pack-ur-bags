@@ -1,95 +1,160 @@
 const express = require('express');
 const router = express.Router();
+const {check , validationResult} = require('express-validator');
 const bodyParser = require('body-parser');
 const book = require('../schemas/book');
 const User = require('../schemas/user');
 const Admin = require('../schemas/admin');
 let email = null;
 
-router.get('/users/:id',(req,res)=>{
+// table data of users for admin
+router.get('/users/:id', (req, res) => {
     email = req.params.id
-    Admin.findOne({email:email})
-     .then(user=>{
-         User.find({},(err,data)=>{
-             if(data){
-                 res.render('users',{user,model: data})
-             } else{
-                 console.log(err);
-             }
-         })
-     })
-})
-router.get('/adminprofile/:id',(req,res)=>{
-    let mail = req.params.id
-    User.findOne({ email: mail})
-    .then(user=>{
-        res.render('adminprofile',{user})
-    })
-})
-router.get('/bookings/:id',(req,res)=>{
-    let mail = req.params.id
-    Admin.findOne({ email: mail})
-    .then(user=>{
-        book.find({},(err,data)=>{
-            if(data){
-                res.render('bookings',{user,model: data})
-            } else{
-                console.log(err);
-            }
+    Admin.findOne({ email: email })
+        .then(user => {
+            User.find({}, (err, data) => {
+                if (data) {
+                    res.render('users', { user, model: data })
+                } else {
+                    console.log(err);
+                }
+            })
         })
-    })
-    // book.find({},(err,data)=>{
-    //     if(data){
-    //         res.render('bookings',{model: data})
-    //     } else{
-    //         console.log(err);
-    //     }
-    // })
-})
-router.get('/remove/:id',(req,res)=>{
-    let mail = req.params.id
-    User.findOneAndDelete({email: mail},(err,doc)=>{
-        book.deleteMany({mail:mail}).then(function(){
-            console.log('data deleted');
-        })
-        if(err){
-            console.log(err);
-        } else {
-            console.log("deleted"+doc);
-        }
-    })
-    Admin.findOne({ email: email})
-    .then(user=>{
-        User.find({},(err,data)=>{
-            if(data){
-                res.render('users',{user,model: data})
-            } else{
-                console.log(err);
-            }
-        })
-    })
-    // User.find({},(err,data)=>{
-    //     if(data){
-    //         res.render('users',{model: data})
-    //     } else{
-    //         console.log(err);
-    //     }
-    // })
 })
 
-router.get('/adminland',(req,res)=>{
+// profile of admin
+router.get('/adminprofile/:id', (req, res) => {
+    let mail = req.params.id
+    User.findOne({ email: mail })
+        .then(user => {
+            res.render('adminprofile', { user })
+        })
+})
+
+// table data of bookings for admin
+router.get('/bookings/:id', (req, res) => {
+    let mail = req.params.id
+    Admin.findOne({ email: mail })
+        .then(user => {
+            book.find({}, (err, data) => {
+                if (data) {
+                    res.render('bookings', { user, model: data })
+                } else {
+                    console.log(err);
+                }
+            })
+        })
+})
+
+// to remove users by backend
+router.get('/remove/:id', (req, res) => {
+    let mail = req.params.id
+    User.findOneAndDelete({ email: mail }, (err, doc) => {
+        book.deleteMany({ mail: mail }).then(function () {
+            console.log('data deleted');
+        })
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("deleted" + doc);
+        }
+    })
+    Admin.findOne({ email: email })
+        .then(user => {
+            User.find({}, (err, data) => {
+                if (data) {
+                    res.render('users', { user, model: data })
+                } else {
+                    console.log(err);
+                }
+            })
+        })
+})
+
+// admin landing page
+router.get('/adminland', (req, res) => {
     User.findOne({ email: email })
         .then(user => {
             res.render('adminland', { user })
         })
 })
 
-router.get('/adminland/:id',(req,res)=>{
+router.get('/adminland/:id', (req, res) => {
     let mail = req.params.id
     Admin.findOne({ email: mail })
         .then(user => {
             res.render('adminland', { user })
         })
+})
+
+router.get('/addadmin/:id', (req, res) => {
+    let mail = req.params.id
+    Admin.findOne({ email: mail })
+        .then(user => {
+            res.render('addadmin', { user })
+        })
+})
+
+router.post('/add/:id',check('upemail').isEmail().normalizeEmail(), (req, res) => {
+    let mail = req.params.id
+    Admin.findOne({ email: mail })
+        .then(user => {
+            res.render('addadmin', { user })
+        })
+    const inname = req.body.name;
+    const inemail = req.body.email;
+    const inpass1 = req.body.password1;
+    const inpass2 = req.body.password2
+    let errors = [];
+    const mailerrors = validationResult(req);
+    // Email Format
+    if (!mailerrors.isEmpty()) {
+        errors.push({ msg: 'please use proper email' });
+        res.render('addadmin', { errors })
+    }
+
+    //check required fields
+    else if (!inname || !inemail || !inpass1 || !inpass2) {
+        errors.push({ msg: 'please fill in all fields' });
+        res.render('addadmin', { errors })
+    }
+
+    //check password match
+    else if (inpass1 !== inpass2) {
+        errors.push({ msg: 'Password do not match' });
+        res.render('addadmin', { errors })
+    }
+    //check pass length
+    else if (inpass1.length < 6) {
+        errors.push({ msg: 'Password should be atleast 6 charcaters' });
+        res.render('addadmin', { errors })
+    }
+    else {
+        User.findOne({ email: inemail })
+            .then(user => {
+                if (user) {
+                    //User exists
+                    console.log(user.email);
+                    errors.push({ msg: 'Email is already registered' });
+                    res.render('register', { errors });
+                } else {
+                    console.log(inname);
+                    const newUser = new User({
+                        name: inname,
+                        email: inemail,
+                        password: inpass1
+                    });
+                    //save user
+                    newUser.save().then(user => {
+                        let sucerrors = []
+                        console.log(newUser);
+                        sucerrors.push({ sucmsg: 'Successful registration' });
+                        res.render('login', { sucerrors });
+                    })
+                        .catch(err => console.log(err));
+                }
+            });
+    }
 })
 
 module.exports = router;
