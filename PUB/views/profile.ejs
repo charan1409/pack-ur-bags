@@ -138,7 +138,46 @@
             <%} %>
     </section>
 
-
+    <section>
+        <h1>Your Feedbacks Will Appear Here...</h1>
+        <% if(locals.model !=null){%>
+            <table>
+                <tr>
+                    <!-- <th>From</th>
+                    <th>To</th>
+                    <th>Adults</th>
+                    <th>Children</th>
+                    <th>Departure</th>
+                    <th>Arrival</th> -->
+                </tr>
+                <% for (const row of feedmodel){%>
+                    <tr>
+                        <td>
+                            <%= row.detail%>
+                        </td>
+                        <!-- <td>
+                            <%= row.to%>
+                        </td>
+                        <td>
+                            <%= row.adults%>
+                        </td>
+                        <td>
+                            <%= row.children%>
+                        </td>
+                        <td>
+                            <%= row.fromdate%>
+                        </td>
+                        <td>
+                            <%= row.todate%>
+                        </td> -->
+                        <!-- <td>
+                            <td><a href="/profile/remove/<%= row.email%>"><button class="btn">cancel</button></a></td>
+                        </td> -->
+                    </tr>
+                    <%} %>
+            </table>
+            <%} %>
+    </section>
 
     <%- include('footer'); %>
         <!-- footer section ends -->
