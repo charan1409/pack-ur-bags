@@ -40,7 +40,7 @@ router.get('/feedback/:id', (req, res) => {
 // profile of admin
 router.get('/adminprofile/:id', (req, res) => {
     let mail = req.params.id
-    User.findOne({ email: mail })
+    Admin.findOne({ email: mail })
         .then(user => {
             res.render('adminprofile', { user })
         })
