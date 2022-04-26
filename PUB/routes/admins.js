@@ -4,6 +4,7 @@ const {check , validationResult} = require('express-validator');
 const bodyParser = require('body-parser');
 const book = require('../schemas/book');
 const User = require('../schemas/user');
+const fdb = require('../schemas/feed');
 const Admin = require('../schemas/admin');
 let email = null;
 
@@ -15,6 +16,20 @@ router.get('/users/:id', (req, res) => {
             User.find({}, (err, data) => {
                 if (data) {
                     res.render('users', { user, model: data })
+                } else {
+                    console.log(err);
+                }
+            })
+        })
+})
+
+router.get('/feedback/:id', (req, res) => {
+    email = req.params.id
+    Admin.findOne({ email: email })
+        .then(user => {
+            fdb.find({}, (err, data) => {
+                if (data) {
+                    res.render('feedback', { user, model: data })
                 } else {
                     console.log(err);
                 }

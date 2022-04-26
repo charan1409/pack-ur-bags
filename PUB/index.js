@@ -42,13 +42,13 @@ app.get("/", function (req, res) {
 //     res.render('index');
 // });
 
-// app.get("/login", function (req, res) {
-//     res.render('login');
-// });
+app.get("/login", function (req, res) {
+    res.render('login');
+});
 
-// app.get("/register", function (req, res) {
-//     res.render('register');
-// });
+app.get("/register", function (req, res) {
+    res.render('register');
+});
 
 // app.get("/book", function(req, res){
 //     res.render('book');
