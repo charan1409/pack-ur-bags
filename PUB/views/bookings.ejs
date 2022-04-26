@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,36 +11,66 @@
     <link rel="stylesheet" href="/css/places.css">
     <link rel="stylesheet" href="/css/footer.css">
     <style>
-        body{
+        body {
             margin-top: 100px;
+            background-color: rgba(215, 250, 245, 0.949);
+
         }
-        table,th,td{
-            border: 1px solid black;
+
+        table,
+        th,
+        td {
+            border: 2px solid rgb(16, 107, 6);
             border-collapse: collapse;
             width: 1200px;
             height: 50px;
             text-align: center;
+            color: red;
         }
-        td{
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        th {
+            font-size: 20px;
+        }
+
+        td {
             width: 500px;
             height: 50px;
+            font-size: 15px;
         }
-        .btn{
+
+        td:nth-child(odd),
+        th:nth-child(even) {
+            background-color: rgb(71, 236, 248);
+        }
+
+        td:nth-child(even),
+        th:nth-child(odd) {
+            background-color: rgba(246, 246, 122, 0.952);
+        }
+
+        .btn {
             background-color: black;
             color: white;
             height: 30px;
             width: 1000px;
         }
-        .btn-hover{
+
+        .btn-hover {
             height: 30px;
             width: 1000px;
         }
     </style>
 </head>
+
 <body>
     <header>
         <div id="menu-bar" class="fas fa-bars"></div>
-    
+
         <a href="/" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
         <nav class="navbar">
             <a href="/admins/adminland/<%=locals.user.email%>">Home</a>
@@ -55,18 +86,32 @@
             <th>fromdate</th>
             <th>todate</th>
         </tr>
-        <% for(const i of model) 
-        {%> 
+        <% for(const i of model) {%>
             <tr>
-                <td><%- i. mail %></td>
-                <td><%- i. from %></td>
-                <td><%- i. to %></td>
-                <td><%- i. adults %></td>
-                <td><%- i. children%></td>
-                <td><%- i. fromdate%></td>
-                <td><%- i. todate%></td>
+                <td style="text-transform: none;">
+                    <%- i. mail %>
+                </td>
+                <td>
+                    <%- i. from %>
+                </td>
+                <td>
+                    <%- i. to %>
+                </td>
+                <td>
+                    <%- i. adults %>
+                </td>
+                <td>
+                    <%- i. children%>
+                </td>
+                <td>
+                    <%- i. fromdate%>
+                </td>
+                <td>
+                    <%- i. todate%>
+                </td>
             </tr>
-        <%}%>
+            <%}%>
     </table>
 </body>
+
 </html>
