@@ -16,11 +16,45 @@
     <link rel="icon" href="/img/images/fav1.png">
 
     <style>
-        table {
+        body {
+            background-color: rgba(215, 250, 245, 0.949);
+
+        }
+
+        table,
+        th,
+        td {
+            border: 2px solid rgb(16, 107, 6);
+            border-collapse: collapse;
+            width: 1200px;
+            height: 50px;
             text-align: center;
+            color: red;
+        }
+
+        table {
             margin-left: auto;
             margin-right: auto;
-            font-size: larger;
+        }
+
+        th {
+            font-size: 20px;
+        }
+
+        td {
+            width: 500px;
+            height: 50px;
+            font-size: 15px;
+        }
+
+        td:nth-child(odd),
+        th:nth-child(even) {
+            background-color: rgb(71, 236, 248);
+        }
+
+        td:nth-child(even),
+        th:nth-child(odd) {
+            background-color: rgba(246, 246, 122, 0.952);
         }
     </style>
 </head>
@@ -68,17 +102,15 @@
                                                 <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Information</h3>
                                             </div>
                                             <div class="card-body pt-0">
-                                                <table class="table table-bordered">
+                                                <table >
                                                     <tr>
-                                                        <th width="30%">Name</th>
-                                                        <td width="2%">:</td>
+                                                        <th width="10%">Name</th>
                                                         <td>
                                                             <%=user.name%>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th width="30%">Email</th>
-                                                        <td width="2%">:</td>
+                                                        <th width="10%">Email</th>
                                                         <td>
                                                             <%=user.email%>
                                                         </td>
@@ -86,7 +118,6 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <div style="height: 26px"></div>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +129,8 @@
         </section>
     </section>
     <section>
-        <h1>Your Bookings Will Appear Here...</h1>
+        <h1 style="color: rgb(9, 255, 0);font-size: 20px;font-family: algerian;">Your Bookings Will Appear Here...</h1>
+        <br><br>
         <% if(locals.model !=null){%>
             <table>
                 <tr>
