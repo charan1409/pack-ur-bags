@@ -69,7 +69,7 @@
                     <img src="/img/images/booking.jpeg" alt="">
                 </div>
 
-                <form action="/book/book" method="post">
+                <form action="/book/book/<%=locals.user.username%>" method="post">
                     <% if(locals.errors !=null) {%>
                         <% errors.forEach(function(error) { %>
                             <div class="alert alert-danger log-alert" id="msg">

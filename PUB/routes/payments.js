@@ -3,20 +3,19 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const pay = require('../schemas/payment');
 const User = require('../schemas/user');
-let email = null
 
 
 router.get('/views/payment', (req, res) => res.render('payment'));
 router.get('/payment/:id',(req,res)=>{
-    email = req.params.id
-    User.findOne({ email: email})
+    let username = req.params.id
+    User.findOne({ username: username})
     .then(user=>{
         res.render('payment',{user})
     })
 
 })
 router.post('/payment/:id',(req, res) => {
-    email = req.params.id
+    let username = req.params.id
     const num  = req.body.number;
     const hold = req.body.holder;
     const mon = req.body.expmon;
@@ -33,8 +32,8 @@ router.post('/payment/:id',(req, res) => {
         //save user
         newpe.save().then(pay => {
             // router.get('/book/:id',(req,res)=>{
-                // const email = req.params.id
-                User.findOne({ email: email})
+                // const username = req.params.id
+                User.findOne({ username: username})
                 .then(user=>{
                     res.render('index',{user})
                 })

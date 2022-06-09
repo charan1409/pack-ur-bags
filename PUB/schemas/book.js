@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 
 const bookSchema=new mongoose.Schema({
-    mail:{
+    username:{
         type:String
     },
     from:{

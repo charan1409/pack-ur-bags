@@ -1,4 +1,5 @@
 const mongoose=require('mongoose');
+const hot = require('../schemas/hotel');
 
 const placeSchema=new mongoose.Schema({
     place:{
@@ -16,6 +17,9 @@ const placeSchema=new mongoose.Schema({
     price: {
         type:String,
     },
+    hotels:[{
+        type:Schema.Types.ObjectId, ref: 'hot'
+    }],
     availability: {
         type:String,
     }

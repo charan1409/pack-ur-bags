@@ -7,12 +7,12 @@ const book = require('../schemas/book');
 const fdb = require('../schemas/feed');
 
 router.get('/profile/:id', (req, res) => {
-    const email = req.params.id
-    User.findOne({ email: email })
+    const username = req.params.id
+    User.findOne({ username: username })
         .then(user => {
-            book.find({ mail: email })
+            book.find({ username: username })
                 .then(bookings => {
-                    fdb.find({email: email})
+                    fdb.find({username: username})
                         .then(feed=>{
                             res.render('profile', { user,model:bookings,feedmodel:feed })
                         })

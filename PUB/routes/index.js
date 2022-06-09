@@ -6,8 +6,8 @@ const User = require('../schemas/user');
 const cont = require('../schemas/cont')
 let mail=null
 router.get('/index/:id',(req,res)=>{
-    mail = req.params.id
-    User.findOne({ email: mail})
+    username = req.params.id
+    User.findOne({ username: username})
     .then(user=>{
         res.render('index',{user})
     })

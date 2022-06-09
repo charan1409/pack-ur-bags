@@ -5,18 +5,18 @@ const fdbSchema=new mongoose.Schema({
         type:String,
         // required:true
     },
-    hotel1:{
+    hotelid:{
         type:String,
         // required:true
     },
-    hotel2:{
+    hotelimg:{
         type:String,
         // required:true
     },
-    hotel3: {
+    hoteldet: {
         type:String,
     }
 
 });
-const hschema=mongoose.model('hschema',fdbSchema);
-module.exports=hschema;
+const hotel=mongoose.model('hotel',fdbSchema);
+module.exports=hotel;

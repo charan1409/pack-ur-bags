@@ -13,16 +13,16 @@ router.get('/register', (req, res) => res.render('register'));
 
 //  login handle
 router.post('/login', (req, res) => {
-    const inemail = req.body.inemail;
+    const inname = req.body.inname;
     const inpassword = req.body.inpass
     let errors = [];
     let u = 0;
-    if (!inemail || !inpassword) {
+    if (!inname || !inpassword) {
         errors.push({ msg: 'please fill in all fields' });
         res.render('login', { errors })
     }
     else {
-        User.findOne({ email: req.body.inemail })
+        User.findOne({ username: inname })
 
             .then(user => {
                 if (!user) {
@@ -98,22 +98,32 @@ router.post('/register',check('upemail').isEmail().normalizeEmail(), (req, res) 
                     console.log(user.email);
                     errors.push({ msg: 'Email is already registered' });
                     res.render('register', { errors });
-                } else {
-                    console.log(inname);
-                    const newUser = new User({
-                        name: inname,
-                        email: inemail,
-                        password: inpass1
+                } 
+                User.findOne({ username: inname })
+                    .then(user => {
+                        if (user) {
+                            //User exists
+                            console.log(user.username);
+                            errors.push({ msg: 'username is already exists' });
+                            res.render('register', { errors });
+                        }
+                        else {
+                            console.log(inname);
+                            const newUser = new User({
+                                username: inname,
+                                email: inemail,
+                                password: inpass1
+                            });
+                            //save user
+                            newUser.save().then(user => {
+                                let sucerrors = []
+                                console.log(newUser);
+                                sucerrors.push({ sucmsg: 'Successful registration' });
+                                res.render('login',{sucerrors});
+                            })
+                                .catch(err => console.log(err));
+                        }
                     });
-                    //save user
-                    newUser.save().then(user => {
-                        let sucerrors = []
-                        console.log(newUser);
-                        sucerrors.push({ sucmsg: 'Successful registration' });
-                        res.render('login',{sucerrors});
-                    })
-                        .catch(err => console.log(err));
-                }
             });
     }
 
