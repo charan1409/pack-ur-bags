@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/css/profile.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- FAVICON  -->
     <link rel="icon" href="/img/images/fav1.png">
@@ -18,43 +19,123 @@
     <style>
         body {
             background-color: rgba(215, 250, 245, 0.949);
-
+            margin-top: 100px;
         }
 
-        table,
-        th,
-        td {
-            border: 2px solid rgb(16, 107, 6);
-            border-collapse: collapse;
-            width: 600px;
+        .right table,.right th,.right td {
+            /* border: 2px solid rgb(16, 107, 6);
+            border-collapse: collapse; */
+            width: 400px;
             height: 50px;
-            text-align: center;
-            color: red;
+            text-align: left;
+            font-size: 30px;
+            /* color: red; */
         }
 
-        table {
+        .right table {
             margin-left: auto;
             margin-right: auto;
         }
 
-        th {
+        .right th {
             font-size: 20px;
         }
 
-        td {
+        .right td {
             width: 500px;
             height: 50px;
-            font-size: 15px;
+            font-size: 20px;
+            text-transform: none;
         }
 
-        td:nth-child(odd),
-        th:nth-child(even) {
+        .bookings table,.bookings th,.bookings td {
+            border: 2px solid rgb(16, 107, 6);
+            border-collapse: collapse;
+            width: 700px;
+            height: 50px;
+            text-align: left;
+            font-size: 30px;
+            color: red;
+        }
+
+        .bookings table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .bookings th {
+            font-size: 20px;
+        }
+
+        .bookings td {
+            width: 500px;
+            height: 50px;
+            font-size: 20px;
+            text-transform: none;
+        }
+
+        .bookings td:nth-child(odd),.bookings th:nth-child(even) {
             background-color: rgb(71, 236, 248);
         }
 
-        td:nth-child(even),
-        th:nth-child(odd) {
+        .bookings td:nth-child(even),.bookings th:nth-child(odd) {
             background-color: rgba(246, 246, 122, 0.952);
+        }
+
+        .left {
+            width: 50px;
+        }
+
+        .left img{
+            margin-left: 200px;
+            width: 350px;
+            height: 350px;
+            border-radius: 100%;
+            border: 20px solid rgba(83, 80, 80, 0.202);
+        }
+
+        .right {
+            margin-top: 70px;
+            width: 50px;
+        }
+        .profile{
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+        }
+        .prof-btn{
+            margin-left: 230px;
+            margin-top: 4px;
+            width: 300px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: rgba(18, 140, 18, 0.92);
+            cursor: pointer;
+            padding-top: 8px;
+            font-weight: 800;
+            font-size: 20px;
+        }
+        .left a{
+            color: black;
+            display: inline-block;
+            text-align: center;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .right a{
+            margin-left: 30px;
+            color: black;
+            display: inline-block;
+            text-align: center;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        h1{
+            text-align: center;
+            font-size: 60px;
+        }
+        a{
+            text-decoration-line: none;
         }
     </style>
 </head>
@@ -72,14 +153,67 @@
         </nav>
     </header>
     <!-- Header Section Ends here... -->
-    <section style="margin-top: 50px;">
+    <h1>profile</h1>
+    <% if(locals.edit !=null) {%>
+        <% edit.forEach(function(error) { %>
+          <div class="alert bg-success log-suc" id="msg">
+            <strong>success! </strong>
+            <%=error.msg2%>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
+          </div>
+        <% }); %>
+    <% } %>
+    <% if(locals.change !=null) {%>
+        <% change.forEach(function(error) { %>
+          <div class="alert bg-success log-suc" id="msg">
+            <strong>success! </strong>
+            <%=error.msg2%>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
+          </div>
+        <% }); %>
+    <% } %>
+    <div class="profile">
+        <div class="left">
+            <img class="profile_img" src="https://source.unsplash.com/600x300/?student" alt="student dp">
+            <a href="/profile/edit/<%=user.username%>" class="prof-btn">edit profile</a>
+        </div>
+        <div class="right">
+            <table>
+                <tr>
+                    <th width="10%">Name:</th>
+                    <td>
+                        <%=user.name%>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="10%">username:</th>
+                    <td>
+                        <%=user.username%>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="10%">phone number:</th>
+                    <td>
+                        <%=user.phone%>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="10%">Email:</th>
+                    <td>
+                        <%=user.email%>
+                    </td>
+                </tr>
+            </table>
+            <a href="/profile/changepass/<%=user.username%>" class="prof-btn">change password</a>
+        </div>
+    </div>
+    <!-- <section style="margin-top: 500px;">
 
         <section>
             <div class="rt-container">
                 <div class="col-rt-12">
                     <div class="Scriptcontent">
 
-                        <!-- Student Profile -->
                         <div class="student-profile py-4">
                             <div class="container">
                                 <div class="row">
@@ -100,7 +234,7 @@
                                                 <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Information</h3>
                                             </div>
                                             <div class="card-body pt-0">
-                                                <table >
+                                                <table>
                                                     <tr>
                                                         <th width="10%">Name</th>
                                                         <td>
@@ -119,14 +253,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- partial -->
 
                         </div>
                     </div>
                 </div>
         </section>
-    </section>
-    <section>
+    </section> -->
+    <section class="bookings">
         <h1 style="color: rgb(9, 255, 0);font-size: 20px;font-family: algerian;">Your Bookings Will Appear Here...</h1>
         <br><br>
         <% if(locals.model !=null){%>

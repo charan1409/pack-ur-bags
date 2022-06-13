@@ -39,7 +39,7 @@ router.post('/login', (req, res) => {
                     }
                 }
                 if(u!=0){
-                    Admin.findOne({email: req.body.inemail})
+                    Admin.findOne({email: req.body.inname})
                         .then(user=>{
                             if(!user){
                                 errors.push({ msg: 'email is not registerd' });

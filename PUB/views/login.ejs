@@ -43,32 +43,33 @@
           </div>
           <% }); %>
             <% } %>
-            <% if(locals.sucerrors !=null) {%>
-              <% sucerrors.forEach(function(error) { %>
-                <div class="alert bg-success log-suc" id="msg">
-                  <strong>success! </strong>
-                  <%=error.sucmsg%>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-                <% }); %>
-                  <% } %>
-      <!-- Error Alert Ends-->
+              <% if(locals.sucerrors !=null) {%>
+                <% sucerrors.forEach(function(error) { %>
+                  <div class="alert bg-success log-suc" id="msg">
+                    <strong>success! </strong>
+                    <%=error.sucmsg%>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  </div>
+                  <% }); %>
+                    <% } %>
+                      <!-- Error Alert Ends-->
 
-      <!-- Form Starts -->
-                  
-              <form id="login" action="/users/login" method="post">
-                <input type="text" class="box" id="email" name="inname" placeholder="Enter your username"> <br>
-                <input type="password" class="box" id="pas" name="inpass" placeholder="Enter your password"> <br>
-                <input type="submit" value="login now" class="login-btn"> <br> <br> <br>
-                <div>
-                  <input type="checkbox" id="remember">
-                  <label for="remember">remember me</label> <br> <br>
-                  <!-- <p>forget password? <a href="#">Click here</a></p> <br> -->
-                  <a href="register"><button type="button" class="login-btn"
-                      style="background-color: #FCD900;color: #060000;">Sign Up</button></a>
-                  <p>Customer service: 9398717554</p>
-                </div>
-              </form>
+                      <!-- Form Starts -->
+
+                      <form id="login" action="/users/login" method="post">
+                        <input type="text" class="box" id="email" name="inname" placeholder="Enter your username"> <br>
+                        <input type="password" class="box" id="pas" name="inpass" placeholder="Enter your password">
+                        <br>
+                        <input type="submit" value="login now" class="login-btn"> <br> <br> <br>
+                        <div>
+                          <input type="checkbox" id="remember">
+                          <label for="remember">remember me</label> <br> <br>
+                          <!-- <p>forget password? <a href="#">Click here</a></p> <br> -->
+                          <a href="register"><button type="button" class="login-btn"
+                              style="background-color: #FCD900;color: #060000;">Sign Up</button></a>
+                          <p>Customer service: 9398717554</p>
+                        </div>
+                      </form>
     </div>
 
   </section>

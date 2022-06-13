@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit profile</title>
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="/img/images/fav1.png">
+
+    <style>
+        body{
+            background-color: rgba(215, 250, 245, 0.949);
+            margin-top: 150px;
+            margin-left: 500px;
+        }
+
+        .editform .tbox{
+            height: 45px;
+            width: 400px;
+            padding: 4px;
+            border: 2px solid black;
+            border-radius: 10px;
+            font-size: 25px;
+        }
+
+        .editform .editbtn{
+            margin-left: 50px;
+            margin-top: 4px;
+            width: 190px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: black;
+            color: antiquewhite;
+            cursor: pointer;
+            padding: 8px;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .log-alert{
+            width: 400px;
+        }
+        h1{
+            font-size: 60px;
+        }
+        a{
+            text-decoration-line: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section Starts here... -->
+    <header>
+        <div id="menu-bar" class="fas fa-bars"></div>
+
+        <a href="/" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
+        <nav class="navbar">
+            <a href="/index/index/<%=user.username%>">Home</a>
+        </nav>
+    </header>
+    <!-- Header Section Ends here... -->
+
+    <% if(locals.edit !=null) {%>
+        <% edit.forEach(function(message) { %>
+            <h1><%=message.msg%></h1>
+            <% if(locals.editerr !=null) {%>
+                <% editerr.forEach(function(error) { %>
+                  <div class="alert alert-danger log-alert" id="msg">
+                    <strong>Error! </strong>
+                    <%=error.msg%>
+                      <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
+                  </div>
+                <% }); %>
+            <% } %>
+            <form action="/profile/edit/<%=user.username%>" method="post" class="editform">
+                <input type="text" class="tbox" name="upname" placeholder="Enter your name"><br><br><br>
+                <input type="text" class="tbox" name="upemail" placeholder="Enter your email"><br><br><br>
+                <input type="text" class="tbox" name="upphone" placeholder="Enter your phone number"><br><br><br>
+                <input type="text" class="tbox" name="pass" placeholder="Enter your password to confirm"><br><br><br>
+                <a href="/profile/profile/<%=user.username%>" class="editbtn">cancel</a>
+                <input type="submit" class="editbtn" value="save changes">
+            </form> 
+        <% }); %>
+    <% } %>
+
+    <% if(locals.change !=null) {%>
+        <% change.forEach(function(message) { %>
+            <h1><%=message.msg%></h1>
+            <% if(locals.changeerr !=null) {%>
+                <% changeerr.forEach(function(error) { %>
+                  <div class="alert alert-danger log-alert" id="msg">
+                    <strong>Error! </strong>
+                    <%=error.msg%>
+                      <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
+                  </div>
+                <% }); %>
+            <% } %>
+            <form action="/profile/changepass/<%=user.username%>" method="post" class="editform">
+                <input type="password" class="tbox" name="oldpass" placeholder="Enter old password"><br><br><br>
+                <input type="password" class="tbox" name="newpass1" placeholder="Enter your new password"><br><br><br>
+                <input type="password" class="tbox" name="newpass2" placeholder="confirm your new password"><br><br><br>
+                <a href="/profile/profile/<%=user.username%>" class="editbtn">cancel</a>
+                <input type="submit" class="editbtn" value="change password">
+            </form> 
+        <% }); %>
+    <% } %>
+</body>
+</html>
