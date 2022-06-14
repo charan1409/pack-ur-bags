@@ -1,6 +1,4 @@
 const express = require("express");
-// const session=require('express-session');
-// const flash=require('connect-flash');
 const app = express();
 const mongoose=require('mongoose');
 const port = 3000
@@ -18,29 +16,9 @@ app.use(express.static('public'))
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
-//Express Session
-// app.use(session({
-//     secret:'secret',
-//     resave:true,
-//     saveUninitialized:true
-// }));
-
-
 app.get("/", function (req, res) {
     res.render('landing');
 });
-
-// app.get("/payment", function (req, res) {
-//     res.render('payment');
-// });
-
-// app.get("/succesful", function (req, res) {
-//     res.render('succesful');
-// });
-
-// app.get("/index", function (req, res) {
-//     res.render('index');
-// });
 
 app.get("/login", function (req, res) {
     res.render('login');
@@ -49,14 +27,6 @@ app.get("/login", function (req, res) {
 app.get("/register", function (req, res) {
     res.render('register');
 });
-
-// app.get("/book", function(req, res){
-//     res.render('book');
-// })
-
-// app.get("/profile", function(req, res){
-//     res.render('profile');
-// })
 
 app.listen(port, function () {
     console.log("server is running on the port 3000");

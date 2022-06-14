@@ -12,13 +12,14 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
     <!-- FAVICON  -->
     <link rel="icon" href="/img/images/fav1.png">
 
     <style>
         body {
-            background-color: rgba(215, 250, 245, 0.949);
+            background-color: whitesmoke;
             margin-top: 100px;
         }
 
@@ -106,7 +107,7 @@
         }
         .prof-btn{
             margin-left: 230px;
-            margin-top: 4px;
+            margin-top: 6px;
             width: 300px;
             height: 40px;
             border-radius: 5px;
@@ -136,6 +137,34 @@
         }
         a{
             text-decoration-line: none;
+        }
+
+        .profile .left .content{
+            position: absolute;
+            display: none;
+            top: 242px;left: -2000px;
+            height: 310px;
+            width: 310px;
+            border-radius: 100%;
+            background:rgba(0, 0, 0, 0.527);
+            text-align: center;
+        }
+        
+        .profile .left:hover .content{
+            top: 242px;
+            left: 220px;
+            display: block;
+        }
+
+        .profile .left .content a{
+            color: whitesmoke;
+        }
+
+        .profile .left .content .pic-btn{
+            margin-top: 120px;
+            margin-left: 60px;
+            font-size: 20px;
+            float: left;
         }
     </style>
 </head>
@@ -170,11 +199,15 @@
             <%=error.msg2%>
               <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
           </div>
-        <% }); %>
+        <% }); %>   
     <% } %>
     <div class="profile">
         <div class="left">
-            <img class="profile_img" src="https://source.unsplash.com/600x300/?student" alt="student dp">
+            <img class="profile_img" src="/img/images/profile_pic.jpeg" alt="profile picture">
+            <div class="content">
+                <a href="/profile/delete/<%=locals.user.username%>" class="pic-btn"><i class="bi bi-trash fa-3x"></i></a>
+                <a href="/profile/upload/<%=locals.user.username%>" class="pic-btn"><i class="bi bi-upload fa-3x"></i></a>
+            </div>
             <a href="/profile/edit/<%=user.username%>" class="prof-btn">edit profile</a>
         </div>
         <div class="right">
@@ -205,60 +238,10 @@
                 </tr>
             </table>
             <a href="/profile/changepass/<%=user.username%>" class="prof-btn">change password</a>
+            <a href="/" class="prof-btn">logout</a>
         </div>
     </div>
-    <!-- <section style="margin-top: 500px;">
-
-        <section>
-            <div class="rt-container">
-                <div class="col-rt-12">
-                    <div class="Scriptcontent">
-
-                        <div class="student-profile py-4">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="card shadow-sm">
-                                            <div class="card-header bg-transparent text-center">
-                                                <img class="profile_img"
-                                                    src="https://source.unsplash.com/600x300/?student" alt="student dp">
-                                                <h3>
-                                                    <%=user.name%>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <div class="card shadow-sm">
-                                            <div class="card-header bg-transparent border-0">
-                                                <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Information</h3>
-                                            </div>
-                                            <div class="card-body pt-0">
-                                                <table>
-                                                    <tr>
-                                                        <th width="10%">Name</th>
-                                                        <td>
-                                                            <%=user.name%>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th width="10%">Email</th>
-                                                        <td>
-                                                            <%=user.email%>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-        </section>
-    </section> -->
+    
     <section class="bookings">
         <h1 style="color: rgb(9, 255, 0);font-size: 20px;font-family: algerian;">Your Bookings Will Appear Here...</h1>
         <br><br>
@@ -305,37 +288,11 @@
         <h1>Your Feedbacks Will Appear Here...</h1>
         <% if(locals.model !=null){%>
             <table>
-                <tr>
-                    <!-- <th>From</th>
-                    <th>To</th>
-                    <th>Adults</th>
-                    <th>Children</th>
-                    <th>Departure</th>
-                    <th>Arrival</th> -->
-                </tr>
                 <% for (const row of feedmodel){%>
                     <tr>
                         <td>
                             <%= row.detail%>
                         </td>
-                        <!-- <td>
-                            <%= row.to%>
-                        </td>
-                        <td>
-                            <%= row.adults%>
-                        </td>
-                        <td>
-                            <%= row.children%>
-                        </td>
-                        <td>
-                            <%= row.fromdate%>
-                        </td>
-                        <td>
-                            <%= row.todate%>
-                        </td> -->
-                        <!-- <td>
-                            <td><a href="/profile/remove/<%= row.email%>"><button class="btn">cancel</button></a></td>
-                        </td> -->
                     </tr>
                     <%} %>
             </table>
