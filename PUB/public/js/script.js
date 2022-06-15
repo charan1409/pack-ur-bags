@@ -23,18 +23,6 @@ function show(id) {
   }
 }
 
-// function valid(){
-//   let a = document.getElementById('dd');
-//   let b = document.getElementById('ad');
-//   console.log("called");
-//   if((Date.parse(b))<(Date.parse(a))){
-//     alert("invalid date");
-//   } else{
-//     console.log(a,b);
-//   }
-// }
-
-
 
 // REVIEW
 var swiper = new Swiper(".review-slider", {

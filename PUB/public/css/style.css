@@ -11,7 +11,7 @@
   bottom: 20px;
   right: 25px;
   cursor: pointer;
-  background-color: #00a8b4;
+  background-color: #ffbb00e3;
   color: #fff;
   width: 50px;
   height: 50px;
@@ -20,10 +20,6 @@
   border-radius: 50px;
 }
 
-header a:hover {
-  color: #333;
-  text-transform: uppercase;
-}
 
 * {
   font-family: "Nunito", sans-serif;
@@ -77,106 +73,11 @@ section {
   font-size: 1.7rem;
   font-weight: bold;
   border-radius: 20px;
-
+  
 }
 
 .btn:hover {
   background: rgba(235, 219, 129, 0.678);
-}
-/* Nav Bar STYLE */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: #333;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem 9%;
-  cursor: pointer;
-  font-size: 1.7rem;
-}
-
-header .logo {
-  font-size: 2.5rem;
-  font-weight: bolder;
-  color: white;
-  text-transform: uppercase;
-}
-
-header .logo span {
-  color: var(--orange);
-}
-
-header .navbar a {
-  color: #fff;
-  font-size: 2rem;
-  margin: 0 0.8rem;
-}
-
-header .navbar a:hover {
-  color: var(--orange);
-}
-
-header .icons i {
-  font-size: 2.5rem;
-  color: white;
-  cursor: pointer;
-  margin-right: 2rem;
-}
-
-header .icons i:hover {
-  color: var(--orange);
-}
-
-header .search-bar-container {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  padding: 1.5rem 2rem;
-  background: #333;
-  border-top: 0.1rem solid rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  z-index: 1001;
-  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-}
-
-header .search-bar-container.active {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-}
-
-header .search-bar-container #search-bar {
-  width: 100%;
-  padding: 1rem;
-  text-transform: none;
-  color: #333;
-  font-size: 1.7rem;
-  border-radius: 0.5rem;
-}
-
-header .search-bar-container label {
-  color: #fff;
-  cursor: pointer;
-  font-size: 3rem;
-  margin-left: 1.5rem;
-}
-
-header .search-bar-container label:hover {
-  color: var(--orange);
-}
-
-#menu-bar {
-  color: white;
-  border: 0.1rem solid white;
-  border-radius: 0.5rem;
-  font-size: 3rem;
-  padding: 0.5rem 1.2rem;
-  cursor: pointer;
-  display: none;
 }
 
 .logindirect p{
@@ -217,35 +118,6 @@ header .search-bar-container label:hover {
 
   section{
     padding:2rem;
-  }
-
-}
-
-@media (max-width:768px){
-
-  #menu-bar{
-    display: block;
-  }
-
-  header .navbar{
-    position: absolute;
-    top:100%; right:0; left: 0;
-    background: #333;
-    border-top: .1rem solid rgba(255,255,255,.2);
-    padding:1rem 2rem;
-    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-  }
-
-  header .navbar.active{
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
-
-  header .navbar a{
-    display: block;
-    border-radius: .5rem;
-    padding:1.5rem;
-    margin:1.5rem 0;    
-    background:#222;
   }
 
 }

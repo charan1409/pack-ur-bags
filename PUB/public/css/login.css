@@ -6,17 +6,15 @@ a {
 #log {
   background-color: #ffffff10;
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
-.top {
+body {
   background-image: url(./../img/images/login.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 form {
-  font-size: 75%;
   text-align: center;
   transform-style: preserve-3d;
 }
@@ -25,71 +23,46 @@ form {
   position: relative;
   height: 550px;
   width: 600px;
-  background: rgba(145, 145, 145, 0.651);
-  padding: 20px 30px;
+  padding: 30px 30px;
   perspective: 1000px;
   box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.623);
   animation-name: moving;
   animation-duration: 1s;
-  margin-top: 9%;
-  margin-left: 30%;
-  margin-bottom: 8%;
+  top: 100px;
+  margin-left: 28%;
 }
 
 @keyframes moving {
-  from {bottom: 100px;}
-  to {bottom: 0;}
+  from {top: -100px;}
+  to {top: 100px;}
 }
 
 .top-btn{
   background-color: #020202;
-  color: aliceblue;
+  color: whitesmoke;
   width: 500px;
   margin-left: 25px;
   padding: 5px 20px;
-  position: center;
-}
-
-.toggle-btn{
-  padding: 10px 30px;
-  margin: -10px 150px;
-  color: aliceblue;
-  background: transparent;
-  font-size: 25px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.reg-btn{
-  padding: 10px 30px;
-  cursor: pointer;
-  position: relative;
-  margin: 0 40px;
-  background: transparent;
-  font-size: 15px;
-}
-
-.reg-btn:hover{
-  color: #333;
-  text-decoration: underline;
+  text-align: center;
 }
 
 .form-container form {
   position: relative;
   margin: 0 2rem;
-  padding: 1.5rem 2rem;
-  border-radius: 0.5rem;
-  width: 50rem;
-  height: 70%;
-  transition: .5s;
+  padding: 1rem 2rem;
 }
-  
-.form-container .box {
-  width: 100%;
-  padding: 1rem 1rem;
-  font-size: 1.7rem;
-  color: rgb(51, 51, 51);
-  margin: 0.4rem 0;
-  border: 0.1rem solid rgba(0, 0, 0, 0.3);
+
+.form-container .input-box{
+  background-color: whitesmoke;
+  height: 40px;
+  padding: 5px 0px;
+}
+
+.form-container input{
+  background: transparent;
+  width: 90%;
+  font-size: 20px;
+  margin-left: 5px;
   text-transform: none;
 }
 
@@ -104,9 +77,10 @@ form {
   border-radius: 20px;
 }
 
-/* .log-alert{
-  display: none;
-} */
+.form-container form p{
+  font-size: 20px;
+  font-weight: 1000;
+}
 
 .log-alert{
   height: 50px;

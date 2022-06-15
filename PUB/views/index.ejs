@@ -12,6 +12,7 @@
 
     <!-- Custom CSS Link... -->
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/gallery.css">
     <link rel="stylesheet" href="/css/places.css">
     <link rel="stylesheet" href="/css/footer.css">
@@ -27,6 +28,8 @@
     <!-- Script for animation and swiper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="/js/navbar.js"></script>
+
 </head>
 
 <body>
@@ -36,7 +39,38 @@
         <a href="#home"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
     </div>
 
-    <%- include('navbarh'); %>
+    <div class="topnav" id="topnavbar">
+        <!-- <div id="menu-bar" class="fas fa-bars"></div> -->
+        <button id="menu-bar" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+          </button>
+        <a href="/" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
+        <nav class="navbar">
+            <a href="/index">Home</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#places">Places</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#review">Reviews</a>
+            <a href="#cont">Contact</a>
+        </nav>
+        <div class="icons navbar">
+            <i class="fas fa-search" id="search-btn"></i>
+            <% if(locals.user==null) {%>
+                <a href="login"><i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
+                <!-- <a href="/">LogOut</a> -->
+                <% } %>
+                    <% if(locals.user !=null) {%>
+                        <a href="/profile/profile/<%=user.username%>"><i class="fa fa-user" aria-hidden="true"
+                                id="login-btn"></i></a>
+                        <a href="/">LogOut</a>
+                        <% } %>
+        </div>
+        <form action="" class="search-bar-container">
+            <input type="search" id="search-bar" placeholder="Search here..">
+            <label for="search-bar" class="fas fa-search"></label>
+        </form>
+    </div>
 
         <!-- Home Section Starts... -->
         <section class="home" id="home">
