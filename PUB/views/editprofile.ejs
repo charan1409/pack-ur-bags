@@ -109,5 +109,46 @@
             </form> 
         <% }); %>
     <% } %>
+
+    <% if(locals.changep !=null) {%>
+        <% changep.forEach(function(message) { %>
+            <h1><%=message.msg%></h1>
+            <% if(locals.proferr !=null) {%>
+                <% proferr.forEach(function(error) { %>
+                  <div class="alert alert-danger log-alert" id="msg">
+                    <strong>Error! </strong>
+                    <%=error.msg%>
+                      <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
+                  </div>
+                <% }); %>
+            <% } %>
+            <form action="/profile/upload/<%=user.username%>" method="post" class="editform" enctype="multipart/form-data">
+                <input type="file" class="tbox" name="photo" placeholder="upload"><br><br><br>
+                <input type="password" class="tbox" name="pass" placeholder="Enter your password"><br><br><br>
+                <a href="/profile/profile/<%=user.username%>" class="editbtn">cancel</a>
+                <input type="submit" class="editbtn" value="upload photo">
+            </form> 
+        <% }); %>
+    <% } %>
+
+    <% if(locals.removep !=null) {%>
+        <% removep.forEach(function(message) { %>
+            <h1><%=message.msg%></h1>
+            <% if(locals.remerr !=null) {%>
+                <% remerr.forEach(function(error) { %>
+                  <div class="alert alert-danger log-alert" id="msg">
+                    <strong>Error! </strong>
+                    <%=error.msg%>
+                      <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
+                  </div>
+                <% }); %>
+            <% } %>
+            <form action="/profile/remove/<%=user.username%>" method="post" class="editform">
+                <input type="password" class="tbox" name="oldpass" placeholder="Enter your password"><br><br><br>
+                <a href="/profile/profile/<%=user.username%>" class="editbtn">cancel</a>
+                <input type="submit" class="editbtn" value="change password">
+            </form> 
+        <% }); %>
+    <% } %>
 </body>
 </html>

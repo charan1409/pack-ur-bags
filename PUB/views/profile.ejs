@@ -204,9 +204,18 @@
     <% } %>
     <div class="profile">
         <div class="left">
-            <img class="profile_img" src="/img/images/profile_pic.jpeg" alt="profile picture">
+            <% if(user.image){ %>
+                <img class="profile_img" src="data:uploads/<%=user.image.contentType%>;base64,
+                <%=user.image.data.toString('base64')%>" alt="profile picture">
+                <%}
+            %>
+            <% if(!user.image){ %>
+                <img class="profile_img" src="/img/images/profile_pic.jpeg" alt="profile picture">
+                <%}
+            %>    
+            <!-- <img class="profile_img" src="/img/images/profile_pic.jpeg" alt="profile picture"> -->
             <div class="content">
-                <a href="/profile/delete/<%=locals.user.username%>" class="pic-btn"><i class="bi bi-trash fa-3x"></i></a>
+                <a href="/profile/remove/<%=locals.user.username%>" class="pic-btn"><i class="bi bi-trash fa-3x"></i></a>
                 <a href="/profile/upload/<%=locals.user.username%>" class="pic-btn"><i class="bi bi-upload fa-3x"></i></a>
             </div>
             <a href="/profile/edit/<%=user.username%>" class="prof-btn">edit profile</a>
