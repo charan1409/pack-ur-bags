@@ -15,3 +15,32 @@ form.addEventListener('mouseleave', function () {
 
 
 });
+
+const showPassword = document.querySelector('#show-pass');
+const showPassword2 = document.querySelector('#show-pass2');
+const password = document.querySelector('#pas');
+const password2 = document.querySelector('#pas2');
+
+showPassword.addEventListener('click', function (e) {
+  if(password.type === 'password'){
+    password.setAttribute('type', 'text');
+    this.classList.add('fa-eye-slash');
+    this.classList.remove('fa-eye')
+  } else{
+    password.setAttribute('type','password');
+    this.classList.add('fa-eye');
+    this.classList.remove('fa-eye-slash')
+  }
+});
+
+showPassword2.addEventListener('click', function (e) {
+  if(password2.type === 'password'){
+    password2.setAttribute('type', 'text');
+    this.classList.add('fa-eye-slash');
+    this.classList.remove('fa-eye')
+  } else{
+    password2.setAttribute('type','password');
+    this.classList.add('fa-eye');
+    this.classList.remove('fa-eye-slash')
+  }
+});
