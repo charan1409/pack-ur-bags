@@ -61,24 +61,6 @@ section {
 .heading span .space {
   background: none;
 }
-/* Buttons CSS */
-.btn {
-  display: inline-block;
-  margin-top: 1rem;
-  background:var(--orange);
-  background: #fad504e7;
-  color: white;
-  padding: 0.8rem 3rem;
-  cursor: pointer;
-  font-size: 1.7rem;
-  font-weight: bold;
-  border-radius: 20px;
-  
-}
-
-.btn:hover {
-  background: rgba(235, 219, 129, 0.678);
-}
 
 .logindirect p{
   text-align: center;
@@ -182,6 +164,23 @@ section {
   background: rgba(0, 0, 0, 0.7);
   position: relative;
   top: 10rem;
+}
+
+.home .btn {
+  display: inline-block;
+  background: #fac104;
+  color: white;
+  padding: 0.8rem 3rem;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 20px;
+  
+}
+
+.home .btn:hover {
+  background: none;
+  border: 2px solid #fac104;
 }
 
 /* Booking CSS Starts HERE */

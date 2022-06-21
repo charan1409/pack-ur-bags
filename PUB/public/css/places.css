@@ -1,11 +1,10 @@
-
 .places .box-container{
     display: flex;
     flex-wrap: wrap;
     gap:1.5rem;
   }
   
- .places .box-container .box{
+.places .box-container .box{
     overflow: hidden;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.199);
     /* border:1rem solid #fff; */
@@ -46,4 +45,21 @@
     font-size: 1.5rem;
     color:#eee;
     padding:.5rem 0;
+  }
+
+  .places .btn {
+    display: inline-block;
+    background: #fac104;
+    color: white;
+    padding: 0.8rem 3rem;
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 20px;
+    
+  }
+  
+  .places .btn:hover {
+    background: none;
+    border: 1px solid #fac104;
   }

@@ -79,7 +79,7 @@ form {
 .form-container .login-btn:hover {
   background: none;
   color: black;
-  border: 2px solid black;
+  border: 1px solid black;
   font-size: 1.7rem;
   font-weight: 600;
 }
