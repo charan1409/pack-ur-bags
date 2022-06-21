@@ -144,9 +144,9 @@
                 <% }); %>
             <% } %>
             <form action="/profile/remove/<%=user.username%>" method="post" class="editform">
-                <input type="password" class="tbox" name="oldpass" placeholder="Enter your password"><br><br><br>
+                <input type="password" class="tbox" name="pass" placeholder="Enter your password"><br><br><br>
                 <a href="/profile/profile/<%=user.username%>" class="editbtn">cancel</a>
-                <input type="submit" class="editbtn" value="change password">
+                <input type="submit" class="editbtn" value="remove photo">
             </form> 
         <% }); %>
     <% } %>

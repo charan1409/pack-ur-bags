@@ -112,7 +112,8 @@ router.post('/register',check('upemail').isEmail().normalizeEmail(), (req, res) 
                             const newUser = new User({
                                 username: inname,
                                 email: inemail,
-                                password: inpass1
+                                password: inpass1,
+                                profileid: 0
                             });
                             //save user
                             newUser.save().then(user => {

@@ -147,14 +147,13 @@ router.post('/upload/:id',upload.single('photo'),(req,res) => {
     const pass = req.body.pass
     let changep = []
     let proferr = []
-    const newvals = {image:{data: fs.readFileSync(path.join('./public/uploads/' + req.file.filename)),contentType: 'image/png'}}
+    const newvals = {image:{data: fs.readFileSync(path.join('./public/uploads/' + req.file.filename)),contentType: 'image/png'},profileid:1}
     User.findOne({ username: uname})
         .then(user=>{
             if(user.password == pass){
                 User.findOneAndUpdate({ username: uname},newvals,function(err,result){
                     if(err) throw err;
                     changep.push({msg2:"profile photo updated succesfully"})
-                    console.log('photo updated');
                     User.findOne({ username: uname})
                         .then(user=>{
                             res.render('profile',{user,changep})
@@ -165,6 +164,32 @@ router.post('/upload/:id',upload.single('photo'),(req,res) => {
                 changep.push({msg:"change your password"})
                 proferr.push({msg:"incorrect password"})
                 res.render('editprofile',{user,changep,proferr})
+            }
+        })
+})
+
+router.post('/remove/:id',upload.single('photo'),(req,res) => {
+    const uname = req.params.id
+    const pass = req.body.pass
+    let removep = []
+    let remerr = []
+    const newvals = {image:null,profileid:0}
+    User.findOne({ username: uname})
+        .then(user=>{
+            if(user.password == pass){
+                User.findOneAndUpdate({ username: uname},newvals,function(err,result){
+                    if(err) throw err;
+                    removep.push({msg2:"profile photo removed succesfully"})
+                    User.findOne({ username: uname})
+                        .then(user=>{
+                            res.render('profile',{user,removep})
+                        })
+                })
+            } 
+            else {
+                removep.push({msg:"change your password"})
+                remerr.push({msg:"incorrect password"})
+                res.render('editprofile',{user,removep,remerr})
             }
         })
 })

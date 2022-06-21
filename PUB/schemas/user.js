@@ -21,6 +21,9 @@ const UserSchema=new mongoose.Schema({
         data:Buffer,
         contentType:String
     },
+    profileid:{
+        type:String
+    },
     password:{
         type:String,
         // required:true
