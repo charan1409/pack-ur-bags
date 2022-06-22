@@ -199,7 +199,7 @@
     <h1>profile</h1>
     <% if(locals.edit !=null) {%>
         <% edit.forEach(function(error) { %>
-          <div class="alert bg-success log-suc" id="msg">
+          <div class="alert bg-success" id="msg">
             <strong>success! </strong>
             <%=error.msg2%>
               <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
@@ -208,7 +208,25 @@
     <% } %>
     <% if(locals.change !=null) {%>
         <% change.forEach(function(error) { %>
-          <div class="alert bg-success log-suc" id="msg">
+          <div class="alert bg-success" id="msg">
+            <strong>success! </strong>
+            <%=error.msg2%>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
+          </div>
+        <% }); %>   
+    <% } %>
+    <% if(locals.changep !=null) {%>
+        <% changep.forEach(function(error) { %>
+          <div class="alert bg-success" id="msg">
+            <strong>success! </strong>
+            <%=error.msg2%>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
+          </div>
+        <% }); %>   
+    <% } %>
+    <% if(locals.removep !=null) {%>
+        <% removep.forEach(function(error) { %>
+          <div class="alert bg-success" id="msg">
             <strong>success! </strong>
             <%=error.msg2%>
               <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
@@ -218,12 +236,11 @@
     <div class="profile">
         <div class="left">
             <div class="profile_img">
-                <% if(user.profileid === '1'){ %>
-                    <img src="data:uploads/<%=user.image.contentType%>;base64,
-                    <%=user.image.data.toString('base64')%>" alt="profile picture">
+                <% if(user.image){ %>
+                    <img src="/uploads/<%= user.image%>" alt="profile_image">
                     <%}
                 %>
-                <% if(user.profileid === '0'){ %>
+                <% if(!user.image){ %>
                     <img src="/img/images/profile_pic.jpeg" alt="profile picture">
                     <%}
                 %>    

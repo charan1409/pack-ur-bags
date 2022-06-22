@@ -147,7 +147,7 @@ router.post('/upload/:id',upload.single('photo'),(req,res) => {
     const pass = req.body.pass
     let changep = []
     let proferr = []
-    const newvals = {image:{data: fs.readFileSync(path.join('./public/uploads/' + req.file.filename)),contentType: 'image/png'},profileid:1}
+    const newvals = {image:req.file.filename,profileid:1}
     User.findOne({ username: uname})
         .then(user=>{
             if(user.password == pass){
@@ -176,17 +176,26 @@ router.post('/remove/:id',upload.single('photo'),(req,res) => {
     const newvals = {image:null,profileid:0}
     User.findOne({ username: uname})
         .then(user=>{
+            let pic = user.image
             if(user.password == pass){
                 User.findOneAndUpdate({ username: uname},newvals,function(err,result){
                     if(err) throw err;
                     removep.push({msg2:"profile photo removed succesfully"})
                     User.findOne({ username: uname})
                         .then(user=>{
+                            if(pic != null){
+                                let filepath = path.join('\public\\uploads\\' + pic)
+                                fs.unlink(filepath,(err)=>{
+                                    if(err) throw err;
+                                    console.log('profile photo deleted');
+                                })
+                            }
                             res.render('profile',{user,removep})
                         })
                 })
             } 
             else {
+
                 removep.push({msg:"change your password"})
                 remerr.push({msg:"incorrect password"})
                 res.render('editprofile',{user,removep,remerr})
