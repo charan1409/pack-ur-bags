@@ -98,7 +98,7 @@
         }
 
         .right {
-            margin-top: 70px;
+            margin-top: 40px;
             width: 50px;
         }
         .profile{
@@ -188,7 +188,7 @@
     <div class="topnav">
         <div id="menu-bar" class="fas fa-bars"></div>
 
-        <a href="/" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
+        <a href="/index/index/<%=user.username%>" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
         <nav class="navbar">
             <a href="/index/index/<%=user.username%>">Home</a>
             <a href="#fd">Feedbacks</a>
@@ -263,6 +263,12 @@
                     <th width="10%">username:</th>
                     <td>
                         <%=user.username%>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="10%">Gender:</th>
+                    <td>
+                        <%=user.gender%>
                     </td>
                 </tr>
                 <tr>

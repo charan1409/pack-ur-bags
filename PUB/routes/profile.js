@@ -67,15 +67,15 @@ router.get('/remove/:id',(req,res)=>{
 router.post('/edit/:id',(req,res) => {
     const uname = req.params.id
     const name = req.body.upname
-    const email = req.body.upemail
+    const gender = req.body.upgender
     const phn = req.body.upphone
     const pass = req.body.pass
     let edit = []
     let editerr = []
-    const newvals = {name: name,phone: phn, email: email}
+    const newvals = {name: name,phone: phn, gender: gender}
     User.findOne({ username: uname})
     .then(user=>{
-            if (!name || !email || !phn || !pass){
+            if (!name || !gender || !phn || !pass){
                 edit.push({msg:"edit your profile"})
                 editerr.push({msg:"please fill in all details"})
                 res.render('editprofile',{user,edit,editerr})
@@ -145,13 +145,18 @@ const upload = multer({storage:storage})
 router.post('/upload/:id',upload.single('photo'),(req,res) => {
     const uname = req.params.id
     const pass = req.body.pass
+    const pi = req.body.photo
     let changep = []
     let proferr = []
-    const newvals = {image:req.file.filename,profileid:1}
     User.findOne({ username: uname})
         .then(user=>{
-            if(user.password == pass){
-                User.findOneAndUpdate({ username: uname},newvals,function(err,result){
+            if (!pass || !pi){
+                changep.push({msg:"upload your profile photo"})
+                proferr.push({msg:"please fill in all fields"})
+                res.render('editprofile',{user,changep,proferr})
+            }
+            else if(user.password == pass){
+                User.findOneAndUpdate({ username: uname},{image:req.file.filename},function(err,result){
                     if(err) throw err;
                     changep.push({msg2:"profile photo updated succesfully"})
                     User.findOne({ username: uname})
@@ -173,7 +178,7 @@ router.post('/remove/:id',upload.single('photo'),(req,res) => {
     const pass = req.body.pass
     let removep = []
     let remerr = []
-    const newvals = {image:null,profileid:0}
+    const newvals = {image:null}
     User.findOne({ username: uname})
         .then(user=>{
             let pic = user.image
@@ -190,7 +195,14 @@ router.post('/remove/:id',upload.single('photo'),(req,res) => {
                                     console.log('profile photo deleted');
                                 })
                             }
-                            res.render('profile',{user,removep})
+                            if (!pass){
+                                removep.push({msg:"remove your profile photo"})
+                                remerr.push({msg:"please fill in all fields"})
+                                res.render('editprofile',{user,removep,remerr})
+                            }
+                            else {
+                                res.render('profile',{user,removep})
+                            }
                         })
                 })
             } 
