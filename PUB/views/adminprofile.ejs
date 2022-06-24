@@ -17,11 +17,9 @@
     <link rel="icon" href="/img/images/fav1.png">
 
     <style>
-        table {
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: larger;
+        body{
+            background-color: whitesmoke;
+            margin-top: 100px;
         }
     </style>
 </head>
@@ -31,82 +29,161 @@
     <div class="topnav">
         <div id="menu-bar" class="fas fa-bars"></div>
 
-        <a href="/" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
+        <a href="/admins/adminland/<%=locals.user.username%>" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
         <nav class="navbar">
-            <a href="/admins/adminland/<%=user.email%>">Home</a>
+            <a href="/admins/adminland/<%=user.username%>">Home</a>
         </nav>
     </div>
     <!-- Header Section Ends here... -->
-    <section style="margin-top: 50px;">
-        <div class="ScriptTop">
-            <div class="rt-container">
-                <div class="col-rt-4" id="float-right">
-
-                    <!-- Ad Here -->
-
-                </div>
-                <div class="col-rt-2">
-                
+    <h1>profile</h1>
+    <% if(locals.edit !=null) {%>
+        <% edit.forEach(function(error) { %>
+          <div class="alert bg-success" id="msg">
+            <strong>success! </strong>
+            <%=error.msg2%>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
+          </div>
+        <% }); %>
+    <% } %>
+    <% if(locals.change !=null) {%>
+        <% change.forEach(function(error) { %>
+          <div class="alert bg-success" id="msg">
+            <strong>success! </strong>
+            <%=error.msg2%>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
+          </div>
+        <% }); %>   
+    <% } %>
+    <% if(locals.changep !=null) {%>
+        <% changep.forEach(function(error) { %>
+          <div class="alert bg-success" id="msg">
+            <strong>success! </strong>
+            <%=error.msg2%>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
+          </div>
+        <% }); %>   
+    <% } %>
+    <% if(locals.removep !=null) {%>
+        <% removep.forEach(function(error) { %>
+          <div class="alert bg-success" id="msg">
+            <strong>success! </strong>
+            <%=error.msg2%>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
+          </div>
+        <% }); %>   
+    <% } %>
+    <div class="profile">
+        <div class="left">
+            <div class="profile_img">
+                <% if(user.image){ %>
+                    <img src="/uploads/<%= user.image%>" alt="profile_image">
+                    <%}
+                %>
+                <% if(!user.image){ %>
+                    <img src="/img/images/profile_pic.jpeg" alt="profile picture">
+                    <%}
+                %>    
+                <div class="content">
+                    <a href="/profile/remove/<%=locals.user.username%>" class="pic-btn"><i class="bi bi-trash fa-3x"></i></a>
+                    <a href="/profile/upload/<%=locals.user.username%>" class="pic-btn"><i class="bi bi-upload fa-3x"></i></a>
                 </div>
             </div>
+            <a href="/profile/edit/<%=user.username%>" class="prof-btn">edit profile</a>
         </div>
-
+        <div class="right">
+            <table>
+                <tr>
+                    <th width="10%">Name:</th>
+                    <td>
+                        <%=user.name%>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="10%">username:</th>
+                    <td>
+                        <%=user.username%>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="10%">Gender:</th>
+                    <td>
+                        <%=user.gender%>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="10%">phone number:</th>
+                    <td>
+                        <%=user.phone%>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="10%">Email:</th>
+                    <td>
+                        <%=user.email%>
+                    </td>
+                </tr>
+            </table>
+            <a href="/profile/changepass/<%=user.username%>" class="prof-btn">change password</a>
+            <a href="/" class="prof-btn">logout</a>
+        </div>
+    </div>
     
-
-        <section>
-            <div class="rt-container">
-                <div class="col-rt-12">
-                    <div class="Scriptcontent">
-
-                        <!-- Student Profile -->
-                        <div class="student-profile py-4">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="card shadow-sm">
-                                            <div class="card-header bg-transparent text-center">
-                                                <img class="profile_img"
-                                                    src="https://source.unsplash.com/600x300/?student" alt="student dp">
-                                                <h3>
-                                                    <%=user.name%>
-                                                </h3>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <div class="card shadow-sm">
-                                            <div class="card-header bg-transparent border-0">
-                                                <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Information</h3>
-                                            </div>
-                                            <div class="card-body pt-0">
-                                                <table class="table table-bordered">
-                                                    <tr>
-                                                        <th width="30%">Name</th>
-                                                        <td width="2%">:</td>
-                                                        <td><%=user.name%></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th width="30%">Email</th>
-                                                        <td width="2%">:</td>
-                                                        <td><%=user.email%></td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div style="height: 26px"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- partial -->
-
-                        </div>
-                    </div>
-                </div>
-        </section>
+    <section class="bookings">
+        <h1 style="color: rgb(9, 255, 0);font-size: 20px;font-family: algerian;">Your Bookings Will Appear Here...</h1>
+        <br><br>
+        <% if(locals.model !=null){%>
+            <table>
+                <tr>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Adults</th>
+                    <th>Children</th>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                </tr>
+                <% for (const row of model){%>
+                    <tr>
+                        <td>
+                            <%= row.from%>
+                        </td>
+                        <td>
+                            <%= row.to%>
+                        </td>
+                        <td>
+                            <%= row.adults%>
+                        </td>
+                        <td>
+                            <%= row.children%>
+                        </td>
+                        <td>
+                            <%= row.fromdate%>
+                        </td>
+                        <td>
+                            <%= row.todate%>
+                        </td>
+                        <!-- <td>
+                            <td><a href="/profile/remove/<%= row.email%>"><button class="btn">cancel</button></a></td>
+                        </td> -->
+                    </tr>
+                    <%} %>
+            </table>
+            <%} %>
     </section>
 
-
+    <section id="fd">
+        <h1>Your Feedbacks Will Appear Here...</h1>
+        <% if(locals.model !=null){%>
+            <table>
+                <% for (const row of feedmodel){%>
+                    <tr>
+                        <td>
+                            <%= row.detail%>
+                        </td>
+                    </tr>
+                    <%} %>
+            </table>
+            <%} %>
+    </section>
 
     <%- include('footer'); %>
         <!-- footer section ends -->

@@ -10,8 +10,8 @@ let email = null;
 
 // table data of users for admin
 router.get('/users/:id', (req, res) => {
-    email = req.params.id
-    Admin.findOne({ email: email })
+    let username = req.params.id
+    Admin.findOne({ username: username })
         .then(user => {
             User.find({}, (err, data) => {
                 if (data) {
@@ -24,8 +24,8 @@ router.get('/users/:id', (req, res) => {
 })
 
 router.get('/feedback/:id', (req, res) => {
-    email = req.params.id
-    Admin.findOne({ email: email })
+    let username = req.params.id
+    Admin.findOne({ username: username })
         .then(user => {
             fdb.find({}, (err, data) => {
                 if (data) {
@@ -39,8 +39,8 @@ router.get('/feedback/:id', (req, res) => {
 
 // profile of admin
 router.get('/adminprofile/:id', (req, res) => {
-    let mail = req.params.id
-    Admin.findOne({ email: mail })
+    let username = req.params.id
+    Admin.findOne({ username: username })
         .then(user => {
             res.render('adminprofile', { user })
         })
@@ -48,8 +48,8 @@ router.get('/adminprofile/:id', (req, res) => {
 
 // table data of bookings for admin
 router.get('/bookings/:id', (req, res) => {
-    let mail = req.params.id
-    Admin.findOne({ email: mail })
+    let username = req.params.id
+    Admin.findOne({ username: username })
         .then(user => {
             book.find({}, (err, data) => {
                 if (data) {
@@ -63,9 +63,9 @@ router.get('/bookings/:id', (req, res) => {
 
 // to remove users by backend
 router.get('/remove/:id', (req, res) => {
-    let mail = req.params.id
-    User.findOneAndDelete({ email: mail }, (err, doc) => {
-        book.deleteMany({ mail: mail }).then(function () {
+    let username = req.params.id
+    User.findOneAndDelete({ username: username }, (err, doc) => {
+        book.deleteMany({ username: username }).then(function () {
             console.log('data deleted');
         })
         if (err) {
@@ -95,34 +95,31 @@ router.get('/adminland', (req, res) => {
 })
 
 router.get('/adminland/:id', (req, res) => {
-    let mail = req.params.id
-    Admin.findOne({ email: mail })
+    let username = req.params.id
+    Admin.findOne({ username: username })
         .then(user => {
             res.render('adminland', { user })
         })
 })
 
 router.get('/addadmin/:id', (req, res) => {
-    let mail = req.params.id
-    Admin.findOne({ email: mail })
+    let username = req.params.id
+    Admin.findOne({ username: username })
         .then(user => {
             res.render('addadmin', { user })
         })
 })
 
 router.post('/add/:id', check('email').isEmail().normalizeEmail(), (req, res) => {
-    let mail = req.params.id
+    let username = req.params.id
     const inname = req.body.name;
     const inemail = req.body.email;
     const inpass1 = req.body.password1;
     const inpass2 = req.body.password2
     let errors = [];
     const mailerrors = validationResult(req);
-    Admin.findOne({ email: mail })
+    Admin.findOne({ username: username })
         .then(user => {
-            // res.render('addadmin', { user })
-            // })
-            // Email Format
             if (!mailerrors.isEmpty()) {
                 errors.push({ msg: 'please use proper email' });
                 res.render('addadmin', { errors, user })
@@ -145,39 +142,41 @@ router.post('/add/:id', check('email').isEmail().normalizeEmail(), (req, res) =>
                 res.render('addadmin', { errors, user })
             }
             else {
-                let u = 0
-                User.findOne({ email: inemail })
-                    .then(user1 => {
-                        Admin.findOne({ email: inemail })
-                            .then(admin1 => {
+                User.findOne({ username: inname }).then(user1 => {
+                        if (user1) {
+                            errors.push({ msg: 'username already exists' });
+                            res.render('addadmin', { errors, user });
+                        }
+                        Admin.findOne({ username: inname }).then(admin1 => {
                                 if (admin1) {
-                                    //User exists
-                                    console.log(user.email);
-                                    u = 1
-                                    errors.push({ msg: 'Email is already registered' });
+                                    errors.push({ msg: 'username already exists' });
                                     res.render('addadmin', { errors, user });
                                 }
-                                else if (user1) {
-                                    //User exists
-                                    u = 1
-                                    console.log(user.email);
-                                    errors.push({ msg: 'Email is already registered' });
-                                    res.render('addadmin', { errors, user });
-                                } else if(u == 0){
-                                    console.log(inname);
-                                    const newUser = new Admin({
-                                        name: inname,
-                                        email: inemail,
-                                        password: inpass1
-                                    });
-                                    //save user
-                                    newUser.save().then(user => {
-                                        let sucerrors = []
-                                        console.log(newUser);
-                                        sucerrors.push({ sucmsg: 'Successful registration' });
-                                        res.render('addadmin', { sucerrors, user });
+                                User.findOne({email:inemail}).then(user2 =>{
+                                    if(user2){
+                                        errors.push({msg:'email is already registered'});
+                                        res.render('addadmin',{errors,user});
+                                    }
+                                    Admin.findOne({email:inemail}).then(admin2 =>{
+                                        if(admin2){
+                                            errors.push({msg:'email is already registered'});
+                                            res.render('addadmin',{errors,user});
+                                        } else{
+                                            const newAdmin = new Admin({
+                                                username: inname,
+                                                email: inemail,
+                                                password: inpass1
+                                            });
+                                            //save user
+                                            newAdmin.save().then(admin => {
+                                                let sucerrors = []
+                                                sucerrors.push({ sucmsg: 'Registered successfully' });
+                                                res.render('addadmin',{sucerrors,user});
+                                            })
+                                                .catch(err => console.log(err));
+                                        }
                                     })
-                                }
+                                })
                             })
                             .catch(err => console.log(err));
                         });

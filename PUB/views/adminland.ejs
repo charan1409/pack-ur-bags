@@ -40,19 +40,19 @@
     <div class="topnav">
         <div id="menu-bar" class="fas fa-bars"></div>
     
-        <a href="/" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
+        <a href="/admins/adminland/<%=user.username%>" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
         <nav class="navbar">
-            <a href="/admins/adminland/<%=user.email%>">Home</a>
-            <a href="/admins/addadmin/<%=user.email%>">add admin</a>
+            <a href="/admins/adminland/<%=user.username%>">Home</a>
+            <a href="/admins/addadmin/<%=user.username%>">add admin</a>
             <a href="#find">Add places</a>
-            <a href="/admins/users/<%=user.email%>">users list</a>
-            <a href="/admins/feedback/<%=user.email%>">Feedbacks</a>
-            <a href="/admins/bookings/<%=user.email%>">bookings</a>
+            <a href="/admins/users/<%=user.username%>">users list</a>
+            <a href="/admins/feedback/<%=user.username%>">Feedbacks</a>
+            <a href="/admins/bookings/<%=user.username%>">bookings</a>
            
         </nav>
         <div class="icons navbar">
             <% if(locals.user != null) {%>
-            <a href="/admins/adminprofile/<%=user.email%>"><i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
+            <a href="/admins/adminprofile/<%=user.username%>"><i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
             <a href="/">LogOut</a>
             <% } %>
         </div>

@@ -48,9 +48,9 @@
     <div class="topnav">
         <div id="menu-bar" class="fas fa-bars"></div>
     
-        <a href="/" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
+        <a href="/admins/adminland/<%=locals.user.username%>" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
         <nav class="navbar">
-            <a href="/admins/adminland/<%=locals.user.email%>">Home</a>
+            <a href="/admins/adminland/<%=locals.user.username%>">Home</a>
         </nav>
     </div>
     <% if(locals.errors !=null) {%>
@@ -75,9 +75,9 @@
         <h1>errors</h1>
     </div> -->
     <section class="adminadd">
-        <form action="/admins/add/<%=user.email%>" method="post">
+        <form action="/admins/add/<%=user.username%>" method="post">
             <label for="name">Name: </label>
-            <input type="text" name="name" class="adminbox" placeholder="Enter Name"><br>
+            <input type="text" name="name" class="adminbox" placeholder="Enter username"><br>
             <label for="email">Email: </label>
             <input type="text" name="email" class="adminbox" placeholder="Enter Email"><br>
             <label for="password1">Password: </label>

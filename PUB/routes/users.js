@@ -39,7 +39,7 @@ router.post('/login', (req, res) => {
                     }
                 }
                 if(u!=0){
-                    Admin.findOne({email: req.body.inname})
+                    Admin.findOne({username: req.body.inname})
                         .then(user=>{
                             if(!user){
                                 errors.push({ msg: 'email is not registerd' });
@@ -91,39 +91,46 @@ router.post('/register',check('upemail').isEmail().normalizeEmail(), (req, res) 
         res.render('register', { errors })
     }
     else {
-        User.findOne({ email: inemail })
-            .then(user => {
+        User.findOne({ email: inemail }).then(user => {
                 if (user) {
                     //User exists
                     console.log(user.email);
                     errors.push({ msg: 'Email is already registered' });
                     res.render('register', { errors });
                 } 
-                User.findOne({ username: inname })
-                    .then(user => {
-                        if (user) {
+                User.findOne({ username: inname }).then(user1 => {
+                        if (user1) {
                             //User exists
-                            console.log(user.username);
+                            console.log(user1.username);
                             errors.push({ msg: 'username is already exists' });
                             res.render('register', { errors });
                         }
-                        else {
-                            console.log(inname);
-                            const newUser = new User({
-                                username: inname,
-                                email: inemail,
-                                password: inpass1,
-                                profileid: 0
-                            });
-                            //save user
-                            newUser.save().then(user => {
-                                let sucerrors = []
-                                console.log(newUser);
-                                sucerrors.push({ sucmsg: 'Successful registration' });
-                                res.render('login',{sucerrors});
+                        Admin.findOne({username:inname}).then(admin =>{
+                            if(admin){
+                                errors.push({msg: 'username already exists'});
+                                res.render('register',{errors})
+                            }
+                            Admin.findOne({email:inemail}).then(admin1 =>{
+                                if(admin1){
+                                    errors.push({msg: 'email is already registered'})
+                                    res.render('register',{errors})
+                                }
+                                else{
+                                    const newUser = new User({
+                                        username: inname,
+                                        email: inemail,
+                                        password: inpass1
+                                    });
+                                    //save user
+                                    newUser.save().then(user => {
+                                        let sucerrors = []
+                                        sucerrors.push({ sucmsg: 'Successful registration' });
+                                        res.render('login',{sucerrors});
+                                    })
+                                        .catch(err => console.log(err));
+                                }
                             })
-                                .catch(err => console.log(err));
-                        }
+                        })
                     });
             });
     }
