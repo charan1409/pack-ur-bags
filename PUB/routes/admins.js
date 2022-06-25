@@ -62,8 +62,9 @@ router.get('/bookings/:id', (req, res) => {
 })
 
 // to remove users by backend
-router.get('/remove/:id', (req, res) => {
+router.get('/remove/:id/:id2', (req, res) => {
     let username = req.params.id
+    let adminname = req.params.id2
     User.findOneAndDelete({ username: username }, (err, doc) => {
         book.deleteMany({ username: username }).then(function () {
             console.log('data deleted');
@@ -74,7 +75,8 @@ router.get('/remove/:id', (req, res) => {
             console.log("deleted" + doc);
         }
     })
-    Admin.findOne({ email: email })
+
+    Admin.findOne({ username: adminname })
         .then(user => {
             User.find({}, (err, data) => {
                 if (data) {

@@ -11,10 +11,11 @@
     <link rel="stylesheet" href="/css/gallery.css">
     <link rel="stylesheet" href="/css/places.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
     <style>
         body {
             margin-top: 100px;
-            background-color: rgba(215, 250, 245, 0.949);
 
         }
 
@@ -26,7 +27,6 @@
             width: 1200px;
             height: 50px;
             text-align: center;
-            color: red;
         }
 
         table {
@@ -42,9 +42,10 @@
             width: 500px;
             height: 50px;
             font-size: 15px;
+            text-transform: none;
         }
 
-        td:nth-child(odd),
+        /* td:nth-child(odd),
         th:nth-child(even) {
             background-color: rgb(71, 236, 248);
         }
@@ -52,13 +53,24 @@
         td:nth-child(even),
         th:nth-child(odd) {
             background-color: rgba(246, 246, 122, 0.952);
-        }
+        } */
 
         .btn {
             background-color: red;
             color: black;
-            height: 30px;
-            width: 100px;
+            height: 45px;
+            width: 40px;
+        }
+        i{
+            color: whitesmoke;
+        }
+        img{
+            width: 40px;
+            height: 40px;
+        }
+        h1{
+            text-align: center;
+            font-size: 50px;
         }
     </style>
 </head>
@@ -67,15 +79,20 @@
     <div class="topnav">
         <div id="menu-bar" class="fas fa-bars"></div>
 
-        <a href="/" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
+        <a href="/admins/adminland/<%= user.username%>" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
         <nav class="navbar">
             <a href="/admins/adminland/<%= user.username%>">Home</a>
         </nav>
     </div>
+    <h1>users list</h1>
     <table>
         <tr>
             <th>name</th>
+            <th>username</th>
             <th>email</th>
+            <th>phone number</th>
+            <th>gender</th>
+            <th>profile photo</th>
             <th>REMOVE USER</th>
         </tr>
         <% for(const i of model) {%>
@@ -83,10 +100,29 @@
                 <td>
                     <%- i. name %>
                 </td>
-                <td style="text-transform:none;">
+                <td>
+                    <%- i. username %>
+                </td>
+                <td>
                     <%- i. email %>
                 </td>
-                <td><a href="/admins/remove/<%= i.email%>"><button class="btn">remove</button></a></td>
+                <td>
+                    <%- i. phone %>
+                </td>
+                <td>
+                    <%- i. gender %>
+                </td>
+                <td>
+                    <% if(user.image){ %>
+                        <img src="/uploads/<%= user.image%>" alt="profile_image">
+                        <%}
+                    %>
+                    <% if(!user.image){ %>
+                        <img src="/img/images/profile_pic.jpeg" alt="profile picture">
+                        <%}
+                    %>
+                </td>
+                <td><a href="/admins/remove/<%= i.username%>/<%= user.username%>"><button class="btn"><i class="bi bi-trash"></i></button></a></td>
             </tr>
             <%}%>
     </table>
