@@ -113,6 +113,14 @@ router.post('/changepass/:id',(req,res) => {
                 change.push({msg:"change your password"})
                 changeerr.push({msg:"please fill in all fields"})
                 res.render('admineditprofile',{user,change,changeerr})
+            }  else if(pass1.length < 6){
+                change.push({msg:"change your password"})
+                changeerr.push({msg:"password must contain atleast 6 characters"})
+                res.render('admineditprofile',{user,change,changeerr})
+            } else if(!(pass1 === pass2)){
+                change.push({msg:"change your password"})
+                changeerr.push({msg:"passwords do not match"})
+                res.render('admineditprofile',{user,change,changeerr})
             }
             else if(user.password == pass & pass1 == pass2){
                 Admin.findOneAndUpdate({ username: uname},newvals,function(err,result){
