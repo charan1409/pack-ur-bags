@@ -146,20 +146,33 @@ const upload = multer({storage:storage})
 router.post('/upload/:id',upload.single('photo'),(req,res) => {
     const uname = req.params.id
     const pass = req.body.pass
-    const pi = req.body.photo
-    console.log(pi);
     let changep = []
     let proferr = []
     Admin.findOne({ username: uname})
         .then(user=>{
-            if (!pass || !pi){
+            if(req.file === undefined){
+                console.log('pic not uploaded');
+                changep.push({msg:"upload your profile photo"})
+                proferr.push({msg:"please fill in all fields"})
+                res.render('admineditprofile',{user,changep,proferr})
+            }
+            else if (!pass){
+                let filepath = path.join('\public\\uploads\\' + req.file.filename)
+                fs.unlink(filepath,(err)=>{
+                    if(err) throw err;
+                    console.log('profile photo deleted');
+                })
                 changep.push({msg:"upload your profile photo"})
                 proferr.push({msg:"please fill in all fields"})
                 res.render('admineditprofile',{user,changep,proferr})
             }
             else if(user.password == pass){
                 Admin.findOneAndUpdate({ username: uname},{image:req.file.filename},function(err,result){
-                    if(err) throw err;
+                    if(err){
+                        changep.push({msg:"upload your profile photo"})
+                        proferr.push({msg:"please fill in all fields"})
+                        res.render('admineditprofile',{user,changep,proferr})
+                    }
                     changep.push({msg2:"profile photo updated succesfully"})
                     Admin.findOne({ username: uname})
                         .then(user=>{

@@ -145,12 +145,22 @@ const upload = multer({storage:storage})
 router.post('/upload/:id',upload.single('photo'),(req,res) => {
     const uname = req.params.id
     const pass = req.body.pass
-    const pi = req.body.photo
     let changep = []
     let proferr = []
     User.findOne({ username: uname})
         .then(user=>{
-            if (!pass || !pi){
+            if(req.file === undefined){
+                console.log('pic not uploaded');
+                changep.push({msg:"upload your profile photo"})
+                proferr.push({msg:"please fill in all fields"})
+                res.render('editprofile',{user,changep,proferr})
+            }
+            else if (!pass){
+                let filepath = path.join('\public\\uploads\\' + req.file.filename)
+                fs.unlink(filepath,(err)=>{
+                    if(err) throw err;
+                    console.log('profile photo deleted');
+                })
                 changep.push({msg:"upload your profile photo"})
                 proferr.push({msg:"please fill in all fields"})
                 res.render('editprofile',{user,changep,proferr})
