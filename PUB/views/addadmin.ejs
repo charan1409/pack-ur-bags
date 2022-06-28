@@ -53,6 +53,10 @@
             border-radius: 20px;
             font-size: 20px;
             color: whitesmoke;
+            cursor: pointer;
+            padding: 5px;
+            border: none;
+            margin-left: 5px;
         }
 
         .addadminbtn:hover{
@@ -60,6 +64,17 @@
             border: 2px solid #fac102;
             color: #fac102;
         }
+
+        .adminadd a{
+            color: whitesmoke;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .adminadd a:hover{
+            color: #fac102;
+        }
+
         .log-alert{
             width: 470px;
             font-size: 15px;
@@ -115,6 +130,7 @@
                 <input type="password" name="password2" id="pas2" placeholder="Confirm your password">
                 <i class="fa fa-eye fa-x" style="cursor: pointer;" id="show-pass2"></i>
             </div><br>
+            <a href="/admins/admin/<%=user.username%>" class="addadminbtn">cancel</a>
             <button type="submit" value="submit" class="addadminbtn">Submit</button>
         </form>
     </div>

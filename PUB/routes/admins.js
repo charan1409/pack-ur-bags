@@ -103,19 +103,11 @@ router.get('/adminremove/:id/:id2', (req, res) => {
         .then(user => {
             User.find({}, (err, data) => {
                 if (data) {
-                    res.render('users', { user, model: data })
+                    res.render('admins', { user, model: data })
                 } else {
                     console.log(err);
                 }
             })
-        })
-})
-
-// admin landing page
-router.get('/adminland', (req, res) => {
-    User.findOne({ email: email })
-        .then(user => {
-            res.render('adminland', { user })
         })
 })
 
@@ -124,6 +116,14 @@ router.get('/adminland/:id', (req, res) => {
     Admin.findOne({ username: username })
         .then(user => {
             res.render('adminland', { user })
+        })
+})
+
+router.get('/addadmin/:id', (req, res) => {
+    let username = req.params.id
+    Admin.findOne({ username: username })
+        .then(user => {
+            res.render('addadmin', { user })
         })
 })
 
