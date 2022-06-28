@@ -85,6 +85,7 @@
         </nav>
     </div>
     <h1>users list</h1>
+    <% if(model) {%>
     <table>
         <tr>
             <th>name</th>
@@ -125,6 +126,7 @@
                 <td><a href="/admins/remove/<%= i.username%>/<%= user.username%>"><button class="btn"><i class="bi bi-trash"></i></button></a></td>
             </tr>
             <%}%>
+        <%} %>
     </table>
 </body>
 
