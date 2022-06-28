@@ -38,7 +38,7 @@ form {
 }
 
 .top-btn{
-  background-color: #020202;
+  background-color: #fac102;
   color: whitesmoke;
   width: 500px;
   margin-left: 25px;
@@ -68,7 +68,7 @@ form {
 
 .form-container .login-btn {
   display: inline-block;
-  background: #020202;
+  background: #fac102;
   color: white;
   padding: 0.8rem 2rem;
   cursor: pointer;
@@ -78,8 +78,8 @@ form {
 
 .form-container .login-btn:hover {
   background: none;
-  color: black;
-  border: 1px solid black;
+  color: #fac102;
+  border: 1px solid #fac102;
   font-size: 1.7rem;
   font-weight: 600;
 }

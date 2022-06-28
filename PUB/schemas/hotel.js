@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 
-const fdbSchema=new mongoose.Schema({
-    place:{
+const hotelSchema=new mongoose.Schema({
+    placeid:{
         type:String,
         // required:true
     },
@@ -18,5 +18,5 @@ const fdbSchema=new mongoose.Schema({
     }
 
 });
-const hotel=mongoose.model('hotel',fdbSchema);
+const hotel=mongoose.model('hotel',hotelSchema);
 module.exports=hotel;

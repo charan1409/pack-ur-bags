@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>places</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/gallery.css">
+    <link rel="stylesheet" href="/css/places.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body{
+            margin-top: 150px;
+        }
+        a{
+            text-decoration-line: none;
+        }
+
+        .adminplace{
+            margin-left: 530px;
+        }
+        
+        .adminplace label{
+            font-size: 20px;
+            font-weight: bolder;
+        }
+        .adminplace .adminbox{
+            height: 45px;
+            width: 460px;
+            padding: 7px;
+            border: 2px solid black;
+            border-radius: 10px;
+            font-size: 20px;
+            text-transform: none;
+        }
+
+        .adminplace .adminbox input{
+            border: none;
+            background: none;
+            width: 90%;
+        }
+
+        .addadminbtn{
+            height: 40px;
+            width: 150px;
+            background-color: #fac102;
+            border-radius: 20px;
+            font-size: 20px;
+            color: whitesmoke;
+        }
+
+        .addadminbtn:hover{
+            background: none;
+            border: 2px solid #fac102;
+            color: #fac102;
+        }
+        .log-alert{
+            width: 470px;
+            font-size: 15px;
+        }
+
+        h2{
+            font-size: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="topnav">
+        <div id="menu-bar" class="fas fa-bars"></div>
+    
+        <a href="/admins/adminland/<%=locals.user.username%>" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
+        <nav class="navbar">
+            <a href="/admins/adminland/<%=locals.user.username%>">Home</a>
+        </nav>
+    </div>
+    <h2>Places</h2>
+    <div class="adminplace">
+    <% if(locals.errors !=null) {%>
+        <% errors.forEach(function(error) { %>
+          <div class="alert alert-danger log-alert" id="msg">
+            <strong>Error! </strong>
+            <%=error.msg%>
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+          <% }); %>
+            <% } %>
+            <% if(locals.sucerrors !=null) {%>
+              <% sucerrors.forEach(function(error) { %>
+                <div class="alert bg-success log-alert" id="msg">
+                  <strong>success! </strong>
+                  <%=error.sucmsg%>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                <% }); %>
+                  <% } %>
+        <form action="/admins/addplace/<%=user.username%>" method="post">
+            <label for="from">From: </label><br>
+            <input type="text" name="from" class="adminbox"><br>
+            <label for="to">Destination: </label><br>
+            <input type="text" name="to" class="adminbox"><br>
+            <label for="password1">Password: </label>
+            <div class="adminbox">
+                <input type="password" name="password1" id="pas" placeholder="Password must contain atleat 6 characters">
+                <i class="fa fa-eye fa-x" style="cursor: pointer;" id="show-pass"></i>
+            </div><br>
+            <label for="password2">Password: </label>
+            <div class="adminbox">
+                <input type="password" name="password2" id="pas2" placeholder="Confirm your password">
+                <i class="fa fa-eye fa-x" style="cursor: pointer;" id="show-pass2"></i>
+            </div><br>
+            <button type="submit" value="submit" class="addadminbtn">Submit</button>
+        </form>
+    </div>
+</body>
+<script>
+    const showPassword = document.querySelector('#show-pass');
+const showPassword2 = document.querySelector('#show-pass2');
+const password = document.querySelector('#pas');
+const password2 = document.querySelector('#pas2');
+
+showPassword.addEventListener('click', function (e) {
+    console.log('called');
+  if(password.type === 'password'){
+    password.setAttribute('type', 'text');
+    this.classList.add('fa-eye-slash');
+    this.classList.remove('fa-eye')
+  } else{
+    password.setAttribute('type','password');
+    this.classList.add('fa-eye');
+    this.classList.remove('fa-eye-slash')
+  }
+});
+
+showPassword2.addEventListener('click', function (e) {
+  if(password2.type === 'password'){
+    password2.setAttribute('type', 'text');
+    this.classList.add('fa-eye-slash');
+    this.classList.remove('fa-eye')
+  } else{
+    password2.setAttribute('type','password');
+    this.classList.add('fa-eye');
+    this.classList.remove('fa-eye-slash')
+  }
+});
+</script>
+</html>

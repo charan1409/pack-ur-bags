@@ -112,6 +112,14 @@ router.get('/addadmin/:id', (req, res) => {
         })
 })
 
+router.get('/place/:id', (req, res) => {
+    let username = req.params.id
+    Admin.findOne({ username: username })
+        .then(user => {
+            res.render('adminplace', { user })
+        })
+})
+
 router.post('/add/:id', check('email').isEmail().normalizeEmail(), (req, res) => {
     let username = req.params.id
     const inname = req.body.name;

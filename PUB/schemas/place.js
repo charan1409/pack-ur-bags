@@ -2,11 +2,19 @@ const mongoose=require('mongoose');
 const hot = require('../schemas/hotel');
 
 const placeSchema=new mongoose.Schema({
-    place:{
+    id:{
         type:String,
         // required:true
     },
-    about:{
+    from:{
+        type:String,
+        // required:true
+    },
+    to:{
+        type:String,
+        // required:true
+    },
+    details:{
         type:String,
         // required:true
     },
@@ -18,11 +26,11 @@ const placeSchema=new mongoose.Schema({
         type:String,
     },
     hotels:[{
-        type:Schema.Types.ObjectId, ref: 'hot'
+        type:Schema.Types.ObjectId, ref: 'hotels'
     }],
     availability: {
         type:String,
     }
 });
-const plc=mongoose.model('plc',placeSchema);
-module.exports=plc; 
+const place=mongoose.model('place',placeSchema);
+module.exports=place; 
