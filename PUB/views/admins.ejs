@@ -11,9 +11,8 @@
     <link rel="stylesheet" href="/css/gallery.css">
     <link rel="stylesheet" href="/css/places.css">
     <link rel="stylesheet" href="/css/footer.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body{
             margin-top: 150px;
@@ -86,7 +85,7 @@
             <a href="/admins/adminland/<%=locals.user.username%>">Home</a>
         </nav>
     </div>
-    <h2>Places</h2>
+    <h1>Admins</h1>
     <% if(model) {%>
         <table>
             <tr>
@@ -125,7 +124,7 @@
                             <%}
                         %>
                     </td>
-                    <td><a href="/admins/remove/<%= i.username%>/<%= user.username%>"><button class="btn"><i class="bi bi-trash"></i></button></a></td>
+                    <td><a href="/admins/adminremove/<%= i.username%>/<%= user.username%>"><button class="btn"><i class="bi bi-trash"></i></button></a></td>
                 </tr>
                 <%}%>
             <%} %>

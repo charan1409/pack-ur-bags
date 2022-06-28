@@ -25,9 +25,6 @@ const placeSchema=new mongoose.Schema({
     price: {
         type:String,
     },
-    hotels:[{
-        type:Schema.Types.ObjectId, ref: 'hotels'
-    }],
     availability: {
         type:String,
     }

@@ -6,7 +6,7 @@ const book = require('../schemas/book');
 const User = require('../schemas/user');
 const fdb = require('../schemas/feed');
 const Admin = require('../schemas/admin');
-let email = null;
+const Place = require('../schemas/place');
 
 // table data of users for admin
 router.get('/users/:id', (req, res) => {
@@ -88,6 +88,29 @@ router.get('/remove/:id/:id2', (req, res) => {
         })
 })
 
+router.get('/adminremove/:id/:id2', (req, res) => {
+    let username = req.params.id
+    let adminname = req.params.id2
+    Admin.findOneAndDelete({ username: username }, (err, doc) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("deleted" + doc);
+        }
+    })
+
+    Admin.findOne({ username: adminname })
+        .then(user => {
+            User.find({}, (err, data) => {
+                if (data) {
+                    res.render('users', { user, model: data })
+                } else {
+                    console.log(err);
+                }
+            })
+        })
+})
+
 // admin landing page
 router.get('/adminland', (req, res) => {
     User.findOne({ email: email })
@@ -104,11 +127,17 @@ router.get('/adminland/:id', (req, res) => {
         })
 })
 
-router.get('/addadmin/:id', (req, res) => {
+router.get('/admin/:id', (req, res) => {
     let username = req.params.id
     Admin.findOne({ username: username })
         .then(user => {
-            res.render('addadmin', { user })
+            Admin.find({}, (err, data) => {
+                if (data) {
+                    res.render('admins', { user, model: data })
+                } else {
+                    console.log(err);
+                }
+            })
         })
 })
 
@@ -116,7 +145,14 @@ router.get('/place/:id', (req, res) => {
     let username = req.params.id
     Admin.findOne({ username: username })
         .then(user => {
-            res.render('adminplace', { user })
+            Place.find({}, (err, data) => {
+                if (data) {
+                    console.log(data);
+                    res.render('adminplace', { user, model: data })
+                } else {
+                    console.log(err);
+                }
+            })
         })
 })
 
