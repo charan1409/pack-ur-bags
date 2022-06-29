@@ -1,13 +1,15 @@
 const express = require("express");
 const app = express();
 const mongoose=require('mongoose');
+const dotenv = require('dotenv');
+dotenv.config();
 const port = 3000
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //connect to mongo
-mongoose.connect('mongodb+srv://fsdgrp17:fsdproject@grp17.5urlr.mongodb.net/grp17?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false})
+mongoose.connect(process.env.MONGODB_LINK,{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false})
 .then(()=>console.log('MongoDb  Connected...'))
 .catch(err=>console.log(err));
 
