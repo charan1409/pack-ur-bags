@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const multer = require('multer');
-const path = require('path')
-const fs = require('fs')
+const path = require('path');
+const fs = require('fs');
+const bcrypt = require('bcryptjs');
 
 const User = require('../schemas/user');
 const book = require('../schemas/book');
@@ -64,7 +65,7 @@ router.get('/remove/:id',(req,res)=>{
         })
 })
 
-router.post('/edit/:id',(req,res) => {
+router.post('/edit/:id', async (req,res) => {
     const uname = req.params.id
     const name = req.body.upname
     const gender = req.body.upgender
@@ -73,70 +74,72 @@ router.post('/edit/:id',(req,res) => {
     let edit = []
     let editerr = []
     const newvals = {name: name,phone: phn, gender: gender}
-    User.findOne({ username: uname})
-    .then(user=>{
-            if (!name || !gender || !phn || !pass){
-                edit.push({msg:"edit your profile"})
-                editerr.push({msg:"please fill in all details"})
-                res.render('editprofile',{user,edit,editerr})
-            }
-            else if(user.password == pass){
-                User.findOneAndUpdate({ username: uname},newvals,function(err,result){
-                    if(err) throw err;
-                    edit.push({msg2:"profile updated succesfully"})
-                    User.findOne({ username: uname})
-                        .then(user=>{
-                            res.render('profile',{user,edit})
-                        })
-                })
-            } 
-            else {
-                edit.push({msg:"edit your profile"})
-                editerr.push({msg:"incorrect password"})
-                res.render('editprofile',{user,edit,editerr})
-            }
-        })
+    const user = await User.findOne({ username: uname});
+    const validPass = await bcrypt.compare(pass, user.password);
+    if(user){
+        if (!name || !gender || !phn || !pass) {
+            edit.push({ msg: "edit your profile" })
+            editerr.push({ msg: "please fill in all details" })
+            res.render('editprofile', { user, edit, editerr })
+        }
+        else if (validPass) {
+            await User.findOneAndUpdate({ username: uname }, newvals,async function (err, result) {
+                if (err) throw err;
+                edit.push({ msg2: "profile updated succesfully" })
+                const admin = await User.findOne({ username: uname });
+                res.render('profile', { user:admin, edit })
+            })
+        }
+        else {
+            edit.push({ msg: "edit your profile" })
+            editerr.push({ msg: "incorrect password" })
+            res.render('editprofile', { user, edit, editerr })
+        }
+    }
 })
 
-router.post('/changepass/:id',(req,res) => {
+router.post('/changepass/:id', async (req,res) => {
     const uname = req.params.id
     const pass = req.body.oldpass
     const pass1 = req.body.newpass1
     const pass2 = req.body.newpass2
     let change = []
     let changeerr = []
-    const newvals = {password:pass1}
-    User.findOne({ username: uname})
-        .then(user=>{
-            if (!pass || !pass1 || !pass2){
-                change.push({msg:"change your password"})
-                changeerr.push({msg:"please fill in all fields"})
-                res.render('editprofile',{user,change,changeerr})
-            } else if(pass1.length < 6){
-                change.push({msg:"change your password"})
-                changeerr.push({msg:"password must contain atleast 6 characters"})
-                res.render('editprofile',{user,change,changeerr})
-            } else if(!(pass1 === pass2)){
-                change.push({msg:"change your password"})
-                changeerr.push({msg:"passwords do not match"})
-                res.render('editprofile',{user,change,changeerr})
-            }
-            else if(user.password == pass & pass1 == pass2){
-                User.findOneAndUpdate({ username: uname},newvals,function(err,result){
-                    if(err) throw err;
-                    change.push({msg2:"password updated succesfully"})
-                    User.findOne({ username: uname})
-                        .then(user=>{
-                            res.render('profile',{user,change})
-                        })
-                })
-            } 
-            else {
-                change.push({msg:"change your password"})
-                changeerr.push({msg:"incorrect password"})
-                res.render('editprofile',{user,change,changeerr})
-            }
-        })
+    const user = await User.findOne({ username: uname});
+    const validPass = await bcrypt.compare(pass, user.password);
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(pass1,salt);
+    const newvals = {password:hashPassword}
+    if(user){
+        if (!pass || !pass1 || !pass2) {
+            change.push({ msg: "change your password" })
+            changeerr.push({ msg: "please fill in all fields" })
+            res.render('editprofile', { user, change, changeerr })
+        } else if (pass1.length < 6) {
+            change.push({ msg: "change your password" })
+            changeerr.push({ msg: "password must contain atleast 6 characters" })
+            res.render('editprofile', { user, change, changeerr })
+        } else if (!(pass1 === pass2)) {
+            change.push({ msg: "change your password" })
+            changeerr.push({ msg: "passwords do not match" })
+            res.render('editprofile', { user, change, changeerr })
+        }
+        else if (validPass) {
+            await User.findOneAndUpdate({ username: uname }, newvals, async function (err, result) {
+                if (err) throw err;
+                change.push({ msg2: "password updated succesfully" })
+                await User.findOne({ username: uname })
+                    .then(user => {
+                        res.render('profile', { user, change })
+                    })
+            })
+        }
+        else {
+            change.push({ msg: "change your password" })
+            changeerr.push({ msg: "incorrect password" })
+            res.render('editprofile', { user, change, changeerr })
+        }
+    }
 })
 
 const storage = multer.diskStorage({
@@ -150,87 +153,93 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage:storage})
 
-router.post('/upload/:id',upload.single('photo'),(req,res) => {
+router.post('/upload/:id',upload.single('photo'),async (req,res) => {
     const uname = req.params.id
     const pass = req.body.pass
     let changep = []
     let proferr = []
-    User.findOne({ username: uname})
-        .then(user=>{
-            if(req.file === undefined){
-                console.log('pic not uploaded');
-                changep.push({msg:"upload your profile photo"})
-                proferr.push({msg:"please fill in all fields"})
-                res.render('editprofile',{user,changep,proferr})
-            }
-            else if (!pass){
-                let filepath = path.join('\public\\uploads\\' + req.file.filename)
-                fs.unlink(filepath,(err)=>{
-                    if(err) throw err;
-                    console.log('profile photo deleted');
-                })
-                changep.push({msg:"upload your profile photo"})
-                proferr.push({msg:"please fill in all fields"})
-                res.render('editprofile',{user,changep,proferr})
-            }
-            else if(user.password == pass){
-                User.findOneAndUpdate({ username: uname},{image:req.file.filename},function(err,result){
-                    if(err) throw err;
-                    changep.push({msg2:"profile photo updated succesfully"})
-                    User.findOne({ username: uname})
-                        .then(user=>{
-                            res.render('profile',{user,changep})
-                        })
-                })
-            } 
-            else {
-                changep.push({msg:"change your password"})
-                proferr.push({msg:"incorrect password"})
-                res.render('editprofile',{user,changep,proferr})
-            }
-        })
+    const user = await User.findOne({ username: uname});
+    const validPass = await bcrypt.compare(pass, user.password);
+    if(user){
+        if (req.file === undefined) {
+            console.log('pic not uploaded');
+            changep.push({ msg: "upload your profile photo" })
+            proferr.push({ msg: "please fill in all fields" })
+            res.render('editprofile', { user, changep, proferr })
+        }
+        else if (!pass) {
+            let filepath = path.join('\public\\uploads\\' + req.file.filename)
+            fs.unlink(filepath, (err) => {
+                if (err) throw err;
+                console.log('profile photo deleted');
+            })
+            changep.push({ msg: "upload your profile photo" })
+            proferr.push({ msg: "please fill in all fields" })
+            res.render('editprofile', { user, changep, proferr })
+        }
+        else if (validPass) {
+            await User.findOneAndUpdate({ username: uname }, { image: req.file.filename }, async function (err, result) {
+                if (err) throw err;
+                changep.push({ msg2: "profile photo updated succesfully" })
+                await User.findOne({ username: uname })
+                    .then(user => {
+                        res.render('profile', { user, changep })
+                    })
+            })
+        }
+        else {
+            changep.push({ msg: "change your password" });
+            proferr.push({ msg: "incorrect password" });
+            let filepath = path.join('\public\\uploads\\' + req.file.filename)
+            fs.unlink(filepath, (err) => {
+                if (err) throw err;
+                console.log('profile photo not updated');
+            })
+            res.render('editprofile', { user, changep, proferr })
+        }
+    }
 })
 
-router.post('/remove/:id',upload.single('photo'),(req,res) => {
+router.post('/remove/:id',upload.single('photo'), async (req,res) => {
     const uname = req.params.id
     const pass = req.body.pass
     let removep = []
     let remerr = []
-    const newvals = {image:null}
-    User.findOne({ username: uname})
-        .then(user=>{
-            let pic = user.image
-            if(user.password == pass){
-                User.findOneAndUpdate({ username: uname},newvals,function(err,result){
-                    if(err) throw err;
-                    removep.push({msg2:"profile photo removed succesfully"})
-                    User.findOne({ username: uname})
-                        .then(user=>{
-                            if(pic != null){
-                                let filepath = path.join('\public\\uploads\\' + pic)
-                                fs.unlink(filepath,(err)=>{
-                                    if(err) throw err;
-                                    console.log('profile photo deleted');
-                                })
-                            }
-                            if (!pass){
-                                removep.push({msg:"remove your profile photo"})
-                                remerr.push({msg:"please fill in all fields"})
-                                res.render('editprofile',{user,removep,remerr})
-                            }
-                            else {
-                                res.render('profile',{user,removep})
-                            }
-                        })
-                })
-            } 
-            else {
-
-                removep.push({msg:"change your password"})
-                remerr.push({msg:"incorrect password"})
-                res.render('editprofile',{user,removep,remerr})
-            }
-        })
+    const newvals = {image:null};
+    const user = await User.findOne({ username: uname});
+    const validPass = await bcrypt.compare(pass, user.password);
+    if(user){
+        let pic = user.image
+        if (validPass) {
+            await User.findOneAndUpdate({ username: uname }, newvals, async function (err, result) {
+                if (err) throw err;
+                removep.push({ msg2: "profile photo removed succesfully" })
+                await User.findOne({ username: uname })
+                    .then(user => {
+                        if (pic != null) {
+                            let filepath = path.join('\public\\uploads\\' + pic)
+                            fs.unlink(filepath, (err) => {
+                                if (err) throw err;
+                                console.log('profile photo deleted');
+                            })
+                        }
+                        if (!pass) {
+                            removep.push({ msg: "remove your profile photo" })
+                            remerr.push({ msg: "please fill in all fields" })
+                            res.render('editprofile', { user, removep, remerr })
+                        }
+                        else {
+                            res.render('profile', { user, removep })
+                        }
+                    })
+            })
+        }
+        else {
+            removep.push({ msg: "change your password" })
+            remerr.push({ msg: "incorrect password" })
+            res.render('editprofile', { user, removep, remerr })
+        }
+    }
 })
 
 module.exports = router;

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 const {check , validationResult} = require('express-validator');
 const User = require('../schemas/user');
 const Admin = require('../schemas/admin');
@@ -12,60 +13,53 @@ router.get('/login', (req, res) => res.render('login'));
 router.get('/register', (req, res) => res.render('register'));
 
 //  login handle
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     const inname = req.body.inname;
     const inpassword = req.body.inpass
     let errors = [];
-    let u = 0;
     if (!inname || !inpassword) {
         errors.push({ msg: 'please fill in all fields' });
         res.render('login', { errors })
     }
     else {
-        User.findOne({ username: inname })
-
-            .then(user => {
-                if (!user) {
-                    u = 1
+        const user = await User.findOne({ username: inname });
+        if (!user) {
+            const admin = await Admin.findOne({ username: inname });
+            if (!admin) {
+                errors.push({ msg: 'email is not registerd' });
+                res.render('login', { errors });
+            }
+            if (admin) {
+                const validAdminPass = await bcrypt.compare(inpassword, admin.password);
+                if (validAdminPass) {
+                    res.render('adminland', { user: admin });
+                } else {
+                    errors.push({ msg: 'Incorrect password or email' });
+                    res.render('login', { errors })
                 }
-                //Match Password
-                if (user) {
-                    if (inpassword === user.password && inpassword.length >= 6) {
-                        res.render('index', { user });
-                    }  
-                    else {
-                        errors.push({ msg: 'Incorrect password or email' });
-                        res.render('login', { errors })
-                    }
-                }
-                if(u!=0){
-                    Admin.findOne({username: req.body.inname})
-                        .then(user=>{
-                            if(!user){
-                                errors.push({ msg: 'email is not registerd' });
-                                res.render('login', { errors });
-                            }
-                            if (user) {
-                                if(inpassword === user.password){
-                                    res.render('adminland',{ user });
-                                } else {
-                                    errors.push({ msg: 'Incorrect password or email' });
-                                    res.render('login', { errors })
-                                }
-                            }
-                        })
-                }
-            })
-            .catch(err => console.log(err));
+            }
+        }
+        else {
+            const validPass = await bcrypt.compare(inpassword, user.password);
+            if (validPass) {
+                res.render('index', { user });
+            }
+            else {
+                errors.push({ msg: 'Incorrect password or email' });
+                res.render('login', { errors })
+            }
+        }
     }
 })
 
 //register handle
-router.post('/register',check('upemail').isEmail().normalizeEmail(), (req, res) => {
+router.post('/register',check('upemail').isEmail().normalizeEmail(), async (req, res) => {
     const inname = req.body.upname;
     const inemail = req.body.upemail;
     const inpass1 = req.body.uppass1;
-    const inpass2 = req.body.uppass2
+    const inpass2 = req.body.uppass2;
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(inpass1,salt);
     let errors = [];
     const mailerrors = validationResult(req);
     // Email Format
@@ -91,51 +85,35 @@ router.post('/register',check('upemail').isEmail().normalizeEmail(), (req, res) 
         res.render('register', { errors })
     }
     else {
-        User.findOne({ email: inemail }).then(user => {
-                if (user) {
-                    //User exists
-                    console.log(user.email);
-                    errors.push({ msg: 'Email is already registered' });
-                    res.render('register', { errors });
-                } 
-                User.findOne({ username: inname }).then(user1 => {
-                        if (user1) {
-                            //User exists
-                            console.log(user1.username);
-                            errors.push({ msg: 'username is already exists' });
-                            res.render('register', { errors });
-                        }
-                        Admin.findOne({username:inname}).then(admin =>{
-                            if(admin){
-                                errors.push({msg: 'username already exists'});
-                                res.render('register',{errors})
-                            }
-                            Admin.findOne({email:inemail}).then(admin1 =>{
-                                if(admin1){
-                                    errors.push({msg: 'email is already registered'})
-                                    res.render('register',{errors})
-                                }
-                                else{
-                                    const newUser = new User({
-                                        username: inname,
-                                        email: inemail,
-                                        password: inpass1
-                                    });
-                                    //save user
-                                    newUser.save().then(user => {
-                                        let sucerrors = []
-                                        sucerrors.push({ sucmsg: 'Successful registration' });
-                                        res.render('login',{sucerrors});
-                                    })
-                                        .catch(err => console.log(err));
-                                }
-                            })
-                        })
-                    });
+        const user = await User.findOne({ username: inname });
+        const user1 = await User.findOne({ email: inemail });
+        const admin = await Admin.findOne({username:inname});
+        const admin1 = await Admin.findOne({email:inemail});
+        if(admin || user){
+            errors.push({msg: 'username already exists'});
+            res.render('register',{errors})
+        }
+        else if(admin1 || user1){
+            errors.push({msg: 'Email is already registered'})
+            res.render('register',{errors})
+        }
+        else{
+            const newUser = new User({
+                username: inname,
+                email: inemail,
+                password: hashPassword
             });
+            try{
+                await newUser.save().then(user => {
+                    let sucerrors = []
+                    sucerrors.push({ sucmsg: 'Successful registration' });
+                    res.render('login',{sucerrors});
+                })
+            } catch(err){
+                res.status(404).send(err);
+            }
+        }
     }
-
-
 });
 
 // Home Page for printing name
