@@ -1,5 +1,5 @@
-const mongoose=require('mongoose');
-const hot = require('../schemas/hotel');
+const mongoose=require('mongoose'), Schema = mongoose.Schema
+const hotel = require('../schemas/hotel');
 
 const placeSchema=new mongoose.Schema({
     id:{
@@ -27,6 +27,9 @@ const placeSchema=new mongoose.Schema({
     },
     availability: {
         type:String,
+    },
+    hotels:{
+        type: [{ type: Schema.Types.ObjectId, ref: hotel }]
     }
 });
 const place=mongoose.model('place',placeSchema);

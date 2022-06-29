@@ -5,9 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>editplaces</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css">
     
     <style>
-        
+        body{
+            margin-top: 100px;
+        }
         .adminplace{
             margin-left: 530px;
         }
@@ -55,9 +59,46 @@
             font-size: 50px;
             text-align: center;
         }
+
+        .addform .tbox{
+            height: 45px;
+            width: 400px;
+            padding: 7px;
+            border: 2px solid black;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+
+        .addform label{
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .addform .tbox input{
+            background: none;
+            border: none;
+            width: 90%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
+    <div class="topnav">
+        <div id="menu-bar" class="fas fa-bars"></div>
     
+        <a href="/admins/adminland/<%=locals.user.username%>" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
+        <nav class="navbar">
+            <a href="/admins/adminland/<%=locals.user.username%>">Home</a>
+        </nav>
+    </div>
+    <h2>Add Place</h2>
+    <div class="addform">
+        <form action="/admins/addplace/<%=user.username%>" method="post" enctype="multipart/form-data">
+            <label for="from">From: </label>
+            <div class="tbox">
+                <input type="text" name="from" placeholder="enter from">
+            </div>
+        </form>
+    </div>
 </body>
 </html>

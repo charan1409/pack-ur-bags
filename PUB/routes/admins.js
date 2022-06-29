@@ -147,12 +147,20 @@ router.get('/place/:id', (req, res) => {
         .then(user => {
             Place.find({}, (err, data) => {
                 if (data) {
-                    console.log(data);
                     res.render('adminplace', { user, model: data })
                 } else {
                     console.log(err);
                 }
             })
+        })
+})
+
+router.get('/addplace/:id', (req, res) => {
+    let username = req.params.id
+    Admin.findOne({ username: username })
+        .then(user => {
+            res.render('admineditplace', { user })
+                
         })
 })
 
