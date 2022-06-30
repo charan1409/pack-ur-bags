@@ -5,15 +5,20 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcryptjs');
+const cookieparser = require('cookie-parser');
+router.use(cookieparser());
 
 const User = require('../schemas/user');
 const book = require('../schemas/book');
 const fdb = require('../schemas/feed');
 
-router.get('/profile/:id', (req, res) => {
+const verifier = require('../routes/verifier');
+
+router.get('/profile/:id',verifier, (req, res) => {
     const username = req.params.id
+    console.log(req.user.user.username);
     User.findOne({ username: username })
-        .then(user => {
+        .then(async user => {
             book.find({ username: username })
                 .then(bookings => {
                     fdb.find({username: username})

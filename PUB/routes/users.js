@@ -2,9 +2,13 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const cookieparser = require('cookie-parser')
 const {check , validationResult} = require('express-validator');
 const User = require('../schemas/user');
 const Admin = require('../schemas/admin');
+
+router.use(cookieparser());
 
 //login Page
 router.get('/login', (req, res) => res.render('login'));
@@ -42,6 +46,8 @@ router.post('/login', async (req, res) => {
         else {
             const validPass = await bcrypt.compare(inpassword, user.password);
             if (validPass) {
+                const token = await jwt.sign({user},process.env.ACCESS_TOKEN,{expiresIn:'1h'});
+                res.cookie("token",token,{httpOnly: true});
                 res.render('index', { user });
             }
             else {
@@ -104,13 +110,15 @@ router.post('/register',check('upemail').isEmail().normalizeEmail(), async (req,
                 password: hashPassword
             });
             try{
-                await newUser.save().then(user => {
+                await newUser.save().then(async user => {
+                    const token = await jwt.sign({user},process.env.ACCESS_TOKEN,{expiresIn:'1h'});
+                    res.cookie("token",token,{httpOnly: true,});
                     let sucerrors = []
                     sucerrors.push({ sucmsg: 'Successful registration' });
                     res.render('login',{sucerrors});
                 })
             } catch(err){
-                res.status(404).send(err);
+                res.status(404).json('token not created');
             }
         }
     }
