@@ -3,7 +3,7 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const cookieparser = require('cookie-parser')
+const cookieparser = require('cookie-parser');
 const {check , validationResult} = require('express-validator');
 const User = require('../schemas/user');
 const Admin = require('../schemas/admin');
@@ -36,9 +36,12 @@ router.post('/login', async (req, res) => {
             if (admin) {
                 const validAdminPass = await bcrypt.compare(inpassword, admin.password);
                 if (validAdminPass) {
+                    const id = admin.email;
+                    const token = await jwt.sign({id},process.env.ADMIN_TOKEN,{expiresIn:'1h'});
+                    res.cookie("token",token,{httpOnly: true});
                     res.render('adminland', { user: admin });
                 } else {
-                    errors.push({ msg: 'Incorrect password or email' });
+                    errors.push({ msg: 'Incorrect username or password' });
                     res.render('login', { errors })
                 }
             }
@@ -46,12 +49,13 @@ router.post('/login', async (req, res) => {
         else {
             const validPass = await bcrypt.compare(inpassword, user.password);
             if (validPass) {
-                const token = await jwt.sign({user},process.env.ACCESS_TOKEN,{expiresIn:'1h'});
+                const id = user.email;
+                const token = await jwt.sign({id},process.env.ACCESS_TOKEN,{expiresIn:'1h'});
                 res.cookie("token",token,{httpOnly: true});
                 res.render('index', { user });
             }
             else {
-                errors.push({ msg: 'Incorrect password or email' });
+                errors.push({ msg: 'Incorrect username or password' });
                 res.render('login', { errors })
             }
         }
@@ -70,7 +74,7 @@ router.post('/register',check('upemail').isEmail().normalizeEmail(), async (req,
     const mailerrors = validationResult(req);
     // Email Format
     if (!mailerrors.isEmpty()) {
-        errors.push({ msg: 'please use proper email' });
+        errors.push({ msg: 'invalid email' });
         res.render('register', { errors })
     }
 
@@ -82,7 +86,7 @@ router.post('/register',check('upemail').isEmail().normalizeEmail(), async (req,
 
     //check password match
     else if (inpass1 !== inpass2) {
-        errors.push({ msg: 'Password do not match' });
+        errors.push({ msg: 'Passwords do not match' });
         res.render('register', { errors })
     }
     //check pass length
@@ -111,7 +115,8 @@ router.post('/register',check('upemail').isEmail().normalizeEmail(), async (req,
             });
             try{
                 await newUser.save().then(async user => {
-                    const token = await jwt.sign({user},process.env.ACCESS_TOKEN,{expiresIn:'1h'});
+                    const id = user.email;
+                    const token = await jwt.sign({id},process.env.ACCESS_TOKEN,{expiresIn:'1h'});
                     res.cookie("token",token,{httpOnly: true,});
                     let sucerrors = []
                     sucerrors.push({ sucmsg: 'Successful registration' });

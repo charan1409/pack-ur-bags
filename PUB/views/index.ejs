@@ -61,9 +61,9 @@
                 <!-- <a href="/">LogOut</a> -->
                 <% } %>
                     <% if(locals.user !=null) {%>
-                        <a href="/profile/profile/<%=user.username%>"><i class="fa fa-user" aria-hidden="true"
+                        <a href="/profile/profile"><i class="fa fa-user" aria-hidden="true"
                                 id="login-btn"></i></a>
-                        <a href="/">LogOut</a>
+                        <a href="/logout">LogOut</a>
                         <% } %>
         </div>
         <form action="" class="search-bar-container">
@@ -249,7 +249,7 @@
                 <div class="box" data-aos="fade-left">
                     <img src="/img/places/types/winter.jpg" alt="Winter">
                     <div class="content">
-                        <h3> Winter </h3>
+                        <h3> Snow </h3>
                         <p>People travel to destinations with winter conditions for a range of winter sport activities.
                         </p>
                         <a href="/places/winter/<%=user.username%>" class="btn">see more</a>
@@ -510,9 +510,9 @@
 
         <div class="feed_box">
             <div class="feed">
-                <form action="/index/fd/<%=user.username%>" method="post">
+                <form action="/index/fd" method="post">
                     <label>Feedback</label><br><br>
-                    <textarea name="details"></textarea><br>
+                    <textarea name="details" style="text-transform: none;"></textarea><br>
                     <button type="submit" id="fsubmit" style="font-size: 20px;">Submit feedback</button>
                 </form>
             </div>

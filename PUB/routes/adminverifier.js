@@ -4,7 +4,7 @@ const verifier = async (req,res,next) =>{
     
     try {
         const token = await req.cookies.token;
-        let verifieduser = await jwt.verify(token,process.env.ACCESS_TOKEN);
+        let verifieduser = await jwt.verify(token,process.env.ADMIN_TOKEN);
         req.user = verifieduser;
         next();
     } catch (error) {

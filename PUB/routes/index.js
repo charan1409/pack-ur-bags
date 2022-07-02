@@ -3,19 +3,23 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const fdb = require('../schemas/feed');
 const User = require('../schemas/user');
-const cont = require('../schemas/cont')
-let mail=null
-router.get('/index/:id',(req,res)=>{
-    username = req.params.id
-    User.findOne({ username: username})
+const cont = require('../schemas/cont');
+const cookieparser = require('cookie-parser');
+
+router.use(cookieparser());
+const verifier = require('../routes/verifier');
+
+router.get('/index',verifier,(req,res)=>{
+    email = req.user.id
+    User.findOne({ email: email})
     .then(user=>{
         res.render('index',{user})
     })
 
 })
 
-router.post('/con/:id',(req, res) => {
-    mail = req.params.id
+router.post('/con',verifier,(req, res) => {
+    let mail = req.user.id
     const fname = req.body.fname;
     const lname = req.body.lname;
     const email = req.body.mail;
@@ -38,18 +42,17 @@ router.post('/con/:id',(req, res) => {
     })    
 })
 
-router.post('/fd/:id',(req, res) => {
-    mail = req.params.id
+router.post('/fd',verifier,(req, res) => {
+    let email = req.user.id
     const det = req.body.details;
     const newfd = new fdb({
-        email: mail,
+        email: email,
         detail: det
     });
     //save user
     newfd.save().then(fdb => {
-        User.findOne({email:mail})
+        User.findOne({email:email})
         .then(user=>{
-            console.log(newfd);
             res.render('index',{user});
         })
         

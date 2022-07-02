@@ -38,9 +38,9 @@
     <div class="topnav">
         <div id="menu-bar" class="fas fa-bars"></div>
 
-        <a href="/admins/adminland/<%=locals.user.username%>" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
+        <a href="/admins/adminland" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
         <nav class="navbar">
-            <a href="/admins/adminland/<%=user.username%>">Home</a>
+            <a href="/admins/adminland">Home</a>
         </nav>
     </div>
     <!-- Header Section Ends here... -->
@@ -93,11 +93,11 @@
                     <%}
                 %>    
                 <div class="content">
-                    <a href="/adminprofile/remove/<%=locals.user.username%>" class="pic-btn"><i class="bi bi-trash fa-3x"></i></a>
-                    <a href="/adminprofile/upload/<%=locals.user.username%>" class="pic-btn"><i class="bi bi-upload fa-3x"></i></a>
+                    <a href="/adminprofile/remove" class="pic-btn"><i class="bi bi-trash fa-3x"></i></a>
+                    <a href="/adminprofile/upload" class="pic-btn"><i class="bi bi-upload fa-3x"></i></a>
                 </div>
             </div>
-            <a href="/adminprofile/edit/<%=user.username%>" class="prof-btn">edit profile</a>
+            <a href="/adminprofile/edit" class="prof-btn">edit profile</a>
         </div>
         <div class="right">
             <table>
@@ -132,8 +132,8 @@
                     </td>
                 </tr>
             </table>
-            <a href="/adminprofile/changepass/<%=user.username%>" class="prof-btn">change password</a>
-            <a href="/" class="prof-btn">logout</a>
+            <a href="/adminprofile/changepass" class="prof-btn">change password</a>
+            <a href="/logout" class="prof-btn">logout</a>
         </div>
     </div>
 </body>

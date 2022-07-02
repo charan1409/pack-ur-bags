@@ -34,9 +34,9 @@
     <div class="topnav">
         <div id="menu-bar" class="fas fa-bars"></div>
 
-        <a href="/index/index/<%=user.username%>" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
+        <a href="/index/index" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
         <nav class="navbar">
-            <a href="/index/index/<%=user.username%>">Home</a>
+            <a href="/index/index">Home</a>
             <a href="#fd">Feedbacks</a>
             <a href="#footer">Contact</a>
         </nav>
@@ -91,11 +91,11 @@
                     <%}
                 %>    
                 <div class="content">
-                    <a href="/profile/remove/<%=locals.user.username%>" class="pic-btn"><i class="bi bi-trash fa-3x"></i></a>
-                    <a href="/profile/upload/<%=locals.user.username%>" class="pic-btn"><i class="bi bi-upload fa-3x"></i></a>
+                    <a href="/profile/remove" class="pic-btn"><i class="bi bi-trash fa-3x"></i></a>
+                    <a href="/profile/upload" class="pic-btn"><i class="bi bi-upload fa-3x"></i></a>
                 </div>
             </div>
-            <a href="/profile/edit/<%=user.username%>" class="prof-btn">edit profile</a>
+            <a href="/profile/edit" class="prof-btn">edit profile</a>
         </div>
         <div class="right">
             <table>
@@ -130,8 +130,8 @@
                     </td>
                 </tr>
             </table>
-            <a href="/profile/changepass/<%=user.username%>" class="prof-btn">change password</a>
-            <a href="/" class="prof-btn">logout</a>
+            <a href="/profile/changepass" class="prof-btn">change password</a>
+            <a href="/logout" class="prof-btn">logout</a>
         </div>
     </div>
     
@@ -191,9 +191,6 @@
             </table>
             <%} %>
     </section>
-
-    <%- include('footer'); %>
-        <!-- footer section ends -->
 </body>
 
 </html>

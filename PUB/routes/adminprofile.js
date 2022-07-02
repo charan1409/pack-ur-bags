@@ -1,73 +1,70 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcryptjs');
+const cookieparser = require('cookie-parser');
 
-const User = require('../schemas/user');
-const book = require('../schemas/book');
-const fdb = require('../schemas/feed');
+router.use(cookieparser());
+
+// const User = require('../schemas/user');
+// const book = require('../schemas/book');
+// const fdb = require('../schemas/feed');
 const Admin = require('../schemas/admin');
+const adminverifier = require('../routes/adminverifier');
 
-router.get('/profile/:id', (req, res) => {
-    const username = req.params.id
-    Admin.findOne({ username: username })
+router.get('/profile',adminverifier, (req, res) => {
+    const email = req.user.id
+    Admin.findOne({ email: email })
         .then(user => {
-            book.find({ username: username })
-                .then(bookings => {
-                    fdb.find({username: username})
-                        .then(feed=>{
-                            res.render('adminprofile', { user,model:bookings,feedmodel:feed })
-                        })
-                })
+            res.render('adminprofile', { user});
         })
 
 })
 
-router.get('/edit/:id',(req,res) => {
-    const uname = req.params.id
+router.get('/edit',adminverifier, (req,res) => {
+    const email = req.user.id
     let edit = []
-    Admin.findOne({ username: uname})
+    Admin.findOne({ email: email})
         .then(user=>{
             edit.push({ msg:"Edit Your Profile" })
             res.render('admineditprofile',{user,edit})
         })
 })
 
-router.get('/changepass/:id',(req,res) => {
-    const uname = req.params.id
+router.get('/changepass',adminverifier,(req,res) => {
+    const email = req.user.id
     let change = []
-    Admin.findOne({ username: uname})
+    Admin.findOne({ email: email})
         .then(user=>{
             change.push({ msg:"Change your Password" })
             res.render('admineditprofile',{user,change})
         })
 })
 
-router.get('/upload/:id',(req,res)=>{
-    const uname = req.params.id
+router.get('/upload',adminverifier,(req,res)=>{
+    const email = req.user.id
     let changep = []
-    Admin.findOne({ username: uname})
+    Admin.findOne({ email: email})
         .then(user=>{
             changep.push({ msg:"upload profile photo" })
             res.render('admineditprofile',{user,changep})
         })
 })
 
-router.get('/remove/:id',(req,res)=>{
-    const uname = req.params.id
+router.get('/remove',adminverifier,(req,res)=>{
+    const email = req.user.id
     let removep = []
-    Admin.findOne({ username: uname})
+    Admin.findOne({ email: email})
         .then(user=>{
             removep.push({ msg:"remove profile photo" })
             res.render('admineditprofile',{user,removep})
         })
 })
 
-router.post('/edit/:id', async (req,res) => {
-    const uname = req.params.id
+router.post('/edit',adminverifier, async (req,res) => {
+    const email = req.user.id
     const name = req.body.upname
     const gender = req.body.upgender
     const phn = req.body.upphone
@@ -75,7 +72,7 @@ router.post('/edit/:id', async (req,res) => {
     let edit = []
     let editerr = []
     const newvals = {name: name,phone: phn, gender: gender}
-    const user = await Admin.findOne({ username: uname});
+    const user = await Admin.findOne({ email: email});
     const validPass = await bcrypt.compare(pass, user.password);
     if(user){
         if (!name || !gender || !phn || !pass) {
@@ -84,10 +81,10 @@ router.post('/edit/:id', async (req,res) => {
             res.render('admineditprofile', { user, edit, editerr })
         }
         else if (validPass) {
-            await Admin.findOneAndUpdate({ username: uname }, newvals, async function (err, result) {
+            await Admin.findOneAndUpdate({ email: email }, newvals, async function (err, result) {
                 if (err) throw err;
                 edit.push({ msg2: "profile updated succesfully" })
-                await Admin.findOne({ username: uname })
+                await Admin.findOne({ email: email })
                     .then(user => {
                         res.render('adminprofile', { user, edit })
                     })
@@ -101,14 +98,14 @@ router.post('/edit/:id', async (req,res) => {
     }
 })
 
-router.post('/changepass/:id', async (req,res) => {
-    const uname = req.params.id
+router.post('/changepass',adminverifier, async (req,res) => {
+    const email = req.user.id
     const pass = req.body.oldpass
     const pass1 = req.body.newpass1
     const pass2 = req.body.newpass2
     let change = []
     let changeerr = []
-    const user = await Admin.findOne({ username: uname});
+    const user = await Admin.findOne({ email: email});
     const validPass = await bcrypt.compare(pass, user.password);
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(pass1,salt);
@@ -128,10 +125,10 @@ router.post('/changepass/:id', async (req,res) => {
             res.render('admineditprofile', { user, change, changeerr })
         }
         else if (validPass) {
-            await Admin.findOneAndUpdate({ username: uname }, newvals, async function (err, result) {
+            await Admin.findOneAndUpdate({ email: email }, newvals, async function (err, result) {
                 if (err) throw err;
                 change.push({ msg2: "password updated succesfully" })
-                await Admin.findOne({ username: uname })
+                await Admin.findOne({ email: email })
                     .then(user => {
                         res.render('adminprofile', { user, change })
                     })
@@ -156,12 +153,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage:storage})
 
-router.post('/upload/:id',upload.single('photo'),async (req,res) => {
-    const uname = req.params.id
+router.post('/upload',adminverifier,upload.single('photo'),async (req,res) => {
+    const email = req.user.id
     const pass = req.body.pass
     let changep = []
     let proferr = []
-    const user = await Admin.findOne({ username: uname});
+    const user = await Admin.findOne({ email: email});
     const validPass = await bcrypt.compare(pass, user.password);
     if(user){
         if (req.file === undefined) {
@@ -181,14 +178,14 @@ router.post('/upload/:id',upload.single('photo'),async (req,res) => {
             res.render('admineditprofile', { user, changep, proferr })
         }
         else if (validPass) {
-            await Admin.findOneAndUpdate({ username: uname }, { image: req.file.filename }, async function (err, result) {
+            await Admin.findOneAndUpdate({ email: email }, { image: req.file.filename }, async function (err, result) {
                 if (err) {
                     changep.push({ msg: "upload your profile photo" })
                     proferr.push({ msg: "please fill in all fields" })
                     res.render('admineditprofile', { user, changep, proferr })
                 }
                 changep.push({ msg2: "profile photo updated succesfully" })
-                await Admin.findOne({ username: uname })
+                await Admin.findOne({ email: email })
                     .then(user => {
                         res.render('adminprofile', { user, changep })
                     })
@@ -207,21 +204,21 @@ router.post('/upload/:id',upload.single('photo'),async (req,res) => {
     }
 })
 
-router.post('/remove/:id',upload.single('photo'),async (req,res) => {
-    const uname = req.params.id
+router.post('/remove',adminverifier,upload.single('photo'),async (req,res) => {
+    const email = req.user.id
     const pass = req.body.pass
     let removep = []
     let remerr = []
     const newvals = {image:null}
-    const user = await Admin.findOne({ username: uname});
+    const user = await Admin.findOne({ email: email});
     const validPass = await bcrypt.compare(pass, user.password);
     if(user){
         let pic = user.image
         if (validPass) {
-            await Admin.findOneAndUpdate({ username: uname }, newvals,async function (err, result) {
+            await Admin.findOneAndUpdate({ email: email }, newvals,async function (err, result) {
                 if (err) throw err;
                 removep.push({ msg2: "profile photo removed succesfully" })
-                await Admin.findOne({ username: uname })
+                await Admin.findOne({ email: email })
                     .then(user => {
                         if (pic != null) {
                             let filepath = path.join('\public\\uploads\\' + pic)

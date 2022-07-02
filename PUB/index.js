@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const cookieparser = require('cookie-parser');
+app.use(cookieparser());
 const mongoose=require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -19,9 +21,25 @@ app.use(express.static('public'))
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
-app.get("/", function (req, res) {
-    res.render('landing');
+const verifier = require("./routes/verifier");
+const User = require('./schemas/user');
+
+app.get("/", verifier, function (req, res) {
+    if(req.user.id){
+        const email = req.user.id;
+        User.findOne({ email: email})
+        .then(user=>{
+            res.render('index',{user});
+        })
+    } else{
+        res.render('landing');
+    }
 });
+
+app.get("/logout",(req,res)=>{
+    res.clearCookie("token");
+    res.render('landing');
+})
 
 app.get("/login", function (req, res) {
     res.render('login');
@@ -29,6 +47,10 @@ app.get("/login", function (req, res) {
 
 app.get("/register", function (req, res) {
     res.render('register');
+});
+
+app.get("/landing", function (req, res) {
+    res.render('landing');
 });
 
 app.listen(port, function () {
