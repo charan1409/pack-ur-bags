@@ -44,7 +44,7 @@
         <button id="menu-bar" onclick="myFunction()">
             <i class="fa fa-bars"></i>
           </button>
-        <a href="/index/index/<%=user.username%>" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
+        <a href="/index/index" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
         <nav class="navbar">
             <a href="#home">Home</a>
             <a href="#gallery">Gallery</a>
@@ -75,9 +75,11 @@
         <!-- Home Section Starts... -->
         <section class="home" id="home">
             <div class="content">
-                <% if(locals.user !=null) {%>
+                <% if(user.name !=null) {%>
                     <h3>Welcome <%=user.name %> !</h3>
-                    <% } %>
+                    <% } else{%>
+                        <h3>Welcome <%=user.username %> !</h3>
+                        <%} %>
                         <h3>travelling is worthwhile</h3>
                         <p>discover new places with us, adventure awaits</p>
                         <a href="#gallery" class="btn">discover more</a>

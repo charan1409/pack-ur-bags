@@ -12,31 +12,8 @@
         body{
             margin-top: 100px;
         }
-        .adminplace{
-            margin-left: 530px;
-        }
-        
-        .adminplace label{
-            font-size: 20px;
-            font-weight: bolder;
-        }
-        .adminplace .adminbox{
-            height: 45px;
-            width: 460px;
-            padding: 7px;
-            border: 2px solid black;
-            border-radius: 10px;
-            font-size: 20px;
-            text-transform: none;
-        }
 
-        .adminplace .adminbox input{
-            border: none;
-            background: none;
-            width: 90%;
-        }
-
-        .addadminbtn{
+        .addplacebtn{
             height: 40px;
             width: 150px;
             background-color: #fac102;
@@ -45,7 +22,7 @@
             color: whitesmoke;
         }
 
-        .addadminbtn:hover{
+        .addplacebtn:hover{
             background: none;
             border: 2px solid #fac102;
             color: #fac102;
@@ -60,25 +37,39 @@
             text-align: center;
         }
 
-        .addform .tbox{
-            height: 45px;
-            width: 400px;
-            padding: 7px;
-            border: 2px solid black;
-            border-radius: 10px;
-            font-size: 20px;
+        .addform{
+            margin-left: 3%;
         }
 
-        .addform label{
+        .addform .tbox{
+            height: 45px;
+            width: 100%;
+        }
+
+        .addform .tbox label{
             font-size: 20px;
             font-weight: bold;
         }
 
-        .addform .tbox input{
+        .addform .tbox input,select{
             background: none;
-            border: none;
-            width: 90%;
-            height: 100%;
+            border: 2px solid black;
+            width: 350px;
+            height: 35px;
+            border-radius: 10px;
+            padding: 2px;
+            font-size: 20px;
+            text-transform: none;
+        }
+
+        .addform .tbox textarea{
+            background: none;
+            position: fixed;
+            border: 2px solid black;
+            border-radius: 10px;
+            font-size: 20px;
+            text-transform: none;
+            padding: 2px;
         }
     </style>
 </head>
@@ -93,11 +84,31 @@
     </div>
     <h2>Add Place</h2>
     <div class="addform">
-        <form action="/admins/addplace/<%=user.username%>" method="post" enctype="multipart/form-data">
-            <label for="from">From: </label>
+        <form action="/admins/addplace" method="post" enctype="multipart/form-data">
             <div class="tbox">
+                <label for="from">From: </label>
                 <input type="text" name="from" placeholder="enter from">
             </div>
+            <div class="tbox">
+                <label for="from">To: </label>
+                <input type="text" name="to" placeholder="enter destination">
+            </div><br>
+            <div class="tbox">
+                <label for="details">Details: </label>
+                <textarea name="details" id="details" cols="100" rows="5"></textarea>
+            </div><br><br><br><br><br><br><br><br>
+            <div class="tbox">
+                <label for="price">cost per day in Rs: </label>
+                <input type="text" name="price" placeholder="enter destination">
+            </div><br>
+            <div class="tbox">
+                <label for="type">resing: </label>
+                <select name="type" id="type">
+                    <option value="camp">Camping</option>
+                    <option value="hotels">Hotels</option>
+                </select>
+            </div>
+            <button type="submit" class="addplacebtn">submit</button>
         </form>
     </div>
 </body>

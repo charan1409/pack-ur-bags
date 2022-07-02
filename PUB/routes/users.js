@@ -37,7 +37,7 @@ router.post('/login', async (req, res) => {
                 const validAdminPass = await bcrypt.compare(inpassword, admin.password);
                 if (validAdminPass) {
                     const id = admin.email;
-                    const token = await jwt.sign({id},process.env.ADMIN_TOKEN,{expiresIn:'1h'});
+                    const token = await jwt.sign({id},process.env.ADMIN_TOKEN,{expiresIn:'1d'});
                     res.cookie("token",token,{httpOnly: true});
                     res.render('adminland', { user: admin });
                 } else {
@@ -50,7 +50,7 @@ router.post('/login', async (req, res) => {
             const validPass = await bcrypt.compare(inpassword, user.password);
             if (validPass) {
                 const id = user.email;
-                const token = await jwt.sign({id},process.env.ACCESS_TOKEN,{expiresIn:'1h'});
+                const token = await jwt.sign({id},process.env.ACCESS_TOKEN,{expiresIn:'1d'});
                 res.cookie("token",token,{httpOnly: true});
                 res.render('index', { user });
             }
@@ -116,7 +116,7 @@ router.post('/register',check('upemail').isEmail().normalizeEmail(), async (req,
             try{
                 await newUser.save().then(async user => {
                     const id = user.email;
-                    const token = await jwt.sign({id},process.env.ACCESS_TOKEN,{expiresIn:'1h'});
+                    const token = await jwt.sign({id},process.env.ACCESS_TOKEN,{expiresIn:'1d'});
                     res.cookie("token",token,{httpOnly: true,});
                     let sucerrors = []
                     sucerrors.push({ sucmsg: 'Successful registration' });

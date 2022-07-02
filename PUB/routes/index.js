@@ -45,18 +45,17 @@ router.post('/con',verifier,(req, res) => {
 router.post('/fd',verifier,(req, res) => {
     let email = req.user.id
     const det = req.body.details;
+    const user = User.findOne({email:email});
     const newfd = new fdb({
         email: email,
+        username: user.username,
         detail: det
     });
     //save user
-    newfd.save().then(fdb => {
-        User.findOne({email:email})
-        .then(user=>{
+    if(user){
+        newfd.save().then(fdb => {
             res.render('index',{user});
         })
-        
-    })    
+    }    
 })
-
 module.exports = router;
