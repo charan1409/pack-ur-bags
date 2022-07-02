@@ -20,56 +20,44 @@
 </head>
 
 <body>
-    <div class="topnav">
-      <h2 class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</h2>
+  <div class="topnav">
+    <h2 class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</h2>
+  </div>
+  <div id="log" class="form-container">
+    <div class="top-btn">
+      <h1>Sign In</h1>
     </div>
-    <div id="log" class="form-container">
-      <div class="top-btn">
-        <h1>Sign In</h1>
-      </div>
-      <!-- Error Alert -->
-      <% if(locals.errors !=null) {%>
-        <% errors.forEach(function(error) { %>
-          <div class="alert alert-danger log-alert" id="msg">
-            <strong>Error! </strong>
-            <%=error.msg%>
-              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-          </div>
-          <% }); %>
-            <% } %>
-              <% if(locals.sucerrors !=null) {%>
-                <% sucerrors.forEach(function(error) { %>
-                  <div class="alert bg-success log-suc" id="msg">
-                    <strong>success! </strong>
-                    <%=error.sucmsg%>
-                      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                  </div>
-                  <% }); %>
-                    <% } %>
-                      <!-- Error Alert Ends-->
-
-                      <!-- Form Starts -->
-
-                      <form id="login" action="/users/login" method="post">
-                        <div class="input-box">
-                          <i class="fa fa-user fa-2x" style="color: #fac102;"></i>
-                          <input type="text" id="email" name="inname" placeholder="username">
-                          <i class="fa fa-squarespace fa-2x"></i>
-                        </div><br>
-                        <div class="input-box">
-                          <i class="fa fa-key fa-2x" style="color: #fac102;"></i>
-                          <input type="password" id="pas" name="inpass" placeholder="password">
-                          <i class="fa fa-eye fa-2x" id="show-pass" style="cursor: pointer;"></i>
-                        </div> <br>
-                        <button type="submit" class="login-btn">Sign In</button>
-                        <div>
-                          <p>Don't have an account?</p>
-                          <!-- <p>forget password? <a href="#">Click here</a></p> <br> -->
-                          <a href="/register"><button type="button" class="login-btn">Sign Up</button></a>
-                          <p>Customer service: 9398717554</p>
-                        </div>
-                      </form>
-    </div>
+    <!-- Error Alert -->
+    <% if(locals.errors !=null) {%>
+      <% errors.forEach(function(error) { %>
+        <div class="alert alert-danger log-alert" id="msg">
+          <strong>Error! </strong>
+          <%=error.msg%>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        <% }); %>
+          <% } %>
+            <!-- Error Alert Ends-->
+            <form id="login" action="/users/login" method="post">
+              <div class="input-box">
+                <i class="fa fa-user fa-2x" style="color: #fac102;"></i>
+                <input type="text" id="email" name="inname" placeholder="username">
+                <i class="fa fa-squarespace fa-2x"></i>
+              </div><br>
+              <div class="input-box">
+                <i class="fa fa-key fa-2x" style="color: #fac102;"></i>
+                <input type="password" id="pas" name="inpass" placeholder="password">
+                <i class="fa fa-eye fa-2x" id="show-pass" style="cursor: pointer;"></i>
+              </div> <br>
+              <button type="submit" class="login-btn">Sign In</button>
+              <div>
+                <p>Don't have an account?</p>
+                <!-- <p>forget password? <a href="#">Click here</a></p> <br> -->
+                <a href="/register"><button type="button" class="login-btn">Sign Up</button></a>
+                <p>Customer service: 9398717554</p>
+              </div>
+            </form>
+  </div>
   <script src="/js/login.js">
   </script>
 

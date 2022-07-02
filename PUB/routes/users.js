@@ -120,7 +120,7 @@ router.post('/register',check('upemail').isEmail().normalizeEmail(), async (req,
                     res.cookie("token",token,{httpOnly: true,});
                     let sucerrors = []
                     sucerrors.push({ sucmsg: 'Successful registration' });
-                    res.render('login',{sucerrors});
+                    res.render('index',{user});
                 })
             } catch(err){
                 res.status(404).json('token not created');
