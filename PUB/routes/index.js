@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
-const fdb = require('../schemas/feed');
 const User = require('../schemas/user');
 const cont = require('../schemas/cont');
 const cookieparser = require('cookie-parser');

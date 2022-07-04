@@ -21,7 +21,6 @@
     <style>
         body {
             background-color: whitesmoke;
-            margin-top: 100px;
         }
         a{
             text-decoration-line: none;
@@ -177,20 +176,7 @@
             <%} %>
     </section>
 
-    <section id="fd">
-        <h1>Your Feedbacks Will Appear Here...</h1>
-        <% if(locals.model !=null){%>
-            <table>
-                <% for (const row of feedmodel){%>
-                    <tr>
-                        <td>
-                            <%= row.detail%>
-                        </td>
-                    </tr>
-                    <%} %>
-            </table>
-            <%} %>
-    </section>
+    
 </body>
 
 </html>

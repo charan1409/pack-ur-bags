@@ -28,7 +28,17 @@
     <!-- Script for animation and swiper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="/js/navbar.js"></script>
+    <!-- <script src="/js/index.js"></script> -->
+
+    <style>
+        option{
+            position: absolute;
+            font-size: 40px;
+            cursor: pointer;
+            color: aliceblue;
+            background-color: yellow;
+        }
+    </style>
 
 </head>
 
@@ -61,8 +71,8 @@
                 <!-- <a href="/">LogOut</a> -->
                 <% } %>
                     <% if(locals.user !=null) {%>
-                        <a href="/profile/profile"><i class="fa fa-user" aria-hidden="true"
-                                id="login-btn"></i></a>
+                        <a href="/profile/profile">
+                            <i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
                         <a href="/logout">LogOut</a>
                         <% } %>
         </div>
@@ -73,7 +83,7 @@
     </div>
 
         <!-- Home Section Starts... -->
-        <section class="home" id="home">
+        <div class="home" id="home">
             <div class="content">
                 <% if(user.name !=null) {%>
                     <h3>Welcome <%=user.name %> !</h3>
@@ -87,7 +97,7 @@
             <div class="video-container">
                 <video src="/img/images/vid-1.mp4" loop autoplay muted></video>
             </div>
-        </section>
+        </div>
         <!-- Home Section Ends... -->
 
         <!-- gallery section starts here -->
@@ -524,6 +534,7 @@
 
             <!-- custom js file link  -->
             <script src="/js/script.js"></script>
+            <script src="/js/index.js"></script>
 
             <script>
 

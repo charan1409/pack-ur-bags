@@ -19,6 +19,12 @@ const UserSchema=new mongoose.Schema({
     },
     gender:String,
     image:String,
+    profileComplete:String,
+    websiteReview:String,
+    websiteReviewId:String,
+    tourReview:{
+        type:Array
+    },
     password:{
         type:String,
         // required:true

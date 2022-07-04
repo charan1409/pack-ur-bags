@@ -10,7 +10,6 @@ router.use(cookieparser());
 
 const User = require('../schemas/user');
 const book = require('../schemas/book');
-const fdb = require('../schemas/feed');
 
 const verifier = require('../routes/verifier');
 
@@ -20,10 +19,10 @@ router.get('/profile',verifier, (req, res) => {
         .then(async user => {
             book.find({ email: email })
                 .then(bookings => {
-                    fdb.find({email: email})
-                        .then(feed=>{
-                            res.render('profile', { user,model:bookings,feedmodel:feed })
-                        })
+                    // fdb.find({email: email})
+                    //     .then(feed=>{
+                            res.render('profile', { user,model:bookings })
+                        // })
                 })
         })
 
