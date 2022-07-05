@@ -28,13 +28,13 @@ form {
   box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.623);
   animation-name: moving;
   animation-duration: 1s;
-  top: 100px;
+  top: 60px;
   margin-left: 28%;
 }
 
 @keyframes moving {
   from {top: -100px;}
-  to {top: 100px;}
+  to {top: 60px;}
 }
 
 .top-btn{

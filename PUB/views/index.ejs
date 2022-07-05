@@ -21,7 +21,7 @@
 
     <!-- Font Awesome Link... -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <!-- FAVICON  -->
     <link rel="icon" href="/img/images/fav1.png">
 
@@ -43,44 +43,52 @@
 </head>
 
 <body>
-
-
-    <div class="arrow" id="arrow">
-        <a href="#home"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
-    </div>
-
-    <div class="topnav" id="topnavbar">
-        <!-- <div id="menu-bar" class="fas fa-bars"></div> -->
-        <button id="menu-bar" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-          </button>
-        <a href="/index/index" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
-        <nav class="navbar">
-            <a href="#home">Home</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#places">Places</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#review">Reviews</a>
-            <a href="#cont">Contact</a>
-        </nav>
-        <div class="icons navbar">
-            <i class="fas fa-search" id="search-btn"></i>
-            <% if(locals.user==null) {%>
-                <a href="login"><i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
-                <!-- <a href="/">LogOut</a> -->
-                <% } %>
-                    <% if(locals.user !=null) {%>
-                        <a href="/profile/profile">
-                            <i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
-                        <a href="/logout">LogOut</a>
-                        <% } %>
+    <header class="topnav" id="topnavbar">
+        <div class="linkrow">
+            <button class="nav-toggler"><span></span></button>
+            <label class="logo"><a href="/index/index" class="logo"><span>P</span>ACK <span>U</span>R
+                    <span>B</span>AGS</a></label>
+            <div class="links">
+                <ul>
+                    <li><a class="activ" href="#home">Home</a></li>
+                    <li><a href="#about">about</a></li>
+                    <li><a href="#gallery">gallery</a></li>
+                    <li><a href="#places">places</a></li>
+                    <li><a href="#serivces">services</a></li>
+                    <li><a href="#reviews">reviews</a></li>
+                    <li><a href="#cont">contact</a></li>
+                </ul>
+            </div>
+            <div class="icons">
+                <div class="navprofile">
+                    <% if(user.image){ %>
+                        <img src="/uploads/<%= user.image%>" alt="profile_image">
+                        <i class='bx bx-chevron-down fa-2x'></i>
+                        <ul class="sub-menu">
+                            <li><a href="#">My profile</a></li>
+                            <li><a href="#">My tours</a></li>
+                            <li><a href="#">transactions</a></li>
+                            <li><a href="#">logout</a></li>
+                        </ul>
+                        <%} %>
+                            <% if(!user.image){ %>
+                                <img src="/img/images/profile_pic.jpeg" alt="profile picture">
+                                <i class='bx bx-chevron-down fa-2x'></i>
+                                <ul class="sub-menu">
+                                    <li><a href="#">My profile</a></li>
+                                    <li><a href="#">My tours</a></li>
+                                    <li><a href="#">transactions</a></li>
+                                    <li><a href="#">logout</a></li>
+                                </ul>
+                                <%} %>
+                </div>
+            </div> 
         </div>
-        <form action="" class="search-bar-container">
-            <input type="search" id="search-bar" placeholder="Search here..">
-            <label for="search-bar" class="fas fa-search"></label>
-        </form>
-    </div>
+        <!-- <form action="" class="search-bar-container">
+                <input type="search" id="search-bar" placeholder="Search here..">
+                <label for="search-bar" class="fas fa-search"></label>
+            </form> -->
+    </header>
 
         <!-- Home Section Starts... -->
         <div class="home" id="home">
@@ -530,11 +538,10 @@
             </div>
         </div>
 
-        <%- include('footer'); %>
+        <!-- <%- include('footer'); %> -->
 
             <!-- custom js file link  -->
             <script src="/js/script.js"></script>
-            <script src="/js/index.js"></script>
 
             <script>
 
