@@ -17,8 +17,6 @@
     <link rel="stylesheet" href="/css/places.css">
     <link rel="stylesheet" href="/css/footer.css">
 
-
-
     <!-- Font Awesome Link... -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
@@ -28,18 +26,6 @@
     <!-- Script for animation and swiper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <!-- <script src="/js/index.js"></script> -->
-
-    <style>
-        option{
-            position: absolute;
-            font-size: 40px;
-            cursor: pointer;
-            color: aliceblue;
-            background-color: yellow;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -75,7 +61,7 @@
                         <%} %>
                             <% if(!user.image){ %>
                                 <button class="navprofile">
-                                    <img src="/uploads/<%= user.image%>" alt="profile_image">
+                                    <img src="/img/images/profile_pic.jpeg" alt="profile_image">
                                     <i class='bx bx-chevron-down fa-2x' id="down"></i>
                                 </button>
                                 <ul class="sub-menu">

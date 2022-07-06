@@ -19,9 +19,6 @@
     <link rel="icon" href="/img/images/fav1.png">
 
     <style>
-        body {
-            background-color: whitesmoke;
-        }
         a{
             text-decoration-line: none;
         }
@@ -30,18 +27,19 @@
 
 <body>
     <!-- Header Section Starts here... -->
-    <div class="topnav">
-        <div id="menu-bar" class="fas fa-bars"></div>
-
-        <a href="/index/index" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
-        <nav class="navbar">
-            <a href="/index/index">Home</a>
-            <a href="#fd">Feedbacks</a>
-            <a href="#footer">Contact</a>
-        </nav>
-    </div>
+    <header class="topnav" id="topnavbar">
+        <div class="linkrow">
+            <button class="nav-toggler"><span></span></button>
+            <label class="logo"><a href="/index/index" class="logo"><span>P</span>ACK <span>U</span>R
+                    <span>B</span>AGS</a></label>
+            <div class="links">
+                <ul>
+                    <li><a href="/index/index">Home</a></li>
+                </ul>
+            </div>
+    </header><br><br><br>
     <!-- Header Section Ends here... -->
-    <h1>profile</h1>
+    <h1 style="font-size: 40px;">profile</h1>
     <% if(locals.edit !=null) {%>
         <% edit.forEach(function(error) { %>
           <div class="alert bg-success" id="msg">
@@ -133,50 +131,6 @@
             <a href="/logout" class="prof-btn">logout</a>
         </div>
     </div>
-    
-    <section class="bookings">
-        <h1 style="color: rgb(9, 255, 0);font-size: 20px;font-family: algerian;">Your Bookings Will Appear Here...</h1>
-        <br><br>
-        <% if(locals.model !=null){%>
-            <table>
-                <tr>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Adults</th>
-                    <th>Children</th>
-                    <th>Departure</th>
-                    <th>Arrival</th>
-                </tr>
-                <% for (const row of model){%>
-                    <tr>
-                        <td>
-                            <%= row.from%>
-                        </td>
-                        <td>
-                            <%= row.to%>
-                        </td>
-                        <td>
-                            <%= row.adults%>
-                        </td>
-                        <td>
-                            <%= row.children%>
-                        </td>
-                        <td>
-                            <%= row.fromdate%>
-                        </td>
-                        <td>
-                            <%= row.todate%>
-                        </td>
-                        <!-- <td>
-                            <td><a href="/profile/remove/<%= row.email%>"><button class="btn">cancel</button></a></td>
-                        </td> -->
-                    </tr>
-                    <%} %>
-            </table>
-            <%} %>
-    </section>
-
-    
 </body>
 
 </html>

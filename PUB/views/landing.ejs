@@ -38,43 +38,30 @@
         <a href="#home"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
     </div>
 
-    <div class="topnav">
-        <div id="menu-bar" class="fas fa-bars"></div>
-    
-        <a href="/" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
-        <nav class="navbar">
-            <a href="#home">Home</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#bottom">Places</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#bottom">Reviews</a>
-            <a href="#bottom">Contact</a>
-        </nav>
-        <div class="icons navbar">
-            <!-- <i class="fas fa-search" id="search-btn"></i> -->
-            <!-- <% if(locals.user == null) {%> -->
-                <a href="login"><i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
-                <!-- <a href="/">LogOut</a> -->
-                <!-- <% } %> -->
-            <!-- <% if(locals.user != null) {%>
-            <a href="/profile/profile/<%=user.email%>"><i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
-            <a href="/">LogOut</a>
-            <% } %> -->
+    <header class="topnav" id="topnavbar">
+        <div class="linkrow">
+            <button class="nav-toggler"><span></span></button>
+            <label class="logo"><a href="/index/index" class="logo"><span>P</span>ACK <span>U</span>R
+                    <span>B</span>AGS</a></label>
+            <div class="links">
+                <ul>
+                    <li><a class="activ" href="#home">Home</a></li>
+                    <li><a href="#about">about</a></li>
+                    <li><a href="#gallery">gallery</a></li>
+                    <li><a href="#bottom">places</a></li>
+                    <li><a href="#serivces">services</a></li>
+                    <li><a href="#reviews">reviews</a></li>
+                    <li><a href="#bottm">contact</a></li>
+                </ul>
+            </div>
+            <a href="login"><i class="fa fa-user fa-2x" style="margin-top: 6px; color:#fff" aria-hidden="true" id="login-btn"></i></a>
         </div>
-        <form action="" class="search-bar-container">
-            <input type="search" id="search-bar" placeholder="Search here..">
-            <label for="search-bar" class="fas fa-search"></label>
-        </form>
-    </div>
+    </header>
     <!-- Header Section Ends here... -->
 
         <!-- Home Section Starts... -->
         <section class="home" id="home">
             <div class="content">
-                <% if(locals.user != null) {%>
-                <h3>Welcome <%=user.name %>!</h3>
-                <% } %>
                 <h3>travelling is worthwhile</h3>
                 <p>discover new places with us, adventure awaits</p>
                 <a href="#gallery" class="btn">discover more</a>
