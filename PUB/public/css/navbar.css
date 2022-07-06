@@ -32,6 +32,8 @@
 .topnav .linkrow .logo a{
     color: #fff;
     font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
 }
 
 .topnav .linkrow .logo a:hover {
