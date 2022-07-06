@@ -21,6 +21,7 @@
 
     <!-- Font Awesome Link... -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- FAVICON  -->
     <link rel="icon" href="/img/images/fav1.png">
@@ -37,27 +38,50 @@
         <a href="#home"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
     </div>
 
-    <div class="topnav">
-        <div id="menu-bar" class="fas fa-bars"></div>
-    
-        <a href="/admins/adminland/<%=user.username%>" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
-        <nav class="navbar">
-            <a href="/admins/adminland">Home</a>
-            <a href="/admins/admin">admins</a>
-            <a href="/admins/place">places</a>
-            <a href="/admins/users">users</a>
-            <a href="/admins/feedback">Feedbacks</a>
-            <a href="/admins/bookings">bookings</a>
-           
-        </nav>
-        <div class="icons navbar">
-            <% if(locals.user != null) {%>
-            <a href="/admins/adminprofile"><i class="fa fa-user" aria-hidden="true" id="login-btn"></i></a>
-            <a href="/logout">LogOut</a>
-            <% } %>
+    <header class="topnav" id="topnavbar">
+        <div class="linkrow">
+            <button class="nav-toggler"><span></span></button>
+            <label class="logo"><a href="/admins/adminland" class="logo"><span>P</span>ACK <span>U</span>R
+                    <span>B</span>AGS</a></label>
+            <div class="links">
+                <ul>
+                    <li><a href="/admins/adminland">Home</a></li>
+                    <li><a href="/admins/admin">admins</a></li>
+                    <li><a href="/admins/place">places</a></li>
+                    <li><a href="/admins/users">users</a></li>
+                    <li><a href="/admins/feedback">Feedbacks</a></li>
+                    <li><a href="/admins/bookings">bookings</a></li>
+                </ul>
+            </div>
+            <div class="icons">
+                    <% if(user.image){ %>
+                        <button class="navprofile">
+                            <img src="/uploads/<%= user.image%>" alt="profile_image">
+                            <i class='bx bx-chevron-down fa-2x' id="down"></i>
+                        </button>
+                        <ul class="sub-menu">
+                            <li><a href="/profile/profile">My profile</a></li>
+                            <li><a href="#">My tours</a></li>
+                            <li><a href="#">transactions</a></li>
+                            <li><a href="/logout">logout</a></li>
+                        </ul>
+                 
+                        <%} %>
+                            <% if(!user.image){ %>
+                                <button class="navprofile">
+                                    <img src="/img/images/profile_pic.jpeg" alt="profile_image">
+                                    <i class='bx bx-chevron-down fa-2x' id="down"></i>
+                                </button>
+                                <ul class="sub-menu">
+                                    <li><a href="/admins/adminprofile">My profile</a></li>
+                                    <li><a href="#">My tours</a></li>
+                                    <li><a href="#">transactions</a></li>
+                                    <li><a href="/logout">logout</a></li>
+                                </ul>
+                                <%} %>
+            </div> 
         </div>
-        
-    </div>
+    </header>
     <!-- Header Section Ends here... -->
 
         <!-- Home Section Starts... -->
@@ -73,6 +97,7 @@
             </div>
         </section>
         <!-- Home Section Ends... -->
+    <script src="/js/script.js"></script>
 </body>
 
 </html>
