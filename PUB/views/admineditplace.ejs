@@ -6,13 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>editplaces</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/navbar.css">
     
     <style>
-        body{
-            margin-top: 100px;
-        }
-
         .addplacebtn{
             height: 40px;
             width: 150px;
@@ -74,14 +71,17 @@
     </style>
 </head>
 <body>
-    <div class="topnav">
-        <div id="menu-bar" class="fas fa-bars"></div>
-    
-        <a href="/admins/adminland/<%=locals.user.username%>" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
-        <nav class="navbar">
-            <a href="/admins/adminland/<%=locals.user.username%>">Home</a>
-        </nav>
-    </div>
+    <header class="topnav" id="topnavbar">
+        <div class="linkrow">
+            <button class="nav-toggler"><span></span></button>
+            <label class="logo"><a href="/admins/adminland" class="logo"><span>P</span>ACK <span>U</span>R
+                    <span>B</span>AGS</a></label>
+            <div class="links">
+                <ul>
+                    <li><a href="/admins/adminland">Home</a></li>
+                </ul>
+            </div>
+    </header><br><br><br>
     <h2>Add Place</h2>
     <div class="addform">
         <form action="/admins/addplace" method="post" enctype="multipart/form-data">

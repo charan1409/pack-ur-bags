@@ -15,13 +15,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        body{
-            margin-top: 150px;
-        }
-        a{
-            text-decoration-line: none;
-        }
-
         .adminadd{
             margin-left: 530px;
         }
@@ -69,6 +62,7 @@
             color: whitesmoke;
             text-align: center;
             display: inline-block;
+            text-decoration: none;
         }
 
         .adminadd a:hover{
@@ -87,14 +81,17 @@
     </style>
 </head>
 <body>
-    <div class="topnav">
-        <div id="menu-bar" class="fas fa-bars"></div>
-    
-        <a href="/admins/adminland/<%=locals.user.username%>" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a>
-        <nav class="navbar">
-            <a href="/admins/adminland/<%=locals.user.username%>">Home</a>
-        </nav>
-    </div>
+    <header class="topnav" id="topnavbar">
+        <div class="linkrow">
+            <button class="nav-toggler"><span></span></button>
+            <label class="logo"><a href="/admins/adminland" class="logo"><span>P</span>ACK <span>U</span>R
+                    <span>B</span>AGS</a></label>
+            <div class="links">
+                <ul>
+                    <li><a href="/admins/adminland">Home</a></li>
+                </ul>
+            </div>
+    </header><br><br><br>
     <h2>Add admin</h2>
     <div class="adminadd">
     <% if(locals.errors !=null) {%>
@@ -115,7 +112,7 @@
                 </div>
                 <% }); %>
                   <% } %>
-        <form action="/admins/add/<%=user.username%>" method="post">
+        <form action="/admins/add" method="post">
             <label for="name">Name: </label><br>
             <input type="text" name="name" class="adminbox" placeholder="Enter username"><br>
             <label for="email">Email: </label><br>
@@ -130,7 +127,7 @@
                 <input type="password" name="password2" id="pas2" placeholder="Confirm your password">
                 <i class="fa fa-eye fa-x" style="cursor: pointer;" id="show-pass2"></i>
             </div><br>
-            <a href="/admins/admin/<%=user.username%>" class="addadminbtn">cancel</a>
+            <a href="/admins/admin" class="addadminbtn">cancel</a>
             <button type="submit" value="submit" class="addadminbtn">Submit</button>
         </form>
     </div>
