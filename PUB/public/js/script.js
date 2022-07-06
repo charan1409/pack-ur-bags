@@ -1,23 +1,35 @@
 const navToggler = document.querySelector(".nav-toggler");
- navToggler.addEventListener("click", navToggle);
+const navProfile = document.querySelector(".navprofile");
+navToggler.addEventListener("click", () =>{
+  navToggler.classList.toggle("active");
+  const nav = document.querySelector(".links");
+  nav.classList.toggle("open");
+  if(nav.classList.contains("open")){
+    nav.style.left = '-88px';
+  } else{
+    nav.style.left = '-8888px';
+  }
+});
 
- function navToggle() {
-    navToggler.classList.toggle("active");
-    const nav = document.querySelector(".links");
-    nav.classList.toggle("open");
-    if(nav.classList.contains("open")){
-    	nav.style.left = '-88px';
-    } else{
-      nav.style.left = '-888px';
-    }
- }
+navProfile.addEventListener("click",() =>{
+  const nav = document.querySelector(".sub-menu");
+  const down = document.querySelector("#down");
+  nav.classList.toggle("show");
+  down.classList.toggle("bx-chevron-up")
+})
  
  window.addEventListener('scroll',()=>{
   const nav = document.querySelector('.links');
+  const navp = document.querySelector(".sub-menu");
   if(nav.classList.contains("open")){
     navToggler.classList.toggle("active");
     nav.style.left = '-888px';
     nav.classList.remove('open',window.scrollY > 0)
+  }
+  if(navp.classList.contains("show")){
+    const down = document.querySelector("#down");
+    down.classList.remove("bx-chevron-up")
+    navp.classList.remove('show',window.scrollY > 0)
   }
 })
 

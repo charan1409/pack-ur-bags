@@ -15,7 +15,7 @@
 }
 
 .topnav .linkrow{
-    margin-left: 5%;
+    margin-left: 2%;
     width: auto;
     height: 100%;
     align-items: center;
@@ -25,7 +25,7 @@
 .topnav .linkrow .logo{
     left: 0;
     font-size: 30px;
-    width: 300px;
+    width: 250px;
     display: inline-block;
 }
 
@@ -45,10 +45,10 @@
 
 .links {
     height: 80px;
-    margin-left: 15%;
-    width: 50%;
+    width: 65%;
     justify-content: space-between;
     float: right;
+    margin-left: 2%;
 }
 
 .links ul li{
@@ -73,33 +73,63 @@
     display: none;
 }
 
+.show{
+    display: block;
+    position: absolute;
+    top: 80px;
+    background-color: #201e1e;
+    width: 150px;
+    height: 210px;
+    text-align: center;
+}
+
+.sub-menu li{
+    list-style: none;
+    border-bottom: 2px solid #f98d08;
+    margin-top: 22px;
+}
+
+.sub-menu li:last-child{
+    border-bottom: none;
+}
+
+.sub-menu li a{
+    font-size: 20px;
+    color: #fff;
+}
+
+.sub-menu li a:hover{
+    color: #f98d08;
+}
+
 .icons{
     width: 10%;
     height: 100%;
 }
 
 .navprofile{
-    margin-left: 10%;
-    margin-top: 14%;
+    background: none;
     height: 40px;
     width: 60px;
-    padding-top: 0.5px;
+    margin-top: 14%;
     border: 2px solid #fff;
     border-radius: 22px;
     cursor: pointer;
+    position: relative;
 }
 
-.navprofile img{
+.icons img{
     height: 35px;
     width: 35px;
     border-radius: 50%;
+    float: left;
 }
 
-.navprofile i{
-    height: 100%;
-    margin-top: 8px;
-    float: right;
+.icons i{
+    position: absolute;
+    margin-top: 5px;
     color: #fff;
+    margin-left: -12px;
 }
 
 
@@ -150,18 +180,23 @@
 .nav-toggler.active span::after{
 	transform: rotate(135deg);
 }
-@media(max-width:1201px){
+@media(max-width:1000px){
    .nav-toggler{
    	display: block;
+    margin-left: 2%;
+   }
+   .topnav .linkrow{
+    margin-left: 0%;
    }
    .topnav .linkrow .logo{
     text-align: center;
+    margin-left: 5%;
    }
    .links{
     position: absolute;
     background: #201e1e;
     top: 80px;
-    left: -888px;
+    left: -8888px;
     height: 100vh;
     width: 100%;
    }
@@ -179,8 +214,11 @@
     border-bottom: none;
    }
 
+   .icons{
+    margin-left: 25%;
+   }
+
    .navprofile{
     margin-top: 10%;
-    margin-left: 70%;
    }
 }
