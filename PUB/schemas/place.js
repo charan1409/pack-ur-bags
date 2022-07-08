@@ -1,16 +1,15 @@
-const mongoose=require('mongoose'), Schema = mongoose.Schema
-const hotel = require('../schemas/hotel');
+const mongoose=require('mongoose')
 
 const placeSchema=new mongoose.Schema({
     id:{
         type:String,
         // required:true
     },
-    from:{
+    to:{
         type:String,
         // required:true
     },
-    to:{
+    photo:{
         type:String,
         // required:true
     },
@@ -22,14 +21,12 @@ const placeSchema=new mongoose.Schema({
         type:String,
         // required:true
     },
-    price: {
+    reviews:{
         type:String,
+        // required:true
     },
     availability: {
         type:String,
-    },
-    hotels:{
-        type: [{ type: Schema.Types.ObjectId, ref: hotel }]
     }
 });
 const place=mongoose.model('place',placeSchema);

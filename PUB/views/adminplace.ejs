@@ -109,7 +109,7 @@
             </div>
     </header><br><br>
     <h2>Places</h2>
-    <a href="/admins/addplace" class="adminbtn">Add place</a>
+    <a href="/adminplace/addplace" class="adminbtn">Add place</a>
     <% if(model) {%>
         <table>
             <tr>
@@ -124,10 +124,10 @@
             <% for(const i of model) {%>
                 <tr>
                     <td>
-                        <%- i. name %>
+                        <%- i. to %>
                     </td>
                     <td>
-                        <%- i. username %>
+                        <%- i. details%>
                     </td>
                     <td>
                         <%- i. email %>
@@ -136,19 +136,17 @@
                         <%- i. phone %>
                     </td>
                     <td>
-                        <%- i. gender %>
-                    </td>
-                    <td>
-                        <% if(user.image){ %>
-                            <img src="/uploads/<%= user.image%>" alt="profile_image">
+                        <% if(i.photo){ %>
+                            <img src="/places/<%= i.photo%>" alt="profile_image">
                             <%}
                         %>
-                        <% if(!user.image){ %>
+                        <% if(!i.photo){ %>
                             <img src="/img/images/profile_pic.jpeg" alt="profile picture">
                             <%}
                         %>
                     </td>
-                    <td><a href="/admins/remove/<%= i.username%>/<%= user.username%>"><button class="btn"><i class="bi bi-trash"></i></button></a></td>
+                    <td><a href="/admins/<%= i.username%>/<%= user.username%>"><button class="btn"><i class="bi bi-pen"></i></button></a></td>
+                    <td><a href="/admins/<%= i.username%>/<%= user.username%>"><button class="btn"><i class="bi bi-trash"></i></button></a></td>
                 </tr>
                 <%}%>
             <%} %>

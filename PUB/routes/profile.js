@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
@@ -13,16 +12,13 @@ const book = require('../schemas/book');
 
 const verifier = require('../routes/verifier');
 
-router.get('/profile',verifier, (req, res) => {
+router.get('/profile', verifier, (req, res) => {
     const email = req.user.id
     User.findOne({ email: email })
         .then(async user => {
             book.find({ email: email })
                 .then(bookings => {
-                    // fdb.find({email: email})
-                    //     .then(feed=>{
-                            res.render('profile', { user,model:bookings })
-                        // })
+                    res.render('profile', { user, model: bookings })
                 })
         })
 

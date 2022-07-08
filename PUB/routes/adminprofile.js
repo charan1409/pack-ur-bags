@@ -8,9 +8,6 @@ const cookieparser = require('cookie-parser');
 
 router.use(cookieparser());
 
-// const User = require('../schemas/user');
-// const book = require('../schemas/book');
-// const fdb = require('../schemas/feed');
 const Admin = require('../schemas/admin');
 const adminverifier = require('../routes/adminverifier');
 

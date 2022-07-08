@@ -62,3 +62,4 @@ app.use('/book',require('./routes/book'));
 app.use('/admins',require('./routes/admins'));
 app.use('/payment',require('./routes/payments'));
 app.use('/adminprofile',require('./routes/adminprofile'));
+app.use('/adminplace',require('./routes/adminplace'));

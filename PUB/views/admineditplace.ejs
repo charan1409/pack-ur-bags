@@ -84,13 +84,9 @@
     </header><br><br><br>
     <h2>Add Place</h2>
     <div class="addform">
-        <form action="/admins/addplace" method="post" enctype="multipart/form-data">
+        <form action="/adminplace/addplace" method="post" enctype="multipart/form-data">
             <div class="tbox">
-                <label for="from">From: </label>
-                <input type="text" name="from" placeholder="enter from">
-            </div>
-            <div class="tbox">
-                <label for="from">To: </label>
+                <label for="to">To: </label>
                 <input type="text" name="to" placeholder="enter destination">
             </div><br>
             <div class="tbox">
@@ -98,15 +94,12 @@
                 <textarea name="details" id="details" cols="100" rows="5"></textarea>
             </div><br><br><br><br><br><br><br><br>
             <div class="tbox">
-                <label for="price">cost per day in Rs: </label>
-                <input type="text" name="price" placeholder="enter destination">
-            </div><br>
+                <label for="photo">photo: </label>
+                <input type="file" name="photo">
+            </div>
             <div class="tbox">
-                <label for="type">resing: </label>
-                <select name="type" id="type">
-                    <option value="camp">Camping</option>
-                    <option value="hotels">Hotels</option>
-                </select>
+                <label for="password">Password: </label>
+                <input type="password" name="password" placeholder="enter password">
             </div>
             <button type="submit" class="addplacebtn">submit</button>
         </form>
