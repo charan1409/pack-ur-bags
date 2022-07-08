@@ -2,9 +2,13 @@
   background-color: #ffffff10;
   backdrop-filter: blur(15px);
 }
-
+html{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
 body {
-  background-image: url(./../img/images/login3.jpg);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0,0,0,0.5)),url(./../img/images/login4.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -16,15 +20,16 @@ form {
 
 .form-container {
   position: relative;
-  height: 550px;
-  width: 600px;
+  height: 500px;
+  width: 450px;
   padding: 30px 30px;
   perspective: 1000px;
   box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.623);
   animation-name: moving;
   animation-duration: 1s;
   top: 60px;
-  margin-left: 28%;
+  margin-right: 12%;
+  float: right;
 }
 
 @keyframes moving {
@@ -35,23 +40,25 @@ form {
 .top-btn{
   background-color: #fac102;
   color: whitesmoke;
-  height: 55px;
-  width: 500px;
+  height: 45px;
+  width: 350px;
+  font-size: 25px;
   margin-left: 25px;
-  padding: 2px 20px;
+  padding: 1px 20px;
   text-align: center;
 }
 
 .form-container form {
   position: relative;
   margin: 0 2rem;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
 }
 
 .form-container .input-box{
   background-color: whitesmoke;
-  height: 40px;
-  padding: 2px 0px;
+  height: 30px;
+  width: 300px;
+  padding: 3px 0px;
 }
 
 .form-container input{
@@ -59,7 +66,7 @@ form {
   border: none;
   outline: none;
   width: 80%;
-  font-size: 20px;
+  font-size: 15px;
   margin-left: 3px;
   text-transform: none;
 }
@@ -70,9 +77,9 @@ form {
   color: white;
   padding: 0.3rem 2rem;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 15px;
   border-radius: 20px;
-  height: 40px;
+  height: 35px;
   border: none;
 }
 
@@ -84,9 +91,10 @@ form {
 }
 
 .form-container form p{
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 400;
   text-transform: none;
+  color: #fff;
 }
 
 .log-alert{
@@ -142,4 +150,16 @@ form {
   font-size: 1.5rem;
   color: solid black;
   font-weight: 500;
+}
+
+.landingcontent{
+  position: absolute;
+  margin-top: 12%;
+  margin-left: 10%;
+}
+
+.landingcontent p{
+  color: #fff;
+  font-size: 40px;
+  text-transform: none;
 }

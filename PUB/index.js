@@ -32,13 +32,13 @@ app.get("/", verifier, function (req, res) {
             res.render('index',{user});
         })
     } else{
-        res.render('landing');
+        res.render('login');
     }
 });
 
 app.get("/logout",(req,res)=>{
     res.clearCookie("token");
-    res.render('landing');
+    res.render('login');
 })
 
 app.get("/login", function (req, res) {
@@ -47,10 +47,6 @@ app.get("/login", function (req, res) {
 
 app.get("/register", function (req, res) {
     res.render('register');
-});
-
-app.get("/landing", function (req, res) {
-    res.render('landing');
 });
 
 app.listen(port, function () {
