@@ -1,8 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
+const cookieparser = require('cookie-parser');
+router.use(cookieparser());
 
 const User = require('../schemas/user');
+const Place = require('../schemas/place');
+
+const verifier = require('../routes/verifier');
+
+router.get('/viewplaces',verifier,(req,res)=>{
+    const email = req.user.id
+    const user = User.findOne({ email: email});
+    if(user){
+        Place.find({}).then(data=>{
+            res.render('viewplaces',{data});
+        })
+    }
+
+})
 
 router.get('/beach/:id',(req,res)=>{
     const username = req.params.id

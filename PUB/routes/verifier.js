@@ -9,7 +9,7 @@ const verifier = async (req,res,next) =>{
         next();
     } catch (error) {
         res.clearCookie("token");
-        return res.redirect('landing');
+        return res.render('login');
     }
 }
 
