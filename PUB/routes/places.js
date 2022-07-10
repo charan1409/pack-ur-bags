@@ -8,11 +8,12 @@ const Place = require('../schemas/place');
 
 const verifier = require('../routes/verifier');
 
-router.get('/viewplaces',verifier,(req,res)=>{
+router.get('/viewplaces/:id',verifier,(req,res)=>{
     const email = req.user.id
+    const category = req.params.id
     const user = User.findOne({ email: email});
     if(user){
-        Place.find({}).then(data=>{
+        Place.find({category: category}).then(data=>{
             res.render('viewplaces',{data});
         })
     }

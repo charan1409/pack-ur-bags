@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/placepage.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="/css/area.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="/img/images/fav1.png">
 
     <script src="/js/script.js"></script>
     <style>
         .place-box {
-            border: 3px solid rgba(0, 0, 0, 0.533);
             height: 270px;
-            margin: 7px 200px 10px 200px;
+            margin: 7px 200px 15px 200px;
             border-radius: 25px;
             padding: 6px 5px;
             display: grid;
@@ -26,14 +26,13 @@
         }
 
         .place-box:hover{
-            box-shadow: 10px 15px #2f2e2e;
+            box-shadow: 7px 7px 7px 7px #1e1e1ea0;
         }
 
         .place-box .place-pic {
             width: 340px;
             height: 100%;
             float: left;
-            border-right: 2px solid rgba(0, 0, 0, 0.455);
         }
 
         .place-box .place-pic img {
@@ -50,7 +49,6 @@
 
         .place-box .place-details .details {
             height: 200px;
-            border-bottom: 2px solid rgba(0, 0, 0, 0.455);
             overflow: hidden;
         }
 
@@ -84,6 +82,7 @@
             border-radius: 20px;
             cursor: pointer;
             padding-top: 7px;
+            margin-left: 20px;
         }
 
         .place-box .button .place-btn:hover {
@@ -98,7 +97,7 @@
 <body>
     <%- include('navbar'); %>
         <% if(data){%>
-            <h1 style="text-align: center; font-size:50px;"><%= data.category %></h1>
+            <h1 style="text-align: center; font-size:50px;">places</h1>
             <% for(const i of data) {%>
                 <div class="place-box">
                     <div class="place-pic">
@@ -116,11 +115,12 @@
                         </div>
                         <div class="button">
                             <a href="#" class="place-btn">See More</a>
+                            <a href="#" class="place-btn">Book Now</a>
                         </div>
                     </div>
                 </div>
                 <%}%>
-                    <%} %>
+                    <%}  %> 
 </body>
 
 </html>
