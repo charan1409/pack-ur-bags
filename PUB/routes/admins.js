@@ -136,7 +136,7 @@ router.get('/admin',adminverifier, (req, res) => {
     let email = req.user.id
     Admin.findOne({ email: email })
         .then(user => {
-            Admin.find({}, (err, data) => {
+            Admin.find({user:"admin"}, (err, data) => {
                 if (data) {
                     res.render('admins', { user, model: data })
                 } else {
@@ -216,8 +216,9 @@ router.post('/add',adminverifier, check('email').isEmail().normalizeEmail(), asy
         }
         else {
             const newAdmin = new Admin({
-                email: inname,
+                username: inname,
                 email: inemail,
+                user: "admin",
                 password: hashPassword
             });
             //save user

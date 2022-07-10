@@ -34,6 +34,7 @@ const upload = multer({storage:storage})
 router.post('/addplace',adminverifier,upload.single('photo'), async (req, res) => {
     let email = req.user.id;
     const pname = req.body.to;
+    const category = req.body.category;
     const about = req.body.details;
     const password = req.body.password;
     let errors = []
@@ -41,12 +42,18 @@ router.post('/addplace',adminverifier,upload.single('photo'), async (req, res) =
     const validPass = await bcrypt.compare(password, user.password);
     if(user){
         if (!pname || !about || !password) {
+            let filepath = path.join('\public\\places\\' + req.file.filename)
+            fs.unlink(filepath, (err) => {
+                if (err) throw err;
+                console.log('photo deleted');
+            })
             errors.push({ msg: "please fill in all details" })
             res.render('admineditplace', { user, errors })
         }
         else if (validPass) {
             const newplace = new place({
                 to: pname,
+                category: category,
                 details: about,
                 photo: req.file.filename
             });
@@ -58,6 +65,11 @@ router.post('/addplace',adminverifier,upload.single('photo'), async (req, res) =
             }) 
         }
         else {
+            let filepath = path.join('\public\\places\\' + req.file.filename)
+            fs.unlink(filepath, (err) => {
+                if (err) throw err;
+                console.log('photo deleted');
+            })
             errors.push({ msg: "incorrect password" })
             res.render('admineditplace', { user, errors })
         }
