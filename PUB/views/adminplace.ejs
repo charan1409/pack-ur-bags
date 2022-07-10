@@ -47,8 +47,8 @@
             color: whitesmoke;
         }
         img{
-            width: 40px;
-            height: 40px;
+            width: 100px;
+            height: 100px;
         }
 
         
@@ -112,13 +112,13 @@
     <% if(model) {%>
         <table>
             <tr>
-                <th>name</th>
-                <th>username</th>
-                <th>email</th>
-                <th>phone number</th>
-                <th>gender</th>
-                <th>profile photo</th>
-                <th>REMOVE USER</th>
+                <th>Destination</th>
+                <th>Info</th>
+                <th>Photo</th>
+                <th>Ratings</th>
+                <th>Reviews</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
             <% for(const i of model) {%>
                 <tr>
@@ -127,12 +127,6 @@
                     </td>
                     <td>
                         <%- i. details%>
-                    </td>
-                    <td>
-                        <%- i. email %>
-                    </td>
-                    <td>
-                        <%- i. phone %>
                     </td>
                     <td>
                         <% if(i.photo){ %>
@@ -144,8 +138,14 @@
                             <%}
                         %>
                     </td>
+                    <td>
+                        <%- i. email %>
+                    </td>
+                    <td>
+                        <%- i. phone %>
+                    </td>
                     <td><a href="/admins/<%= i.username%>/<%= user.username%>"><button class="btn"><i class="bi bi-pen"></i></button></a></td>
-                    <td><a href="/admins/<%= i.username%>/<%= user.username%>"><button class="btn"><i class="bi bi-trash"></i></button></a></td>
+                    <td><a href="/adminplace/removeplace/<%= i.id%>"><button class="btn"><i class="bi bi-trash"></i></button></a></td>
                 </tr>
                 <%}%>
             <%} %>

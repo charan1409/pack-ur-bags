@@ -20,6 +20,24 @@ router.get('/addplace',adminverifier, (req, res) => {
         })
 })
 
+router.get('/removeplace/:id',adminverifier, (req, res) => {
+    let email = req.user.id;
+    const id = req.params.id;
+    Admin.findOne({ email: email })
+        .then(user => {
+            place.findOneAndDelete({id: id}).then(()=>{
+                console.log(id+'deleted.');
+            })
+            Place.find({}, (err, data) => {
+                if (data) {
+                    res.render('adminplace', { user, model: data })
+                } else {
+                    console.log(err);
+                }
+            })
+        })
+})
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, './public/places')
@@ -37,6 +55,7 @@ router.post('/addplace',adminverifier,upload.single('photo'), async (req, res) =
     const category = req.body.category;
     const about = req.body.details;
     const password = req.body.password;
+    const id = req.body.to +"/"+ req.file.filename;
     let errors = []
     const user = await Admin.findOne({ email: email});
     const validPass = await bcrypt.compare(password, user.password);
@@ -52,6 +71,7 @@ router.post('/addplace',adminverifier,upload.single('photo'), async (req, res) =
         }
         else if (validPass) {
             const newplace = new place({
+                id: id,
                 to: pname,
                 category: category,
                 details: about,
@@ -59,7 +79,6 @@ router.post('/addplace',adminverifier,upload.single('photo'), async (req, res) =
             });
             //save user
             newplace.save().then(plc => {
-                console.log(plc);
                 errors.push({ msg: "successfully added" })
                 res.render('admineditplace', { user, errors })
             }) 
