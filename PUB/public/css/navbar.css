@@ -49,14 +49,14 @@
     width: 65%;
     justify-content: space-between;
     float: right;
-    margin-left: 2%;
+    margin-left: 10%;
 }
 
 .links ul li{
     display: inline-block;
     line-height: 80px;
     font-size: 20px;
-    margin-left: 3%;
+    margin-left: 4%;
 }
 
 .links ul li a{

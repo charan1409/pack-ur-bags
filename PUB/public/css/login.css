@@ -2,23 +2,29 @@
   background-color: #ffffff10;
   backdrop-filter: blur(15px);
 }
-html{
-  height: 100%;
+
+.login-container{
+  height: 87vh;
   width: 100%;
-  margin: 0;
-}
-body {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0,0,0,0.5)),url(./../img/images/login4.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  left: 0;
 }
 
-form {
+.login-container img{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0px;
+  left: 0;
+}
+
+.login-container form {
   text-align: center;
   transform-style: preserve-3d;
 }
 
-.form-container {
+.login-container .form-container {
   position: relative;
   height: 500px;
   width: 450px;
@@ -37,7 +43,7 @@ form {
   to {top: 60px;}
 }
 
-.top-btn{
+.login-container .form-container .top-btn{
   background-color: #fac102;
   color: whitesmoke;
   height: 45px;
@@ -48,20 +54,21 @@ form {
   text-align: center;
 }
 
-.form-container form {
+.login-container .form-container form {
   position: relative;
   margin: 0 2rem;
   padding: 1rem 1rem;
 }
 
-.form-container .input-box{
+.login-container .form-container .input-box{
   background-color: whitesmoke;
   height: 30px;
   width: 300px;
   padding: 3px 0px;
+  margin: 0px 20px;
 }
 
-.form-container input{
+.login-container .form-container input{
   background: transparent;
   border: none;
   outline: none;
@@ -71,7 +78,7 @@ form {
   text-transform: none;
 }
 
-.form-container .login-btn {
+.login-container .form-container .login-btn {
   display: inline-block;
   background: #fac102;
   color: white;
@@ -83,83 +90,121 @@ form {
   border: none;
 }
 
-.form-container .login-btn:hover {
+.login-container .form-container .login-btn:hover {
   background: none;
   color: #fac102;
   border: 1px solid #fac102;
   font-weight: 600;
 }
 
-.form-container form p{
+.login-container .form-container form p{
   font-size: 15px;
   font-weight: 400;
   text-transform: none;
   color: #fff;
 }
 
-.log-alert{
-  height: 50px;
-  width: 450px;
-  background-color: rgba(255, 0, 0, 0.828) !important;
-  color: white !important;
-  margin-top: 10px;
+.login-container .log-alert{
+  height: 40px;
+  width: 330px;
+  background-color: rgba(255, 0, 0, 0.753);
+  margin-top: 5px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 3px;
-  padding: 0px 20px;
-  font-size: 14px;
-  text-align: center;
-  font-weight: bold;
-  border: none !important;
 }
 
-.log-suc{
-  height: 50px;
-  width: 450px;
-  background-color: rgba(0, 255, 30, 0.948) !important;
-  color: white !important;
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 3px;
-  padding: 0px 20px;
-  font-size: 14px;
-  text-align: center;
-  font-weight: bold;
-  border: none !important;
+.login-container .log-alert p{
+  font-size: 15px !important;
+  color: #fff;
+  margin-left: 3px;
+  text-transform: none;
 }
 
-.btn-close{
-  background-color: white !important;
-  color: white !important;
-  margin-top: 5px !important;
-}
-
-
-.form-container form label {
+.login-container .form-container form label {
   font-size: 1.5rem;
 }
   
-.form-container .btn {
+.login-container .form-container .btn {
   display: block;
   width: 100%;
 }
   
-.form-container p {
+.login-container .form-container p {
   padding: 0.5rem 0;
   font-size: 1.5rem;
   color: solid black;
   font-weight: 500;
 }
 
-.landingcontent{
+.login-container .landingcontent{
   position: absolute;
   margin-top: 12%;
   margin-left: 10%;
 }
 
-.landingcontent p{
+.login-container .landingcontent p{
   color: #fff;
   font-size: 40px;
   text-transform: none;
+}
+
+.about p {
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: none;
+}
+
+.heading {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+
+.heading span{
+  font-size: 3.5rem;
+  background:rgba(255, 165, 0,.2);
+  border-radius: .5rem;
+  padding:.2rem 1rem;
+  color: orange;
+}
+
+.heading span .space {
+  background: none;
+}
+
+/* SERIVICES */
+
+.services .box-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap:2.5rem;
+}
+
+.services .box-container .box{
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.199);
+  flex: 1 1 30rem;
+  border-radius: .5rem;
+  padding:1rem;
+  text-align: center;
+}
+
+.services .box-container .box i{
+  padding:1rem;
+  font-size: 3.5rem;
+  color:var(--orange);
+}
+
+.services .box-container .box h3{
+  font-size: 2.5rem;
+  color:#333;
+}
+
+.services .box-container .box p{
+  font-size: 1.5rem;
+  color:#666;
+  padding:1rem 0;
+}
+
+.services .box-container .box:hover{
+  box-shadow: 0 1rem 2rem rgb(218, 213, 213);
 }

@@ -10,11 +10,12 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/css/navbar.css">
   <link rel="stylesheet" href="/css/login.css">
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
   <link rel="icon" href="/img/images/fav1.png">
 
@@ -31,45 +32,134 @@
           <span>B</span>AGS</a></label>
     </div>
   </header>
-  <div class="landingcontent">
-    <p>Travelling is worthwhile,</p>
-    <p>Discover new places with us,</p>
-    <p> Adventure awaits</p>
-  </div>
-  <div id="log" class="form-container">
-    <div class="top-btn">
-      <h1>Sign In</h1>
+  <div class="login-container">
+    <img src="./../img/images/login4.jpg" alt="not found">
+    <div class="landingcontent">
+      <p>Travelling is worthwhile,</p>
+      <p>Discover new places with us,</p>
+      <p> Adventure awaits</p>
     </div>
-    <!-- Error Alert -->
-    <% if(locals.errors !=null) {%>
-      <% errors.forEach(function(error) { %>
-        <div class="alert alert-danger log-alert" id="msg">
-          <strong>Error! </strong>
-          <%=error.msg%>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        <% }); %>
-          <% } %>
-            <!-- Error Alert Ends-->
-            <form id="login" action="/users/login" method="post">
-              <div class="input-box">
-                <i class="fa fa-user fa-1x" style="color: #fac102;"></i>
-                <input type="text" id="email" name="inname" placeholder="username">
-                <i class="fa fa-squarespace fa-1x"></i>
-              </div><br>
-              <div class="input-box">
-                <i class="fa fa-key fa-1x" style="color: #fac102;"></i>
-                <input type="password" id="pas" name="inpass" placeholder="password">
-                <i class="fa fa-eye fa-1x" id="show-pass" style="cursor: pointer;"></i>
-              </div> <br>
-              <button type="submit" class="login-btn">Sign In</button>
-              <p>Don't have an account?</p>
-              <!-- <p>forget password? <a href="#">Click here</a></p> <br> -->
-              <a href="/register"><button type="button" class="login-btn">Sign Up</button></a>
-              <p>Customer service: 9398717554</p>
-            </form>
+    <div id="log" class="form-container">
+      <div class="top-btn">
+        <h1>Sign In</h1>
+      </div>
+      <!-- Error Alert -->
+      <% if(locals.errors !=null) {%>
+        <% errors.forEach(function(error) { %>
+          <div class="log-alert">
+            <p><%= error.msg %></p>
+          </div>
+          <% }); %>
+            <% } %>
+              <!-- Error Alert Ends-->
+              <form id="login" action="/users/login" method="post">
+                <div class="input-box">
+                  <i class="fa fa-user fa-1x" style="color: #fac102;"></i>
+                  <input type="text" id="email" name="inname" placeholder="username">
+                  <i class="fa fa-squarespace fa-1x"></i>
+                </div><br>
+                <div class="input-box">
+                  <i class="fa fa-key fa-1x" style="color: #fac102;"></i>
+                  <input type="password" id="pas" name="inpass" placeholder="password">
+                  <i class="fa fa-eye fa-1x" id="show-pass" style="cursor: pointer;"></i>
+                </div> <br>
+                <button type="submit" class="login-btn">Sign In</button>
+                <p>Don't have an account?</p>
+                <!-- <p>forget password? <a href="#">Click here</a></p> <br> -->
+                <a href="/register"><button type="button" class="login-btn">Sign Up</button></a>
+                <p>Customer service: 9398717554</p>
+              </form>
+    </div>
   </div>
-  <script src="/js/login.js">
-  </script>
+  <section class="about" id="about">
+    <h1 class="heading">
+      <span>a</span>
+      <span>b</span>
+      <span>o</span>
+      <span>u</span>
+      <span>t</span>
+  
+    </h1>
+    <p>Travelling is a little adventure where you get memories and experiences of a liftime. To travel is to live.
+    You will always be fascinated by the beauty of this world and pondered with the question "where to next".
+    But you need not worry about this because with our assistance and guidance you can easily figure out where
+    you would like to go. We constantly work to amuse you and find a way for you to relax. We are here for you!
+    </p>
+  </section>
+  <!-- Services Section -->
+  <section class="services" id="services">
+
+    <h1 class="heading">
+        <span>s</span>
+        <span>e</span>
+        <span>r</span>
+        <span>v</span>
+        <span>i</span>
+        <span>c</span>
+        <span>e</span>
+        <span>s</span>
+    </h1>
+
+    <div class="box-container">
+
+        <div class="box" data-aos="zoom-in">
+
+            <i class="fas fa-hotel"></i>
+            <h3>affordable hotels</h3>
+            <p>People will forget what you said, forget what you did, but people will never forget how you made
+                them
+                feel. So, it has been, and continues to be, our responsibility to fill the soul with the light
+                and
+                warmth of hospitality.</p>
+        </div>
+        <div class="box" data-aos="zoom-in">
+            <i class="fas fa-utensils"></i>
+            <h3>food and drinks</h3>
+            <p>We have been partners with wide range of hotels whose top priority is to provide quality food to
+                their customers because food is culture, habit, craving and identity.</p>
+        </div>
+        <div class="box" data-aos="zoom-in">
+            <i class="fas fa-bullhorn"></i>
+            <h3>safty guide</h3>
+            <p>At the end of the day, the goals are safety and security. We go to great lengths in order to
+                ensure
+                the safety of our tourists.</p>
+        </div>
+        <div class="box" data-aos="zoom-in">
+            <i class="fas fa-globe-asia"></i>
+            <h3>around the world</h3>
+            <p>travel faster:If you wish to travel far and fast, travel light. Take off all your envies,
+                jealousies,
+                unforgiveness, selfishness, fears to travel and explore the world.</p>
+        </div>
+        <div class="box" data-aos="zoom-in">
+            <i class="fas fa-plane"></i>
+            <h3>fastest travel</h3>
+            <p>Travel makes one modest, you see what a tiny place you occupy in the world. So just travel
+                without
+                any regrets.</p>
+        </div>
+        <div class="box" data-aos="zoom-in">
+            <i class="fas fa-hiking"></i>
+            <h3>adventures</h3>
+            <p>Only those who risk going too far can possibly find out how far they can go.Life is either a
+                daring
+                adventure or nothing at all..Always say yes to new adventures.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<%- include('footer'); %>
+
+  <script src="/js/login.js"></script>
+  <script>
+    AOS.init({
+        duration: 800,
+        delay: 200
+    });
+
+</script>
 
 </html>
