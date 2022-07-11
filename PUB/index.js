@@ -17,9 +17,9 @@ mongoose.connect(process.env.MONGODB_LINK,{useNewUrlParser:true,useUnifiedTopolo
 .catch(err=>console.log(err));
 
 // Static Files
-app.use(express.static('public'))
-app.set('views', './views')
-app.set('view engine', 'ejs')
+app.use(express.static('public'));
+app.set('views', './views');
+app.set('view engine', 'ejs');
 
 const verifier = require("./routes/verifier");
 const User = require('./schemas/user');
