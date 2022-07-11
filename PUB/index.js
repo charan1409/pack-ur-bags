@@ -37,7 +37,12 @@ app.get("/", verifier, function (req, res) {
 });
 
 app.get("/logout",(req,res)=>{
-    res.clearCookie("token");
+    res.clearCookie("usertoken");
+    res.render('login');
+})
+
+app.get("/adminlogout",(req,res)=>{
+    res.clearCookie("admintoken");
     res.render('login');
 })
 

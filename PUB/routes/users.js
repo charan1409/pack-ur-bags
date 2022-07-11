@@ -38,7 +38,7 @@ router.post('/login', async (req, res) => {
                 if (validAdminPass) {
                     const id = admin.email;
                     const token = await jwt.sign({id},process.env.ADMIN_TOKEN,{expiresIn:'1d'});
-                    res.cookie("token",token,{httpOnly: true});
+                    res.cookie("admintoken",token,{httpOnly: true});
                     res.render('adminland', { user: admin });
                 } else {
                     errors.push({ msg: 'Incorrect username or password' });
@@ -51,7 +51,7 @@ router.post('/login', async (req, res) => {
             if (validPass) {
                 const id = user.email;
                 const token = await jwt.sign({id},process.env.ACCESS_TOKEN,{expiresIn:'1d'});
-                res.cookie("token",token,{httpOnly: true});
+                res.cookie("usertoken",token,{httpOnly: true});
                 res.render('index', { user });
             }
             else {
@@ -117,7 +117,7 @@ router.post('/register',check('upemail').isEmail().normalizeEmail(), async (req,
                 await newUser.save().then(async user => {
                     const id = user.email;
                     const token = await jwt.sign({id},process.env.ACCESS_TOKEN,{expiresIn:'1d'});
-                    res.cookie("token",token,{httpOnly: true,});
+                    res.cookie("usertoken",token,{httpOnly: true,});
                     let sucerrors = []
                     sucerrors.push({ sucmsg: 'Successful registration' });
                     res.render('index',{user});

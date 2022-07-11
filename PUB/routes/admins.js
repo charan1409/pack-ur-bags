@@ -104,7 +104,7 @@ router.get('/adminremove/:id',adminverifier, (req, res) => {
 
     const user = Admin.findOne({ email: adminemail });
     if(user){
-        User.find({}, (err, data) => {
+        Admin.find({user: "admin"}, (err, data) => {
             if (data) {
                 res.render('admins', { user, model: data })
             } else {
