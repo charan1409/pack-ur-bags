@@ -15,7 +15,7 @@ router.get('/addplace',adminverifier, (req, res) => {
     let email = req.user.id;
     Admin.findOne({ email: email })
         .then(user => {
-            res.render('admineditplace', { user })
+            res.render('addplace', { user })
                 
         })
 })
@@ -67,7 +67,7 @@ router.post('/addplace',adminverifier,upload.single('photo'), async (req, res) =
                 console.log('photo deleted');
             })
             errors.push({ msg: "please fill in all details" })
-            res.render('admineditplace', { user, errors })
+            res.render('addplace', { user, errors })
         }
         else if (validPass) {
             const newplace = new place({
@@ -80,7 +80,7 @@ router.post('/addplace',adminverifier,upload.single('photo'), async (req, res) =
             //save user
             newplace.save().then(plc => {
                 errors.push({ msg: "successfully added" })
-                res.render('admineditplace', { user, errors })
+                res.render('addplace', { user, errors })
             }) 
         }
         else {
@@ -90,7 +90,7 @@ router.post('/addplace',adminverifier,upload.single('photo'), async (req, res) =
                 console.log('photo deleted');
             })
             errors.push({ msg: "incorrect password" })
-            res.render('admineditplace', { user, errors })
+            res.render('addplace', { user, errors })
         }
     }   
 })
