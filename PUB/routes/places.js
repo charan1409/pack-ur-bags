@@ -8,24 +8,24 @@ const Place = require('../schemas/place');
 
 const verifier = require('../routes/verifier');
 
-router.get('/viewplaces/:id',verifier,(req,res)=>{
+router.get('/viewplaces/:id',verifier,async (req,res)=>{
     const email = req.user.id;
     const category = req.params.id;
-    const user = User.findOne({ email: email});
+    const user = await User.findOne({ email: email});
     if(user){
         Place.find({category: category}).then(data=>{
-            res.render('viewplaces',{data,category});
+            res.render('viewplaces',{user,data,category});
         })
     }
 })
 
-router.get('/viewplace/:id',verifier,(req,res)=>{
+router.get('/viewplace/:id',verifier,async (req,res)=>{
     const email = req.user.id;
     const place = req.params.id;
-    const user = User.findOne({ email: email});
+    const user = await User.findOne({ email: email});
     if(user){
         Place.findOne({id: place}).then(data=>{
-            res.render('place',{data});
+            res.render('place',{user,data});
         })
     }
 })

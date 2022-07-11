@@ -27,7 +27,7 @@
             width: 100%;
             padding: 20px 10px;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
         }
 
         .place-box .heading .pic {
@@ -42,11 +42,11 @@
 
         .place-box .heading .details {
             margin-left: 20px;
-            margin-top: 40px;
             height: 260px;
         }
-
+        
         .place-box .heading .details .content{
+            margin-top: 40px;
             height: 70%;
         }
 
@@ -169,6 +169,15 @@
                             <button type="button" class="place-btn" onclick="location.href='/book/book'">Book Now</button>
                         </div>
                     </div>
+                </div>
+                <div class="info">
+                    <h3>Information:</h3>
+                    <p>
+                        <%= data.details %>
+                    </p>
+                </div>
+                <div class="review" id="reviews">
+                    <h3>Reviews:</h3>
                     <div class="review-submit">
                         <form action="places/review" method="post">
                             <label for="rating">Give your rating:</label>
@@ -184,15 +193,6 @@
                             <button type="submit" class="place-btn">Submit</button>
                         </form>
                     </div>
-                </div>
-                <div class="info">
-                    <h3>Information:</h3>
-                    <p>
-                        <%= data.details %>
-                    </p>
-                </div>
-                <div class="review" id="reviews">
-                    <h3>Reviews:</h3>
                     <div class="content">
                         <p>
                             <%= data.details %>
@@ -201,6 +201,8 @@
                 </div>
             </div>
             <%} %>
+
+            <script src="/js/script.js"></script>
 </body>
 
 </html>
