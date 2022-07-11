@@ -1,6 +1,4 @@
 const navToggler = document.querySelector(".nav-toggler");
-const navProfile = document.querySelector(".navprofile");
-const submenu = document.querySelector(".sub-menu");
 navToggler.addEventListener("click", () => {
   navToggler.classList.toggle("active");
   const nav = document.querySelector(".links");

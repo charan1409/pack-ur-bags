@@ -7,13 +7,28 @@ const cookieparser = require('cookie-parser');
 router.use(cookieparser());
 const verifier = require('../routes/verifier');
 
-router.get('/index',verifier,(req,res)=>{
-    email = req.user.id
-    User.findOne({ email: email})
+router.get('/index',verifier,async (req,res)=>{
+    const email = req.user.id
+    await User.findOne({ email: email})
     .then(user=>{
         res.render('index',{user})
     })
+})
 
+router.get('/tours',verifier,async (req,res)=>{
+    const email = req.user.id
+    await User.findOne({ email: email})
+    .then(user=>{
+        res.render('tours',{user})
+    })
+})
+
+router.get('/transactions',verifier,async (req,res)=>{
+    const email = req.user.id
+    await User.findOne({ email: email})
+    .then(user=>{
+        res.render('transactions',{user})
+    })
 })
 
 router.post('/con',verifier,(req, res) => {
