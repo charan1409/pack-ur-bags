@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>book</title>
   <!-- Custom CSS Link... -->
+  <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="stylesheet" href="/css/navbar.css" />
   <link rel="stylesheet" href="/css/footer.css" />
@@ -19,10 +20,6 @@
   <link rel="icon" href="/img/images/fav1.png" />
 
   <style>
-    body {
-      margin-top: 5%;
-    }
-
     a {
       text-decoration: none;
     }
@@ -65,7 +62,7 @@
           <img src="/img/images/booking.jpeg" alt="" />
         </div>
 
-        <form action="/book/book/<%=locals.user.username%>" method="post">
+        <form action="/book/book" method="post">
           <% if(locals.errors !=null) {%>
             <% errors.forEach(function(error) { %>
               <div class="alert alert-danger log-alert" id="msg">

@@ -24,7 +24,7 @@ router.get('/viewplace/:id',verifier,(req,res)=>{
     const place = req.params.id;
     const user = User.findOne({ email: email});
     if(user){
-        Place.find({id: place}).then(data=>{
+        Place.findOne({id: place}).then(data=>{
             res.render('place',{data});
         })
     }

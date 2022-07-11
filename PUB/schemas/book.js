@@ -1,6 +1,9 @@
 const mongoose=require('mongoose');
 
 const bookSchema=new mongoose.Schema({
+    id:{
+        type:String
+    },
     email:{
         type:String
     },
