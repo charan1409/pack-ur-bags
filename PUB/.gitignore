@@ -1,1 +1,2 @@
-./views/beach.ejs
+ views/beach.ejs
+ .env
