@@ -28,3 +28,17 @@ html {
 section {
   padding: 2rem 9%;
 }
+
+.heading {
+  text-align: center;
+  padding: 2.5rem 0;
+}
+
+
+.heading span{
+  font-size: 3.5rem;
+  background:rgba(255, 165, 0,.2);
+  border-radius: .5rem;
+  padding:.2rem 1rem;
+  color: orange;
+}
