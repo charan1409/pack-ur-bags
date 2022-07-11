@@ -17,7 +17,7 @@ Go to the project folder, Right click and open in VS Code
 
 FOR RUNNING PROJECT:
 
-open new terminal and enter the following command:
+open new terminal and enter the following commands: npm install and then
 npm start
 
 Now go to Your Default browser and type this url : http://localhost:3000/
