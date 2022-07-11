@@ -25,10 +25,17 @@ router.get('/removeplace/:id',adminverifier, (req, res) => {
     const id = req.params.id;
     Admin.findOne({ email: email })
         .then(user => {
-            place.findOneAndDelete({id: id}).then(()=>{
-                console.log(id+'deleted.');
+            place.findOneAndDelete({id: id}).then(place=>{
+                if(place.photo){
+                    let filepath = path.join('\public\\places\\' + place.photo)
+                    fs.unlink(filepath, (err) => {
+                        if (err) throw err;
+                        console.log('photo deleted');
+                    })
+                }
+                console.log(id+' deleted.');
             })
-            Place.find({}, (err, data) => {
+            place.find({}, (err, data) => {
                 if (data) {
                     res.render('adminplace', { user, model: data })
                 } else {
@@ -55,7 +62,9 @@ router.post('/addplace',adminverifier,upload.single('photo'), async (req, res) =
     const category = req.body.category;
     const about = req.body.details;
     const password = req.body.password;
-    const id = req.body.to +"/"+ req.file.filename;
+    const id1 = req.file.filename.split(".");
+    const id2 = pname.slice(0,2);
+    const id = id1[0] +"&"+ id2;
     let errors = []
     const user = await Admin.findOne({ email: email});
     const validPass = await bcrypt.compare(password, user.password);
