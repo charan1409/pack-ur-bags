@@ -116,10 +116,8 @@
         <table>
             <tr>
                 <th>Destination</th>
-                <th>Info</th>
                 <th>Photo</th>
-                <th>Ratings</th>
-                <th>Reviews</th>
+                <th>Rating</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -127,9 +125,6 @@
                 <tr>
                     <td>
                         <%- i. to %>
-                    </td>
-                    <td>
-                        <%- i. details%>
                     </td>
                     <td>
                         <% if(i.photo){ %>
@@ -140,9 +135,6 @@
                             <img src="/img/images/profile_pic.jpeg" alt="profile picture">
                             <%}
                         %>
-                    </td>
-                    <td>
-                        <%- i. email %>
                     </td>
                     <td>
                         <%- i. phone %>

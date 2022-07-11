@@ -26,7 +26,7 @@ router.get('/removeplace/:id',adminverifier, (req, res) => {
     Admin.findOne({ email: email })
         .then(user => {
             place.findOneAndDelete({id: id}).then(place=>{
-                if(place.photo){
+                if(place.photo != null){
                     let filepath = path.join('\public\\places\\' + place.photo)
                     fs.unlink(filepath, (err) => {
                         if (err) throw err;
