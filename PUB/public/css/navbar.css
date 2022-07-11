@@ -15,18 +15,17 @@
 }
 
 .topnav .linkrow{
-    margin-left: 2%;
+    margin: 0% 2%;
     width: auto;
     height: 100%;
-    align-items: center;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    line-height: 80px;
 }
 
 .topnav .linkrow .logo{
-    left: 0;
     font-size: 30px;
-    width: 250px;
-    display: inline-block;
+    text-align: center;
 }
 
 .topnav .linkrow .logo a{
@@ -37,7 +36,6 @@
 
 .topnav .linkrow .logo a:hover {
     color: #1b1b1b;
-    text-transform: uppercase;
 }
 
 .topnav .linkrow .logo span {
@@ -46,10 +44,11 @@
 
 .links {
     height: 80px;
-    width: 65%;
     justify-content: space-between;
-    float: right;
-    margin-left: 10%;
+}
+
+.links ul{
+    line-height: 80px;
 }
 
 .links ul li{
@@ -72,31 +71,41 @@
 
 .sub-menu{
     display: none;
+    position: absolute;
+    box-sizing: border-box;
+    top: 40px;
+    width: 200px;
+    background-color: #201e1e;
+    text-align: center;
+    margin-left: 0;
 }
 
 .show{
     display: block;
-    position: absolute;
-    top: 80px;
-    background-color: #201e1e;
-    width: 150px;
-    height: 210px;
-    text-align: center;
 }
 
-.sub-menu li{
+.sub-menu ul{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.sub-menu ul li{
+    margin: 0;
+    padding: 0;
     list-style: none;
     border-bottom: 2px solid #f98d08;
-    margin-top: 22px;
+    
 }
 
-.sub-menu li:last-child{
+.sub-menu ul li:last-child{
     border-bottom: none;
 }
 
 .sub-menu li a{
     font-size: 20px;
     color: #fff;
+    text-decoration: none;
 }
 
 .sub-menu li a:hover{
@@ -104,19 +113,31 @@
 }
 
 .icons{
-    width: 10%;
     height: 100%;
+    line-height: 80px;
+    text-align: center;
 }
 
-.navprofile{
+.navprofile {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     background: none;
     height: 40px;
     width: 60px;
-    margin-top: 14%;
+    box-sizing: border-box;
     border: 2px solid #fff;
     border-radius: 22px;
     cursor: pointer;
-    position: relative;
+}
+
+.navprofile i{
+    line-height: 40px;
+    color: #fff;
+    font-size: 25px;
+    position: absolute;
+    margin-left: -10px;
 }
 
 .icons img{
@@ -126,15 +147,10 @@
     float: left;
 }
 
-.icons i{
-    position: absolute;
-    margin-top: 5px;
-    color: #fff;
-    margin-left: -12px;
-}
-
-
 .nav-toggler{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 	height: 34px;
 	width: 50px;
 	background-color: #ffffff;
@@ -184,14 +200,23 @@
 @media(max-width:1000px){
    .nav-toggler{
    	display: block;
-    margin-left: 2%;
+   }
+   .topnav{
+    padding: 0;
    }
    .topnav .linkrow{
-    margin-left: 0%;
-   }
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 80px;
+    }
    .topnav .linkrow .logo{
-    text-align: center;
-    margin-left: 5%;
+    margin: 0;
+    text-align: right;
+    font-size: 25px;
+    height: 80px;
+    line-height: 80px;
    }
    .links{
     position: absolute;
@@ -219,7 +244,7 @@
     margin-left: 25%;
    }
 
-   .navprofile{
+   /* .navprofile{
     margin-top: 10%;
-   }
+   } */
 }

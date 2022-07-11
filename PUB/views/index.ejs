@@ -18,9 +18,6 @@
     <link rel="stylesheet" href="/css/places.css">
     <link rel="stylesheet" href="/css/footer.css">
 
-    <!-- Font Awesome Link... -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <!-- FAVICON  -->
     <link rel="icon" href="/img/images/fav1.png">
 
@@ -32,9 +29,10 @@
 <body>
     <header class="topnav" id="topnavbar">
         <div class="linkrow">
-            <button class="nav-toggler"><span></span></button>
-            <label class="logo"><a href="/index/index" class="logo"><span>P</span>ACK <span>U</span>R
-                    <span>B</span>AGS</a></label>
+            <div class="logo">
+                <button class="nav-toggler"><span></span></button>
+                <label><a href="/index/index" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a></label>
+            </div>
             <div class="links">
                 <ul>
                     <li><a class="activ" href="#home">Home</a></li>
@@ -49,26 +47,30 @@
                         <button class="navprofile">
                             <img src="/uploads/<%= user.image%>" alt="profile_image">
                             <i class='bx bx-chevron-down fa-2x' id="down"></i>
+                            <div class="sub-menu">
+                                <ul>
+                                    <li><a href="/profile/profile">My profile</a></li>
+                                    <li><a href="#">My tours</a></li>
+                                    <li><a href="#">transactions</a></li>
+                                    <li><a href="/logout">logout</a></li>
+                                </ul>
+                            </div>
                         </button>
-                        <ul class="sub-menu">
-                            <li><a href="/profile/profile">My profile</a></li>
-                            <li><a href="#">My tours</a></li>
-                            <li><a href="#">transactions</a></li>
-                            <li><a href="/logout">logout</a></li>
-                        </ul>
                  
                         <%} %>
                             <% if(!user.image){ %>
                                 <button class="navprofile">
                                     <img src="/img/images/profile_pic.jpeg" alt="profile_image">
                                     <i class='bx bx-chevron-down fa-2x' id="down"></i>
+                                    <div class="sub-menu">
+                                        <ul>
+                                            <li><a href="/profile/profile">My profile</a></li>
+                                            <li><a href="#">My tours</a></li>
+                                            <li><a href="#">transactions</a></li>
+                                            <li><a href="/logout">logout</a></li>
+                                        </ul>
+                                    </div>
                                 </button>
-                                <ul class="sub-menu">
-                                    <li><a href="/profile/profile">My profile</a></li>
-                                    <li><a href="#">My tours</a></li>
-                                    <li><a href="#">transactions</a></li>
-                                    <li><a href="/logout">logout</a></li>
-                                </ul>
                                 <%} %>
             </div> 
         </div>

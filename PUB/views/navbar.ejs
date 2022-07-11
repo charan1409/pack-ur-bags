@@ -1,11 +1,43 @@
 <header class="topnav" id="topnavbar">
     <div class="linkrow">
-        <button class="nav-toggler"><span></span></button>
-        <label class="logo"><a href="/index/index" class="logo"><span>P</span>ACK <span>U</span>R
-                <span>B</span>AGS</a></label>
+        <div class="logo">
+            <button class="nav-toggler"><span></span></button>
+            <label><a href="/index/index" class="logo"><span>P</span>ACK <span>U</span>R <span>B</span>AGS</a></label>
+        </div>
         <div class="links">
             <ul>
-                <li><a href="/index/index/#places">Home</a></li>
+                <li><a href="/index/index">Home</a></li>
             </ul>
         </div>
+        <div class="icons">
+            <% if(user.image){ %>
+                <button class="navprofile">
+                    <img src="/uploads/<%= user.image%>" alt="profile_image">
+                    <i class='bx bx-chevron-down fa-2x' id="down"></i>
+                    <div class="sub-menu">
+                        <ul>
+                            <li><a href="/profile/profile">My profile</a></li>
+                            <li><a href="#">My tours</a></li>
+                            <li><a href="#">transactions</a></li>
+                            <li><a href="/logout">logout</a></li>
+                        </ul>
+                    </div>
+                </button>
+         
+                <%} %>
+                    <% if(!user.image){ %>
+                        <button class="navprofile">
+                            <img src="/img/images/profile_pic.jpeg" alt="profile_image">
+                            <i class='bx bx-chevron-down fa-2x' id="down"></i>
+                            <div class="sub-menu">
+                                <ul>
+                                    <li><a href="/profile/profile">My profile</a></li>
+                                    <li><a href="#">My tours</a></li>
+                                    <li><a href="#">transactions</a></li>
+                                    <li><a href="/logout">logout</a></li>
+                                </ul>
+                            </div>
+                        </button>
+                        <%} %>
+    </div> 
 </header>
