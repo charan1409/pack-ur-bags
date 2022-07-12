@@ -19,8 +19,17 @@ submenu.addEventListener('mouseleave', () => {
 window.addEventListener('scroll', () => {
     const navp = document.querySelector(".sub-menu");
     if (navp.classList.contains("show")) {
-      const down = document.querySelector("#down");
-      down.classList.remove("bx-chevron-up")
-      navp.classList.remove('show', window.scrollY > 0)
+        const down = document.querySelector("#down");
+        down.classList.remove("bx-chevron-up")
+        navp.classList.remove('show', window.scrollY > 0)
     }
-  })
+})
+
+window.addEventListener('mouseup', () => {
+    const navp = document.querySelector(".sub-menu");
+    if (navp.classList.contains("show")) {
+        const down = document.querySelector("#down");
+        down.classList.remove("bx-chevron-up")
+        navp.classList.remove('show', window.scrollY > 0)
+    }
+})

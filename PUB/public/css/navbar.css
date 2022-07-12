@@ -119,10 +119,10 @@
 }
 
 .navprofile {
-    margin: 0;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    margin-right: 140px;
     background: none;
     height: 40px;
     width: 60px;
