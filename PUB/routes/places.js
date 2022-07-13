@@ -13,9 +13,8 @@ router.get('/viewplaces/:id',verifier,async (req,res)=>{
     const category = req.params.id;
     const user = await User.findOne({ email: email});
     if(user){
-        Place.find({category: category}).then(data=>{
-            res.render('viewplaces',{user,data,category});
-        })
+        const data = await Place.find({category: category})
+        res.render('viewplaces',{user,data,category});
     }
 })
 
@@ -24,9 +23,8 @@ router.get('/viewplace/:id',verifier,async (req,res)=>{
     const place = req.params.id;
     const user = await User.findOne({ email: email});
     if(user){
-        Place.findOne({id: place}).then(data=>{
-            res.render('place',{user,data});
-        })
+        const data = await Place.findOne({id: place})
+        res.render('place',{user,data});
     }
 })
 

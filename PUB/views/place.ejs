@@ -36,19 +36,17 @@
 
         .place-box .heading .pic img {
             height: 300px;
-            width: 350px;
+            width: 450px;
             border-radius: 30px;
         }
 
         .place-box .heading .details {
-            margin-left: 20px;
-            height: 260px;
+            padding: 30px 40px;
+            text-align: left;
         }
         
-        .place-box .heading .details .content{
-            margin-top: 40px;
-            height: 70%;
-        }
+        /* .place-box .heading .details .content{
+        } */
 
         .place-box .heading .details h2 {
             position: relative;
@@ -68,6 +66,10 @@
 
         .place-box .heading .details .rating {
             margin-top: 4px;
+        }
+
+        .place-box .heading .details .book-button{
+            margin-top: 100px;
         }
 
         .place-box .info {
@@ -109,7 +111,6 @@
         border-radius: 20px;
         cursor: pointer;
         padding-top: 3px;
-        margin-top: 10px;
         color: #fff;
       }
 
@@ -124,18 +125,41 @@
       .place-box .review{
         margin-top: 20px;
         border-top: 2px solid rgba(28, 27, 27, 0.5);
+        padding: 20px;
       }
 
       .place-box .review h3{
         font-size: 30px;
-        margin-left: 20px;
       }
 
       .place-box .review .content{
         margin-left: 20px;
-        border: 1px solid rgba(0,0,0,0.5);
+        border: 2px solid rgba(0,0,0,0.5);
+        border-radius: 20px;
         box-sizing: border-box;
+        margin-top: 20px;
         margin-bottom: 20px;
+        position: relative;
+        padding: 10px;
+      }
+
+      .place-box .review .content img{
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+        float: left;
+      }
+
+      .place-box .review .content h5{
+        float: left;
+        margin-left: 20px;
+        margin-top: 5px;
+        font-size: 15px;
+      }
+
+      .place-box .review .content p{
+        margin-top: 10px;
+        font-size: 12px;
       }
     </style>
 </head>
@@ -154,18 +178,18 @@
                                 <%= data.to %>
                             </h2>
                             <p>rating: <%= data.rating %>
-                            </p>
-                            <div class="rating">
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
+                                <div class="rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
                                 </div>
-                            </div>
+                            </p>
                         </div>
-                        <div class="button">
+                        <div class="book-button">
                             <button type="button" class="place-btn" onclick="location.href='/book/book'">Book Now</button>
                         </div>
                     </div>
@@ -189,14 +213,14 @@
                                 <option value="5">5</option>
                             </select><br><br>
                             <label for="review">Submit your review:</label><br>
-                            <textarea name="review" id="review" cols="50" rows="5" placeholder="submit your review"></textarea><br><br>
+                            <textarea name="review" id="review" cols="100" rows="3" placeholder="submit your review"></textarea><br><br>
                             <button type="submit" class="place-btn">Submit</button>
                         </form>
                     </div>
                     <div class="content">
-                        <p>
-                            <%= data.details %>
-                        </p>
+                        <img src="/places/<%= data.photo%>" alt="<%= data.to %>">
+                        <h5><%= data.to %></h5><br><br>
+                        <p><%= data.details %></p>
                     </div>
                 </div>
             </div>
