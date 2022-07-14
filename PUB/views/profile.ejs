@@ -36,7 +36,7 @@
                     <li><a href="/index/index">Home</a></li>
                 </ul>
             </div>
-    </header><br><br><br>
+    </header>
     <!-- Header Section Ends here... -->
     <h1 style="font-size: 40px;">profile</h1>
     <% if(locals.edit !=null) {%>
@@ -87,8 +87,8 @@
                     <%}
                 %>    
                 <div class="content">
-                    <a href="/profile/remove" class="pic-btn"><i class="bi bi-trash fa-3x"></i></a>
-                    <a href="/profile/upload" class="pic-btn"><i class="bi bi-upload fa-3x"></i></a>
+                    <i class="bi bi-trash fa-3x" onclick="location.href='/profile/remove'"></i>
+                    <i class="bi bi-upload fa-3x" onclick="location.href='/profile/upload'"></i>
                 </div>
             </div>
             <a href="/profile/edit" class="prof-btn">edit profile</a>

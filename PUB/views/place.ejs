@@ -44,9 +44,6 @@
             padding: 30px 40px;
             text-align: left;
         }
-        
-        /* .place-box .heading .details .content{
-        } */
 
         .place-box .heading .details h2 {
             position: relative;
@@ -168,45 +165,6 @@
             text-transform: none;
         }
 
-        .modal-bg .review-submit .place-btn {
-            background-color: #fac102;
-            margin-top: 30px;
-            width: 150px;
-            height: 40px;
-            font-size: 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            padding-top: 3px;
-            color: #fff;
-        }
-
-        .modal-bg .review-submit .place-btn:hover{
-            background: none;
-            color: #fac102;
-            border: 2px solid #fac102;
-            padding-top: 5px;
-            font-weight: bold;
-        }
-
-        .place-box .place-btn {
-            background-color: #fac102;
-            width: 150px;
-            height: 40px;
-            font-size: 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            padding-top: 3px;
-            color: #fff;
-        }
-
-      .place-box .place-btn:hover {
-        background: none;
-        color: #fac102;
-        border: 2px solid #fac102;
-        padding-top: 5px;
-        font-weight: bold;
-      }
-
       .place-box .review{
         margin-top: 20px;
         border-top: 2px solid rgba(28, 27, 27, 0.5);
@@ -275,7 +233,7 @@
                             </p>
                         </div>
                         <div class="book-button">
-                            <button type="button" class="place-btn" onclick="location.href='/book/book'">Book Now</button>
+                            <button type="button" class="btn" onclick="location.href='/book/book'">Book Now</button>
                         </div>
                     </div>
                 </div>
@@ -287,7 +245,7 @@
                 </div>
                 <div class="review" id="reviews">
                     <h3>Reviews:</h3>
-                    <button type="button" class="place-btn" onclick="review_rating()">Submit review</button>
+                    <button type="button" class="btn" onclick="review_rating()">Submit review</button>
                     <div class="content">
                         <img src="/places/<%= data.photo%>" alt="<%= data.to %>">
                         <h5><%= data.to %></h5><br><br>
@@ -310,7 +268,7 @@
                         </select><br>
                         <label for="review">Submit your review:</label>
                         <textarea name="review" id="review" cols="50" rows="3" placeholder="submit your review"></textarea><br>
-                        <button type="submit" class="place-btn">Submit</button>
+                        <button type="submit" class="btn">Submit</button>
                     </form>
                     <span onclick="review_rating()">X</span>
                 </div>

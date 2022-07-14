@@ -37,10 +37,27 @@ section {
 }
 
 
-.heading span{
+.heading span {
   font-size: 3.5rem;
-  background:rgba(255, 165, 0,.2);
+  background: rgba(255, 165, 0, .2);
   border-radius: .5rem;
-  padding:.2rem 1rem;
+  padding: .2rem 1rem;
   color: orange;
+}
+
+.btn {
+  background-color: #fac102;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #fff;
+  padding: 5px 20px;
+}
+
+.btn:hover {
+  background: none;
+  color: #fac102;
+  border: 2px solid #fac102;
+  font-weight: bold;
 }

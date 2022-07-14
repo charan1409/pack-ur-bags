@@ -139,24 +139,6 @@ section {
   top: 10rem;
 }
 
-.home .btn {
-  display: inline-block;
-  background: #fac104;
-  color: white;
-  padding: 0.8rem 3rem;
-  cursor: pointer;
-  font-size: 2rem;
-  font-weight: bold;
-  border-radius: 20px;
-  
-}
-
-.home .btn:hover {
-  background: none;
-  border: 2px solid #fac104;
-}
-
-
 /* SERIVICES */
 
 .services .box-container{
