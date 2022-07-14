@@ -84,35 +84,120 @@
             font-size: 20px;
         }
 
-        .place-box .review-submit{
-            padding-top: 20px;
-            padding-left: 10px;
-            box-sizing: border-box;
+        .modal-bg{
+            height: 100vh;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibilty 0s, opacity 0.5s;
         }
 
-        .place-box .review-submit label{
+        .bg-active{
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-bg .review-submit{
+            position: relative;
+            background-color: #fff;
+            height: 50%;
+            width: 40%;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .modal-bg .review-submit span{
+            position: absolute;
+            display: flex;
+            top: 0px;
+            right: 0px;
+            font-size: 20px;
+            width: 60px;
+            height: 40px;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-bg .review-submit span:hover{
+            background-color: rgba(255, 0, 0, 0.734);
+            color: #fff;
+        }
+
+        .modal-bg .review-submit h2{
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .modal-bg .review-submit form{
+            padding: 20px 30px;
+        }
+
+        .modal-bg .review-submit label{
             font-size: 18px;
+            margin-top: 5px;
             text-transform: none;
         }
 
-        .place-box .review-submit select,textarea{
+        .modal-bg .review-submit select{
+            border:1px solid rgba(25, 19, 19, 0.764);
+            border-radius: 10px;
+            padding: 5px;
+            font-size: 15px;
+            text-transform: none;
+            cursor: pointer;
+        }
+
+        .modal-bg .review-submit textarea{
             border:3px solid rgba(25, 19, 19, 0.764);
             border-radius: 10px;
+            margin-top: 10px;
             padding: 5px;
             font-size: 15px;
             text-transform: none;
         }
 
+        .modal-bg .review-submit .place-btn {
+            background-color: #fac102;
+            margin-top: 30px;
+            width: 150px;
+            height: 40px;
+            font-size: 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            padding-top: 3px;
+            color: #fff;
+        }
+
+        .modal-bg .review-submit .place-btn:hover{
+            background: none;
+            color: #fac102;
+            border: 2px solid #fac102;
+            padding-top: 5px;
+            font-weight: bold;
+        }
+
         .place-box .place-btn {
-        background-color: #fac102;
-        width: 150px;
-        height: 40px;
-        font-size: 20px;
-        border-radius: 20px;
-        cursor: pointer;
-        padding-top: 3px;
-        color: #fff;
-      }
+            background-color: #fac102;
+            width: 150px;
+            height: 40px;
+            font-size: 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            padding-top: 3px;
+            color: #fff;
+        }
 
       .place-box .place-btn:hover {
         background: none;
@@ -202,21 +287,7 @@
                 </div>
                 <div class="review" id="reviews">
                     <h3>Reviews:</h3>
-                    <div class="review-submit">
-                        <form action="places/review" method="post">
-                            <label for="rating">Give your rating:</label>
-                            <select name="rating" id="">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select><br><br>
-                            <label for="review">Submit your review:</label><br>
-                            <textarea name="review" id="review" cols="100" rows="3" placeholder="submit your review"></textarea><br><br>
-                            <button type="submit" class="place-btn">Submit</button>
-                        </form>
-                    </div>
+                    <button type="button" class="place-btn" onclick="review_rating()">Submit review</button>
                     <div class="content">
                         <img src="/places/<%= data.photo%>" alt="<%= data.to %>">
                         <h5><%= data.to %></h5><br><br>
@@ -225,8 +296,33 @@
                 </div>
             </div>
             <%} %>
-
-            <script src="/js/navbar.js"></script>
-</body>
-
+            <div class="modal-bg">
+                <div class="review-submit">
+                    <h2>Submit your review and rating</h2>
+                    <form action="places/review" method="post">
+                        <label for="rating">Give your rating:</label>
+                        <select name="rating" id="">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select><br>
+                        <label for="review">Submit your review:</label>
+                        <textarea name="review" id="review" cols="50" rows="3" placeholder="submit your review"></textarea><br>
+                        <button type="submit" class="place-btn">Submit</button>
+                    </form>
+                    <span onclick="review_rating()">X</span>
+                </div>
+            </div>
+            
+        </body>
+        <script src="/js/navbar.js"></script>
+        <script>
+            function review_rating() {
+                const modalBg = document.querySelector(".modal-bg");
+                modalBg.classList.toggle("bg-active")
+            }
+        </script>
+        
 </html>
