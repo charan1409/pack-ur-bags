@@ -113,6 +113,7 @@
             <div class="tbox">
                 <label for="password">Password: </label>
                 <input type="password" name="password" placeholder="enter password">
+                <i class="fa fa-eye fa-x" id="show-pass" style="cursor: pointer;" onclick="showPassword('show-pass','pas')"></i>
             </div>
             <button type="button" class="addplacebtn" onclick="location.href='/admins/place'">cancel</button>
             <button type="submit" class="addplacebtn">submit</button>
@@ -120,4 +121,20 @@
     </div>
     
 </body>
+<script>
+    function showPassword(id1, id2) {
+        console.log('called');
+        const showpassword = document.getElementById(id1);
+        const password = document.getElementById(id2);
+        if(password.type === 'password'){
+            password.setAttribute('type', 'text');
+            showpassword.classList.add('fa-eye-slash');
+            showpassword.classList.remove('fa-eye')
+        } else{
+            password.setAttribute('type','password');
+            showpassword.classList.add('fa-eye');
+            showpassword.classList.remove('fa-eye-slash')
+        }
+    }
+</script>
 </html>
