@@ -1,11 +1,20 @@
-const navProfile = document.querySelector(".navprofile");
-const submenu = document.querySelector(".sub-menu");
+const navProfile = document.querySelector("#navprofile");
+const submenu = document.querySelector("#sub-menu");
 const down = document.querySelector("#down");
 
 navProfile.addEventListener("click", () => {
-    console.log('called 1 time');
-    submenu.classList.toggle("show");
-    down.classList.toggle("bx-chevron-up");
+    if(down.classList.contains("bx-chevron-down")){
+        submenu.classList.add("show");
+        down.classList.add("bx-chevron-up");
+        down.classList.remove("bx-chevron-down");
+    } else{
+        submenu.classList.remove("show");
+        down.classList.remove("bx-chevron-up");
+        down.classList.add("bx-chevron-down");
+    }
+    // down.classList.toggle("bx-chevron-up");
+    // submenu.classList.toggle("show");
+    return false;
 })
 
 submenu.addEventListener('mouseleave', () => {
@@ -13,6 +22,7 @@ submenu.addEventListener('mouseleave', () => {
         down.classList.remove("bx-chevron-up")
         submenu.classList.remove('show', window.scrollY > 0)
     }
+    return false;
 })
 
 window.addEventListener('scroll', () => {
@@ -20,6 +30,7 @@ window.addEventListener('scroll', () => {
         down.classList.remove("bx-chevron-up")
         submenu.classList.remove('show', window.scrollY > 0)
     }
+    return false;
 })
 
 window.addEventListener('mouseup', () => {
@@ -27,4 +38,5 @@ window.addEventListener('mouseup', () => {
         down.classList.remove("bx-chevron-up")
         submenu.classList.remove('show', window.scrollY > 0)
     }
+    return false;
 })
