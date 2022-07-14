@@ -21,18 +21,10 @@
 }
 
 .right table,.right th,.right td {
-    /* border: 2px solid rgb(16, 107, 6);
-    border-collapse: collapse; */
     width: 400px;
     height: 50px;
     text-align: left;
     font-size: 30px;
-    /* color: red; */
-}
-
-.right table {
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .right th {
