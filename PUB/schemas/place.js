@@ -5,6 +5,10 @@ const placeSchema=new mongoose.Schema({
         type:String,
         // required:true
     },
+    from:{
+        type:String,
+        // required:true
+    },
     to:{
         type:String,
         // required:true
@@ -26,7 +30,7 @@ const placeSchema=new mongoose.Schema({
         // required:true
     },
     reviews:{
-        type:String,
+        type:Array,
         // required:true
     },
     availability: {

@@ -81,6 +81,7 @@ router.post('/addplace',adminverifier,upload.single('photo'), async (req, res) =
             const newplace = new place({
                 id: id,
                 to: pname,
+                rating: 0,
                 category: category,
                 details: about,
                 photo: req.file.filename
