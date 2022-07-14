@@ -1,13 +1,21 @@
 .profile{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+    grid-gap: 10px;
     margin: 2% 5%;
-    padding: 0 3%;
+    padding: 3% 3%;
 }
 
 .right {
+    width: auto;
     margin-top: 60px;
+}
+
+.right .btns{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
 }
 
 .left {
@@ -35,6 +43,7 @@
     width: 500px;
     height: 50px;
     font-size: 20px;
+    margin-left: 40px;
     text-transform: none;
 }
 
@@ -90,28 +99,17 @@
     border-radius: 5px;
     background-color: #fac102;
     cursor: pointer;
-    padding-top: 7px;
     font-weight: 800;
     font-size: 20px;
     border-radius: 20px;
+    color: #fff;
 }
 .prof-btn:hover{
     background: none;
     border: 2px solid #fac102;
     color: #fac102;
 }
-.left a{
-    color: whitesmoke;
-    display: inline-block;
-    text-align: center;
-}
 
-.right a{
-    margin-left: 30px;
-    color: whitesmoke;
-    display: inline-block;
-    text-align: center;
-}
 h1{
     text-align: center;
     font-size: 60px;
