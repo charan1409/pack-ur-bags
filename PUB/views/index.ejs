@@ -22,8 +22,8 @@
     <link rel="icon" href="/img/images/fav1.png">
 
     <!-- Script for animation and swiper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </head>
 
 <body>
@@ -44,10 +44,10 @@
             </div>
             <div class="icons">
                     <% if(user.image){ %>
-                        <button class="navprofile" id="navprofile">
+                        <button class="navprofile">
                             <img src="/uploads/<%= user.image%>" alt="profile_image">
                             <i class='bx bx-chevron-down fa-2x' id="down"></i>
-                            <div class="sub-menu" id="sub-menu">
+                            <div class="sub-menu">
                                 <ul>
                                     <li><a href="/profile/profile">My profile</a></li>
                                     <li><a href="/index/tours">My tours</a></li>
@@ -60,7 +60,7 @@
                  
                         <%} %>
                             <% if(!user.image){ %>
-                                <button class="navprofile" id="navprofile">
+                                <button class="navprofile">
                                     <img src="/img/images/profile_pic.jpeg" alt="profile_image">
                                     <i class='bx bx-chevron-down fa-2x' id="down"></i>
                                     <div class="sub-menu">
@@ -88,8 +88,7 @@
                         <%} %>
                         <h3>travelling is worthwhile</h3>
                         <p>discover new places with us, adventure awaits</p>
-                        <button class="btn" onclick="location.href='#gallery'">Discover More</button>
-                        <!-- <a href="#gallery" class="btn">discover more</a> -->
+                        <a href="#gallery" class="btn">discover more</a>
             </div>
             <div class="video-container">
                 <video src="/img/images/vid-1.mp4" loop autoplay muted></video>
@@ -218,8 +217,10 @@
                     <img src="/img/places/types/beach.jpg" alt="Beach">
                     <div class="content">
                         <h3> Beach </h3>
-                        <p>Beach areas are popular types of tourist destinations. Some people travel a long way to reach a beach</p>
-                        <button class="btn" onclick="location.href='/places/viewplaces/beach'">see more</button>
+                        <p>Beach areas are popular types of tourist destinations. Some people travel a long way to reach
+                            a
+                            beach</p>
+                        <a href="/places/viewplaces/beach" class="btn">see more</a>
                     </div>
                 </div>
 
