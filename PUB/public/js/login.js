@@ -10,37 +10,68 @@ form.addEventListener('mousemove', (e) => {
 });
 
 form.addEventListener('mouseleave', function () {
-
   form.style.transform = 'rotateX(0deg) rotateY(0deg)';
-
-
 });
 
-const showPassword = document.querySelector('#show-pass');
-const showPassword2 = document.querySelector('#show-pass2');
-const password = document.querySelector('#pas');
-const password2 = document.querySelector('#pas2');
-
-showPassword.addEventListener('click', function (e) {
-  if(password.type === 'password'){
+function showPassword(id1, id2) {
+  const showpassword = document.getElementById(id1);
+  const password = document.getElementById(id2);
+  if (password.type === 'password') {
     password.setAttribute('type', 'text');
-    this.classList.add('fa-eye-slash');
-    this.classList.remove('fa-eye')
-  } else{
-    password.setAttribute('type','password');
-    this.classList.add('fa-eye');
-    this.classList.remove('fa-eye-slash')
+    showpassword.classList.add('fa-eye-slash');
+    showpassword.classList.remove('fa-eye')
+  } else {
+    password.setAttribute('type', 'password');
+    showpassword.classList.add('fa-eye');
+    showpassword.classList.remove('fa-eye-slash')
   }
-});
+}
 
-showPassword2.addEventListener('click', function (e) {
-  if(password2.type === 'password'){
-    password2.setAttribute('type', 'text');
-    this.classList.add('fa-eye-slash');
-    this.classList.remove('fa-eye')
-  } else{
-    password2.setAttribute('type','password');
-    this.classList.add('fa-eye');
-    this.classList.remove('fa-eye-slash')
+const errorCloseBtn = document.getElementById('error-close-btn');
+errorCloseBtn.addEventListener('click',()=>{
+  const errorBlock = document.getElementById('error-block');
+    errorBlock.style.display = 'none';
+})
+
+function loginValidation() {
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('pas').value;
+  if (!username || !password) {
+    const errorMsg = document.getElementById('error-msg');
+    const errorBlock = document.getElementById('error-block');
+    errorBlock.style.display = 'grid';
+    errorMsg.innerHTML = 'Please fill in all the fields';
+    return false;
+  } else {
+    return true;
   }
-});
+}
+
+function registerValidation() {
+  const username = document.getElementById('sname').value;
+  const mail = document.getElementById('smail').value;
+  const password1 = document.getElementById('pas').value;
+  const password2 = document.getElementById('pas2').value;
+  console.log(password1 + " " + password2);
+  if (!username || !mail || !password1 || !password2) {
+    const errorMsg = document.getElementById('error-msg');
+    const errorBlock = document.getElementById('error-block');
+    errorBlock.style.display = 'grid';
+    errorMsg.innerHTML = 'Please fill in all the fields';
+    return false;
+  } else if(password1 != password2){
+    const errorMsg = document.getElementById('error-msg');
+    const errorBlock = document.getElementById('error-block');
+    errorBlock.style.display = 'grid';
+    errorMsg.innerHTML = 'Please check your passwords';
+    return false;
+  } else if(password1.length < 6){
+    const errorMsg = document.getElementById('error-msg');
+    const errorBlock = document.getElementById('error-block');
+    errorBlock.style.display = 'grid';
+    errorMsg.innerHTML = 'password must have atleast 6 characters';
+    return false;
+  } else {
+    return true;
+  }
+}
