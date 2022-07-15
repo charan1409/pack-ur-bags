@@ -48,12 +48,16 @@
       <form id="login" method="post" action="/users/login" onsubmit="return loginValidation()">
         <% if(locals.errors !=null) {%>
           <% errors.forEach(function(error) { %>
-            <div class="log-alert" id="error-block">
+            <div class="server-log-alert" id="error-block">
               <p id="error-msg"><%= error.msg %></p>
               <span id="error-close-btn">X</span>
             </div>
             <% }); %>
               <% } %>
+              <div class="log-alert" id="error-block">
+                <p id="error-msg"></p>
+                <span id="error-close-btn">X</span>
+              </div>
         <div class="input-box">
           <span class="left-icon"><i class="fa fa-user fa-1x"></i></span>
           <input type="text" id="username" name="inname" placeholder="username">

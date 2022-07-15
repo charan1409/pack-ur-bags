@@ -106,6 +106,16 @@
 }
 
 .login-container .log-alert{
+  display: none;
+  height: 30px;
+  width: 100%;
+  background-color: #f63838;
+  position: relative;
+  padding-left: 20px;
+  grid-template-columns: 90% 10%;
+}
+
+.login-container .server-log-alert{
   display: grid;
   height: 30px;
   width: 100%;
@@ -115,14 +125,14 @@
   grid-template-columns: 90% 10%;
 }
 
-.login-container .log-alert p{
+.login-container .log-alert,.server-log-alert p{
   font-size: 13px;
   color: #fff;
   line-height: 30px;  
   text-transform: none;
 }
 
-.login-container .log-alert span{
+.login-container .log-alert,.server-log-alert span{
   position: absolute;
   line-height: 30px;
   right: 10px;
