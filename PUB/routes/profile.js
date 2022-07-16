@@ -69,26 +69,37 @@ router.post('/edit',verifier, async (req,res) => {
     const name = req.body.upname
     const gender = req.body.upgender
     const phn = req.body.upphone
-    const pass = req.body.pass
+    const username = req.body.username
     let edit = []
-    let editerr = []
-    const newvals = {name: name,phone: phn, gender: gender}
+    let editerr =[]
+    const newvals = {username: username,name: name,phone: phn, gender: gender};
     const user = await User.findOne({ email: email});
-    const validPass = await bcrypt.compare(pass, user.password);
     if(user){
-        if (validPass) {
+        let u = 0;
+        if(user.username === username){
             await User.findOneAndUpdate({ email: email }, newvals,async function (err, result) {
                 if (err) throw err;
                 edit.push({ msg2: "profile updated succesfully" })
                 const admin = await User.findOne({ email: email });
                 res.render('profile', { user:admin, edit })
             })
+        } else {
+            const user2 = await User.findOne({ username: username});
+            if(!user2){
+                await User.findOneAndUpdate({ email: email }, newvals,async function (err, result) {
+                    if (err) throw err;
+                    edit.push({ msg2: "profile updated succesfully" })
+                    const admin = await User.findOne({ email: email });
+                    res.render('profile', { user:admin, edit })
+                })
+            } else {
+                edit.push({ msg: "Edit your profile" });
+                editerr.push({msg: "username already taken"});
+                res.render('editprofile', { user, edit,editerr })
+            } 
         }
-        else {
-            edit.push({ msg: "edit your profile" })
-            editerr.push({ msg: "incorrect password" })
-            res.render('editprofile', { user, edit, editerr })
-        }
+    } else {
+        res.redirect('/logout');
     }
 })
 

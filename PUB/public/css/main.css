@@ -45,7 +45,7 @@ section {
 }
 
 .btn {
-  background-color: #fac102;
+  background-color: #ffbb00e3;
   height: 40px;
   font-size: 20px;
   border-radius: 20px;
@@ -56,7 +56,18 @@ section {
 
 .btn:hover {
   background: none;
-  color: #fac102;
-  border: 2px solid #fac102;
+  color: #ffbb00e3;
+  border: 2px solid #ffbb00e3;
   font-weight: bold;
+}
+
+.btn2 {
+  background-color: #fff;
+  border: 2px solid #ffbb00e3;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #ffbb00e3;
+  padding: 5px 20px;
 }
