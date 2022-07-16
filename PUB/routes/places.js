@@ -20,11 +20,32 @@ router.get('/viewplaces/:id',verifier,async (req,res)=>{
 
 router.get('/viewplace/:id',verifier,async (req,res)=>{
     const email = req.user.id;
-    const place = req.params.id;
+    const placeid = req.params.id;
     const user = await User.findOne({ email: email});
     if(user){
-        const data = await Place.findOne({id: place})
+        const data = await Place.findOne({id: placeid})
         res.render('place',{user,data});
+    }
+})
+
+router.post('/review/:id',verifier, async (req,res) =>{
+    const email = req.user.id;
+    const placeid = req.params.id;
+    const user = await User.findOne({ email: email});
+    const rating = req.body.rating;
+    const review = req.body.review;
+    const feedback = []
+    const reviewrating = []
+    if(user){
+        feedback.push({placeid,user,rating,review});
+        reviewrating.push({placeid,rating,review});
+        console.log(feedback);
+        const updated = await Place.findOneAndUpdate({ id: placeid }, {reviews: feedback})
+        if(updated){
+            await User.findOneAndUpdate({email: email},{tourReview: reviewrating});
+            const data = await Place.findOne({id: placeid})
+            res.render('place',{user,data,rating});
+        }
     }
 })
 

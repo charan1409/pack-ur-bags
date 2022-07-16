@@ -55,7 +55,8 @@
             font-size: 23px;
         }
 
-        .place-box .heading .details p,a {
+        .place-box .heading .details p,
+        a {
             font-size: 23px;
             margin-top: 20px;
             color: black;
@@ -65,7 +66,7 @@
             margin-top: 4px;
         }
 
-        .place-box .heading .details .book-button{
+        .place-box .heading .details .book-button {
             margin-top: 100px;
         }
 
@@ -81,7 +82,7 @@
             font-size: 20px;
         }
 
-        .modal-bg{
+        .modal-bg {
             height: 100vh;
             width: 100%;
             background-color: rgba(0, 0, 0, 0.7);
@@ -96,12 +97,12 @@
             transition: visibilty 0s, opacity 0.5s;
         }
 
-        .bg-active{
+        .bg-active {
             visibility: visible;
             opacity: 1;
         }
 
-        .modal-bg .review-submit{
+        .modal-bg .review-submit {
             position: relative;
             background-color: #fff;
             height: 50%;
@@ -111,7 +112,7 @@
             padding: 0;
         }
 
-        .modal-bg .review-submit span{
+        .modal-bg .review-submit span {
             position: absolute;
             display: flex;
             top: 0px;
@@ -125,30 +126,30 @@
             cursor: pointer;
         }
 
-        .modal-bg .review-submit span:hover{
+        .modal-bg .review-submit span:hover {
             background-color: rgba(255, 0, 0, 0.734);
             color: #fff;
         }
 
-        .modal-bg .review-submit h2{
+        .modal-bg .review-submit h2 {
             text-align: center;
             font-size: 25px;
             font-weight: bold;
             margin-top: 10px;
         }
 
-        .modal-bg .review-submit form{
+        .modal-bg .review-submit form {
             padding: 20px 30px;
         }
 
-        .modal-bg .review-submit label{
+        .modal-bg .review-submit label {
             font-size: 18px;
             margin-top: 5px;
             text-transform: none;
         }
 
-        .modal-bg .review-submit select{
-            border:1px solid rgba(25, 19, 19, 0.764);
+        .modal-bg .review-submit select {
+            border: 1px solid rgba(25, 19, 19, 0.764);
             border-radius: 10px;
             padding: 5px;
             font-size: 15px;
@@ -156,8 +157,8 @@
             cursor: pointer;
         }
 
-        .modal-bg .review-submit textarea{
-            border:3px solid rgba(25, 19, 19, 0.764);
+        .modal-bg .review-submit textarea {
+            border: 3px solid rgba(25, 19, 19, 0.764);
             border-radius: 10px;
             margin-top: 10px;
             padding: 5px;
@@ -165,45 +166,45 @@
             text-transform: none;
         }
 
-      .place-box .review{
-        margin-top: 20px;
-        border-top: 2px solid rgba(28, 27, 27, 0.5);
-        padding: 20px;
-      }
+        .place-box .review {
+            margin-top: 20px;
+            border-top: 2px solid rgba(28, 27, 27, 0.5);
+            padding: 20px;
+        }
 
-      .place-box .review h3{
-        font-size: 30px;
-      }
+        .place-box .review h3 {
+            font-size: 30px;
+        }
 
-      .place-box .review .content{
-        margin-left: 20px;
-        border: 2px solid rgba(0,0,0,0.5);
-        border-radius: 20px;
-        box-sizing: border-box;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        position: relative;
-        padding: 10px;
-      }
+        .place-box .review .content {
+            margin-left: 20px;
+            border: 2px solid rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            box-sizing: border-box;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding: 10px;
+        }
 
-      .place-box .review .content img{
-        height: 35px;
-        width: 35px;
-        border-radius: 50%;
-        float: left;
-      }
+        .place-box .review .content img {
+            height: 35px;
+            width: 35px;
+            border-radius: 50%;
+            float: left;
+        }
 
-      .place-box .review .content h5{
-        float: left;
-        margin-left: 20px;
-        margin-top: 5px;
-        font-size: 15px;
-      }
+        .place-box .review .content h5 {
+            float: left;
+            margin-left: 20px;
+            margin-top: 5px;
+            font-size: 15px;
+        }
 
-      .place-box .review .content p{
-        margin-top: 10px;
-        font-size: 12px;
-      }
+        .place-box .review .content p {
+            margin-top: 10px;
+            font-size: 12px;
+        }
     </style>
 </head>
 
@@ -220,16 +221,16 @@
                             <h2><i class="fas fa-map-marker-alt"></i>
                                 <%= data.to %>
                             </h2>
-                            <p>rating: <%= data.rating %>
-                                <div class="rating">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
+                            <p>rating: 
+                                    <div class="rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
                                     </div>
-                                </div>
                             </p>
                         </div>
                         <div class="book-button">
@@ -246,41 +247,48 @@
                 <div class="review" id="reviews">
                     <h3>Reviews:</h3>
                     <button type="button" class="btn" onclick="review_rating()">Submit review</button>
-                    <div class="content">
-                        <img src="/places/<%= data.photo%>" alt="<%= data.to %>">
-                        <h5><%= data.to %></h5><br><br>
-                        <p><%= data.details %></p>
-                    </div>
+                    <% data.reviews.forEach(function(review) { %>
+                        <div class="content">
+                            <img src="/uploads/<%= review.user.image%>" alt="<%= data.to %>">
+                            <h5>
+                                <%= review.user.username %>
+                            </h5><br><br>
+                            <p>
+                                <%= review.review %>
+                            </p>
+                        </div>
+                        <% }); %>
                 </div>
             </div>
             <%} %>
-            <div class="modal-bg">
-                <div class="review-submit">
-                    <h2>Submit your review and rating</h2>
-                    <form action="places/review" method="post">
-                        <label for="rating">Give your rating:</label>
-                        <select name="rating" id="">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select><br>
-                        <label for="review">Submit your review:</label>
-                        <textarea name="review" id="review" cols="50" rows="3" placeholder="submit your review"></textarea><br>
-                        <button type="submit" class="btn">Submit</button>
-                    </form>
-                    <span onclick="review_rating()">X</span>
+                <div class="modal-bg">
+                    <div class="review-submit">
+                        <h2>Submit your review and rating</h2>
+                        <form action="/places/review/<%= data.id %>" method="post">
+                            <label for="rating">Give your rating:</label>
+                            <select name="rating" id="">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select><br>
+                            <label for="review">Submit your review:</label>
+                            <textarea name="review" id="review" cols="50" rows="3"
+                                placeholder="submit your review"></textarea><br>
+                            <button type="submit" class="btn">Submit</button>
+                        </form>
+                        <span onclick="review_rating()">X</span>
+                    </div>
                 </div>
-            </div>
-            
-        </body>
-        <script src="/js/navbar.js"></script>
-        <script>
-            function review_rating() {
-                const modalBg = document.querySelector(".modal-bg");
-                modalBg.classList.toggle("bg-active")
-            }
-        </script>
-        
+
+</body>
+<script src="/js/navbar.js"></script>
+<script>
+    function review_rating() {
+        const modalBg = document.querySelector(".modal-bg");
+        modalBg.classList.toggle("bg-active")
+    }
+</script>
+
 </html>
