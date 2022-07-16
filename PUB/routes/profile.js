@@ -76,12 +76,7 @@ router.post('/edit',verifier, async (req,res) => {
     const user = await User.findOne({ email: email});
     const validPass = await bcrypt.compare(pass, user.password);
     if(user){
-        if (!name || !gender || !phn || !pass) {
-            edit.push({ msg: "edit your profile" })
-            editerr.push({ msg: "please fill in all details" })
-            res.render('editprofile', { user, edit, editerr })
-        }
-        else if (validPass) {
+        if (validPass) {
             await User.findOneAndUpdate({ email: email }, newvals,async function (err, result) {
                 if (err) throw err;
                 edit.push({ msg2: "profile updated succesfully" })

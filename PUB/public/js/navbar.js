@@ -21,11 +21,3 @@ window.addEventListener('scroll', () => {
     }
     return false;
 })
-
-// window.addEventListener('mouseup', () => {
-//     if (submenu.classList.contains("show")) {
-//         down.classList.toggle("bx-chevron-up")
-//         submenu.classList.toggle('show', window.scrollY > 0)
-//     }
-//     return false;
-// })
