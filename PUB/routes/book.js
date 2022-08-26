@@ -49,7 +49,7 @@ router.post('/book',verifier, (req, res) => {
         newBooking.save().then(book => {
                 User.findOne({ email: email})
                 .then(user=>{
-                    res.render('index')
+                    res.render('index',{user})
                 })
         })
     }
