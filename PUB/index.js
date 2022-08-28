@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 //connect to mongo
-mongoose.connect(process.env.MONGODB_LINK,{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false})
+mongoose.connect(process.env.MONGODB_LINK_COMPASS,{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false})
 .then(()=>console.log('MongoDb  Connected...'))
 .catch(err=>console.log(err));
 
