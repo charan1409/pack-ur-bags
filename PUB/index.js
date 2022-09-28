@@ -5,7 +5,7 @@ app.use(cookieparser());
 const mongoose=require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
-const port = 3000
+const port = 9000
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
