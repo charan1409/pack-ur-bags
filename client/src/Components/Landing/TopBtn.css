@@ -1,0 +1,11 @@
+.top-btn {
+  background-color: #fac102;
+  color: whitesmoke;
+  height: 45px;
+  width: 100%;
+  font-size: 23px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

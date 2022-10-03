@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter,Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import "./Components/Main/main.css";
+import LoginPage from "./Components/Landing/LoginPage";
 import Landing from "./Components/Landing/Landing";
 import Index from "./Components/Main/Index";
 import Places from "./Components/Places/Places";
@@ -21,6 +21,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing/>} />
+          <Route path="/login" element={<LoginPage/>} />
           <Route path="index" element={<Index/>} />
           <Route path="places" element={<Places/>} />
           <Route path="placeshotel" element={<PlacesHotel/>} />

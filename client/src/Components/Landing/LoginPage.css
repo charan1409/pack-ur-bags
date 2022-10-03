@@ -1,0 +1,68 @@
+.login-container {
+  height: 100vh;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+}
+
+.login-container .total-form-container{
+  position: relative;
+  height: 530px;
+  width: 500px;
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.623);
+  animation-name: moving;
+  animation-duration: .8s;
+  top: 7%;
+  margin-left: 27%;
+  background-color: #ffffff;
+}
+
+.login-container .login-form-container {
+  position: relative;
+  padding: 0px 30px 30px 30px;
+}
+
+@keyframes moving {
+  from {
+    top: -20%;
+  }
+  to {
+    top: 7%;
+  }
+}
+
+.login-container .login-form-container .top-btn {
+  background-color: #fac102;
+  color: whitesmoke;
+  height: 50px;
+  width: 100%;
+  font-size: 23px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container .login-form-close{
+  height: 40px;
+  width: 100%;
+  position: relative;
+  font-size: 18px;
+}
+
+.login-container .login-form-close-btn{
+  height: 100%;
+  width: 50px;
+  position: absolute;
+  text-align: center;
+  cursor: pointer;
+  line-height: 40px;
+  right: 0;
+}
+
+.login-container .login-form-close-btn:hover{
+  background-color: red;
+  color: #ffffff;
+}

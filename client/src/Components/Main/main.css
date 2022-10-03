@@ -63,7 +63,7 @@ html {
 }
 
 /* Buttons CSS */
-.btn {
+/* .btn {
   display: inline-block;
   margin-top: 1rem;
   background: var(--orange);
@@ -78,6 +78,23 @@ html {
 
 .btn:hover {
   background: rgba(235, 219, 129, 0.678);
+} */
+.btn {
+  background-color: #ffbb00e3;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #fff;
+  padding: 5px 20px;
+  border: none;
+}
+
+.btn:hover {
+  background: none;
+  color: #ffbb00e3;
+  border: 2px solid #ffbb00e3;
+  font-weight: bold;
 }
 /* Nav Bar STYLE */
 .header {
