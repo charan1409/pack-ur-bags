@@ -9,7 +9,7 @@ import Places from "./Components/Places/Places";
 import PlacesHotel from "./Components/PlacesHotel/PlacesHotel";
 import Book from "./Components/Book/Book";
 
-// import Payment from './Components/Pay/Payment';
+import Payment from './Components/Pay/Payment';
 
 import Error from "./Components/Error";
 
@@ -25,7 +25,7 @@ function App() {
           <Route path="places" element={<Places/>} />
           <Route path="placeshotel" element={<PlacesHotel/>} />
           <Route path="book" element={<Book/>} />
-          {/* <Route path="payment" element={<Payment/>} /> */}
+          <Route path="payment" element={<Payment/>} />
           <Route element={<Error/>} />
         </Routes>
       </BrowserRouter>
