@@ -55,7 +55,7 @@ app.get("/register", function (req, res) {
 });
 
 app.listen(port, function () {
-    console.log("server is running on the port 3000");
+    console.log("server is running on the port 9000");
 });
 
 //routes
