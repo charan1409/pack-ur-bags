@@ -1,6 +1,7 @@
 import "./App.css";
 import "./Components/Main/main.css";
-import Index from './Components/Main/Index'
+import Landing from "./Components/Landing/Landing";
+// import Index from './Components/Main/Index'
 
 // import Payment from './Components/Pay/Payment';
 
@@ -9,7 +10,8 @@ import Index from './Components/Main/Index'
 function App() {
   return (
     <div className="App">
-      <Index/>
+      <Landing/>
+      {/* <Index/> */}
 
       {/* <Places /> */}
     </div>
