@@ -11,7 +11,7 @@ import Book from "./Components/Book/Book";
 
 import Payment from './Components/Pay/Payment';
 
-import Error from "./Components/Error";
+import Error from "./Components/ErrorPage/Error";
 
 
 
@@ -26,7 +26,7 @@ function App() {
           <Route path="placeshotel" element={<PlacesHotel/>} />
           <Route path="book" element={<Book/>} />
           <Route path="payment" element={<Payment/>} />
-          <Route element={<Error/>} />
+          <Route path="*" element={<Error/>} />
         </Routes>
       </BrowserRouter>
     </>
