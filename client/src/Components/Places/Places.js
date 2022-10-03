@@ -1,9 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Places = () => {
   return (
     <div>
-      <p>Places Page here.</p>
+      <h1>Places Page here.</h1>
+      <Link to="/placeshotel"><h1>Link to PlacesHotel</h1></Link>
     </div>
   );
 };

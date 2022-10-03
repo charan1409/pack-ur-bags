@@ -2,6 +2,8 @@ import React, {useEffect} from "react";
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import "./main.css";
+import { Link } from "react-router-dom";
+
 
 const Box = (props) => {
     useEffect(() => {
@@ -26,9 +28,7 @@ const Box = (props) => {
         <p>{props.data}</p>
 
         {isBtn && (
-          <a href={props.link} className="btn">
-            see more
-          </a>
+          <Link to={props.link} className="btn">see more</Link>
         )}
       </div>
     </div>

@@ -15,7 +15,7 @@ const Index = () => {
   return (
     <div>
       <Upward />
-      <Header />
+      <Header user={true}/>
       <Vedio />
       <Gallery />
       <Places />

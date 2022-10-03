@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./Payment.css";
+import '../Main/main.css'
 import img1 from "./img/chip.png";
 import img2 from "./img/visa.png";
 

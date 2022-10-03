@@ -1,16 +1,20 @@
 import React from "react";
 import "./main.css";
+import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <div className="header">
       <div id="menu-bar" className="fas fa-bars"></div>
 
-      <a href="/" className="logo">
+      <a href="#home" className="logo">
         <span>P</span>ACK <span>U</span>R <span>B</span>AGS
       </a>
       <nav className="navbar">
-        <a href="#home">Home</a>
+        {
+          props.user ? <Link to="/index">Home</Link> : <Link to="/">Home</Link>
+        }
+        {/* <a href="#home">Home</a> */}
         <a href="#gallery">Gallery</a>
         <a href="#places">Places</a>
         <a href="#about">About</a>
