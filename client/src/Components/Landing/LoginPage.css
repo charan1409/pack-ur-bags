@@ -1,21 +1,29 @@
+.modal,
 .login-container {
   height: 100vh;
-  width: 100%;
-  left: 0;
+  width: 100vw;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 1;
 }
 
-.login-container .total-form-container{
-  position: relative;
+.login-container {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.login-container .total-form-container {
+  position: absolute;
   height: 530px;
   width: 500px;
+  transform: translate(-50%,-50%);
   box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.623);
   animation-name: moving;
-  animation-duration: .8s;
-  top: 7%;
-  margin-left: 27%;
+  animation-duration: 0.8s;
+  top: 55%;
+  margin-left: 50%;
   background-color: #ffffff;
 }
 
@@ -29,7 +37,7 @@
     top: -20%;
   }
   to {
-    top: 7%;
+    top: 55%;
   }
 }
 
@@ -45,14 +53,14 @@
   align-items: center;
 }
 
-.login-container .login-form-close{
+.login-container .login-form-close {
   height: 40px;
   width: 100%;
   position: relative;
   font-size: 18px;
 }
 
-.login-container .login-form-close-btn{
+.login-container .login-form-close-btn {
   height: 100%;
   width: 50px;
   position: absolute;
@@ -62,7 +70,7 @@
   right: 0;
 }
 
-.login-container .login-form-close-btn:hover{
+.login-container .login-form-close-btn:hover {
   background-color: red;
   color: #ffffff;
 }

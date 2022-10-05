@@ -11,9 +11,7 @@ const Header = (props) => {
         <span>P</span>ACK <span>U</span>R <span>B</span>AGS
       </a>
       <nav className="navbar">
-        {
-          props.user ? <Link to="/index">Home</Link> : <Link to="/">Home</Link>
-        }
+        {props.user ? <Link to="/index">Home</Link> : <Link to="/">Home</Link>}
         {/* <a href="#home">Home</a> */}
         <a href="#gallery">Gallery</a>
         <a href="#places">Places</a>
@@ -24,9 +22,16 @@ const Header = (props) => {
       </nav>
       <div className="icons">
         <i className="fas fa-search" id="search-btn"></i>
-        <a href="login">
+        {props.user ? (
+          <Link to="/login">
+            <i className="fa fa-user" aria-hidden="true" id="login-btn"></i>
+          </Link>
+        ) : (
+            <i className="fa fa-user" aria-hidden="true" id="login-btn" onClick={props.openLoginForm}></i>
+        )}
+        {/* <Link to="login">
           <i className="fa fa-user" aria-hidden="true" id="login-btn"></i>
-        </a>
+        </Link> */}
       </div>
       <form action="" className="search-bar-container">
         <input type="search" id="search-bar" placeholder="Search here.." />
