@@ -26,6 +26,12 @@ const Payment = () => {
     setCvv("");
   };
 
+  function number_space(){
+    var str = number;
+    var res = str.replace(/(.{4})/g,"$1 ");
+    return res;
+  }
+
   return (
     <div class="container">
       <div class="card-container">
@@ -35,7 +41,7 @@ const Payment = () => {
             <img src={img2} alt="" />
           </div>
           <div class="card-number-box">
-            {number.length === 0 ? "#### #### #### ####" : number}
+            {number.length === 0 ? "#### #### #### ####" : number_space()}
           </div>
           <div class="flexbox">
             <div class="box">
