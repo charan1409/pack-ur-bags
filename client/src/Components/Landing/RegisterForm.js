@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
-import Btn from "./Btn";
+import Btn from "../Btn";
 import Error from "./LogError";
 
 function RegisterForm(props) {

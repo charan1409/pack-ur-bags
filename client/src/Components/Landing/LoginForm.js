@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
-import Btn from "./Btn";
+import Btn from "../Btn";
 import Error from "./LogError";
 
 function Form(props) {
-  const [loginError, setLoginError] = useState({msg:""});
+  const [loginError, setLoginError] = useState(false);
+  const [submitBtn, setsubmitBtn] = useState("button")
   const [userinfo, setUserinfo] = useState({
     username:"",
     password:""
@@ -13,6 +14,7 @@ function Form(props) {
 
   const closeLoginError = () => {
     setLoginError(false);
+    setsubmitBtn("button")
   };
 
   const onUpdateField = e => {
@@ -53,7 +55,7 @@ function Form(props) {
             onChange={onUpdateField}
           />
           <Btn
-            type={"submit"}
+            type={submitBtn}
             value={"Sign In"}
             onClick={props.closeRegister}
           />
