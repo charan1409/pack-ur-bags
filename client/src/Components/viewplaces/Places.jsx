@@ -7,8 +7,10 @@ import Heading from "./heading";
 import photo from "./img.jpg";
 import "./style.css"
 import { Link } from "react-router-dom";
+import Header from "../Main/Header"
 function App(){
     return(<div>
+        <Header user={true}/>
         <Heading category="how are you"/>
         <div className="place-box1">
             <Img photo={photo} alt="bye"/>

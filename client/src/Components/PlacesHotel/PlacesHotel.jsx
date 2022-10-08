@@ -8,9 +8,11 @@ import Review from "./review"
 import "./style.css"
 import Btn from "../Btn"
 import { Link } from "react-router-dom";
+import Header from "../Main/Header";
 function App(){
     return(
         <div>
+            <Header user={true}/>
             <div className="place-box">
                 <div className="heading">
                     <Img photo={img}/>
