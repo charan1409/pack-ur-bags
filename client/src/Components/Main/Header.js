@@ -23,11 +23,11 @@ const Header = (props) => {
       <div className="icons">
         <i className="fas fa-search" id="search-btn"></i>
         {props.user ? (
-          <Link to="/login">
+          <Link to="/profile">
             <i className="fa fa-user" aria-hidden="true" id="login-btn"></i>
           </Link>
         ) : (
-            <i className="fa fa-user" aria-hidden="true" id="login-btn" onClick={props.openLoginForm}></i>
+          <i className="fa fa-user" aria-hidden="true" id="login-btn" onClick={props.openLoginForm}></i>
         )}
         {/* <Link to="login">
           <i className="fa fa-user" aria-hidden="true" id="login-btn"></i>
