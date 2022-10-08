@@ -4,7 +4,7 @@ import { BrowserRouter,Routes, Route } from "react-router-dom";
 import "./App.css";
 import Landing from "./Components/Landing/Landing";
 import Index from "./Components/Main/Index";
-import Places from "./Components/Places/Places";
+import Places from "./Components/viewplaces/Places";
 import PlacesHotel from "./Components/PlacesHotel/PlacesHotel";
 import Book from "./Components/Book/Book";
 
