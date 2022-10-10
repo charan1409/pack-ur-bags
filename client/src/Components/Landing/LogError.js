@@ -4,7 +4,7 @@ import "./LogError.css";
 const LogAlert = (props) => {
   return (
     <div className="log-alert">
-      <p>Error msg! {props.msg}</p>
+      <p>{props.msg}</p>
       <span onClick={props.onClick}>X </span>
     </div>
   )

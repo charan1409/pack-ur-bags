@@ -5,16 +5,14 @@ import Btn from "../Btn";
 import Error from "./LogError";
 
 function Form(props) {
-  const [loginError, setLoginError] = useState(false);
-  const [submitBtn, setsubmitBtn] = useState("button")
+  const [loginError, setLoginError] = useState([false,""]);
   const [userinfo, setUserinfo] = useState({
     username:"",
     password:""
   });
 
   const closeLoginError = () => {
-    setLoginError(false);
-    setsubmitBtn("button")
+    setLoginError([false,""]);
   };
 
   const onUpdateField = e => {
@@ -27,17 +25,25 @@ function Form(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    alert(JSON.stringify(userinfo,null,2))
-    setUserinfo({
-      username:"",
-      password:""
-    })
+    if(/\s/.test(userinfo.username || userinfo.username.trim().length < 1)){
+      setLoginError([true,"Username should not contain spaces"])
+    }
+    else if(userinfo.password.trim().length < 6){
+      setLoginError([true,"Password should be altleast 6 characters"])
+    } else{
+      setLoginError([false,""])
+      alert(JSON.stringify(userinfo,null,2))
+      setUserinfo({
+        username:"",
+        password:""
+      })
+    }
   };
 
     return (
       <div>
         <form className="loginForm" onSubmit={submitHandler}>
-          {loginError && <Error msg={props.msg} onClick={closeLoginError} />}
+          {loginError[0] && <Error msg={loginError[1]} onClick={closeLoginError} />}
           <InputBox
             placeholder={"username"}
             leftIcon={"bi bi-person-fill"}
@@ -55,7 +61,7 @@ function Form(props) {
             onChange={onUpdateField}
           />
           <Btn
-            type={submitBtn}
+            type={"submit"}
             value={"Sign In"}
             onClick={props.closeRegister}
           />
