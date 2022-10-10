@@ -21,7 +21,6 @@ const Header = (props) => {
         <a href="#footer">Footer</a>
       </nav>
       <div className="icons">
-        <i className="fas fa-search" id="search-btn"></i>
         {props.user ? (
           <Link to="/profile">
             <i className="fa fa-user" aria-hidden="true" id="login-btn"></i>
@@ -29,14 +28,7 @@ const Header = (props) => {
         ) : (
           <i className="fa fa-user" aria-hidden="true" id="login-btn" onClick={props.openLoginForm}></i>
         )}
-        {/* <Link to="login">
-          <i className="fa fa-user" aria-hidden="true" id="login-btn"></i>
-        </Link> */}
       </div>
-      <form action="" className="search-bar-container">
-        <input type="search" id="search-bar" placeholder="Search here.." />
-        <label htmlFor="search-bar" className="fas fa-search"></label>
-      </form>
     </div>
   );
 };
