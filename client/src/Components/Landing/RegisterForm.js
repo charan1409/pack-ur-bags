@@ -1,11 +1,11 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
 import Error from "./LogError";
 
 function RegisterForm(props) {
-  const [registerError, setRegisterError] = useState(false);
+  const [registerError, setRegisterError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
     username: "",
     email: "",
@@ -27,19 +27,30 @@ function RegisterForm(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    alert(JSON.stringify(userinfo,null,2))
-    setUserinfo({
+    if (/\s/.test(userinfo.username || userinfo.username.trim().length < 1)) {
+      setRegisterError([true, "Username should not contain spaces"]);
+    } else if(userinfo.email.trim().length < 1 || !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userinfo.email))){
+      setRegisterError([true, "Invalid Email"]);
+    } else if (userinfo.password.trim().length < 6) {
+      setRegisterError([true, "Password should be altleast 6 characters"]);
+    } else if(userinfo.password != userinfo.confirmedPassword){
+      setRegisterError([true, "Passwords are not matching"]);
+    } else {
+      setRegisterError([false, ""]);
+      alert(JSON.stringify(userinfo, null, 2));
+      setUserinfo({
         username: "",
         email: "",
         password: "",
         confirmedPassword: "",
-    })
+      });
+    }
   };
   return (
     <div>
       <form className="loginForm" onSubmit={submitHandler}>
-        {registerError && (
-          <Error msg={props.msg} onClick={closeRegisterError} />
+        {registerError[0] && (
+          <Error msg={registerError[1]} onClick={closeRegisterError} />
         )}
         <InputBox
           placeholder={"username"}
