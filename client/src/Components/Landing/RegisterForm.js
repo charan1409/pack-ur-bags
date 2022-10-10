@@ -29,11 +29,11 @@ function RegisterForm(props) {
     e.preventDefault();
     if (/\s/.test(userinfo.username || userinfo.username.trim().length < 1)) {
       setRegisterError([true, "Username should not contain spaces"]);
-    } else if(userinfo.email.trim().length < 1 || !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userinfo.email))){
+    } else if(userinfo.email.trim().length < 1 || !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userinfo.email))){//  eslint-disable-line
       setRegisterError([true, "Invalid Email"]);
     } else if (userinfo.password.trim().length < 6) {
       setRegisterError([true, "Password should be altleast 6 characters"]);
-    } else if(userinfo.password != userinfo.confirmedPassword){
+    } else if(userinfo.password !== userinfo.confirmedPassword){
       setRegisterError([true, "Passwords are not matching"]);
     } else {
       setRegisterError([false, ""]);
