@@ -6,19 +6,19 @@
     padding: 3% 3%;
 }
 
-.right_table {
+._right {
     width: auto;
     margin-top: 60px;
 }
 
-.right_table .btns {
+._right .btns {
     display: flex;
     flex-direction: column;
     justify-content: left;
     align-items: left;
 }
 
-.left {
+._left {
     width: auto;
     height: 450px;
     position: relative;
@@ -28,20 +28,20 @@
     align-items: center;
 }
 
-.right_table table,
-.right_table th,
-.right_table td {
+._right table,
+._right th,
+._right td {
     width: 400px;
     height: 50px;
     text-align: left;
     font-size: 30px;
 }
 
-.right_table th {
+._right th {
     font-size: 20px;
 }
 
-.right_table td {
+._right td {
     width: 500px;
     height: 50px;
     font-size: 20px;
@@ -49,7 +49,7 @@
     text-transform: none;
 }
 
-.left ._img {
+._left ._img {
     position: relative;
     display: flex;
     justify-content: center;
@@ -59,7 +59,7 @@
     border-radius: 100%;
 }
 
-.left ._img img {
+._left ._img img {
     width: 350px;
     height: 350px;
     left: 50%;
@@ -68,7 +68,7 @@
     display: block;
 }
 
-.left ._img .content {
+._left ._img .img_content {
     position: absolute;
     visibility: hidden;
     opacity: 0;
@@ -83,18 +83,18 @@
     transition: visibility 0s, opacity 0.5s;
 }
 
-.left ._img:hover .content {
+._left ._img:hover .img_content {
     visibility: visible;
     opacity: 1;
 }
 
-.profile .left .content i {
+.profile ._left .img_content i {
     color: whitesmoke;
     margin-left: 20%;
     cursor: pointer;
 }
 
-.prof-btn {
+.btn_profile {
     margin-top: 6px;
     width: 300px;
     height: 40px;
@@ -107,7 +107,7 @@
     color: #fff;
 }
 
-.prof-btn:hover {
+.btn_profile:hover {
     background: none;
     border: 2px solid #fac102;
     color: #fac102;
@@ -116,4 +116,79 @@
 h1 {
     text-align: center;
     font-size: 60px;
+}
+
+
+._left .modal-bg {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibilty 0s, opacity 0.5s;
+}
+
+._left .bg-active {
+    visibility: visible;
+    opacity: 1;
+}
+
+._left .modal-bg .edit-form {
+    position: relative;
+    background-color: #fff;
+    height: 55%;
+    width: 40%;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+._left .modal-bg .edit-form span {
+    position: absolute;
+    display: flex;
+    top: 0px;
+    right: 0px;
+    font-size: 20px;
+    width: 60px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+._left .modal-bg .edit-form span:hover {
+    background-color: rgba(255, 0, 0, 0.734);
+    color: #fff;
+}
+
+._left .modal-bg .edit-form h2 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+._left .modal-bg .edit-form form {
+    padding: 20px 30px;
+}
+
+.modal-bg .edit-form label {
+    font-size: 18px;
+    margin-top: 5px;
+    text-transform: none;
+}
+
+.modal-bg .edit-form input {
+    border: 1px solid rgba(25, 19, 19, 0.764);
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 15px;
+    text-transform: none;
 }
