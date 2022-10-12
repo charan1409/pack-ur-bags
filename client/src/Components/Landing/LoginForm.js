@@ -1,8 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
 import Error from "./LogError";
+
+// const users = [
+//   {
+//     username:"charan14",
+//     password:"charan"
+//   }
+// ]
 
 function Form(props) {
   const [loginError, setLoginError] = useState([false,""]);
@@ -10,6 +18,7 @@ function Form(props) {
     username:"",
     password:""
   });
+  let history = useNavigate();
 
   const closeLoginError = () => {
     setLoginError([false,""]);
@@ -32,7 +41,8 @@ function Form(props) {
       setLoginError([true,"Password should be altleast 6 characters"])
     } else{
       setLoginError([false,""])
-      alert(JSON.stringify(userinfo,null,2))
+      // alert(JSON.stringify(userinfo,null,2))
+      history("/index");
       setUserinfo({
         username:"",
         password:""
