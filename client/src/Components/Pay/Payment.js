@@ -19,6 +19,16 @@ const Payment = () => {
     alert(`The Month Entered is: ${month}`);
     alert(`The Year Entered is: ${year}`);
     alert(`The CVV Entered is: ${cvv}`);
+
+    const payment_data = {
+      number: number,
+      name: name,
+      month: month,
+      year: year,
+      cvv: cvv,
+    };
+    console.log(payment_data);
+
     setNumber("");
     setName("");
     setMonth("");

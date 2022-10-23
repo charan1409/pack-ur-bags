@@ -13,6 +13,14 @@ const Feedback = () => {
     alert(`The Name Entered is: ${name}`);
     alert(`The Email Entered is: ${email}`);
     alert(`The FeedBack Entered is: ${fdbk}`);
+
+    const feedback_data = {
+      name: name,
+      email: email,
+      fdbk: fdbk,
+    };
+    console.log(feedback_data);
+    
     setName("");
     setEmail("");
     setFdbk("");
