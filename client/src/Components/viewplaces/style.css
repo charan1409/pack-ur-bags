@@ -11,9 +11,9 @@
     box-shadow: 7px 7px 7px 7px #1e1e1ea0;
   }
 
-  .place-box1:hover {
+  /* .place-box1:hover {
     box-shadow: none;
-  }
+  } */
 
   .place-box1 .place-pic {
     width: 340px;
@@ -27,13 +27,14 @@
     border-radius: 20px 0px 0px 20px;
   }
 
-  .place-box1 .place-details {
+  .place-box1 .place-details { 
     float: left;
     height: 100%;
     display: block;
   }
 
   .place-box1 .place-details .detail {
+    margin-top: 3rem;
     height: 180px;
     overflow: hidden;
   }
@@ -65,7 +66,8 @@
 
   .place-box1 .button-holder {
     display:grid;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 3fr 10fr;
+    margin-bottom: 3rem;
   }
 
   .place-box1 .button-holder .button {
@@ -96,5 +98,10 @@
     border: 2px solid #fac102;
     padding-top: 5px;
     
+  }
+
+  .place-box1 .place-details .rating{
+    color: #fac102;
+    font-size: large;
   }
   

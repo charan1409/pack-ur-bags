@@ -217,3 +217,28 @@ a {
   border: 2px solid #fac102;
   padding-top: 5px;
 }
+
+.place-box .Hotelbox{
+    font-size: 15px;
+    padding: 4rem;
+    margin: 30px 30px;
+    height: 100%;
+    
+}
+.Hotelbox .box-container {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: auto;
+    font-size: 15px;
+
+}
+.Hotelbox .box-container .box{
+    border: 3px solid rgba(130, 127, 127, 0.5);
+    box-shadow: 1px 7px 7px rgba(30, 28, 28, 0.5);
+    padding: 3rem;
+    margin:2rem;
+    border-radius: 30px;
+}
+.Hotelbox .box-container .box .stars{
+    color: #fac102;
+}

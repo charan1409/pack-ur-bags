@@ -4,8 +4,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Landing from "./Components/Landing/Landing";
 import Index from "./Components/Main/Index";
-import Places from "./Components/viewplaces/Places";
-import PlacesHotel from "./Components/PlacesHotel/PlacesHotel";
+import Beaches from "./Components/viewplaces/Beaches";
+import Island from "./Components/viewplaces/Island";
+import Hillstation from "./Components/viewplaces/Hillstation";
+import Forest from "./Components/viewplaces/Forest";
+import Winter from "./Components/viewplaces/Winter";
+import Cultural from "./Components/viewplaces/Cultural";
+import Desert from "./Components/viewplaces/Desert";
+import Countryside from "./Components/viewplaces/Countryside";
+import BeachesHotel from "./Components/PlacesHotel/BeachesHotel";
+import CulturalHotel from "./Components/PlacesHotel/CulturalHotel";
+import CountrysideHotel from "./Components/PlacesHotel/CountrysideHotel";
 import Book from "./Components/Book/Book";
 
 import Payment from './Components/Pay/Payment';
@@ -22,8 +31,17 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="index" element={<Index />} />
-          <Route path="places" element={<Places />} />
-          <Route path="placeshotel" element={<PlacesHotel />} />
+          <Route path="Beaches" element={<Beaches />} />
+          <Route path="Island" element={<Island />} />
+          <Route path="Hillstation" element={<Hillstation />} />
+          <Route path="Forest" element={<Forest />} />
+          <Route path="Winter" element={<Winter />} />
+          <Route path="Cultural" element={<Cultural />} />
+          <Route path="Desert" element={<Desert />} />
+          <Route path="Countryside" element={<Countryside />} />
+          <Route path="BeachesHotel" element={<BeachesHotel />} />
+          <Route path="CulturalHotel" element={<CulturalHotel />} />
+          <Route path="CountrysideHotel" element={<CountrysideHotel />} />
           <Route path="book" element={<Book />} />
           <Route path="payment" element={<Payment />} />
           <Route path="*" element={<Error />} />
