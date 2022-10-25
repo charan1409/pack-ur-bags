@@ -5,12 +5,28 @@ import InputBox from "./InputBox";
 import Btn from "../Btn";
 import Error from "./LogError";
 
-// const users = [
-//   {
-//     username:"charan14",
-//     password:"charan"
-//   }
-// ]
+const users = [
+  {
+    username:"charan14",
+    password:"charan"
+  },
+  {
+    username:"rahul14",
+    password:"rahulvarma"
+  },
+  {
+    username:"kamal12",
+    password:"kamalsai"
+  },
+  {
+    username:"rohith14",
+    password:"rohith"
+  },
+  {
+    username:"nikhil14",
+    password:"nikhil"
+  }
+]
 
 function Form(props) {
   const [loginError, setLoginError] = useState([false,""]);
@@ -41,12 +57,17 @@ function Form(props) {
       setLoginError([true,"Password should be altleast 6 characters"])
     } else{
       setLoginError([false,""])
-      // alert(JSON.stringify(userinfo,null,2))
-      history("/index");
-      setUserinfo({
-        username:"",
-        password:""
-      })
+      users.forEach(e => {
+        if(e.username === userinfo.username && e.password === userinfo.password){
+          setUserinfo({
+            username:"",
+            password:""
+          })
+          history("/index");
+        } else{
+          setLoginError([true,"Invalid user details"])
+        }
+      });
     }
   };
 

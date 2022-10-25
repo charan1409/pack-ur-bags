@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
 import Error from "./LogError";
 
 function RegisterForm(props) {
+  let history = useNavigate();
   const [registerError, setRegisterError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
     username: "",
@@ -37,7 +39,7 @@ function RegisterForm(props) {
       setRegisterError([true, "Passwords are not matching"]);
     } else {
       setRegisterError([false, ""]);
-      alert(JSON.stringify(userinfo, null, 2));
+      history("/index");
       setUserinfo({
         username: "",
         email: "",
