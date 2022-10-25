@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 
-import Header from "../Main/Header";
+import Header from "../Navbar/Header";
 import Vedio from "../Main/Vedio";
 import Gallery from "../Main/Gallery";
 import Services from "../Main/Services";
@@ -14,7 +14,6 @@ const Landing = (props) => {
 
   const toggleLoginForm = () =>{
     setLogin(!login);
-    console.log(props.users);
   }
   return (
     <div>

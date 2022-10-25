@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import Component from "./PlacesHotelComponent";
-import Header from "../Main/Header";
+import Header from "../Navbar/Header";
 import img from "../viewplaces/img.jpg"
 import { useLocation } from 'react-router-dom';
 

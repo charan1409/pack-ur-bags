@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../Main/Header';
+import Header from '../Navbar/Header';
 import "./clientprofile.css";
 import img from "./displayimage.jpg"
 import Tabledata from './Tabledata';

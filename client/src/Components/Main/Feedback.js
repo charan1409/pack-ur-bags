@@ -28,9 +28,9 @@ const Feedback = () => {
 
   return (
     <>
-      <div class="fd_bk" id="">
+      <div className="fd_bk" id="">
         <span>Give Feedback</span>
-        <div class="shortdesc2">
+        <div className="shortdesc2">
           <p>Please share your valuable feedback to us</p>
         </div>
       </div>

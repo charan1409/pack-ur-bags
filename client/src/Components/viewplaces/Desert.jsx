@@ -1,7 +1,7 @@
 import React from "react";
 import Heading from "./ViewplacesComponents/heading";
 import "./style.css"
-import Header from "../Main/Header"
+import Header from "../Navbar/Header"
 import Components from "./ViewplacesComponents/PlacesComponent";
 import photo1 from "./places/desert/SAHARA DESERT.jpeg"
 import photo2 from "./places/desert/2. GOBI DESERT.jpeg"

@@ -1,7 +1,7 @@
 import React from "react";
 import Heading from "./ViewplacesComponents/heading";
 import "./style.css"
-import Header from "../Main/Header"
+import Header from "../Navbar/Header"
 import Components from "./ViewplacesComponents/PlacesComponent";
 import photo1 from "./places/beach/blue-ocean-resort.jpg"
 import photo2 from "./places/beach/paradise.jpg"

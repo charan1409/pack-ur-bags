@@ -1,7 +1,7 @@
 import React from "react";
 import "./main.css";
 import Upward from "./Upward";
-import Header from "./Header";
+import Header from "../Navbar/Header";
 import Vedio from "./Vedio";
 import Gallery from "./Gallery";
 import Places from "./Places";
