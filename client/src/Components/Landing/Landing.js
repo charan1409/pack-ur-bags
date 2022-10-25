@@ -8,12 +8,13 @@ import LoginPage from "./LoginPage";
 
 
 
-const Landing = () => {
+const Landing = (props) => {
 
   const [login,setLogin] = useState(false);
 
   const toggleLoginForm = () =>{
     setLogin(!login);
+    console.log(props.users);
   }
   return (
     <div>
@@ -21,7 +22,7 @@ const Landing = () => {
       <Vedio />
       <Gallery />
       <Services />
-      {login && <LoginPage openLoginForm={toggleLoginForm}/>}
+      {login && <LoginPage users={props.users} openLoginForm={toggleLoginForm}/>}
     </div>
   )
 }

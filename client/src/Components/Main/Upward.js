@@ -3,9 +3,9 @@ import './main.css';
 
 const Upward = () => {
   return (
-    <div class="arrow" id="arrow">
+    <div className="arrow" id="arrow">
       <a href="#home">
-        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+        <i className="fa fa-arrow-up" aria-hidden="true"></i>
       </a>
     </div>
   );

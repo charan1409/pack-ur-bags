@@ -25,11 +25,33 @@ import Profile from './Components/ProfilePage/profile'
 
 
 function App() {
+  const users = [
+    {
+      username:"charan14",
+      password:"charan"
+    },
+    {
+      username:"rahul14",
+      password:"rahulvarma"
+    },
+    {
+      username:"kamal12",
+      password:"kamalsai"
+    },
+    {
+      username:"rohith14",
+      password:"rohith"
+    },
+    {
+      username:"nikhil14",
+      password:"nikhil"
+    }
+  ]
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={<Landing users={users}/>}/>
           <Route path="index" element={<Index />} />
           <Route path="Beaches" element={<Beaches />} />
           <Route path="Island" element={<Island />} />

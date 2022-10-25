@@ -5,28 +5,28 @@ import InputBox from "./InputBox";
 import Btn from "../Btn";
 import Error from "./LogError";
 
-const users = [
-  {
-    username:"charan14",
-    password:"charan"
-  },
-  {
-    username:"rahul14",
-    password:"rahulvarma"
-  },
-  {
-    username:"kamal12",
-    password:"kamalsai"
-  },
-  {
-    username:"rohith14",
-    password:"rohith"
-  },
-  {
-    username:"nikhil14",
-    password:"nikhil"
-  }
-]
+// const users = [
+//   {
+//     username:"charan14",
+//     password:"charan"
+//   },
+//   {
+//     username:"rahul14",
+//     password:"rahulvarma"
+//   },
+//   {
+//     username:"kamal12",
+//     password:"kamalsai"
+//   },
+//   {
+//     username:"rohith14",
+//     password:"rohith"
+//   },
+//   {
+//     username:"nikhil14",
+//     password:"nikhil"
+//   }
+// ]
 
 function Form(props) {
   const [loginError, setLoginError] = useState([false,""]);
@@ -50,6 +50,7 @@ function Form(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log(props);
     if(/\s/.test(userinfo.username || userinfo.username.trim().length < 1)){
       setLoginError([true,"Username should not contain spaces"])
     }
@@ -57,7 +58,7 @@ function Form(props) {
       setLoginError([true,"Password should be altleast 6 characters"])
     } else{
       setLoginError([false,""])
-      users.forEach(e => {
+      props.users.forEach(e => {
         if(e.username === userinfo.username && e.password === userinfo.password){
           setUserinfo({
             username:"",

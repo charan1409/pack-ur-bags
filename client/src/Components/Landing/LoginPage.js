@@ -34,6 +34,7 @@ function LoginPage(props) {
                 register={register}
                 openRegister={openRegister}
                 closeRegister={closeRegister}
+                users={props.users}
               />
             ) : (
               <RegisterForm
