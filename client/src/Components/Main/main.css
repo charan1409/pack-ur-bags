@@ -97,7 +97,7 @@ html {
   font-weight: bold;
 }
 /* Nav Bar STYLE */
-.header {
+/* .header {
   top: 0;
   left: 0;
   right: 0;
@@ -139,7 +139,7 @@ html {
   font-size: 2.5rem;
   color: white;
   cursor: pointer;
-  margin-right: 2rem;
+  margin-right: 1rem;
 }
 
 .header .icons i:hover {
@@ -156,8 +156,7 @@ html {
   display: none;
 }
 
-/* BOOT STRAP*/
-/* media queries  */
+
 
 @media (max-width: 1200px) {
   html {
@@ -216,7 +215,7 @@ html {
   .contact .row form .inputBox input {
     width: 100%;
   }
-}
+} */
 /* media query ends */
 
 /* Home CSS */
@@ -251,7 +250,7 @@ html {
   left: 0;
   z-index: -1;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   object-fit: cover;
 }
 
