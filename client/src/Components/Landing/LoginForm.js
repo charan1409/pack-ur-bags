@@ -64,6 +64,7 @@ function Form(props) {
             username:"",
             password:""
           })
+          props.loggedUser(e)
           history("/index");
         } else{
           setLoginError([true,"Invalid user details"])

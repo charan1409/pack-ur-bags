@@ -23,7 +23,7 @@ const Landing = (props) => {
       <Services />
       <h1>Please <button className='btn' onClick={toggleLoginForm}>Login</button> For More</h1>
       
-      {login && <LoginPage users={props.users} openLoginForm={toggleLoginForm}/>}
+      {login && <LoginPage users={props.users} openLoginForm={toggleLoginForm} loggedUser={props.loggedUser}/>}
     </div>
   )
 }

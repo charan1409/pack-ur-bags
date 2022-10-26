@@ -11,12 +11,12 @@ import Review from "./Review";
 import Feedback from "./Feedback";
 import Footer from "./Footer";
 
-const Index = () => {
+const Index = (props) => {
   return (
     <div>
       <Upward />
       <Header user={true}/>
-      <Vedio />
+      <Vedio user={props.user}/>
       <Gallery />
       <Places />
       <About />
