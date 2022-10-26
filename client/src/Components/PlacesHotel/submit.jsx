@@ -5,13 +5,16 @@ function review_rating() {
     const modalBg = document.querySelector(".modal-bg");
     modalBg.classList.toggle("bg-active")
 }
-
+function clicked(event){
+    event.preventDefault();
+    alert(`Submitted`)
+}
 function Submit(props){
     return(
         <div className="modal-bg">
                     <div className="review-submit">
                         <h2>Submit your review and rating</h2>
-                        <form action={`/places/review/${props.id}`}  method="post">
+                        <form onSubmit={clicked}>
                             <label htmlFor="rating">Give your rating:</label>
                             <select name="rating" id="">
                                 <option value="1">1</option>
@@ -23,7 +26,8 @@ function Submit(props){
                             <label htmlFor="review">Submit your review:</label>
                             <br /><textarea name="review" id="review" cols="auto" rows="auto"
                                 placeholder="submit your review"></textarea><br/>
-                            <Btn type="submit" value="Submit"/>
+                            {/* <Btn type="submit" value="Submit"/> */}
+                            <button className="btn">Submit</button>
                         </form>
                         <span onClick={review_rating}>X</span>
                     </div>
