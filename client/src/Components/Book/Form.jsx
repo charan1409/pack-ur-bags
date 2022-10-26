@@ -16,7 +16,7 @@ if (tdate < 10) {
 var maxDate = year + "-" + month + "-" + tdate;
 
 function Form() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const { cartItems, setCartItems } = useContext(store);
 
   const [from, setfrom] = useState("");
@@ -132,7 +132,7 @@ function Form() {
           />
         </div>
         {/* <Link to="/payment"><input type="submit" className="book-btn" value="Book" /></Link> */}
-        <input type="submit" className="book-btn" value="Add tour" />
+        <input type="submit" className="book-btn" value="Add Tour"/>
       </form>
     </div>
   );
