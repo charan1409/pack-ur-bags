@@ -4,16 +4,17 @@
 .place-box1 {
     height: 100%;
     margin: 7px 200px 15px 200px;
+    margin-bottom: 5rem;
     border-radius: 25px;
-    padding: 6px 5px;
+    padding: 3px 3px;
     display: grid;
     grid-template-columns: 1fr 2fr;
     box-shadow: 7px 7px 7px 7px #1e1e1ea0;
   }
 
-  /* .place-box1:hover {
-    box-shadow: none;
-  } */
+  .place-box1:hover {
+    box-shadow:7px 7px 7px 7px #033747e3;
+  }
 
   .place-box1 .place-pic {
     width: 340px;

@@ -8,7 +8,7 @@ function clicked(event){
     event.preventDefault();
     alert(`Submitted`)
 }
-function Submit(props){
+function Submit(){
     return(
         <div className="modal-bg">
                     <div className="review-submit">
@@ -25,7 +25,7 @@ function Submit(props){
                             <label htmlFor="review">Submit your review:</label>
                             <br /><textarea name="review" id="review" cols="auto" rows="auto"
                                 placeholder="submit your review"></textarea><br/>
-                            {/* <Btn type="submit" value="Submit"/> */}
+                            
                             <button className="btn">Submit</button>
                         </form>
                         <span onClick={review_rating}>X</span>
