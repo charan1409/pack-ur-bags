@@ -1,4 +1,5 @@
 import React, {useContext} from 'react'
+import { Link } from "react-router-dom";
 import Header from "../Navbar/Header";
 import {store} from "../../App.js";
 import "./Trans.css";
@@ -14,6 +15,7 @@ const Transaction = () => {
   return (
     <div>
         <Header user={true}/>
+        <Link to="/payment"><input type="submit" className="btn" value="Payment" /></Link>
         {trans.length === 0 ? (
         <h1>Transactions are Empty</h1>
       ) : (

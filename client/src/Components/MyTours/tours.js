@@ -15,6 +15,7 @@ const Tours = () => {
   return (
     <div>
       <Header user={true} />
+      <Link to="/book"><input type="submit" className="btn" value="Book Page" /></Link>
       {cartItems.length === 0 ? (
         <h1>Cart is Empty</h1>
       ) : (
