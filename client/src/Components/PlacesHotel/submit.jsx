@@ -1,5 +1,4 @@
 import React from "react";
-import Btn from "../Btn";
 
 function review_rating() {
     const modalBg = document.querySelector(".modal-bg");
