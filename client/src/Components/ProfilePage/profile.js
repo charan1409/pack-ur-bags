@@ -43,7 +43,7 @@ function profile() {
                 <h2>edit your profile</h2>
                 <div className="edit-form">
                     <Edityourprofile username="User" />
-                    <span onClick={review_rating}>X</span>
+                    <span onClick={review_rating}>x</span>
                 </div>
             </div>
         </div>
