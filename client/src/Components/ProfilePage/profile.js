@@ -4,6 +4,7 @@ import "./clientprofile.css";
 import img from "./displayimage.jpg"
 import Tabledata from './Tabledata';
 import Edityourprofile from './Edityourprofile';
+import { Link } from "react-router-dom";
 
 function review_rating() {
     const modalBg = document.querySelector(".modal-bg");
@@ -27,15 +28,16 @@ function profile() {
                     <button className="btn_profile" onClick={review_rating}>edit profile</button></div>
                 <div className="_right">
                     <table>
-                        <Tabledata heading={"Name:"} data={"Full Stack"} />
-                        <Tabledata heading={"Username:"} data={"fullstack21"} />
-                        <Tabledata heading={"Gender:"} data={"Male"} />
-                        <Tabledata heading={"Phone Number:"} data={"234"} />
-                        <Tabledata heading={"Email:"} data={"fullstack21@gmail.com"} />
+                        <Tabledata heading={"Name:"} data={"Charan Kumar"} />
+                        <Tabledata heading={"Username:"} data={"Charan14"} />
+                        <Tabledata heading={"Gender:"} data={"male"} />
+                        <Tabledata heading={"Phone Number:"} data={"9392756484"} />
+                        <Tabledata heading={"Email:"} data={"charan@gmail.com"} />
                     </table>
                     <div className="btns">
-                        <button class="btn_profile" onClick="location.href='/profile/changepass'">change password</button><br></br>
-                        <button class="btn_profile" onClick="location.href='/logout'">logout</button>
+                        <Link to="/changepass" className="btn_profile">Change Password</Link>
+                        {/* <button class="btn_profile" onClick="/changepass">change password</button><br></br> */}
+                        <button class="btn_profile" onClick="">logout</button>
                     </div>
                 </div>
             </div >
