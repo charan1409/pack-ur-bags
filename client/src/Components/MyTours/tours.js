@@ -13,7 +13,6 @@ const Tours = () => {
   return (
     <div>
       <Header user={true}/>
-      <h1>Tours Page Here</h1>
       {cartItems.length === 0 ? (
         <h1>Cart is Empty</h1>
       ) : (
