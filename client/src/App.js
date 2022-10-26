@@ -20,7 +20,7 @@ import Payment from "./Components/Pay/Payment";
 
 import Error from "./Components/ErrorPage/Error";
 import Profile from "./Components/ProfilePage/profile";
-import Tours from "./Components/MyTours/Tours";
+import Tours from "./Components/MyTours/tours";
 import Transaction from "./Components/Transactions/Transaction";
 
 export const store = createContext();

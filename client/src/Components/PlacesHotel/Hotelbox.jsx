@@ -6,6 +6,7 @@ function Hotelbox(props) {
         <div className="box">
             <img src="/img/places/beach/blue-ocean-resort.jpg" alt="" />
             <div className="content">
+                <div className="image"><img src={props.photo} /></div>
                 <h3 className="hotel"> {props.hotel} </h3><br />
                 <h3><i className="fas fa-map-marker-alt"></i>{props.location}</h3>
                 <p>

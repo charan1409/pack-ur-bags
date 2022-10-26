@@ -30,7 +30,7 @@ function Component(props) {
                 <p>{props.description}</p>
                 <br />
                 <div class="box-container">
-                    {(props.hotels).map((x)=>(<Hotelbox hotel={x.hotel} location={x.location} direction={x.direction} price={x.price} />))}
+                    {(props.hotels).map((x)=>(<Hotelbox hotel={x.hotel} location={x.location} direction={x.direction} price={x.price} photo={x.photo} />))}
                 </div>
             </div>
             <Review image={props.img} username={props.username} review={props.review} type="button" name="Submit" />
