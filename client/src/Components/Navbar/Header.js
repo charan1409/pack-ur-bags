@@ -10,7 +10,7 @@ const Header = (props) => {
     <div className="header">
       <div id="menu-bar" className="fas fa-bars"></div>
 
-      <Link to="#home" className="logo">
+      <Link to="/index" className="logo">
         <span>P</span>ACK <span>U</span>R <span>B</span>AGS
       </Link>
       <ul className="navbar">

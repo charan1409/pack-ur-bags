@@ -16,11 +16,12 @@ import BeachesHotel from "./Components/PlacesHotel/BeachesHotel";
 import CulturalHotel from "./Components/PlacesHotel/CulturalHotel";
 import CountrysideHotel from "./Components/PlacesHotel/CountrysideHotel";
 import Book from "./Components/Book/Book";
-
 import Payment from './Components/Pay/Payment';
 
 import Error from "./Components/ErrorPage/Error";
-import Profile from './Components/ProfilePage/profile'
+import Profile from './Components/ProfilePage/profile';
+import Tours from "./Components/MyTours/Tours";
+import Transaction from "./Components/Transactions/Transaction";
 
 
 
@@ -66,8 +67,10 @@ function App() {
           <Route path="CountrysideHotel" element={<CountrysideHotel />} />
           <Route path="book" element={<Book />} />
           <Route path="payment" element={<Payment />} />
-          <Route path="*" element={<Error />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="mytours" element={<Tours />} />
+          <Route path="transactions" element={<Transaction />} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </>
