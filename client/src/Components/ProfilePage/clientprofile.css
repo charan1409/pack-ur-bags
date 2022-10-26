@@ -96,7 +96,8 @@
 
 .btn_profile {
     margin-top: 6px;
-    width: 300px;
+    width: auto;
+    padding: 10px;
     height: 40px;
     border-radius: 5px;
     background-color: #fac102;
@@ -119,7 +120,7 @@ h1 {
 }
 
 
-._left .modal-bg {
+ .modal-bg {
     height: 100vh;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.7);
@@ -134,12 +135,12 @@ h1 {
     transition: visibilty 0s, opacity 0.5s;
 }
 
-._left .bg-active {
+ .bg-active {
     visibility: visible;
     opacity: 1;
 }
 
-._left .modal-bg .edit-form {
+ .modal-bg .edit-form {
     position: relative;
     background-color: #fff;
     height: 55%;
@@ -149,7 +150,7 @@ h1 {
     padding: 0;
 }
 
-._left .modal-bg .edit-form span {
+ .modal-bg .edit-form span {
     position: absolute;
     display: flex;
     top: 0px;
@@ -163,25 +164,25 @@ h1 {
     cursor: pointer;
 }
 
-._left .modal-bg .edit-form span:hover {
+ .modal-bg .edit-form span:hover {
     background-color: rgba(255, 0, 0, 0.734);
     color: #fff;
 }
 
-._left .modal-bg .edit-form h2 {
+ .modal-bg .edit-form h2 {
     text-align: center;
     font-size: 25px;
     font-weight: bold;
     margin-top: 10px;
 }
 
-._left .modal-bg .edit-form form {
+ .modal-bg .edit-form form {
     padding: 20px 30px;
 }
 
 .modal-bg .edit-form label {
     font-size: 18px;
-    margin-top: 5px;
+    margin-top: 10px;
     text-transform: none;
 }
 
@@ -189,6 +190,11 @@ h1 {
     border: 1px solid rgba(25, 19, 19, 0.764);
     border-radius: 10px;
     padding: 5px;
+    margin: 10px;
     font-size: 15px;
     text-transform: none;
+}
+.modal-bg .edit-form a{
+    font-size: small;
+    text-decoration: underline;
 }

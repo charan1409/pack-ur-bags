@@ -5,24 +5,18 @@ function Edityourprofile(model) {
         <div>
             <form action="/profile/edit" method="post" class="editform">
                 <label for="username">Username:</label>
-                <input type="text" class="tbox" name="username" placeholder="Enter your username" value="<%=user.username%>"><br></br></input>
+                <input type="text" className="tbox" name="username" placeholder="Enter your username" /><br></br>
                 <label for="upname">Name: </label>
-                <input type="text" class="tbox" name="upname" placeholder="Enter your name" value="<%=user.name%>"><br></br></input>
+                <input type="text" className="tbox" name="upname" placeholder="Enter your name" /><br></br> 
                 <label for="upgender">Gender:</label>
-                <input type="radio" name="upgender" id="male" value="male" checked></input>
-                <input type="radio" name="upgender" id="male" value="male"></input>
+                <input type="radio" name="upgender" id="male" value="male" /> 
                 <label for="male">male</label>
-                <input type="radio" name="upgender" id="female" value="female" checked></input>
-                <input type="radio" name="upgender" id="female" value="female"></input>
+                <input type="radio" name="upgender" id="female" value="female" /> 
                 <label for="female">female</label><br></br>
                 <label for="upphone">Phone number:</label>
-                <input type="text" class="tbox" name="upphone" placeholder="Enter your phone number" value="<%=user.phone%>"><br></br></input>
-                <a href="/profile/profile" class="cancelbtn">cancel</a>
-                <button type="submit" class="btn" value="save changes">save changes</button>
-
-
-                <label for="username">{model.username}</label>
-                <input type="text" class="tbox" name="Username" >Enter your username</input>
+                <input type="text" className="tbox" name="upphone" placeholder="Enter your phone number" /><br></br> 
+                <a href="/profile/profile" className="cancelbtn">cancel</a>
+                <button type="submit" className="btn_profile" value="save changes">save changes</button>            
             </form>
         </div>
     )
