@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
@@ -23,7 +23,7 @@ import Profile from './Components/ProfilePage/profile';
 import Tours from "./Components/MyTours/Tours";
 import Transaction from "./Components/Transactions/Transaction";
 
-
+export const store = createContext();
 
 function App() {
   const users = [
@@ -48,8 +48,10 @@ function App() {
       password:"nikhil"
     }
   ]
+  const [cartItems, setCartItems] = useState([]);
   return (
     <>
+    <store.Provider value={{cartItems,setCartItems}}></store.Provider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing users={users}/>}/>

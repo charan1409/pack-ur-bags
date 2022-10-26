@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Header from "../Navbar/Header";
+import { store } from "";
 
 const Tours = () => {
+  const { cartItems, setCartItems} = useContext(store);
   return (
     <div>
         <Header user={true}/>
