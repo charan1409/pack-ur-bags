@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import Dropdown from "./Dropdown";
 import { navItems } from "./NavItems";
 
@@ -17,7 +18,7 @@ const Header = (props) => {
         {navItems.map((item) => {
           return (
             <li key={item.id} className={item.cName}>
-              <Link to={item.path}>{item.title}</Link>
+              <HashLink to={item.path}>{item.title}</HashLink>
             </li>
           );
         })}
