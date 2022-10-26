@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from "../Navbar/Header";
+// import {store} from "../../App.js";
 
 const Transaction = () => {
   return (
