@@ -31,17 +31,17 @@ const Tours = () => {
                       <h2>Date of Departure: {item.depart}</h2>
                       <h2>Date of Arrival: {item.arrival}</h2>
                       <div className="addtocart">
-                        <button
+                        <div><button
                           onClick={() => {
                             removeItems(key);
                           }}
                           className="book-btn btn-primary"
                         >
                           Remove{" "}
-                        </button>
-                      <Link to="/payment"><input type="submit" className="book-btn" value="Book" /></Link>
+                        </button></div>
+                      <div><Link to="/payment"><input type="submit" className="book-btn" value="Book" /></Link></div>
                       </div>
-                    </div>
+                    </div> 
                   );
                 })
               : ""}
