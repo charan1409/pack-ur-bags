@@ -31,7 +31,7 @@ export const navItems = [
   },
   {
     id: 6,
-    title: "Review",
+    title: "Reviews",
     path: "#review",
     cName: "nav-item",
   },

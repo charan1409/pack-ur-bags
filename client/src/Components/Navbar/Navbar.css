@@ -1,18 +1,49 @@
-/* Nav Bar STYLE */
 .header {
   top: 0;
   left: 0;
   right: 0;
   background: #333;
-  z-index: 1000;
+  height: 70px;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 9%;
-  cursor: pointer;
-  font-size: 1.7rem;
+  padding: 0rem 9%;
   position: sticky;
   top: 0;
+}
+
+.header .navbar{
+  height: 70px;
+  display: flex;
+  list-style: none;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.header .navbar .nav-item{
+  height: 70px;
+  display: flex;
+}
+
+.header .navbar .nav-item li{
+  align-items: center;
+  text-align: center;
+}
+
+.header .navbar .nav-item a{
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  padding: 0px 12px;
+}
+
+.header .navbar .nav-item a:hover {
+  text-decoration: underline;
+  color: #fac102;
+  text-transform: capitalize;
 }
 
 .header .logo {
@@ -23,17 +54,11 @@
   text-transform: uppercase;
 }
 
+.header .logo:hover{
+  color: #333;
+}
+
 .header .logo span {
-  color: var(--orange);
-}
-
-.header .navbar a {
-  color: #fff;
-  font-size: 2rem;
-  margin: 0 0.3rem;
-}
-
-.header .navbar a:hover {
   color: var(--orange);
 }
 
@@ -58,7 +83,6 @@
   display: none;
 }
 
-/* BOOT STRAP*/
 /* media queries  */
 
 @media (max-width: 1200px) {
@@ -120,48 +144,3 @@
   }
 }
 /* media query ends */
-
-.navbar {
-  height: 10px;
-  background: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* .navbar-logo {
-  color: white;
-  text-decoration: none;
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 5rem;
-} */
-
-.nav-items {
-  display: flex;
-  list-style: none;
-  text-align: center;
-  /* width: 10vw; */
-  justify-content: flex-start;
-  /* margin-right: 1rem; */
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  height: 10vh;
-}
-
-.nav-item a {
-  text-decoration: none;
-  color: white;
-  font-size: 12px;
-  margin-right: .5rem;
-  padding: 6px 16px;
-}
-
-.nav-item a:hover {
-  color: #fac102;
-}
