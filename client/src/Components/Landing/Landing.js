@@ -21,6 +21,8 @@ const Landing = (props) => {
       <Vedio />
       <Gallery />
       <Services />
+      <h1>Please <button className='btn' onClick={toggleLoginForm}>Login</button> For More</h1>
+      
       {login && <LoginPage users={props.users} openLoginForm={toggleLoginForm}/>}
     </div>
   )

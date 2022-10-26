@@ -5,6 +5,7 @@ import "./Payment.css";
 import '../Main/main.css'
 import img1 from "./img/chip.png";
 import img2 from "./img/visa.png";
+import Header from "../Navbar/Header";
 import {store} from "../../App.js";
 
 const Payment = () => {
@@ -54,6 +55,8 @@ const Payment = () => {
   }
 
   return (
+    <>
+    <Header user={true}/>
     <div class="container">
       <div class="card-container">
         <div class="front">
@@ -199,20 +202,21 @@ const Payment = () => {
                 document.querySelector(".front").style.transform =
                   "perspective(1000px) rotateY(-180deg)";
                 document.querySelector(".back").style.transform =
-                  "perspective(1000px) rotateY(0deg)";
+                "perspective(1000px) rotateY(0deg)";
               }}
               onMouseLeave={() => {
                 document.querySelector(".front").style.transform =
-                  "perspective(1000px) rotateY(0deg)";
+                "perspective(1000px) rotateY(0deg)";
                 document.querySelector(".back").style.transform =
-                  "perspective(1000px) rotateY(180deg)";
+                "perspective(1000px) rotateY(180deg)";
               }}
             />
           </div>
         </div>
-        <input type="submit" value="submit" class="submit-btn" />
+        <input type="submit" value="Pay" class="submit-btn" />
       </form>
     </div>
+              </>
   );
 };
 
