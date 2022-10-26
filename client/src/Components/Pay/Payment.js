@@ -1,11 +1,16 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Payment.css";
 import '../Main/main.css'
 import img1 from "./img/chip.png";
 import img2 from "./img/visa.png";
+import {store} from "../../App.js";
 
 const Payment = () => {
+  const navigate = useNavigate();
+  const { trans, setTrans } = useContext(store);
+
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
   const [month, setMonth] = useState("");
@@ -34,6 +39,12 @@ const Payment = () => {
     setMonth("");
     setYear("");
     setCvv("");
+
+    if (!trans.includes(payment_data)) {
+      setTrans([...trans, payment_data]);
+      console.log(trans);
+      navigate("/transactions");
+    }
   };
 
   function number_space(){

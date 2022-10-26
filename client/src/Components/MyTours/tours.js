@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Header from "../Navbar/Header";
 import { store } from "../../App.js";
+import "./Tour.css";
 
 const Tours = () => {
   const { cartItems, setCartItems } = useContext(store);

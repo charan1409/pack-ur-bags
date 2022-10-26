@@ -49,9 +49,10 @@ function App() {
     },
   ];
   const [cartItems, setCartItems] = useState([]);
+  const [trans, setTrans] = useState([]);
   return (
     <>
-      <store.Provider value={{ cartItems, setCartItems }}>
+      <store.Provider value={{ cartItems, setCartItems, trans, setTrans }}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Landing users={users} />} />
