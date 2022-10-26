@@ -23,7 +23,7 @@ function LoginPage(props) {
           <div className="login-form-close">
             <Link to={"/"}>
               <span className="login-form-close-btn" onClick={props.openLoginForm}>
-                x
+                X
               </span>
             </Link>
           </div>
@@ -35,6 +35,7 @@ function LoginPage(props) {
                 openRegister={openRegister}
                 closeRegister={closeRegister}
                 users={props.users}
+                loggedUser={props.loggedUser}
               />
             ) : (
               <RegisterForm

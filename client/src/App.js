@@ -50,13 +50,18 @@ function App() {
   ];
   const [cartItems, setCartItems] = useState([]);
   const [trans, setTrans] = useState([]);
+  const [user,setUser] = useState({});
+
+  const loggedUser = (e) =>{
+    setUser(e)
+  }
   return (
     <>
       <store.Provider value={{ cartItems, setCartItems, trans, setTrans }}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Landing users={users} />} />
-            <Route path="index" element={<Index />} />
+            <Route path="/" element={<Landing users={users} loggedUser={loggedUser}/>} />
+            <Route path="index" element={<Index user={user}/>} />
             <Route path="Beaches" element={<Beaches />} />
             <Route path="Island" element={<Island />} />
             <Route path="Hillstation" element={<Hillstation />} />
