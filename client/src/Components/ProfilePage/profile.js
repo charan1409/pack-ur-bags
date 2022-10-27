@@ -4,13 +4,19 @@ import "./clientprofile.css";
 import img from "./displayimage.jpg";
 import Tabledata from "./Tabledata";
 import Edityourprofile from "./Edityourprofile";
-import { Link } from "react-router-dom";
+import ChangePassword from "./ChangePassword";
 import { store } from "../../App.js";
 
-function review_rating() {
+function edit_form() {
   const modalBg = document.querySelector(".modal-bg");
   modalBg.classList.toggle("bg-active");
 }
+
+function change_pass() {
+    const modalBg = document.querySelector(".pass-modal-bg");
+    modalBg.classList.toggle("bg-active");
+  }
+
 const navItems = [
     {
       title: "Home",
@@ -33,7 +39,7 @@ function Profile() {
                             <i className="bi bi-upload fa-3x"></i>
                         </div>
                     </div>
-                    <button className="btn_profile" onClick={review_rating}>edit profile</button></div>
+                    <button className="btn_profile" onClick={edit_form}>edit profile</button></div>
                 <div className="_right">
                     <table>
                         <Tabledata heading={"Name:"} data={loginuser.username} />
@@ -43,8 +49,8 @@ function Profile() {
                         <Tabledata heading={"Email:"} data={loginuser.email} />
                     </table>
                     <div className="btns">
-                        <Link to="/changepass" className="btn_profile">Change Password</Link>
-                        {/* <button class="btn_profile" onClick="/changepass">change password</button><br></br> */}
+                        {/* <Link to="/changepass" className="btn_profile">Change Password</Link> */}
+                        <button class="btn_profile" onClick={change_pass}>change password</button><br></br>
                         <button class="btn_profile" onClick="">logout</button>
                     </div>
                 </div>
@@ -53,7 +59,14 @@ function Profile() {
                 <h2>edit your profile</h2>
                 <div className="edit-form">
                     <Edityourprofile username="User" />
-                    <span onClick={review_rating}>x</span>
+                    <span onClick={edit_form}>x</span>
+                </div>
+            </div>
+            <div className="pass-modal-bg">
+                <h2>Change your password</h2>
+                <div className="edit-form">
+                    <ChangePassword username="User" />
+                    <span onClick={change_pass}>x</span>
                 </div>
             </div>
         </div>
