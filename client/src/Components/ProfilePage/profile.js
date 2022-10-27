@@ -23,8 +23,8 @@ function Profile() {
                     <div className="_img">
                         <img src={img} alt="profile_img" />
                         <div className="img_content">
-                            <i className="bi bi-trash fa-3x" onClick="location.href='/profile/remove'"></i>
-                            <i className="bi bi-upload fa-3x" onClick="location.href='/profile/upload'"></i>
+                            <i className="bi bi-trash fa-3x"></i>
+                            <i className="bi bi-upload fa-3x"></i>
                         </div>
                     </div>
                     <button className="btn_profile" onClick={review_rating}>edit profile</button></div>
