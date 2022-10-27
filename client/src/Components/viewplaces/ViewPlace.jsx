@@ -26,8 +26,8 @@ function App(props) {
   return (
     <div>
       <Header user={true} />
-      <Heading category="FEW DESTINATIONS FOR RURAL TOURISM IN INDIA" />
-      <Heading category={props.category} />
+      {/* <Heading category="FEW DESTINATIONS FOR RURAL TOURISM IN INDIA" /> */}
+      <Heading category={props.placeType} />
       <div>
         {props.placeType.map((x) => (
           <Components
