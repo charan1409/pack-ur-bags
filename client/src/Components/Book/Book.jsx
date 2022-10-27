@@ -4,10 +4,17 @@ import photo from "../viewplaces/places/beach/barefoot.jpg"
 import Form from "./Form";
 import "./book.css"
 import Header from "../Navbar/Header";
+
+const navItems = [
+{
+    title: "Home",
+    path: "/index",
+    
+}]
 function App() {
     return (
         <div className="book">
-                <Header user={true}/>
+                <Header user={true} navItems={navItems}/>
                 <div><h1 className="heading">
                     <span>B</span>
                     <span>O</span>

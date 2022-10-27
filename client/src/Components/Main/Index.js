@@ -52,7 +52,7 @@ const Index = (props) => {
   return (
     <div>
       <Upward />
-      <Header user={true}/>
+      <Header user={true} navItems={navItems}/>
       <Vedio user={props.user}/>
       <Gallery />
       <Places />

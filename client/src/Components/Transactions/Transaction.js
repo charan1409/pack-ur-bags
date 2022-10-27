@@ -17,42 +17,12 @@ const Transaction = () => {
       title: "Home",
       path: "/index",
       
-    },
-    {
-      title: "Gallery",
-      path: "#gallery",
-      
-    },
-    {
-      title: "Places",
-      path: "#places",
-      
-    },
-    {
-      title: "About",
-      path: "#about",
-      
-    },
-    {
-      title: "Services",
-      path: "#services",
-      
-    },
-    {
-      title: "Reviews",
-      path: "#review",
-      
-    },
-    {
-      title: "Footer",
-      path: "#footer",
-      
-    },
+    }
   ];
 
   return (
     <div>
-        <Header user={true}/>
+        <Header user={true} navItems={navItems}/>
         <Link to="/payment"><input type="submit" className="btn" value="Payment" /></Link>
         {trans.length === 0 ? (
         <h1>Transactions are Empty</h1>

@@ -3,7 +3,6 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Dropdown from "./Dropdown";
-import { navItems } from "./NavItems";
 
 const Header = (props) => {
   const [dropdown, setDropdown] = useState(false);
@@ -15,7 +14,7 @@ const Header = (props) => {
         <span>P</span>ACK <span>U</span>R <span>B</span>AGS
       </Link>
       <ul className="navbar">
-        {navItems.map((item) => {
+        {props.navItems.map((item) => {
           return (
             <li key={item.title} className="nav-item">
               <HashLink to={item.path}>{item.title}</HashLink>

@@ -54,13 +54,19 @@ const hotel5 = [{ id: 1, photo: photo51, hotel: "FabHotel Tranquil Heights Kodai
 const hotel6 = [{ id: 1, photo: photo61, hotel: "Le Bliss Hotels Near Rock Beach", location: "Naga Progress Avenue, Bussy St, Puducherry, 605001", direction: "On a tree-lined main road with shops and businesses, this laid-back hotel is 7 minutes on foot from Puducherry train station and a 14-minute walk from Promenade Beach, a rocky shoreline", price: "1100" },
 { id: 2, photo: photo62, hotel: "TE Seaview Resorts", location: "No. 5, Thandirayankuppam, Kottakuppam, Near, Puducherry, 605104", direction: "No. 5, Thandirayankuppam, Kottakuppam, Near, Puducherry, 605104 097517 00057", price: "800" },
 { id: 3, photo: photo63, hotel: "Kempinski Ambience Hotel", location: "Shahdara, India", direction: "Experience the new symbol of majestic modern lighting in one of the oldestcapital cities in the world, where India’s newest landmark is born withKempinski Ambience Hotel Delhi.", price: "900" }]
-
+const navItems = [
+    {
+      title: "Home",
+      path: "/index",
+      
+    },
+  ];
 function App() {
     const { state } = useLocation();
     console.log(state.post_id);
     return (
         <div>
-            <Header user={true} />
+            <Header user={true} navItems={navItems}/>
             {(state.post_id === 1) &&
                 <Component photo={state.post_photo} to={state.post_to} rate={state.post_rate} details={state.post_det} img={img} hotels={hotel1} description={desc1} username="kamal" review="good" />
             }

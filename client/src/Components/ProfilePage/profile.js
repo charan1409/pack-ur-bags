@@ -11,12 +11,18 @@ function review_rating() {
   const modalBg = document.querySelector(".modal-bg");
   modalBg.classList.toggle("bg-active");
 }
-
+const navItems = [
+    {
+      title: "Home",
+      path: "/index",
+      
+    },
+  ];
 function Profile() {
     const {loginuser} =  useContext(store);
     return (
         <div>
-            <Header />
+            <Header user={true} navItems={navItems}/>
             <h1 className='h1'>Profile</h1><br></br>
             <div className="profile">
                 <div className="_left">

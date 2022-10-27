@@ -2,15 +2,15 @@ import React from "react";
 import Heading from "./ViewplacesComponents/heading";
 import "./style.css";
 import Header from "../Navbar/Header";
-import Components from "./ViewplacesComponents/PlacesComponent"; 
-// import photo1 from "./places/countryside/puthur.jpg";
-// import photo2 from "./places/countryside/thert.jpg";
-// import photo3 from "./places/countryside/shyam gaon.jpg";
-// import photo4 from "./places/countryside/chitrakote.jpg";
-// import photo5 from "./places/countryside/lachen.jpg";
-// import photo6 from "./places/countryside/hodka.jpg";  
+import Components from "./ViewplacesComponents/PlacesComponent";  
 import { useNavigate } from "react-router-dom";
-
+const navItems = [
+  {
+    title: "Home",
+    path: "/index",
+    
+  },
+];
 function App(props) {
   const navigate = useNavigate();
   const createPost = (val, to, det, photo) => {
@@ -25,8 +25,7 @@ function App(props) {
   };
   return (
     <div>
-      <Header user={true} />
-      {/* <Heading category="FEW DESTINATIONS FOR RURAL TOURISM IN INDIA" /> */}
+      <Header user={true} navItems={navItems}/>
       <Heading category={props.category} />
       <div>
         {props.placeType.map((x) => (

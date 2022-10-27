@@ -17,42 +17,12 @@ const Tours = () => {
       title: "Home",
       path: "/index",
       
-    },
-    {
-      title: "Gallery",
-      path: "#gallery",
-      
-    },
-    {
-      title: "Places",
-      path: "#places",
-      
-    },
-    {
-      title: "About",
-      path: "#about",
-      
-    },
-    {
-      title: "Services",
-      path: "#services",
-      
-    },
-    {
-      title: "Reviews",
-      path: "#review",
-      
-    },
-    {
-      title: "Footer",
-      path: "#footer",
-      
-    },
+    }
   ];
 
   return (
     <div>
-      <Header user={true} />
+      <Header user={true} navItems={navItems}/>
       <Link to="/book"><input type="submit" className="btn" value="Book Page" /></Link>
       {cartItems.length === 0 ? (
         <h1>Cart is Empty</h1>
