@@ -27,7 +27,7 @@ function App(props) {
     <div>
       <Header user={true} />
       {/* <Heading category="FEW DESTINATIONS FOR RURAL TOURISM IN INDIA" /> */}
-      <Heading category={props.placeType} />
+      <Heading category={props.category} />
       <div>
         {props.placeType.map((x) => (
           <Components

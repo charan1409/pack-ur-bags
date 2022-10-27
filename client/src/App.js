@@ -255,14 +255,14 @@ function App() {
           <Routes>
             <Route path="/" element={<Landing users={users} loggedUser={loggedUser}/>} />
             <Route path="index" element={<Index user={user}/>} />
-            <Route path="Beaches" element={<ViewPlace  placeType={beaches} path={"/BeachesHotel"}/>} />
-            <Route path="Island" element={<ViewPlace placeType={countryside} path={"/BeachesHotel"}/>} />
-            <Route path="Hillstation" element={<ViewPlace placeType={Cultural} path={"/BeachesHotel"}/>} />
-            <Route path="Forest" element={<ViewPlace placeType={Forest} path={"/BeachesHotel"}/>} />
-            <Route path="Winter" element={<ViewPlace placeType={beaches} path={"/BeachesHotel"}/>} />
-            <Route path="Cultural" element={<ViewPlace placeType={Cultural} path={"/BeachesHotel"}/>} />
-            <Route path="Desert" element={<ViewPlace placeType={Desert} path={"/BeachesHotel"}/>} />
-            <Route path="Countryside" element={<ViewPlace placeType={countryside} path={"/BeachesHotel"}/>} />
+            <Route path="Beaches" element={<ViewPlace  placeType={beaches} path={"/BeachesHotel"} category={"Places"}/>} />
+            <Route path="Island" element={<ViewPlace placeType={countryside} path={"/BeachesHotel"} category={"Places"}/>} />
+            <Route path="Hillstation" element={<ViewPlace placeType={Cultural} path={"/BeachesHotel"} category={"Places"}/>} />
+            <Route path="Forest" element={<ViewPlace placeType={Forest} path={"/BeachesHotel"} category={"Places"}/>} />
+            <Route path="Winter" element={<ViewPlace placeType={beaches} path={"/BeachesHotel"} category={"Places"}/>} />
+            <Route path="Cultural" element={<ViewPlace placeType={Cultural} path={"/BeachesHotel"} category={"Places"}/>} />
+            <Route path="Desert" element={<ViewPlace placeType={Desert} path={"/BeachesHotel"}/>} category={"Places"} />
+            <Route path="Countryside" element={<ViewPlace placeType={countryside} path={"/BeachesHotel"} category={"Places"}/>} />
             <Route path="BeachesHotel" element={<BeachesHotel />} />
             {/* <Route path="CulturalHotel" element={<CulturalHotel />} />
             <Route path="CountrysideHotel" element={<CountrysideHotel />} /> */}
