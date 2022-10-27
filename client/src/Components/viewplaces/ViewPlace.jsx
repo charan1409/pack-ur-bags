@@ -2,7 +2,7 @@ import React from "react";
 import Heading from "./ViewplacesComponents/heading";
 import "./style.css";
 import Header from "../Navbar/Header";
-import Components from "./ViewplacesComponents/PlacesComponent";
+import Components from "./ViewplacesComponents/PlacesComponent"; 
 // import photo1 from "./places/countryside/puthur.jpg";
 // import photo2 from "./places/countryside/thert.jpg";
 // import photo3 from "./places/countryside/shyam gaon.jpg";
@@ -27,13 +27,13 @@ function App(props) {
     <div>
       <Header user={true} />
       <Heading category="FEW DESTINATIONS FOR RURAL TOURISM IN INDIA" />
+      <Heading category={props.category} />
       <div>
         {props.placeType.map((x) => (
           <Components
             photo={x.photo}
             to={x.to}
             details={x.details}
-            // link="/CountrysideHotel"
             onClick={() => {
               createPost(x.id, x.to, x.details, x.photo);
             }}
