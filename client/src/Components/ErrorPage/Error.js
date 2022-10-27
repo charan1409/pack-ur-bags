@@ -8,7 +8,7 @@ const Error = () => {
   return (
     <div className="error">
       <h1>404 ERROR</h1>
-      <div className="video-container">
+      <div className="video-container-error">
         <video src={vid1} loop autoPlay muted className="vid1"></video>
         <video src={vid2} loop autoPlay muted className="vid2"></video>
       </div>

@@ -2,7 +2,7 @@
   background: linear-gradient(rgb(134, 179, 243), rgba(229, 240, 76, 0.659));
 }
 
-.video-container video {
+.video-container-error video {
   margin-left: 30px;
   height: 70vh;
   object-fit: 100%;
