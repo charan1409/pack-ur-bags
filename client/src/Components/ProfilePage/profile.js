@@ -12,7 +12,7 @@ function review_rating() {
   modalBg.classList.toggle("bg-active");
 }
 
-function profile() {
+function Profile() {
     return (
         <div>
             <Header />
