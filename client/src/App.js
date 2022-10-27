@@ -19,7 +19,7 @@ import Book from "./Components/Book/Book";
 import Payment from "./Components/Pay/Payment";
 
 import Error from "./Components/ErrorPage/Error";
-import Profile from "./Components/ProfilePage/profile";
+import Profile from "./Components/ProfilePage/Profile";
 import Tours from "./Components/MyTours/tours";
 import Transaction from "./Components/Transactions/Transaction";
 
@@ -56,9 +56,12 @@ function App() {
   const loggedUser = (e) =>{
     setUser(e)
   }
+
+  const [loginuser, setLoginuser] = useState([]);
+
   return (
     <>
-      <store.Provider value={{ cartItems, setCartItems, trans, setTrans, users, setUsers }}>
+      <store.Provider value={{ cartItems, setCartItems, trans, setTrans, users, setUsers,loginuser, setLoginuser }}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Landing users={users} loggedUser={loggedUser}/>} />

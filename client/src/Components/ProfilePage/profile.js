@@ -1,17 +1,19 @@
-import React from "react";
+import React, {useContext} from "react";
 import Header from "../Navbar/Header";
 import "./clientprofile.css";
 import img from "./displayimage.jpg";
 import Tabledata from "./Tabledata";
 import Edityourprofile from "./Edityourprofile";
 import { Link } from "react-router-dom";
+import { store } from "../../App.js";
 
 function review_rating() {
   const modalBg = document.querySelector(".modal-bg");
   modalBg.classList.toggle("bg-active");
 }
 
-function profile() {
+function Profile() {
+  const {loginuser} = useContext(store);
   return (
     <div>
       <Header />
@@ -38,11 +40,11 @@ function profile() {
         </div>
         <div className="_right">
           <table>
-            <Tabledata heading={"Name:"} data={"Charan Kumar"} />
-            <Tabledata heading={"Username:"} data={"Charan14"} />
+            <Tabledata heading={"Name:"} data={loginuser.username} />
+            <Tabledata heading={"Username:"} data={loginuser.username} />
             <Tabledata heading={"Gender:"} data={"male"} />
             <Tabledata heading={"Phone Number:"} data={"9392756484"} />
-            <Tabledata heading={"Email:"} data={"charan@gmail.com"} />
+            <Tabledata heading={"Email:"} data={loginuser.email} />
           </table>
           <div className="btns">
             <Link to="/changepass" className="btn_profile">
@@ -67,4 +69,4 @@ function profile() {
   );
 }
 
-export default profile;
+export default Profile;

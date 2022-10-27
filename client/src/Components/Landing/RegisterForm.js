@@ -9,7 +9,7 @@ import { store } from "../../App.js";
 
 function RegisterForm(props) {
 
-  const {users, setUsers} = useContext(store);
+  const {users, setUsers, setLoginuser} = useContext(store);
 
   let history = useNavigate();
   const [registerError, setRegisterError] = useState([false, ""]);
@@ -45,6 +45,7 @@ function RegisterForm(props) {
     } else {
       setRegisterError([false, ""]);
       setUsers([...users, userinfo]);
+      setLoginuser(userinfo);
       history("/");
       setUserinfo({
         username: "",
