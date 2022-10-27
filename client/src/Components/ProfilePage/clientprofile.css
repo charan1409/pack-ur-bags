@@ -96,7 +96,8 @@
 
 .btn_profile {
     margin-top: 6px;
-    width: auto;
+    /* width: auto; */
+    width: 25rem;
     padding: 10px;
     height: 40px;
     border-radius: 5px;
@@ -106,6 +107,7 @@
     font-size: 20px;
     border-radius: 20px;
     color: #fff;
+    text-align: center;
 }
 
 .btn_profile:hover {

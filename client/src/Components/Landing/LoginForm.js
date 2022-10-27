@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
 import Error from "./LogError";
+import { store } from "../../App.js";
 
 // const users = [
 //   {
@@ -29,6 +31,7 @@ import Error from "./LogError";
 // ]
 
 function Form(props) {
+  const {setLoginuser} = useContext(store);
   const [loginError, setLoginError] = useState([false,""]);
   const [userinfo, setUserinfo] = useState({
     username:"",
@@ -60,6 +63,7 @@ function Form(props) {
       setLoginError([false,""])
       props.users.forEach(e => {
         if(e.username === userinfo.username && e.password === userinfo.password){
+          setLoginuser(e);
           setUserinfo({
             username:"",
             password:""

@@ -1,54 +1,18 @@
-import React from 'react';
-import Header from '../Navbar/Header';
+import React, {useContext} from "react";
+import Header from "../Navbar/Header";
 import "./clientprofile.css";
-import img from "./displayimage.jpg"
-import Tabledata from './Tabledata';
-import Edityourprofile from './Edityourprofile';
+import img from "./displayimage.jpg";
+import Tabledata from "./Tabledata";
+import Edityourprofile from "./Edityourprofile";
 import { Link } from "react-router-dom";
+import { store } from "../../App.js";
 
 function review_rating() {
-    const modalBg = document.querySelector(".modal-bg");
-    modalBg.classList.toggle("bg-active")
+  const modalBg = document.querySelector(".modal-bg");
+  modalBg.classList.toggle("bg-active");
 }
 
 function profile() {
-    const navItems = [
-        {
-          title: "Home",
-          path: "/index",
-          
-        },
-        {
-          title: "Gallery",
-          path: "#gallery",
-          
-        },
-        {
-          title: "Places",
-          path: "#places",
-          
-        },
-        {
-          title: "About",
-          path: "#about",
-          
-        },
-        {
-          title: "Services",
-          path: "#services",
-          
-        },
-        {
-          title: "Reviews",
-          path: "#review",
-          
-        },
-        {
-          title: "Footer",
-          path: "#footer",
-          
-        },
-      ];
     return (
         <div>
             <Header />
@@ -90,4 +54,4 @@ function profile() {
     )
 }
 
-export default profile;
+export default Profile;
