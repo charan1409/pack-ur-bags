@@ -26,38 +26,39 @@ import Transaction from "./Components/Transactions/Transaction";
 export const store = createContext();
 
 function App() {
-  const users = [
-    {
-      username: "charan14",
-      password: "charan",
-    },
-    {
-      username: "rahul14",
-      password: "rahulvarma",
-    },
-    {
-      username: "kamal12",
-      password: "kamalsai",
-    },
-    {
-      username: "rohith14",
-      password: "rohith",
-    },
-    {
-      username: "nikhil14",
-      password: "nikhil",
-    },
-  ];
   const [cartItems, setCartItems] = useState([]);
   const [trans, setTrans] = useState([]);
   const [user,setUser] = useState({});
+
+  const [users, setUsers] = useState([
+    {
+          username: "charan14",
+          password: "charan",
+        },
+        {
+          username: "rahul14",
+          password: "rahulvarma",
+        },
+        {
+          username: "kamal12",
+          password: "kamalsai",
+        },
+        {
+          username: "rohith14",
+          password: "rohith",
+        },
+        {
+          username: "nikhil14",
+          password: "nikhil",
+        },
+  ]);
 
   const loggedUser = (e) =>{
     setUser(e)
   }
   return (
     <>
-      <store.Provider value={{ cartItems, setCartItems, trans, setTrans }}>
+      <store.Provider value={{ cartItems, setCartItems, trans, setTrans, users, setUsers }}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Landing users={users} loggedUser={loggedUser}/>} />
