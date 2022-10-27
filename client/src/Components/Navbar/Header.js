@@ -17,19 +17,11 @@ const Header = (props) => {
       <ul className="navbar">
         {navItems.map((item) => {
           return (
-            <li key={item.id} className={item.cName}>
+            <li key={item.title} className="nav-item">
               <HashLink to={item.path}>{item.title}</HashLink>
             </li>
           );
         })}
-        {/* {props.user ? <Link to="/index">Home</Link> : <Link to="/">Home</Link>}
-        <a href="#home">Home</a>
-        <Link to="#gallery">Gallery</Link>
-        <Link to="#places">Places</Link>
-        <Link to="#about">About</Link>
-        <Link to="#services">Services</Link>
-        <Link to="#review">Reviews</Link>
-        <Link to="#footer">Footer</Link> */}
       </ul>
       <div className="icons">
         {props.user ? (

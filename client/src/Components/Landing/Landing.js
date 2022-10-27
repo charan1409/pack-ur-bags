@@ -15,9 +15,48 @@ const Landing = (props) => {
   const toggleLoginForm = () =>{
     setLogin(!login);
   }
+
+  const navItems = [
+    {
+      title: "Home",
+      path: "#home",
+      
+    },
+    {
+      title: "Gallery",
+      path: "#gallery",
+      
+    },
+    // {
+    //   title: "Places",
+    //   path: "#places",
+      
+    // },
+    // {
+    //   title: "About",
+    //   path: "#about",
+      
+    // },
+    {
+      title: "Services",
+      path: "#services",
+      
+    },
+    {
+      title: "Reviews",
+      path: "#review",
+      
+    },
+    {
+      title: "Footer",
+      path: "#footer",
+      
+    },
+  ];
+
   return (
     <div>
-      <Header user={false} openLoginForm={toggleLoginForm}/>
+      <Header user={false} openLoginForm={toggleLoginForm} navItems={navItems}/>
       <Vedio />
       <Gallery />
       <Services />
