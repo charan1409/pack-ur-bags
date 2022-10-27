@@ -8,8 +8,8 @@ import Index from "./Components/Main/Index";
 import ViewPlace from "./Components/viewplaces/ViewPlace";
 
 import BeachesHotel from "./Components/PlacesHotel/BeachesHotel";
-import CulturalHotel from "./Components/PlacesHotel/CulturalHotel";
-import CountrysideHotel from "./Components/PlacesHotel/CountrysideHotel";
+// import CulturalHotel from "./Components/PlacesHotel/CulturalHotel";
+// import CountrysideHotel from "./Components/PlacesHotel/CountrysideHotel";
 import Book from "./Components/Book/Book";
 import Payment from "./Components/Pay/Payment";
 
@@ -264,8 +264,8 @@ function App() {
             <Route path="Desert" element={<ViewPlace placeType={Desert} path={"/BeachesHotel"}/>} />
             <Route path="Countryside" element={<ViewPlace placeType={countryside} path={"/BeachesHotel"}/>} />
             <Route path="BeachesHotel" element={<BeachesHotel />} />
-            <Route path="CulturalHotel" element={<CulturalHotel />} />
-            <Route path="CountrysideHotel" element={<CountrysideHotel />} />
+            {/* <Route path="CulturalHotel" element={<CulturalHotel />} />
+            <Route path="CountrysideHotel" element={<CountrysideHotel />} /> */}
             <Route path="book" element={<Book />} />
             <Route path="payment" element={<Payment />} />
             <Route path="profile" element={<Profile />} />
