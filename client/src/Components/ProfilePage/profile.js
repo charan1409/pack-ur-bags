@@ -13,6 +13,7 @@ function review_rating() {
 }
 
 function Profile() {
+    const {loginuser} =  useContext(store);
     return (
         <div>
             <Header />
@@ -29,11 +30,11 @@ function Profile() {
                     <button className="btn_profile" onClick={review_rating}>edit profile</button></div>
                 <div className="_right">
                     <table>
-                        <Tabledata heading={"Name:"} data={"Charan Kumar"} />
-                        <Tabledata heading={"Username:"} data={"Charan14"} />
+                        <Tabledata heading={"Name:"} data={loginuser.username} />
+                        <Tabledata heading={"Username:"} data={loginuser.username} />
                         <Tabledata heading={"Gender:"} data={"male"} />
                         <Tabledata heading={"Phone Number:"} data={"9392756484"} />
-                        <Tabledata heading={"Email:"} data={"charan@gmail.com"} />
+                        <Tabledata heading={"Email:"} data={loginuser.email} />
                     </table>
                     <div className="btns">
                         <Link to="/changepass" className="btn_profile">Change Password</Link>
