@@ -1,6 +1,6 @@
 import React from 'react'
 import Btn from '../Btn'
-import Submit from "./submit";
+import Submit from "./Submit";
 
 function review_rating() {
     const modalBg = document.querySelector(".modal-bg");

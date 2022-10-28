@@ -2,8 +2,8 @@ import React from "react";
 import Img from "../viewplaces/ViewplacesComponents/img"
 import Place from "../viewplaces/ViewplacesComponents/details"
 import Rating from "../viewplaces/ViewplacesComponents/rating"
-import Info from "./info"
-import Review from "./review"
+import Info from "./Info"
+import Review from "./Review"
 import "./style.css"
 import Btn from "../Btn"
 import Hotelbox from "./Hotelbox";

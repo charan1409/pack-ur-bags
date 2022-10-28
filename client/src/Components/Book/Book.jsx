@@ -1,5 +1,5 @@
 import React from "react";
-import Img from "./img"
+import Img from "./Img"
 import photo from "../viewplaces/places/beach/barefoot.jpg"
 import Form from "./Form";
 import "./book.css"
