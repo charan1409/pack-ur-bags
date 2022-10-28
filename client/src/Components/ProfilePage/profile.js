@@ -1,4 +1,5 @@
 import React, {useContext} from "react";
+import {Link} from "react-router-dom";
 import Header from "../Navbar/Header";
 import "./clientprofile.css";
 import img from "./displayimage.jpg";
@@ -49,9 +50,8 @@ function Profile() {
                         <Tabledata heading={"Email:"} data={loginuser.email} />
                     </table>
                     <div className="btns">
-                        {/* <Link to="/changepass" className="btn_profile">Change Password</Link> */}
                         <button class="btn_profile" onClick={change_pass}>change password</button><br></br>
-                        <button class="btn_profile" onClick="">logout</button>
+                        <Link to="/" className="btn_profile">Logout</Link>
                     </div>
                 </div>
             </div >
