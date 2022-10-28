@@ -1,49 +1,45 @@
-import React,{ useState } from 'react'
-import InputBox from '../Landing/InputBox'
-import Error from '../ErrorPage/Error';
+import React from 'react'
 
 function ChangePassword(props) {
-  const [pass,setPass] = useState({
-    opass:"",
-    npass:"",
-    cnpass:""
-  })
-  const [loginError, setLoginError] = useState([false,""]);
-
-  const changeHandler =(e) => {
-    const nextFieldState = {
-      ...pass,
-      [e.target.name]: e.target.value
-    };
-    setPass(nextFieldState)
-  }
-  const closeLoginError = () => {
-    setLoginError([false,""]);
-  };
-  const submitHandler = (e) => {
+  
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if(pass.npass.trim().length < 6){
-      setLoginError([true,"Password should be altleast 6 characters"])
-    } else if(pass.npass !== pass.cnpass){
-      setLoginError([true,"Passwords should be equal"])
-    }else{
-      setLoginError([false,""])
-      props.users.forEach(e => {
-        if(e.password === pass.opass){
-          
-        } else{
-          setLoginError([true,"Incorrect password"])
-        }
-      });
-    }
+    const modalBg = document.querySelector(".pass-modal-bg");
+    modalBg.classList.toggle("bg-active");
   };
   return (
     <div>
-      <form onSubmit={submitHandler}>
-        {loginError[0] && <Error msg={loginError[1]} onClick={closeLoginError} />}
-        <InputBox type={"password"} placeholder={"old password"} name={"opass"} value={pass.opass} onChange={changeHandler}/>
-        <InputBox type={"password"} placeholder={"new password"} name={"npass"} value={pass.npass} onChange={changeHandler}/>
-        <InputBox type={"password"} placeholder={"confirm new password"} name={"cnpass"} value={pass.cnpass} onChange={changeHandler}/>
+      <form onSubmit={handleSubmit}>
+        <label for="opass">Password: </label>
+        <input
+          type="password"
+          className="tbox"
+          name="opass"
+          placeholder="Enter your password"
+        />
+        <br></br>
+        <label for="npass">New password: </label>
+        <input
+          type="password"
+          className="tbox"
+          name="npass"
+          placeholder="Enter your new password"
+        />
+        <br></br>
+        <label for="cnpass">Confirm password: </label>
+        <input
+          type="password"
+          className="tbox"
+          name="cnpass"
+          placeholder="confirm your new password"
+        />
+        <br></br>
+        <button type="submit" className="btn_profile" value="save changes">
+          Cancel
+        </button>
+        <button type="submit" className="btn_profile" value="save changes">
+          change password
+        </button>
       </form>
     </div>
   )
