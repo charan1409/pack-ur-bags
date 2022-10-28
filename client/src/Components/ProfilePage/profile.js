@@ -56,15 +56,15 @@ function Profile() {
                 </div>
             </div >
             <div className="modal-bg">
-                <h2>edit your profile</h2>
                 <div className="edit-form">
+                    <h2>edit your profile</h2>
                     <Edityourprofile username="User" />
                     <span onClick={edit_form}>x</span>
                 </div>
             </div>
             <div className="pass-modal-bg">
-                <h2>Change your password</h2>
                 <div className="edit-form">
+                    <h2>Change your password</h2>
                     <ChangePassword username="User" />
                     <span onClick={change_pass}>x</span>
                 </div>

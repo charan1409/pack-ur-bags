@@ -1,5 +1,5 @@
 import React from "react";
-import Heading from "./ViewplacesComponents/heading";
+import Heading from "./ViewplacesComponents/Heading";
 import "./style.css";
 import Header from "../Navbar/Header";
 import Components from "./ViewplacesComponents/PlacesComponent";  

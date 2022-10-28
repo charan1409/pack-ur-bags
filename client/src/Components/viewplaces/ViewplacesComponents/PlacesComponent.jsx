@@ -1,7 +1,7 @@
 import React from "react";
-import Rating from "./rating";
-import Img from "./img";
-import Details from "./details";
+import Rating from "./Rating";
+import Img from "./Img";
+import Details from "./Details";
 import Btn from "../../Btn";
 import "../style.css"
 import { Link } from "react-router-dom";

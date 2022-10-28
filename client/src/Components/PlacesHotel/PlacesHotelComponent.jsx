@@ -1,7 +1,7 @@
 import React from "react";
-import Img from "../viewplaces/ViewplacesComponents/img"
-import Place from "../viewplaces/ViewplacesComponents/details"
-import Rating from "../viewplaces/ViewplacesComponents/rating"
+import Img from "../viewplaces/ViewplacesComponents/Img"
+import Place from "../viewplaces/ViewplacesComponents/Details"
+import Rating from "../viewplaces/ViewplacesComponents/Rating"
 import Info from "./Info"
 import Review from "./Review"
 import "./style.css"
