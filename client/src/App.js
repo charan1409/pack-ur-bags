@@ -264,8 +264,6 @@ function App() {
             <Route path="Desert" element={<ViewPlace placeType={Desert} path={"/BeachesHotel"} />} category={"Places"} />
             <Route path="Countryside" element={<ViewPlace placeType={countryside} path={"/BeachesHotel"} category={"Places"} />} />
             <Route path="BeachesHotel" element={<BeachesHotel />} />
-            {/* <Route path="CulturalHotel" element={<CulturalHotel />} />
-            <Route path="CountrysideHotel" element={<CountrysideHotel />} /> */}
             <Route path="book" element={<Book />} />
             <Route path="payment" element={<Payment />} />
             <Route path="profile" element={<Profile />} />
