@@ -14,8 +14,8 @@ const Payment = () => {
 
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
+  const [month, setMonth] = useState("01");
+  const [year, setYear] = useState("2021");
   const [cvv, setCvv] = useState("");
 
   const handleSubmit = (e) => {
@@ -66,90 +66,90 @@ const Payment = () => {
   return (
     <>
     <Header user={true} navItems={navItems}/>
-    <div class="container">
-      <div class="card-container">
-        <div class="front">
-          <div class="image">
+    <div className="container">
+      <div className="card-container">
+        <div className="front">
+          <div className="image">
             <img src={img1} alt="" />
             <img src={img2} alt="" />
           </div>
-          <div class="card-number-box">
+          <div className="card-number-box">
             {number.length === 0 ? "#### #### #### ####" : number_space()}
           </div>
-          <div class="flexbox">
-            <div class="box">
+          <div className="flexbox">
+            <div className="box">
               <span>card holder</span>
-              <div class="card-holder-name">
+              <div className="card-holder-name">
                 {name.length === 0 ? "full name" : name}
               </div>
             </div>
-            <div class="box">
+            <div className="box">
               <span>expires</span>
-              <div class="expiration">
-                <span class="exp-month" style={{ marginRight: "10px" }}>
+              <div className="expiration">
+                <span className="exp-month" style={{ marginRight: "10px" }}>
                   {month.length === 0 ? "mm" : month}
                 </span>
-                <span class="exp-year">{year.length === 0 ? "yy" : year}</span>
+                <span className="exp-year">{year.length === 0 ? "yy" : year}</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="back">
-          <div class="stripe"></div>
-          <div class="box">
+        <div className="back">
+          <div className="stripe"></div>
+          <div className="box">
             <span>{cvv.length === 0 ? "cvv" : cvv}</span>
-            <div class="cvv-box"></div>
+            <div className="cvv-box"></div>
             <img src={img2} alt="" />
           </div>
         </div>
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div class="inputBox">
+        <div className="inputBox">
           <span>card number</span>
           <input
             type="text"
             name="number"
-            maxlength="16"
-            class="card-number-input"
+            maxLength="16"
+            className="card-number-input"
             required
             value={number}
             onChange={(x) => {
-              console.log(x.target.value);
+              // console.log(x.target.value);
               return setNumber(x.target.value);
             }}
           />
         </div>
-        <div class="inputBox">
+        <div className="inputBox">
           <span>card holder</span>
           <input
             type="text"
             name="holder"
-            class="card-holder-input"
+            className="card-holder-input"
             required
             value={name}
             onChange={(x) => {
-              console.log(x.target.value);
+              // console.log(x.target.value);
               return setName(x.target.value);
             }}
           />
         </div>
-        <div class="flexbox">
-          <div class="inputBox">
+        <div className="flexbox">
+          <div className="inputBox">
             <span>expiration month</span>
             <select
               name="expmon"
               id=""
-              class="month-input"
+              className="month-input"
               required
               value={month}
               onChange={(x) => {
-                console.log(x.target.value);
+                // console.log(x.target.value);
                 return setMonth(x.target.value);
               }}
             >
-              <option value="month" selected disabled>
+              <option value="month" disabled>
                 month
               </option>
               <option value="01">01</option>
@@ -166,20 +166,20 @@ const Payment = () => {
               <option value="12">12</option>
             </select>
           </div>
-          <div class="inputBox">
+          <div className="inputBox">
             <span>expiration year</span>
             <select
               name="expyear"
               id=""
-              class="year-input"
+              className="year-input"
               required
               value={year}
               onChange={(x) => {
-                console.log(x.target.value);
+                // console.log(x.target.value);
                 return setYear(x.target.value);
               }}
             >
-              <option value="year" selected disabled>
+              <option value="year" disabled>
                 year
               </option>
               <option value="2021">2021</option>
@@ -194,17 +194,17 @@ const Payment = () => {
               <option value="2030">2030</option>
             </select>
           </div>
-          <div class="inputBox">
+          <div className="inputBox">
             <span>cvv</span>
             <input
               type="text"
               name="cvv"
-              maxlength="4"
-              class="cvv-input"
+              maxLength="4"
+              className="cvv-input"
               required
               value={cvv}
               onChange={(x) => {
-                console.log(x.target.value);
+                // console.log(x.target.value);
                 return setCvv(x.target.value);
               }}
               onMouseEnter={() => {
@@ -222,7 +222,7 @@ const Payment = () => {
             />
           </div>
         </div>
-        <input type="submit" value="Pay" class="submit-btn" />
+        <input type="submit" value="Pay" className="submit-btn" />
       </form>
     </div>
               </>

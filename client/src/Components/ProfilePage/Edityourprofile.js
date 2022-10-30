@@ -8,8 +8,8 @@ function Edityourprofile(model) {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit} class="editform">
-        <label for="username">Username:</label>
+      <form onSubmit={handleSubmit} className="editform">
+        <label htmlFor="username">Username:</label>
         <input
           type="text"
           className="tbox"
@@ -17,7 +17,7 @@ function Edityourprofile(model) {
           placeholder="Enter your username"
         />
         <br></br>
-        <label for="upname">Name: </label>
+        <label htmlFor="upname">Name: </label>
         <input
           type="text"
           className="tbox"
@@ -25,13 +25,13 @@ function Edityourprofile(model) {
           placeholder="Enter your name"
         />
         <br></br>
-        <label for="upgender">Gender:</label>
+        <label htmlFor="upgender">Gender:</label>
         <input type="radio" name="upgender" id="male" value="male" />
-        <label for="male">male</label>
+        <label htmlFor="male">male</label>
         <input type="radio" name="upgender" id="female" value="female" />
-        <label for="female">female</label>
+        <label htmlFor="female">female</label>
         <br></br>
-        <label for="upphone">Phone number:</label>
+        <label htmlFor="upphone">Phone number:</label>
         <input
           type="text"
           className="tbox"

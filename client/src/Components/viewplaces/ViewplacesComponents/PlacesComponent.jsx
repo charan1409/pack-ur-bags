@@ -10,7 +10,7 @@ function Components(props){
     return(
         <div className="place-box1">
             <Img photo={props.photo} alt="bye"/>
-            <div class="place-details">
+            <div className="place-details">
             <Details to={props.to} details={props.details}/>
             <Rating rate={props.rate}/>
             <div className="button-holder">

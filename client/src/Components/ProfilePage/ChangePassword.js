@@ -10,7 +10,7 @@ function ChangePassword(props) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label for="opass">Password: </label>
+        <label htmlFor="opass">Password: </label>
         <input
           type="password"
           className="tbox"
@@ -18,7 +18,7 @@ function ChangePassword(props) {
           placeholder="Enter your password"
         />
         <br></br>
-        <label for="npass">New password: </label>
+        <label htmlFor="npass">New password: </label>
         <input
           type="password"
           className="tbox"
@@ -26,7 +26,7 @@ function ChangePassword(props) {
           placeholder="Enter your new password"
         />
         <br></br>
-        <label for="cnpass">Confirm password: </label>
+        <label htmlFor="cnpass">Confirm password: </label>
         <input
           type="password"
           className="tbox"

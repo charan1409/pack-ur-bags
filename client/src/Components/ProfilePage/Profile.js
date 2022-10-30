@@ -50,7 +50,7 @@ function Profile() {
                         <Tabledata heading={"Email:"} data={loginuser.email} />
                     </table>
                     <div className="btns">
-                        <button class="btn_profile" onClick={change_pass}>change password</button><br></br>
+                        <button className="btn_profile" onClick={change_pass}>change password</button><br></br>
                         <Link to="/" className="btn_profile">Logout</Link>
                     </div>
                 </div>

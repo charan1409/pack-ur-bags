@@ -29,7 +29,7 @@ function Component(props) {
                 <h2>HOTELS NEAR {props.to}</h2><br />
                 <p>{props.description}</p>
                 <br />
-                <div class="box-container">
+                <div className="box-container">
                     {(props.hotels).map((x)=>(<Hotelbox hotel={x.hotel} location={x.location} direction={x.direction} price={x.price} photo={x.photo} />))}
                 </div>
             </div>
