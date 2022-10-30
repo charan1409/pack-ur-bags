@@ -53,6 +53,7 @@ function RegisterForm(props) {
         password: "",
         confirmedPassword: "",
       });
+      alert("Registered Successfully");
     }
   };
   return (
