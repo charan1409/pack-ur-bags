@@ -1,7 +1,7 @@
 import React from 'react'
 
 function ChangePassword(props) {
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const modalBg = document.querySelector(".pass-modal-bg");
@@ -10,12 +10,16 @@ function ChangePassword(props) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+<<<<<<< Updated upstream
         <label htmlFor="opass">Password: </label>
+=======
+        <label for="opass">Old Password: </label>
+>>>>>>> Stashed changes
         <input
           type="password"
           className="tbox"
           name="opass"
-          placeholder="Enter your password"
+          placeholder="Enter your old password"
         />
         <br></br>
         <label htmlFor="npass">New password: </label>
@@ -35,10 +39,10 @@ function ChangePassword(props) {
         />
         <br></br>
         <button type="submit" className="btn_profile" value="save changes">
-          Cancel
+          change password
         </button>
         <button type="submit" className="btn_profile" value="save changes">
-          change password
+          Cancel
         </button>
       </form>
     </div>

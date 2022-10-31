@@ -38,12 +38,12 @@ function Edityourprofile(model) {
           name="upphone"
           placeholder="Enter your phone number"
         />
-        <br></br>
-        <button type="submit" className="btn_profile" value="save changes">
-          Cancel
-        </button>
+        {/* <br></br> */}
         <button type="submit" className="btn_profile" value="save changes">
           save changes
+        </button>
+        <button type="submit" className="btn_profile" value="save changes">
+          Cancel
         </button>
       </form>
     </div>

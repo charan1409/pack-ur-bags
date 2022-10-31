@@ -122,7 +122,8 @@ h1 {
 }
 
 
- .modal-bg, .pass-modal-bg {
+.modal-bg,
+.pass-modal-bg {
     height: 100vh;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.7);
@@ -137,12 +138,12 @@ h1 {
     transition: visibilty 0s, opacity 0.5s;
 }
 
- .bg-active {
+.bg-active {
     visibility: visible;
     opacity: 1;
 }
 
-.pass-modal-bg .edit-form{
+.pass-modal-bg .edit-form {
     position: relative;
     background-color: #fff;
     height: 55%;
@@ -152,17 +153,17 @@ h1 {
     padding: 0;
 }
 
- .modal-bg .edit-form {
+.modal-bg .edit-form {
     position: relative;
     background-color: #fff;
-    height: 55%;
+    height: 60%;
     width: 40%;
     align-items: center;
     margin: 0;
     padding: 0;
 }
 
- .modal-bg .edit-form span {
+.modal-bg .edit-form span {
     position: absolute;
     display: flex;
     top: 0px;
@@ -176,19 +177,19 @@ h1 {
     cursor: pointer;
 }
 
- .modal-bg .edit-form span:hover {
+.modal-bg .edit-form span:hover {
     background-color: rgba(255, 0, 0, 0.734);
     color: #fff;
 }
 
- .modal-bg .edit-form h2 {
+.modal-bg .edit-form h2 {
     text-align: center;
     font-size: 25px;
     font-weight: bold;
     margin-top: 10px;
 }
 
- .modal-bg .edit-form form {
+.modal-bg .edit-form form {
     padding: 20px 30px;
 }
 
@@ -206,7 +207,8 @@ h1 {
     font-size: 15px;
     text-transform: none;
 }
-.modal-bg .edit-form a{
+
+.modal-bg .edit-form a {
     font-size: small;
     text-decoration: underline;
 }
@@ -225,19 +227,19 @@ h1 {
     cursor: pointer;
 }
 
- .pass-modal-bg .edit-form span:hover {
+.pass-modal-bg .edit-form span:hover {
     background-color: rgba(255, 0, 0, 0.734);
     color: #fff;
 }
 
- .pass-modal-bg .edit-form h2 {
+.pass-modal-bg .edit-form h2 {
     text-align: center;
     font-size: 25px;
     font-weight: bold;
     margin-top: 10px;
 }
 
- .pass-modal-bg .edit-form form {
+.pass-modal-bg .edit-form form {
     padding: 20px 30px;
 }
 
@@ -255,7 +257,8 @@ h1 {
     font-size: 15px;
     text-transform: none;
 }
-.pass-modal-bg .edit-form a{
+
+.pass-modal-bg .edit-form a {
     font-size: small;
     text-decoration: underline;
 }
