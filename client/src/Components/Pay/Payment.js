@@ -106,6 +106,15 @@ const Payment = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
+      <div className="inputBox">
+          <span>Amount</span>
+          <input
+            type="number"
+            name="number"
+            className="card-number-input"
+            required
+          />
+        </div>
         <div className="inputBox">
           <span>card number</span>
           <input
