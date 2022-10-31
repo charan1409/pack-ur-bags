@@ -10,11 +10,7 @@ function ChangePassword(props) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-<<<<<<< Updated upstream
-        <label htmlFor="opass">Password: </label>
-=======
         <label for="opass">Old Password: </label>
->>>>>>> Stashed changes
         <input
           type="password"
           className="tbox"
