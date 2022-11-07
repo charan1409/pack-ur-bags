@@ -55,6 +55,7 @@ function RegisterForm(props) {
         email: "",
         password: "",
         confirmedPassword: "",
+        tours: [],
       });
       
     }
