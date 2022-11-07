@@ -28,7 +28,7 @@ function LoginPage(props) {
             </Link>
           </div>
           <div id="log" className="login-form-container">
-            <TopBtn heading={`${register ? "Sign Up" : "Sign In"}`} />
+            <TopBtn heading={`${register ? "SIGN UP" : "SIGN IN"}`} />
             {!register ? (
               <LoginForm
                 register={register}

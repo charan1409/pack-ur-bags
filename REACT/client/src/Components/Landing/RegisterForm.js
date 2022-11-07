@@ -100,7 +100,7 @@ function RegisterForm(props) {
           onChange={onUpdateField}
         />
         <Btn type={"submit"} value={"Sign Up"} onClick={props.openRegister} />
-        <p>Already have an account?</p>
+        <p style={{ color: "white" }}>Already have an account?</p>
         <Btn type={"button"} value={"Sign In"} onClick={props.closeRegister} />
       </form>
     </div>

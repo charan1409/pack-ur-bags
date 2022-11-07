@@ -11,7 +11,7 @@
 }
 
 .login-container {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.807);
 }
 
 .login-container .total-form-container {
@@ -19,12 +19,12 @@
   height: 530px;
   width: 500px;
   transform: translate(-50%,-50%);
-  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.623);
+  box-shadow: 1px 1px 20px rgba(251, 251, 251, 0.988);
   animation-name: moving;
   animation-duration: 0.8s;
   top: 55%;
   margin-left: 50%;
-  background-color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.422);
 }
 
 .login-container .login-form-container {
@@ -39,18 +39,6 @@
   to {
     top: 55%;
   }
-}
-
-.login-container .login-form-container .top-btn {
-  background-color: #fac102;
-  color: whitesmoke;
-  height: 50px;
-  width: 100%;
-  font-size: 23px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .login-container .login-form-close {
@@ -68,9 +56,11 @@
   cursor: pointer;
   line-height: 40px;
   right: 0;
+  color: #ffffff
 }
 
 .login-container .login-form-close-btn:hover {
   background-color: red;
-  color: #ffffff;
+  color: black;
+  border-radius: 12px;
 }

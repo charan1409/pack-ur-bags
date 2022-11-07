@@ -2,10 +2,13 @@
   background-color: #fac102;
   color: whitesmoke;
   height: 45px;
-  width: 100%;
-  font-size: 23px;
+  width: 85%;
+  font-size: 20px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
 }
