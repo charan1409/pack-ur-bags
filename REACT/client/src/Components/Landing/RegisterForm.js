@@ -6,6 +6,7 @@ import InputBox from "./InputBox";
 import Btn from "../Btn";
 import Error from "./LogError";
 import { store } from "../../App.js";
+import axios from "axios";
 
 function RegisterForm(props) {
 
@@ -46,6 +47,7 @@ function RegisterForm(props) {
       setRegisterError([false, ""]);
       setUsers([...users, userinfo]);
       setLoginuser(userinfo);
+      axios.post("http://localhost:3001/users", userinfo);
       alert(`${userinfo.username} is registered successfully`);
       history("/");
       setUserinfo({

@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React from "react";
 import {Link} from "react-router-dom";
 import Header from "../Navbar/Header";
 import "./clientprofile.css";
@@ -6,7 +6,6 @@ import img from "./displayimage.jpg";
 import Tabledata from "./Tabledata";
 import Edityourprofile from "./Edityourprofile";
 import ChangePassword from "./ChangePassword";
-import { store } from "../../App.js";
 
 function edit_form() {
   const modalBg = document.querySelector(".modal-bg");
@@ -26,7 +25,7 @@ const navItems = [
     },
   ];
 function Profile() {
-    const {loginuser} =  useContext(store);
+    const user = JSON.parse(localStorage.getItem("user"));
     return (
         <div>
             <Header user={true} navItems={navItems}/>
@@ -43,11 +42,11 @@ function Profile() {
                     <button className="btn_profile" onClick={edit_form}>edit profile</button></div>
                 <div className="_right">
                     <table>
-                        <Tabledata heading={"Name:"} data={loginuser.username} />
-                        <Tabledata heading={"Username:"} data={loginuser.username} />
+                        <Tabledata heading={"Name:"} data={user.username} />
+                        <Tabledata heading={"Username:"} data={user.username} />
                         <Tabledata heading={"Gender:"} data={"male"} />
                         <Tabledata heading={"Phone Number:"} data={"9392756484"} />
-                        <Tabledata heading={"Email:"} data={loginuser.email} />
+                        <Tabledata heading={"Email:"} data={user.email} />
                     </table>
                     <div className="btns">
                         <button className="btn_profile" onClick={change_pass}>change password</button><br></br>

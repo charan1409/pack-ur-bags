@@ -6,6 +6,7 @@ import InputBox from "./InputBox";
 import Btn from "../Btn";
 import Error from "./LogError";
 import { store } from "../../App.js";
+import axios from "axios";
 
 function Form(props) {
   const {setLoginuser} = useContext(store);
@@ -37,17 +38,18 @@ function Form(props) {
       setLoginError([true,"Password should be altleast 6 characters"])
     } else{
       setLoginError([false,""])
-      props.users.forEach(e => {
-        if(e.username === userinfo.username && e.password === userinfo.password){
-          setLoginuser(e);
-          setUserinfo({
-            username:"",
-            password:""
-          })
-          props.loggedUser(e)
+      axios.get("http://localhost:3001/users").then((res) => {
+        const user = res.data.find(
+          (user) =>
+            user.username === userinfo.username &&
+            user.password === userinfo.password
+        );
+        if (user) {
+          setLoginuser(user);
+          localStorage.setItem("user", JSON.stringify(user));
           history("/index");
-        } else{
-          setLoginError([true,"Invalid user details"])
+        } else {
+          setLoginError([true, "Invalid username or password"]);
         }
       });
     }

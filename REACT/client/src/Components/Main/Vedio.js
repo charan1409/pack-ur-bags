@@ -3,10 +3,11 @@ import "./main.css";
 import vid from "./vid-1.mp4";
 
 const Vedio = (props) => {
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <div className="home section" id="home">
       <div className="content">
-        {props.user && <h3>Welcome {props.user.username} !</h3>}
+        {props.user && <h3>Welcome {user.username} !</h3>}
         <h3>travelling is worthwhile</h3>
         <p>discover new places with us, adventure awaits</p>
         <a href="#gallery" className="btn">
