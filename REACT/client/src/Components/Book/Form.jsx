@@ -1,7 +1,8 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import InputBox from "./InputBox";
-import {store} from "../../App.js";
+import { store } from "../../App.js";
+import axios from "axios";
 
 var todayDate = new Date();
 var month = todayDate.getMonth() + 1;
@@ -63,9 +64,15 @@ function Form() {
     // alert(`Arrival date: ${arrival}`);
 
     if (!cartItems.includes(bookData)) {
-      setCartItems([...cartItems, bookData]);
-      console.log(cartItems);
-      navigate("/mytours");
+      // setCartItems([...cartItems, bookData]);
+      const user = JSON.parse(localStorage.getItem("user"));
+      axios.get(`http://localhost:3001/users/${user.id}`).then((res) => {
+        const user = res.data;
+        user.tours.push(bookData);
+        axios.put(`http://localhost:3001/users/${user.id}`, user);
+        alert("Added to cart");
+        navigate("/mytours");
+      });
     }
 
     event.preventDefault();
@@ -132,7 +139,7 @@ function Form() {
           />
         </div>
         {/* <Link to="/payment"><input type="submit" className="book-btn" value="Book" /></Link> */}
-        <input type="submit" className="book-btn" value="Add Tour"/>
+        <input type="submit" className="book-btn" value="Add Tour" />
       </form>
     </div>
   );
