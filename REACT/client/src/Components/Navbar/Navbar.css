@@ -34,6 +34,7 @@
 }
 
 .header .navbar .nav-item a{
+  margin: auto;
   text-decoration: none;
   color: white;
   font-size: 20px;
@@ -41,9 +42,9 @@
 }
 
 .header .navbar .nav-item a:hover {
-  text-decoration: underline;
   color: #fac102;
-  text-transform: capitalize;
+  text-transform: uppercase;
+  transform: scale(1.1);
 }
 
 .header .logo {
