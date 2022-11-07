@@ -46,6 +46,7 @@ function RegisterForm(props) {
       setRegisterError([false, ""]);
       setUsers([...users, userinfo]);
       setLoginuser(userinfo);
+      alert(`${userinfo.username} is registered successfully`);
       history("/");
       setUserinfo({
         username: "",
@@ -53,7 +54,7 @@ function RegisterForm(props) {
         password: "",
         confirmedPassword: "",
       });
-      alert("Registered Successfully");
+      
     }
   };
   return (
