@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { serviceDropdown } from "./NavItems";
 import { Link } from "react-router-dom";
 import "./Dropdown.css";
 
@@ -12,19 +11,39 @@ function Dropdown() {
         className={dropdown ? "services-submenu clicked" : "services-submenu"}
         onClick={() => setDropdown(!dropdown)}
       >
-        {serviceDropdown.map((item) => {
-          return (
-            <li key={item.id}>
-              <Link
-                to={item.path}
-                className={item.cName}
-                onClick={() => setDropdown(false)}
-              >
-                {item.title}
-              </Link>
-            </li>
-          );
-        })}
+        <li>
+          <Link
+            to="/profile"
+            className="submenu-item"
+            onClick={() => setDropdown(false)}
+          >
+            Profile
+          </Link>
+          <Link
+            to="/mytours"
+            className="submenu-item"
+            onClick={() => setDropdown(false)}
+          >
+            My Tours
+          </Link>
+          <Link
+            to="/transactions"
+            className="submenu-item"
+            onClick={() => setDropdown(false)}
+          >
+            Transactions
+          </Link>
+          <Link
+            to="/"
+            className="submenu-item"
+            onClick={() => {
+              localStorage.removeItem("user");
+              setDropdown(false);
+            }}
+          >
+            Logout
+          </Link>
+        </li>
       </ul>
     </>
   );

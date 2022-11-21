@@ -10,6 +10,9 @@
   background: #333;
   cursor: pointer;
   margin: 0%;
+}
+
+.services-submenu li a{
   border-bottom: 2px solid #fff;
 }
 
