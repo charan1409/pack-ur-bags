@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import InputBox from "../Landing/InputBox";
 
 function ChangePassword() {
   const user = JSON.parse(localStorage.getItem("user"));
