@@ -8,8 +8,10 @@ import "./style.css"
 import Btn from "../Btn"
 import Hotelbox from "./Hotelbox";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Component(props) {
+    const [rval,setrval]=useState(0)
     return (
 
         <div className="place-box">
@@ -29,9 +31,18 @@ function Component(props) {
                 <h2>HOTELS NEAR {props.to}</h2><br />
                 <p>{props.description}</p>
                 <br />
-                <div className="box-container">
-                    {(props.hotels).map((x)=>(<Hotelbox hotel={x.hotel} location={x.location} direction={x.direction} price={x.price} photo={x.photo} />))}
-                </div>
+                <button className="btn1" onClick={()=>setrval(0)}>1-bedroom</button>
+                <button className="btn1" onClick={()=>setrval(1)}>2-bedroom</button>
+                <button className="btn1" onClick={()=>setrval(2)}>3-bedroom</button>
+                
+                    <div className="box-container">
+                        {(props.hotels).map((y)=> y.val===rval && 
+                      (y.h).map((x)=>(<Hotelbox hotel={x.hotel} location={x.location} direction={x.direction} price={x.price} photo={x.photo} />))
+                      )}
+                      {/* {(props.hotels).map((x)=>(<Hotelbox hotel={x.hotel} location={x.location} direction={x.direction} price={x.price} photo={x.photo} />))} */}
+                   </div>
+                
+                
             </div>
             <Review image={props.img} username={props.username} review={props.review} type="button" name="Submit" />
         </div>

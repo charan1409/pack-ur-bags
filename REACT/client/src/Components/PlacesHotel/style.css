@@ -195,7 +195,7 @@ a {
 .place-box .button {
   padding: 5px;
 }
-.button .btn {
+.btn1 {
     background-color: #fac102;
   color: white;
   width: 150px;
@@ -211,7 +211,8 @@ a {
   text-decoration: none;
 }
 
- .button .btn:hover {
+.btn1:active,
+.btn1:focus {
   background: none;
   color: #fac102;
   border: 2px solid #fac102;
