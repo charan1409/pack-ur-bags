@@ -1,25 +1,18 @@
 import React, { useState } from "react";
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
 import Error from "./LogError";
-import { store } from "../../App.js";
 import axios from "axios";
 
 function RegisterForm(props) {
 
-  const {users, setUsers, setLoginuser} = useContext(store);
-
-  let history = useNavigate();
   const [registerError, setRegisterError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
     username: "",
     email: "",
     password: "",
     confirmedPassword: "",
-    tours: [],
   });
 
   const closeRegisterError = () => {
@@ -46,19 +39,39 @@ function RegisterForm(props) {
       setRegisterError([true, "Passwords are not matching"]);
     } else {
       setRegisterError([false, ""]);
-      setUsers([...users, userinfo]);
-      setLoginuser(userinfo);
-      axios.post("http://localhost:3001/users", userinfo);
-      alert(`${userinfo.username} is registered successfully`);
-      history("/");
-      setUserinfo({
-        username: "",
-        email: "",
-        password: "",
-        confirmedPassword: "",
-        tours: [],
+      axios.get("http://localhost:3001/users").then((res) => {
+        const userE = res.data.find(
+          (user) =>
+            user.email === userinfo.email
+        );
+        const userN = res.data.find(
+          (user) =>
+            user.username === userinfo.username
+        );
+        if (userE) {
+          setRegisterError([true, "Email is already registered."]);
+        } else if (userN) {
+          setRegisterError([true, "username is already in use."]);
+        } else {
+          const newUser = {
+            id: new Date().valueOf(),
+            username: userinfo.username,
+            email: userinfo.email,
+            password: userinfo.password,
+            tours: [],
+          }
+          axios.post("http://localhost:3001/users", newUser);
+          alert(`${userinfo.username} is registered successfully`);
+          setUserinfo({
+            username: "",
+            email: "",
+            password: "",
+            confirmedPassword: "",
+          });
+          setRegisterError([false, ""]);
+          props.closeRegister()
+        }
       });
-      
     }
   };
   return (
@@ -99,7 +112,7 @@ function RegisterForm(props) {
           value={userinfo.confirmedPassword}
           onChange={onUpdateField}
         />
-        <Btn type={"submit"} value={"Sign Up"} onClick={props.openRegister} />
+        <Btn type={"submit"} value={"Sign Up"}/>
         <p style={{ color: "white" }}>Already have an account?</p>
         <Btn type={"button"} value={"Sign In"} onClick={props.closeRegister} />
       </form>

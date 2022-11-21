@@ -15,7 +15,7 @@ function Form(props) {
     username: "",
     password: "",
   });
-  let history = useNavigate();
+  let navigate = useNavigate();
 
   const closeLoginError = () => {
     setLoginError([false, ""]);
@@ -46,7 +46,7 @@ function Form(props) {
         if (user) {
           setLoginuser(user);
           localStorage.setItem("user", JSON.stringify(user));
-          history("/index");
+          navigate("/index");
         } else {
           setLoginError([true, "Invalid username or password"]);
         }

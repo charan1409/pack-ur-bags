@@ -53,7 +53,7 @@ const Index = (props) => {
     <div>
       <Upward />
       <Header user={true} navItems={navItems}/>
-      <Vedio user={props.user}/>
+      <Vedio />
       <Gallery />
       <Places />
       <About />
