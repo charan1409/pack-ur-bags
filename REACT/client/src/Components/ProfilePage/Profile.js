@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import {Link} from "react-router-dom";
 import Header from "../Navbar/Header";
 import "./clientprofile.css";
@@ -25,7 +25,14 @@ const navItems = [
     },
   ];
 function Profile() {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const [user,setUser] = useState({})
+    const [changed,setChanged] = useState(false)
+    const userL = JSON.parse(localStorage.getItem("user"));
+    useEffect(()=>{
+        fetch(`http://localhost:3001/users/${userL.id}`)
+        .then((res) => res.json())
+        .then((data) => setUser(data));
+      },[userL.id,setUser,changed])
     return (
         <div>
             <Header user={true} navItems={navItems}/>
@@ -42,10 +49,10 @@ function Profile() {
                     <button className="btn_profile" onClick={edit_form}>edit profile</button></div>
                 <div className="_right">
                     <table>
-                        <Tabledata heading={"Name:"} data={user.username} />
+                        <Tabledata heading={"Name:"} data={user.name} />
                         <Tabledata heading={"Username:"} data={user.username} />
-                        <Tabledata heading={"Gender:"} data={"male"} />
-                        <Tabledata heading={"Phone Number:"} data={"9392756484"} />
+                        <Tabledata heading={"Gender:"} data={user.gender} />
+                        <Tabledata heading={"Phone Number:"} data={user.phonenumber} />
                         <Tabledata heading={"Email:"} data={user.email} />
                     </table>
                     <div className="btns">
@@ -57,7 +64,7 @@ function Profile() {
             <div className="modal-bg">
                 <div className="edit-form">
                     <h2>edit your profile</h2>
-                    <Edityourprofile username="User" />
+                    <Edityourprofile username="User" setChanged={setChanged}/>
                     <span onClick={edit_form}>x</span>
                 </div>
             </div>

@@ -3,9 +3,11 @@
     {
       "id": 1669023527328,
       "username": "charan14",
-      "email": "charan@gmail.com",
+      "name": "K charan kumar",
+      "phonenumber": "9392756484",
+      "gender": "male",
       "password": "charan",
-      "tours": []
+      "email": "charan@gmail.com"
     },
     {
       "id": 1669023595615,
