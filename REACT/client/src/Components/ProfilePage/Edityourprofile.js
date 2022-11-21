@@ -2,6 +2,9 @@ import React, { useState,useEffect } from "react";
 import axios from "axios";
 
 function Edityourprofile(props) {
+
+  // on change userinfo refresh page once
+
   const user = JSON.parse(localStorage.getItem("user"));
   const [changed,setChanged] = useState(false)
   const [userinfo, setUserinfo] = useState({
@@ -44,18 +47,6 @@ function Edityourprofile(props) {
   return (
     <div>
       <form onSubmit={handleSubmit} className="editform">
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            className="tbox"
-            name="username"
-            placeholder="Enter your username"
-            onChange={onUpdateField}
-            value={userinfo.username}
-          />
-        </label>
-        <br></br>
         <label htmlFor="upname">
           Name:
           <input

@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+
+function change_pass() {
+    const modalBg = document.querySelector(".pass-modal-bg");
+    modalBg.classList.toggle("bg-active");
+  }
+
 function ChangePassword() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [changed, setChanged] = useState(false);
@@ -88,7 +94,7 @@ function ChangePassword() {
         <button type="submit" className="btn_profile" value="save changes">
           change password
         </button>
-        <button type="submit" className="btn_profile" value="save changes">
+        <button type="button" className="btn_profile" value="cancel" onClick={change_pass}>
           Cancel
         </button>
       </form>

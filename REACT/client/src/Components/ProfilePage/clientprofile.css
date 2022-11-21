@@ -96,7 +96,6 @@
 
 .btn_profile {
     margin-top: 6px;
-    /* width: auto; */
     width: 25rem;
     padding: 10px;
     height: 40px;
@@ -146,7 +145,7 @@ h1 {
 .pass-modal-bg .edit-form {
     position: relative;
     background-color: #fff;
-    height: 55%;
+    height: 50%;
     width: 40%;
     align-items: center;
     margin: 0;
@@ -156,7 +155,7 @@ h1 {
 .modal-bg .edit-form {
     position: relative;
     background-color: #fff;
-    height: 60%;
+    height: 50%;
     width: 40%;
     align-items: center;
     margin: 0;

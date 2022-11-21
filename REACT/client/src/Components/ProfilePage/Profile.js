@@ -49,8 +49,8 @@ function Profile() {
                     <button className="btn_profile" onClick={edit_form}>edit profile</button></div>
                 <div className="_right">
                     <table>
-                        <Tabledata heading={"Name:"} data={user.name} />
                         <Tabledata heading={"Username:"} data={user.username} />
+                        <Tabledata heading={"Name:"} data={user.name} />
                         <Tabledata heading={"Gender:"} data={user.gender} />
                         <Tabledata heading={"Phone Number:"} data={user.phonenumber} />
                         <Tabledata heading={"Email:"} data={user.email} />
