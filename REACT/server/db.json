@@ -1,31 +1,6 @@
 {
   "users": [
     {
-      "username": "rahul",
-      "email": "rahul@gmail.com",
-      "password": "123456",
-      "confirmedPassword": "123456",
-      "id": 1,
-      "tours": [
-        {
-          "from": "df",
-          "to": "df",
-          "adult": "2",
-          "child": "3",
-          "depart": "2022-12-08",
-          "arrival": "2023-01-03"
-        },
-        {
-          "from": "df",
-          "to": "df",
-          "adult": "4",
-          "child": "4",
-          "depart": "2022-12-09",
-          "arrival": "2023-01-05"
-        }
-      ]
-    },
-    {
       "id": 1669023527328,
       "username": "charan14",
       "email": "charan@gmail.com",
@@ -37,6 +12,13 @@
       "username": "rohith14",
       "email": "rohith@gmail.com",
       "password": "rohith",
+      "tours": []
+    },
+    {
+      "id": 1669026781494,
+      "username": "rahul",
+      "email": "rahul@gmail.com",
+      "password": "123456",
       "tours": []
     }
   ]
