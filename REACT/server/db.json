@@ -7,7 +7,8 @@
       "phonenumber": "9392756484",
       "gender": "male",
       "password": "charan",
-      "email": "charan@gmail.com"
+      "email": "charan@gmail.com",
+      "tours": []
     },
     {
       "id": 1669023595615,

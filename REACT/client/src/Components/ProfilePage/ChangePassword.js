@@ -19,7 +19,7 @@ function ChangePassword() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label for="oldpassword">Old Password: 
+        <label htmlFor="oldpassword">Old Password: 
         <input
           type="password"
           className="tbox"
