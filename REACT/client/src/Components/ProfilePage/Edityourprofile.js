@@ -36,7 +36,7 @@ function Edityourprofile(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("user", JSON.stringify(userinfo));
-    setChanged(true)
+    setChanged(!changed)
     props.setChanged(true)
     const modalBg = document.querySelector(".modal-bg");
     modalBg.classList.toggle("bg-active");

@@ -12,7 +12,7 @@ function InputBox(props) {
   return (
     <div className="input-box">
       <span className="left-icon">
-        <i className={props.leftIcon}></i>
+        {props.leftIcon && <i className={props.leftIcon}></i>}
       </span>
       <input type={passwordType} placeholder={props.placeholder} name={props.name} value={props.value} onChange={props.onChange}></input>
       <span className="right-icon">
