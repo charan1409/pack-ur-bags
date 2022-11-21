@@ -22,7 +22,6 @@ export const store = createContext();
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [trans, setTrans] = useState([]);
-  const [user, setUser] = useState({});
 
   const [users, setUsers] = useState([
     {
@@ -47,10 +46,6 @@ function App() {
     },
   ]);
 
-  const loggedUser = (e) => {
-    setUser(e)
-  }
-
   const [loginuser, setLoginuser] = useState([]);
 
   return (
@@ -59,8 +54,8 @@ function App() {
         <BrowserRouter>
           <ScrollTop smooth />
           <Routes>
-            <Route path="/" element={<Landing users={users} loggedUser={loggedUser} />} />
-            <Route path="index" element={<Index user={user} />} />
+            <Route path="/" element={<Landing users={users} />} />
+            <Route path="index" element={<Index  />} />
             {Data.map((x) => (
                 <Route path={x.path} element={<ViewPlace placeType={x.place} path={"/BeachesHotel"} category={"Places"} />} />
             ))}
