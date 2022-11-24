@@ -16,6 +16,7 @@ import Profile from "./Components/ProfilePage/Profile";
 import Tours from "./Components/MyTours/Tour";
 import Transaction from "./Components/Transactions/Transaction";
 import Data from "./Places_data.js"
+import Admin from "./Components/Admin/Admin";
 
 export const store = createContext();
 
@@ -65,6 +66,7 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="mytours" element={<Tours />} />
             <Route path="transactions" element={<Transaction />} />
+            <Route path="admin" element={<Admin />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </BrowserRouter>
