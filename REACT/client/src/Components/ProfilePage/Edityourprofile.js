@@ -26,19 +26,20 @@ function Edityourprofile(props) {
     setUserinfo(nextFieldState);
   };
 
-  useEffect(()=>{
-    axios.put(`http://localhost:3001/users/${user.id}`,userinfo)
-    .then((resp) => {
-      console.log(resp.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  },[changed,userinfo,user.id])
+  // useEffect(()=>{
+  //   axios.put(`http://localhost:3001/users/${user.id}`,userinfo)
+  //   .then((resp) => {
+  //     console.log(resp.data);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+  // },[changed,userinfo,user.id])
 
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("user", JSON.stringify(userinfo));
+    axios.put(`http://localhost:3001/users/${user.id}`,user)      
     setChanged(!changed)
     props.setChanged(true)
     const modalBg = document.querySelector(".modal-bg");
