@@ -57,7 +57,7 @@ function Profile() {
                     </table>
                     <div className="btns">
                         <button className="btn_profile" onClick={change_pass}>change password</button><br></br>
-                        <Link to="/" className="btn_profile">Logout</Link>
+                        <Link to="/" className="btn_profile" onClick={() => {localStorage.removeItem("user");}}>Logout</Link>
                     </div>
                 </div>
             </div >

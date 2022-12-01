@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './Admin.css'
 import Btn from "../Btn";
+import Header from "../Navbar/Header";
 
 function Admin() {
     const [userData, setuserData] = useState([]);
@@ -18,11 +19,20 @@ function Admin() {
             setuserData(res.data);
         });
     }
-    return (
+    const navItems = [
+        {
+            title: "Home",
+            path: "/admin",
+            
+        }]
+    return (<div>
+        <Header user={false} navItems={navItems}/>
         <div className="Container">
             {userData.map((x) =>
             (<div className="box">
-                <h2>Username:{x.username}, Email:{x.email}, Password:{x.password},</h2>
+                <h2>Username:{x.username}</h2>
+                <h2>Email:{x.email}</h2>
+                <h2>Password:{x.password}</h2>
                  <h2>tours:</h2>{x.tours.map((item) => (<div>
                       <h3>From - {item.from}</h3>
                       <h3>To - {item.to}</h3>
@@ -34,7 +44,7 @@ function Admin() {
                     <Btn value="Delete" onClick={()=>Deluser(x.id)}/>
             </div>)
             )}
-        </div>
+        </div></div>
     )
 }
 
