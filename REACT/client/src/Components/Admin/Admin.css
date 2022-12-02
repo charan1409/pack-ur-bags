@@ -13,23 +13,49 @@
 }
 
 /* simple css for table */
-table {
+.box table {
   border-collapse: collapse;
   width: 100%;
 }
 
-th,
+.box th,
 td {
   text-align: left;
   font-size: 20px;
   padding: 8px;
 }
 
-tr:nth-child(even) {
+.box tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-th {
+.box th {
   background-color: #4caf50;
   color: white;
+}
+
+/* Css for search bar inside input */
+.search {
+  width: 80%;
+  position: relative;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+
+.search i {
+  margin: auto;
+  padding: 5px;
+  font-size: 25px;
+}
+
+.search input {
+  width: 100%;
+  border: 3px solid black;
+  padding: 20px;
+  height: 20px;
+  border-radius: 5px;
+  color: red;
+  font-size: 20px;
 }

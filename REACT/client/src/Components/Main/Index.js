@@ -15,7 +15,7 @@ const Index = (props) => {
   const navItems = [
     {
       title: "Home",
-      path: "/index",
+      path: "#home",
       
     },
     {

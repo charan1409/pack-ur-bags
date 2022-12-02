@@ -30,6 +30,16 @@ function Admin() {
       <Header user={false} navItems={navItems} />
       <div className="Container">
         <h1>USERS</h1>
+        <div className="search">
+          <input
+            type="text"
+            placeholder="Search for User"
+            onChange={(e) => {
+              
+            }}
+          />
+          <i className="fas fa-search"></i>
+        </div>
         <div className="box">
           <table>
             <tr>
