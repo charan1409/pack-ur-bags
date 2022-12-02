@@ -145,8 +145,8 @@ h1 {
 .pass-modal-bg .edit-form {
     position: relative;
     background-color: #fff;
-    height: 50%;
-    width: 40%;
+    height: 40%;
+    width: 30%;
     align-items: center;
     margin: 0;
     padding: 0;
@@ -155,8 +155,8 @@ h1 {
 .modal-bg .edit-form {
     position: relative;
     background-color: #fff;
-    height: 50%;
-    width: 40%;
+    height: 40%;
+    width: 30%;
     align-items: center;
     margin: 0;
     padding: 0;

@@ -20,8 +20,11 @@
     {
       "id": 1669026781494,
       "username": "rahul",
-      "email": "rahul@gmail.com",
+      "name": "RAHUL VARMA",
+      "phonenumber": "7680052633",
+      "gender": "male",
       "password": "123456",
+      "email": "rahul@gmail.com",
       "tours": []
     },
     {

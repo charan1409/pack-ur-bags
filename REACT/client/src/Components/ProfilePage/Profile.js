@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import {Link} from "react-router-dom";
 import Header from "../Navbar/Header";
 import "./clientprofile.css";
-import img from "./displayimage.jpg";
+import img from "./profile.png";
 import Tabledata from "./Tabledata";
 import Edityourprofile from "./Edityourprofile";
 import ChangePassword from "./ChangePassword";

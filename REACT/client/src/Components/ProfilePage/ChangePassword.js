@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
-function change_pass() {
-    const modalBg = document.querySelector(".pass-modal-bg");
-    modalBg.classList.toggle("bg-active");
-  }
-
 function ChangePassword() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [changed, setChanged] = useState(false);
@@ -61,7 +55,7 @@ function ChangePassword() {
             type="password"
             className="tbox"
             name="oldpassword"
-            placeholder="Enter your old password"
+            placeholder="Enter old password"
             value={password.oldpassword}
             onChange={change}
           />
@@ -73,7 +67,7 @@ function ChangePassword() {
             type="password"
             className="tbox"
             name="newpassword"
-            placeholder="Enter your new password"
+            placeholder="Enter new password"
             value={password.newpassword}
             onChange={change}
           />
@@ -85,7 +79,7 @@ function ChangePassword() {
             type="password"
             className="tbox"
             name="conpassword"
-            placeholder="confirm your new password"
+            placeholder="confirm new password"
             value={password.conpassword}
             onChange={change}
           />
@@ -93,9 +87,6 @@ function ChangePassword() {
         <br></br>
         <button type="submit" className="btn_profile" value="save changes">
           change password
-        </button>
-        <button type="button" className="btn_profile" value="cancel" onClick={change_pass}>
-          Cancel
         </button>
       </form>
     </div>

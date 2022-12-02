@@ -1,16 +1,17 @@
 import React from "react";
 import "./main.css";
-import img1 from "./img/1.jpeg";
-import img3 from "./img/3.jpeg";
-import img4 from "./img/4.jpeg";
-import img5 from "./img/5.jpeg";
-import img6 from "./img/6.jpeg";
-import img7 from "./img/7.jpeg";
-import img8 from "./img/8.jpeg";
-import img9 from "./img/9.jpeg";
-import img10 from "./img/10.jpeg";
-import img11 from "./img/11.jpeg";
-import img13 from "./img/13.jpg";
+import img1 from "./img/1.jpg";
+import img3 from "./img/2.jpg";
+import img4 from "./img/3.jpg";
+import img5 from "./img/4.jpg";
+import img6 from "./img/5.jpg";
+import img7 from "./img/6.jpg";
+import img8 from "./img/7.jpg";
+import img9 from "./img/8.jpg";
+import img10 from "./img/9.jpg";
+import img11 from "./img/10.jpg";
+import img13 from "./img/11.jpg";
+import img14 from "./img/14.jpg";
 
 import GalleryBox from "./Box";
 
@@ -31,100 +32,106 @@ const Gallery = () => {
         <div className="box-container">
           <GalleryBox
             img={img1}
-            btn = {false}
+            btn={false}
             place="Goa"
-            data="The top sightseeing places in Goa are Calangute Beach, Basilica of Bom Jesus and more..."
-            styleName = ""
+            data="The coastal region known as the Konkan, in the western region of India. It is bounded with the Arabian Sea forming its western coast."
+            styleName=""
           />
 
           <GalleryBox
             img={img3}
-            btn = {false}
-            place="Panaji"
-            data="The river cruises start from Tourist Jetty on Mandovi river in
-          Panaji town on Old Panaji Road."
-          styleName = ""
+            btn={false}
+            place="chennai"
+            data="Capital of the Indian state of Tamil Nadu. Located on the Coromandel Coast off the Bay of Bengal"
+            styleName=""
           />
 
           <GalleryBox
             img={img4}
-            btn = {false}
+            btn={false}
             place="Himachal pradesh"
             data="The top things to do in Himachal pradesh are Manali, Shimla,
           Mcleodganj and more..."
-          styleName = ""
+            styleName=""
           />
 
           <GalleryBox
             img={img5}
-            btn = {false}
-            place="Dalhousie"
-            data="Dalhousie is a high-altitude across 5 hills near the mountain
-          range in the north Indian."
-          styleName = ""
+            btn={false}
+            place="Gujarat"
+            data="Known for its beaches on the Kathiawar Peninsula and for its mountainous region in the north, part of the Himalayas."
+            styleName=""
           />
 
           <GalleryBox
             img={img6}
-            btn = {false}
+            btn={false}
             place="Kodaikanal"
             data="Kodaikanal is a hill town in the southern Indian state of Tamil
           Nadu."
-          styleName = ""
+            styleName=""
           />
 
           <GalleryBox
             img={img7}
-            btn = {false}
+            btn={false}
             place="Delhi"
             data="Delhi showcases an ancient culture and a rapidly modernising
           country."
-          styleName = ""
+            styleName=""
           />
 
           <GalleryBox
             img={img8}
-            btn = {false}
+            btn={false}
             place="Ooty"
             data="Ooty is a resort town in the Western Ghats mountains, in southern
           India's Tamil Nadu state."
-          styleName = ""
+            styleName=""
           />
 
           <GalleryBox
             img={img9}
-            btn = {false}
+            btn={false}
             place="kerla"
             data="Kerala is famous especially for its ecotourism initiatives and
           beautiful backwaters."
-          styleName = ""
+            styleName=""
           />
 
           <GalleryBox
             img={img10}
-            btn = {false}
+            btn={false}
             place="Kanyakumari"
             data="Kanyakumari is a coastal town in the state of Tamil Nadu on
           India's southern tip."
-          styleName = ""
+            styleName=""
           />
 
           <GalleryBox
             img={img11}
-            btn = {false}
+            btn={false}
             place="Araku Valley"
             data="Araku Valley is a hill station and valley region in the
           southeastern Indian state of Andhra Pradesh."
-          styleName = ""
+            styleName=""
           />
 
           <GalleryBox
             img={img13}
-            btn = {false}
+            btn={false}
             place="Agra"
             data="One of the seven wonders of the world, Taj Mahal is located on the
           banks of River Yamuna in Agra..."
-          styleName = ""
+            styleName=""
+          />
+
+          <GalleryBox
+            img={img14}
+            btn={false}
+            place="Mumbai"
+            data="Mumbai is a densely populated city on India's west coast."
+            styleName=""
           />
         </div>
       </div>
