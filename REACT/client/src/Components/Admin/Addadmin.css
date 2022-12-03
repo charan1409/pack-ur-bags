@@ -1,0 +1,9 @@
+.add{
+    border:2px solid rgba(0, 0, 0, 0.5);
+    width: 600px;
+    align-items: center;
+}
+.add>form{
+    width: 500px;
+    margin:3rem;
+}

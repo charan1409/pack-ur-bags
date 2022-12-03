@@ -46,7 +46,11 @@ function Form(props) {
         if (user) {
           setLoginuser(user);
           localStorage.setItem("user", JSON.stringify(user));
-          navigate("/index");
+          if(user.role==="admin"){
+            navigate('/admin')
+          }
+          else{
+          navigate("/index");}
         } else {
           setLoginError([true, "Invalid username or password"]);
         }

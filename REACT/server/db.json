@@ -8,6 +8,7 @@
       "gender": "male",
       "password": "charan",
       "email": "charan@gmail.com",
+      "role": "admin",
       "tours": []
     },
     {
@@ -31,7 +32,7 @@
       "id": 1669276609720,
       "username": "kamal",
       "name": "Kamalsai",
-      "phonenumber": "09110524699",
+      "phonenumber": "9110524699",
       "gender": "male",
       "password": "123456",
       "email": "k@gmail.com",
@@ -126,6 +127,14 @@
       "username": "chandra",
       "email": "chandra@iiits.in",
       "password": "chandrasir",
+      "tours": []
+    },
+    {
+      "id": 1670083502800,
+      "username": "fake",
+      "email": "fake@gmail.com",
+      "password": "123456",
+      "role": "admin",
       "tours": []
     }
   ]

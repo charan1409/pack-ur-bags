@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Admin.css";
-import Btn from "../Btn";
 import Header from "../Navbar/Header";
 
 function Admin() {
@@ -26,6 +25,10 @@ function Admin() {
     {
       title: "Home",
       path: "/admin",
+    },
+    {
+      title: "add admin",
+      path: "/adminform",
     },
   ];
   return (

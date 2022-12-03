@@ -57,7 +57,7 @@ const Landing = (props) => {
   return (
     <div>
       <Header user={false} openLoginForm={toggleLoginForm} navItems={navItems}/>
-      <Vedio />
+      <Vedio isvalidin={false}/>
       <Gallery />
       <Services />
       <h1>Please <button className='btn' onClick={toggleLoginForm}>Login</button> For More</h1>
