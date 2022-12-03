@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {add} from '../../Redux/action'
+import { useDispatch } from "react-redux";
 
 function Edityourprofile(props) {
-
+  const dispatch=useDispatch()
   // on change userinfo refresh page once
 
   const user = JSON.parse(localStorage.getItem("user"));
@@ -26,15 +28,6 @@ function Edityourprofile(props) {
     setUserinfo(nextFieldState);
   };
 
-  // useEffect(()=>{
-  //   axios.put(`http://localhost:3001/users/${user.id}`,userinfo)
-  //   .then((resp) => {
-  //     console.log(resp.data);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  // },[changed,userinfo,user.id])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,6 +35,8 @@ function Edityourprofile(props) {
     axios.put(`http://localhost:3001/users/${user.id}`,user)      
     setChanged(!changed)
     props.setChanged(true)
+    dispatch(add())
+    alert('updated')
     const modalBg = document.querySelector(".modal-bg");
     modalBg.classList.toggle("bg-active");
   };
@@ -83,7 +78,7 @@ function Edityourprofile(props) {
             value={userinfo.phonenumber}
           />
         </label>
-        <button type="submit" className="btn_profile" value="save changes">
+        <button type="submit" className="btn_profile" value="save changes" >
           save changes
         </button>
       </form>

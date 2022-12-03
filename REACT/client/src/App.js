@@ -17,9 +17,11 @@ import Tours from "./Components/MyTours/Tour";
 import Transaction from "./Components/Transactions/Transaction";
 import Data from "./Places_data.js"
 import Admin from "./Components/Admin/Admin";
-
-export const store = createContext();
-
+import { Provider } from "react-redux"
+import { legacy_createStore as createStore } from "redux";
+import change from './Redux/counter'
+export const store1 = createContext();
+const store=createStore(change)
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [trans, setTrans] = useState([]);
@@ -51,26 +53,28 @@ function App() {
 
   return (
     <>
-      <store.Provider value={{ cartItems, setCartItems, trans, setTrans, users, setUsers, loginuser, setLoginuser }}>
-        <BrowserRouter>
-          <ScrollTop smooth />
-          <Routes>
-            <Route path="/" element={<Landing users={users} />} />
-            <Route path="index" element={<Index  />} />
-            {Data.map((x) => (
+      <Provider store={store}>
+        <store1.Provider value={{ cartItems, setCartItems, trans, setTrans, users, setUsers, loginuser, setLoginuser }}>
+          <BrowserRouter>
+            <ScrollTop smooth />
+            <Routes>
+              <Route path="/" element={<Landing users={users} />} />
+              <Route path="index" element={<Index />} />
+              {Data.map((x) => (
                 <Route path={x.path} element={<ViewPlace placeType={x.place} path={"/BeachesHotel"} category={"Places"} />} />
-            ))}
-            <Route path="BeachesHotel" element={<BeachesHotel />} />
-            <Route path="book" element={<Book />} />
-            <Route path="payment" element={<Payment />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="mytours" element={<Tours />} />
-            <Route path="transactions" element={<Transaction />} />
-            <Route path="admin" element={<Admin />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </BrowserRouter>
-      </store.Provider>
+              ))}
+              <Route path="BeachesHotel" element={<BeachesHotel />} />
+              <Route path="book" element={<Book />} />
+              <Route path="payment" element={<Payment />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="mytours" element={<Tours />} />
+              <Route path="transactions" element={<Transaction />} />
+              <Route path="admin" element={<Admin />} />
+              <Route path="*" element={<Error />} />
+            </Routes>
+          </BrowserRouter>
+        </store1.Provider>
+      </Provider>
     </>
   );
 }

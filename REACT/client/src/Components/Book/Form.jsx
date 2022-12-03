@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import InputBox from "./InputBox";
-import { store } from "../../App.js";
+import { store1 } from "../../App.js";
 import axios from "axios";
 
 var todayDate = new Date();
@@ -18,7 +18,7 @@ var maxDate = year + "-" + month + "-" + tdate;
 
 function Form() {
   const navigate = useNavigate();
-  const { cartItems, setCartItems } = useContext(store);
+  const { cartItems, setCartItems } = useContext(store1);
 
   const [from, setfrom] = useState("");
   const [to, setto] = useState("");
@@ -56,12 +56,6 @@ function Form() {
       arrival: arrival,
     };
     console.log(bookData);
-    // alert(`From: ${from}`);
-    // alert(`To: ${to}`);
-    // alert(`No. of adult: ${adult}`);
-    // alert(`No. of children: ${child}`);
-    // alert(`Departure date: ${depart}`);
-    // alert(`Arrival date: ${arrival}`);
 
     if (!cartItems.includes(bookData)) {
       // setCartItems([...cartItems, bookData]);

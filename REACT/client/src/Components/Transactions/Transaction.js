@@ -1,11 +1,11 @@
 import React, {useContext} from 'react'
 import { Link } from "react-router-dom";
 import Header from "../Navbar/Header";
-import {store} from "../../App.js";
+import {store1} from "../../App.js";
 import "./Trans.css";
 
 const Transaction = () => {
-  const { trans, setTrans } = useContext(store);
+  const { trans, setTrans } = useContext(store1);
 
   const removeItems = (key) => {
     const newset = trans.filter((ob, a) => a !== key);

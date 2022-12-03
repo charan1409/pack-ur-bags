@@ -6,6 +6,8 @@ import img from "./profile.png";
 import Tabledata from "./Tabledata";
 import Edityourprofile from "./Edityourprofile";
 import ChangePassword from "./ChangePassword";
+import {useSelector} from "react-redux"
+
 
 function edit_form() {
   const modalBg = document.querySelector(".modal-bg");
@@ -25,14 +27,18 @@ const navItems = [
     },
   ];
 function Profile() {
+    const counter= useSelector(state =>state.value);
     const [user,setUser] = useState({})
     const [changed,setChanged] = useState(false)
     const userL = JSON.parse(localStorage.getItem("user"));
-    useEffect(()=>{
-        fetch(`http://localhost:3001/users/${userL.id}`)
-        .then((res) => res.json())
-        .then((data) => setUser(data));
-      },[userL.id,setUser,changed])
+    const fetchData = async () => {
+        const response = await fetch(`http://localhost:3001/users/${userL.id}`)
+        const data = await response.json();
+        return setUser(data);
+      }
+      useEffect(() => {
+        fetchData();
+      }, [counter])
     return (
         <div>
             <Header user={true} navItems={navItems}/>

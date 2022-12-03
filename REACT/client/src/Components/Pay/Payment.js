@@ -6,11 +6,11 @@ import '../Main/main.css'
 import img1 from "./img/chip.png";
 import img2 from "./img/visa.png";
 import Header from "../Navbar/Header";
-import {store} from "../../App.js";
+import {store1} from "../../App.js";
 
 const Payment = () => {
   const navigate = useNavigate();
-  const { trans, setTrans } = useContext(store);
+  const { trans, setTrans } = useContext(store1);
 
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");

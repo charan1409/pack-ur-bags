@@ -18,7 +18,7 @@ function ChangePassword() {
     axios
       .put(`http://localhost:3001/users/${user.id}`, user)
       .then((resp) => {
-        console.log(resp.data);
+        // console.log(resp.data);
       })
       .catch((error) => {
         console.log(error);

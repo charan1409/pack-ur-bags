@@ -5,11 +5,11 @@ import "./LoginForm.css";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
 import Error from "./LogError";
-import { store } from "../../App.js";
+import { store1 } from "../../App.js";
 import axios from "axios";
 
 function Form(props) {
-  const { setLoginuser } = useContext(store);
+  const { setLoginuser } = useContext(store1);
   const [loginError, setLoginError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
     username: "",
