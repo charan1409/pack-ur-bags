@@ -28,7 +28,7 @@ function Addadmin(props) {
       alert("Username should not contain spaces");
     } else if (
       userinfo.email.trim().length < 1 ||
-      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userinfo.email)
+      !/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/.test(userinfo.email)
     ) {
       //  eslint-disable-line
       alert("Invalid Email");
