@@ -17,6 +17,9 @@
   border-collapse: collapse;
   width: 100%;
 }
+.box table th{
+  color: red;
+}
 
 .box th,
 td {
@@ -30,7 +33,7 @@ td {
 }
 
 .box th {
-  background-color: #4caf50;
+  background-color: rgb(244, 244, 77);
   color: white;
 }
 
@@ -41,7 +44,6 @@ td {
   display: flex;
   margin-left: auto;
   margin-right: auto;
-  padding: 10px;
 }
 
 .search i {
@@ -58,4 +60,13 @@ td {
   border-radius: 5px;
   color: red;
   font-size: 20px;
+}
+
+.admin {
+  text-transform: none;
+}
+
+.box .del{
+  color: red;
+  cursor: pointer;
 }

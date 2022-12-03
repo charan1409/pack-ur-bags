@@ -34,13 +34,16 @@ function Admin() {
         <h1>USERS</h1>
         <div className="search">
           <input
+            className="admin"
             type="text"
             placeholder="Search for User"
             onChange={(e) => {
               const search = e.target.value.trimStart().trimEnd();
               setdatanotfound(true);
               const data = userData.filter((item) => {
-                return item.username.toLowerCase().includes(search.toLowerCase());
+                return item.username
+                  .toLowerCase()
+                  .includes(search.toLowerCase());
               });
               if (data.length === 0) {
                 setdatanotfound(false);
@@ -53,89 +56,75 @@ function Admin() {
         <div className="box">
           <table>
             <tr>
+              <th style={{ textAlign: "center", width: "17%" }}>Id</th>
               <th>Username</th>
               <th>Email</th>
               <th>Password</th>
               <th>Tours</th>
-              <th>Delete</th>
+              <th style={{ textAlign: "center", width: "10%" }}>Delete</th>
             </tr>
-            {/* {userData.map((x) => (
-              <tr>
-                <td>{x.username}</td>
-                <td>{x.email}</td>
-                <td>{x.password}</td>
-                <td>
-                  {x.tours.map((item) => (
-                    <div>
-                      <h3>From - {item.from}</h3>
-                      <h3>To - {item.to}</h3>
-                      <h3>Number of Adults- {item.adult}</h3>
-                      <h3>Number of Child- {item.child}</h3>
-                      <h3>Date of Departure- {item.depart}</h3>
-                      <h3>Date of Arrival- {item.arrival}</h3>
-                    </div>
-                  ))}
-                </td>
-                <td>
-                  <Btn value="Delete" onClick={() => Deluser(x.id)} />
-                </td>
-              </tr>
-            ))} */}
-
             {datanotfound ? (
               state.length === 0 ? (
                 userData.map((x) => {
                   return (
                     <tr>
-                    <td>{x.username}</td>
-                    <td>{x.email}</td>
-                    <td>{x.password}</td>
-                    <td>
-                      {x.tours.map((item) => (
-                        <div>
-                          <h3>From - {item.from}</h3>
-                          <h3>To - {item.to}</h3>
-                          <h3>Number of Adults- {item.adult}</h3>
-                          <h3>Number of Child- {item.child}</h3>
-                          <h3>Date of Departure- {item.depart}</h3>
-                          <h3>Date of Arrival- {item.arrival}</h3>
-                        </div>
-                      ))}
-                    </td>
-                    <td>
-                      <Btn value="Delete" onClick={() => Deluser(x.id)} />
-                    </td>
-                  </tr>
+                      <td>{x.id}</td>
+                      <td className="admin">{x.username}</td>
+                      <td className="admin">{x.email}</td>
+                      <td className="admin">{x.password}</td>
+                      <td>
+                        {x.tours.map((item) => (
+                          <div>
+                            <h3>From - {item.from}</h3>
+                            <h3>To - {item.to}</h3>
+                            <h3>Number of Adults- {item.adult}</h3>
+                            <h3>Number of Child- {item.child}</h3>
+                            <h3>Date of Departure- {item.depart}</h3>
+                            <h3>Date of Arrival- {item.arrival}</h3>
+                          </div>
+                        ))}
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        <i
+                          className="fas fa-trash-alt del"
+                          onClick={() => Deluser(x.id)}
+                        ></i>
+                      </td>
+                    </tr>
                   );
                 })
               ) : (
                 state.map((x) => {
                   return (
                     <tr>
-                    <td>{x.username}</td>
-                    <td>{x.email}</td>
-                    <td>{x.password}</td>
-                    <td>
-                      {x.tours.map((item) => (
-                        <div>
-                          <h3>From - {item.from}</h3>
-                          <h3>To - {item.to}</h3>
-                          <h3>Number of Adults- {item.adult}</h3>
-                          <h3>Number of Child- {item.child}</h3>
-                          <h3>Date of Departure- {item.depart}</h3>
-                          <h3>Date of Arrival- {item.arrival}</h3>
-                        </div>
-                      ))}
-                    </td>
-                    <td>
-                      <Btn value="Delete" onClick={() => Deluser(x.id)} />
-                    </td>
-                  </tr>
+                      <td>{x.id}</td>
+                      <td className="admin">{x.username}</td>
+                      <td className="admin">{x.email}</td>
+                      <td className="admin">{x.password}</td>
+                      <td>
+                        {x.tours.map((item) => (
+                          <div>
+                            <h3>From - {item.from}</h3>
+                            <h3>To - {item.to}</h3>
+                            <h3>Number of Adults- {item.adult}</h3>
+                            <h3>Number of Child- {item.child}</h3>
+                            <h3>Date of Departure- {item.depart}</h3>
+                            <h3>Date of Arrival- {item.arrival}</h3>
+                          </div>
+                        ))}
+                      </td>
+                      <td>
+                        <i
+                          className="fas fa-trash-alt del"
+                          onClick={() => Deluser(x.id)}
+                        ></i>
+                      </td>
+                    </tr>
                   );
                 })
               )
             ) : (
-              <h1 className="notfound">No Data Found</h1>
+              <h2 style={{fontSize: "30px"}}>No User Found</h2>
             )}
           </table>
         </div>

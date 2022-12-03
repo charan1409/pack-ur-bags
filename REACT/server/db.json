@@ -34,7 +34,98 @@
       "phonenumber": "09110524699",
       "gender": "male",
       "password": "123456",
-      "email": "k@gmail.com",
+      "email": "kamal@gmail.com",
+      "tours": []
+    },
+    {
+      "id": 1670056810438,
+      "username": "saketh9989",
+      "email": "saketh@gmail.com",
+      "password": "saketh@9989",
+      "tours": []
+    },
+    {
+      "id": 1670056851840,
+      "username": "ganajayant",
+      "email": "gana@gmail.com",
+      "password": "fanagana",
+      "tours": []
+    },
+    {
+      "id": 1670057944072,
+      "username": "ritvik",
+      "email": "ritvik1234@gmail.com",
+      "password": "rit1234",
+      "tours": []
+    },
+    {
+      "id": 1670057970869,
+      "username": "basava",
+      "email": "basava@gmail.com",
+      "password": "basava@456",
+      "tours": []
+    },
+    {
+      "id": 1670057992314,
+      "username": "balu",
+      "email": "balu@gmail.com",
+      "password": "balue@34gr",
+      "tours": []
+    },
+    {
+      "id": 1670058305410,
+      "username": "vinay",
+      "email": "vinay@gmail.com",
+      "password": "vinay@3245",
+      "tours": []
+    },
+    {
+      "id": 1670058328487,
+      "username": "kasyap",
+      "email": "kasyap@gmail.com",
+      "password": "kasyap456",
+      "tours": []
+    },
+    {
+      "id": 1670058348728,
+      "username": "fsd",
+      "email": "fsdgrp17@gmail.com",
+      "password": "fsd1234",
+      "tours": []
+    },
+    {
+      "id": 1670058418444,
+      "username": "karthik",
+      "email": "karthik@gmail.com",
+      "password": "karthkvarma",
+      "tours": []
+    },
+    {
+      "id": 1670058440962,
+      "username": "abhi",
+      "email": "abhi@gmail.com",
+      "password": "abhivarma",
+      "tours": []
+    },
+    {
+      "id": 1670058472537,
+      "username": "akhil",
+      "email": "akhil@gmail.com",
+      "password": "akhil123",
+      "tours": []
+    },
+    {
+      "id": 1670058667791,
+      "username": "mohan",
+      "email": "mohan@iiits.in",
+      "password": "mohansir",
+      "tours": []
+    },
+    {
+      "id": 1670058689162,
+      "username": "chandra",
+      "email": "chandra@iiits.in",
+      "password": "chandrasir",
       "tours": []
     }
   ]
