@@ -18,7 +18,7 @@
   width: 100%;
 }
 .box table th{
-  color: red;
+  color: rgba(255, 0, 0, 0.836);
 }
 
 .box th,
@@ -33,7 +33,7 @@ td {
 }
 
 .box th {
-  background-color: rgb(244, 244, 77);
+  background-color: rgba(243, 243, 89, 0.842);
   color: white;
 }
 

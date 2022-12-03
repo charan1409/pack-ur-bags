@@ -16,6 +16,7 @@ function Admin() {
   }, []);
   async function Deluser(a) {
     await axios.delete(`http://localhost:3001/users/${a}`);
+    alert(`User with id ${a} deleted`);
     console.log(a);
     await axios.get(`http://localhost:3001/users`).then((res) => {
       setuserData(res.data);
