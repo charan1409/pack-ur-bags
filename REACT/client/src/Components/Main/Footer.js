@@ -58,7 +58,7 @@ const Footer = () => {
             <p>
               <i className="fas fa-phone"></i> +91-93987 17554
             </p>
-            <p>
+            <p style={{textTransform: "none"}}>
               <i className="fas fa-envelope"></i> packyourbag@gmail.com{" "}
             </p>
             <p>

@@ -10,9 +10,15 @@ const Header = (props) => {
     <div className="header">
       <div id="menu-bar" className="fas fa-bars"></div>
 
-      <Link to="/index" className="logo">
-        <span>P</span>ACK <span>U</span>R <span>B</span>AGS
-      </Link>
+      {props.user ? (
+        <Link to="/index" className="logo">
+          <span>P</span>ACK <span>U</span>R <span>B</span>AGS
+        </Link>
+      ) : (
+        <Link className="logo">
+          <span>P</span>ACK <span>U</span>R <span>B</span>AGS
+        </Link>
+      )}
       <ul className="navbar">
         {props.navItems.map((item) => {
           return (
