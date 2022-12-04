@@ -44,11 +44,14 @@ function Admin() {
   if(rval!==0){
     Data=adminData;
   }
+  else{
+    Data=userData;
+  }
   return (
     <div>
       <Header user={false} navItems={navItems} />
       <div className="Container">
-        <h1>USERS</h1>
+        {rval===0 ? (<h1>USERS</h1>):(<h1>ADMIN</h1>)}
         <div className="search">
           <input
             className="admin"
@@ -57,7 +60,7 @@ function Admin() {
             onChange={(e) => {
               const search = e.target.value.trimStart().trimEnd();
               setdatanotfound(true);
-              const data = userData.filter((item) => {
+              const data = Data.filter((item) => {
                 return item.username
                   .toLowerCase()
                   .includes(search.toLowerCase());
