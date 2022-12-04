@@ -16,6 +16,7 @@
       "username": "rohith14",
       "email": "rohith@gmail.com",
       "password": "rohith",
+      "role": "user",
       "tours": []
     },
     {
@@ -26,6 +27,7 @@
       "gender": "male",
       "password": "123456",
       "email": "rahul@gmail.com",
+      "role": "user",
       "tours": []
     },
     {
@@ -43,6 +45,7 @@
       "username": "saketh9989",
       "email": "saketh@gmail.com",
       "password": "saketh@9989",
+      "role": "user",
       "tours": []
     },
     {
@@ -50,6 +53,7 @@
       "username": "ganajayant",
       "email": "gana@gmail.com",
       "password": "fanagana",
+      "role": "user",
       "tours": []
     },
     {
@@ -57,6 +61,7 @@
       "username": "ritvik",
       "email": "ritvik1234@gmail.com",
       "password": "rit1234",
+      "role": "user",
       "tours": []
     },
     {
@@ -64,6 +69,7 @@
       "username": "basava",
       "email": "basava@gmail.com",
       "password": "basava@456",
+      "role": "user",
       "tours": []
     },
     {
@@ -71,6 +77,7 @@
       "username": "balu",
       "email": "balu@gmail.com",
       "password": "balue@34gr",
+      "role": "user",
       "tours": []
     },
     {
@@ -78,6 +85,7 @@
       "username": "vinay",
       "email": "vinay@gmail.com",
       "password": "vinay@3245",
+      "role": "user",
       "tours": []
     },
     {
@@ -85,6 +93,7 @@
       "username": "kasyap",
       "email": "kasyap@gmail.com",
       "password": "kasyap456",
+      "role": "user",
       "tours": []
     },
     {
@@ -92,6 +101,7 @@
       "username": "fsd",
       "email": "fsdgrp17@gmail.com",
       "password": "fsd1234",
+      "role": "user",
       "tours": []
     },
     {
@@ -99,6 +109,7 @@
       "username": "karthik",
       "email": "karthik@gmail.com",
       "password": "karthkvarma",
+      "role": "user",
       "tours": []
     },
     {
@@ -106,6 +117,7 @@
       "username": "abhi",
       "email": "abhi@gmail.com",
       "password": "abhivarma",
+      "role": "user",
       "tours": []
     },
     {
@@ -113,6 +125,7 @@
       "username": "akhil",
       "email": "akhil@gmail.com",
       "password": "akhil123",
+      "role": "user",
       "tours": []
     },
     {
@@ -120,6 +133,7 @@
       "username": "mohan",
       "email": "mohan@iiits.in",
       "password": "mohansir",
+      "role": "user",
       "tours": []
     },
     {
@@ -127,6 +141,7 @@
       "username": "chandra",
       "email": "chandra@iiits.in",
       "password": "chandrasir",
+      "role": "user",
       "tours": []
     },
     {

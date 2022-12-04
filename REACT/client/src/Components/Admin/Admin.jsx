@@ -5,14 +5,23 @@ import "./Admin.css";
 import Header from "../Navbar/Header";
 
 function Admin() {
+  const [rval,setrval]=useState(0)
   const [userData, setuserData] = useState([]);
+  const [adminData,setadminData]=useState([])
   const [state, setState] = useState([]);
   const [datanotfound, setdatanotfound] = useState(true);
   useEffect(() => {
-    axios.get(`http://localhost:3001/users`).then((res) => {
+    axios.get(`http://localhost:3001/users?role=user`).then((res) => {
       setuserData(res.data);
     });
+  }, []);  
+
+  useEffect(() => {
+    axios.get(`http://localhost:3001/users?role=admin`).then((res) => {
+      setadminData(res.data);
+    });
   }, []);
+  
   async function Deluser(a) {
     await axios.delete(`http://localhost:3001/users/${a}`);
     alert(`User with id ${a} deleted`);
@@ -31,6 +40,10 @@ function Admin() {
       path: "/adminform",
     },
   ];
+  var Data=userData;
+  if(rval!==0){
+    Data=adminData;
+  }
   return (
     <div>
       <Header user={false} navItems={navItems} />
@@ -57,6 +70,10 @@ function Admin() {
           />
           <i className="fas fa-search"></i>
         </div>
+        <div>
+        <button className="btn1" onClick={()=>setrval(0)}>user</button>
+        <button className="btn1" onClick={()=>setrval(1)}>admin</button>
+        </div>
         <div className="box">
           <table>
             <tr>
@@ -69,7 +86,7 @@ function Admin() {
             </tr>
             {datanotfound ? (
               state.length === 0 ? (
-                userData.map((x) => {
+                Data.map((x) => {
                   return (
                     <tr>
                       <td>{x.id}</td>
