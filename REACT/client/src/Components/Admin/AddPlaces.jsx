@@ -15,6 +15,10 @@ function AddPlaces() {
       title: "add admin",
       path: "/adminform",
     },
+    {
+      title: "add place",
+      path: "/adminplaces",
+    },
   ];
   
   const [placeinfo, setplaceinfo] = useState({

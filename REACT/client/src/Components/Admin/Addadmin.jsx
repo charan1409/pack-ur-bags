@@ -77,6 +77,10 @@ function Addadmin(props) {
       title: "add admin",
       path: "/adminform",
     },
+    {
+      title: "add place",
+      path: "/adminplaces",
+    },
   ];
 
   return (
