@@ -18,6 +18,7 @@ import Transaction from "./Components/Transactions/Transaction";
 import Data from "./Places_data.js"
 import Admin from "./Components/Admin/Admin";
 import Addadmin from "./Components/Admin/Addadmin";
+import AddPlaces from "./Components/Admin/AddPlaces";
 import { Provider } from "react-redux"
 import { legacy_createStore as createStore } from "redux";
 import change from './Redux/counter'
@@ -72,6 +73,7 @@ function App() {
               <Route path="transactions" element={<Transaction />} />
               <Route path="admin" element={<Admin />} />
               <Route path="adminform" element={<Addadmin />} />
+              <Route path="adminplaces" element={<AddPlaces />} />
               <Route path="*" element={<Error />} />
             </Routes>
           </BrowserRouter>

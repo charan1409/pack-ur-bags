@@ -152,5 +152,13 @@
       "role": "admin",
       "tours": []
     }
+  ],
+  "places": [
+    {
+      "place": "RK beach",
+      "details": "AP",
+      "location": "vizag",
+      "id": 1
+    }
   ]
 }

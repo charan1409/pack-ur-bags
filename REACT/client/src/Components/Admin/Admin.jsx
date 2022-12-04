@@ -39,6 +39,10 @@ function Admin() {
       title: "add admin",
       path: "/adminform",
     },
+    {
+      title: "add place",
+      path: "/adminplaces",
+    },
   ];
   var Data=userData;
   if(rval!==0){
