@@ -9,7 +9,6 @@ import cultural from "./img/cultural.jpg";
 import desert from "./img/Desert.jpg";
 import countryside from "./img/countryside.jpg";
 
-
 import PlacesBox from "./Box";
 
 const Places = () => {
@@ -29,79 +28,79 @@ const Places = () => {
           <PlacesBox
             img={beach}
             btn={true}
-            link = "/Beaches"
+            link="/Beaches"
             place="Beach"
             data="Beach areas are popular types of tourist destinations. Some
             people travel a long way to reach a beach"
-            styleName = ""
+            styleName=""
           />
 
           <PlacesBox
             img={island}
             btn={true}
-            link = "/Island"
+            link="/Island"
             place="Islands"
             data="Islands are land masses that are surrounded by water. They are
             separated form the mainland."
-            styleName = ""
+            styleName=""
           />
 
           <PlacesBox
             img={hillstation}
             btn={true}
-            link = "/Hillstation"
+            link="/Hillstation"
             place="Hill Stations"
             data="There are many different activities that you can do in the
             mountains, such as hiking, skiing, horse riding, and more."
-            styleName = ""
+            styleName=""
           />
 
           <PlacesBox
             img={forest}
             btn={true}
-            link = "/Forest"
+            link="/Forest"
             place="Forest"
             data="There are forests all over the world, although the flora and
             fauna differs according to the geographical location."
-            styleName = ""
+            styleName=""
           />
 
           <PlacesBox
             img={winter}
             btn={true}
-            link = "/Winter"
+            link="/Winter"
             place="Winter"
             data="People travel to destinations with winter conditions for a range
             of winter sport activities."
-            styleName = ""
+            styleName=""
           />
 
           <PlacesBox
             img={cultural}
             btn={true}
-            link = "/Cultural"
+            link="/Cultural"
             place="Cultural"
             data="A type of tourism activity in which the visitor's essential
             motivation is to learn, discover, experience."
-            styleName = ""
+            styleName=""
           />
 
           <PlacesBox
             img={desert}
             btn={true}
-            link = "/Desert"
+            link="/Desert"
             place="Desert"
             data="Desert is an undulating sand plain covered with sand dunes."
-            styleName = ""
+            styleName=""
           />
 
           <PlacesBox
             img={countryside}
             btn={true}
-            link = "/Countryside"
+            link="/Countryside"
             place="Countryside"
             data="A visit to countryside is a unique and wonderful experience."
-            styleName = ""
+            styleName=""
           />
         </div>
       </div>

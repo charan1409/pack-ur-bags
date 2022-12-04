@@ -6,7 +6,6 @@ import Error from "./LogError";
 import axios from "axios";
 
 function RegisterForm(props) {
-
   const [registerError, setRegisterError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
     username: "",
@@ -31,22 +30,22 @@ function RegisterForm(props) {
     e.preventDefault();
     if (/\s/.test(userinfo.username || userinfo.username.trim().length < 1)) {
       setRegisterError([true, "Username should not contain spaces"]);
-    } else if(userinfo.email.trim().length < 1 || !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userinfo.email))){//  eslint-disable-line
+    } else if (
+      userinfo.email.trim().length < 1 ||
+      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userinfo.email)
+    ) {
+      //  eslint-disable-line
       setRegisterError([true, "Invalid Email"]);
     } else if (userinfo.password.trim().length < 6) {
       setRegisterError([true, "Password should be altleast 6 characters"]);
-    } else if(userinfo.password !== userinfo.confirmedPassword){
+    } else if (userinfo.password !== userinfo.confirmedPassword) {
       setRegisterError([true, "Passwords are not matching"]);
     } else {
       setRegisterError([false, ""]);
       axios.get("http://localhost:3001/users").then((res) => {
-        const userE = res.data.find(
-          (user) =>
-            user.email === userinfo.email
-        );
+        const userE = res.data.find((user) => user.email === userinfo.email);
         const userN = res.data.find(
-          (user) =>
-            user.username === userinfo.username
+          (user) => user.username === userinfo.username
         );
         if (userE) {
           setRegisterError([true, "Email is already registered."]);
@@ -59,7 +58,7 @@ function RegisterForm(props) {
             email: userinfo.email,
             password: userinfo.password,
             tours: [],
-          }
+          };
           axios.post("http://localhost:3001/users", newUser);
           alert(`${userinfo.username} is registered successfully`);
           setUserinfo({
@@ -69,7 +68,7 @@ function RegisterForm(props) {
             confirmedPassword: "",
           });
           setRegisterError([false, ""]);
-          props.closeRegister()
+          props.closeRegister();
         }
       });
     }
@@ -112,7 +111,7 @@ function RegisterForm(props) {
           value={userinfo.confirmedPassword}
           onChange={onUpdateField}
         />
-        <Btn type={"submit"} value={"Sign Up"}/>
+        <Btn type={"submit"} value={"Sign Up"} />
         <p style={{ color: "white" }}>Already have an account?</p>
         <Btn type={"button"} value={"Sign In"} onClick={props.closeRegister} />
       </form>

@@ -15,15 +15,15 @@ import Error from "./Components/ErrorPage/Error";
 import Profile from "./Components/ProfilePage/Profile";
 import Tours from "./Components/MyTours/Tour";
 import Transaction from "./Components/Transactions/Transaction";
-import Data from "./Places_data.js"
+import Data from "./Places_data.js";
 import Admin from "./Components/Admin/Admin";
 import Addadmin from "./Components/Admin/Addadmin";
 import AddPlaces from "./Components/Admin/AddPlaces";
-import { Provider } from "react-redux"
+import { Provider } from "react-redux";
 import { legacy_createStore as createStore } from "redux";
-import change from './Redux/counter'
+import change from "./Redux/counter";
 export const store1 = createContext();
-const store=createStore(change)
+const store = createStore(change);
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [trans, setTrans] = useState([]);
@@ -56,14 +56,34 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        <store1.Provider value={{ cartItems, setCartItems, trans, setTrans, users, setUsers, loginuser, setLoginuser }}>
+        <store1.Provider
+          value={{
+            cartItems,
+            setCartItems,
+            trans,
+            setTrans,
+            users,
+            setUsers,
+            loginuser,
+            setLoginuser,
+          }}
+        >
           <BrowserRouter>
             <ScrollTop smooth />
             <Routes>
               <Route path="/" element={<Landing users={users} />} />
               <Route path="index" element={<Index />} />
               {Data.map((x) => (
-                <Route path={x.path} element={<ViewPlace placeType={x.place} path={"/BeachesHotel"} category={"Places"} />} />
+                <Route
+                  path={x.path}
+                  element={
+                    <ViewPlace
+                      placeType={x.place}
+                      path={"/BeachesHotel"}
+                      category={"Places"}
+                    />
+                  }
+                />
               ))}
               <Route path="BeachesHotel" element={<BeachesHotel />} />
               <Route path="book" element={<Book />} />

@@ -1,5 +1,5 @@
-export const add=()=>{
-    return{
-        type:'increment'
-    };
+export const add = () => {
+  return {
+    type: "increment",
+  };
 };

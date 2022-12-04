@@ -1,7 +1,7 @@
-import React, {useContext} from 'react'
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Header from "../Navbar/Header";
-import {store1} from "../../App.js";
+import { store1 } from "../../App.js";
 import "./Trans.css";
 
 const Transaction = () => {
@@ -16,15 +16,16 @@ const Transaction = () => {
     {
       title: "Home",
       path: "/index",
-      
-    }
+    },
   ];
 
   return (
     <div>
-        <Header user={true} navItems={navItems}/>
-        <Link to="/payment"><input type="submit" className="btn" value="Payment" /></Link>
-        {trans.length === 0 ? (
+      <Header user={true} navItems={navItems} />
+      <Link to="/payment">
+        <input type="submit" className="btn" value="Payment" />
+      </Link>
+      {trans.length === 0 ? (
         <h1>Transactions are Empty</h1>
       ) : (
         <div>
@@ -57,7 +58,7 @@ const Transaction = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Transaction
+export default Transaction;

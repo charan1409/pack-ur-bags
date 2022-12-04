@@ -18,16 +18,36 @@ const Footer = () => {
               PLAN YOUR HOLIDAYS WITH OUR ASSISTANCE, JUST FILL IN YOUR DETAILS.
             </p>
             <div className="share">
-              <a href="https://www.facebook.com" className="fab fa-facebook-f" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.facebook.com"
+                className="fab fa-facebook-f"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {" "}
               </a>
-              <a href="https://www.twitter.com/" className="fab fa-twitter" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.twitter.com/"
+                className="fab fa-twitter"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {" "}
               </a>
-              <a href="https://www.instagram.com" className="fab fa-instagram" target="_blank"  rel="noopener noreferrer">
+              <a
+                href="https://www.instagram.com"
+                className="fab fa-instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {" "}
               </a>
-              <a href="https://in.linkedin.com" className="fab fa-linkedin" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://in.linkedin.com"
+                className="fab fa-linkedin"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {" "}
               </a>
             </div>
@@ -58,7 +78,7 @@ const Footer = () => {
             <p>
               <i className="fas fa-phone"></i> +91-93987 17554
             </p>
-            <p style={{textTransform: "none"}}>
+            <p style={{ textTransform: "none" }}>
               <i className="fas fa-envelope"></i> packyourbag@gmail.com{" "}
             </p>
             <p>
@@ -69,7 +89,7 @@ const Footer = () => {
           <div className="box">
             <h3>newsletter</h3>
             <p>subscribe for latest updates</p>
-            <form onSubmit = {handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <input
                 type="email"
                 value={email}

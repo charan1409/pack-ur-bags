@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {add} from '../../Redux/action'
+import { add } from "../../Redux/action";
 import { useDispatch } from "react-redux";
 
 function Edityourprofile(props) {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   // on change userinfo refresh page once
 
   const user = JSON.parse(localStorage.getItem("user"));
-  const [changed,setChanged] = useState(false)
+  const [changed, setChanged] = useState(false);
   const [userinfo, setUserinfo] = useState({
     id: user.id,
     username: user.username,
@@ -17,7 +17,7 @@ function Edityourprofile(props) {
     gender: user.gender,
     password: user.password,
     email: user.email,
-    tours: user.tours
+    tours: user.tours,
   });
 
   const onUpdateField = (e) => {
@@ -28,15 +28,14 @@ function Edityourprofile(props) {
     setUserinfo(nextFieldState);
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("user", JSON.stringify(userinfo));
-    axios.put(`http://localhost:3001/users/${user.id}`,user)      
-    setChanged(!changed)
-    props.setChanged(true)
-    dispatch(add())
-    alert('updated')
+    axios.put(`http://localhost:3001/users/${user.id}`, user);
+    setChanged(!changed);
+    props.setChanged(true);
+    dispatch(add());
+    alert("updated");
     const modalBg = document.querySelector(".modal-bg");
     modalBg.classList.toggle("bg-active");
   };
@@ -78,7 +77,7 @@ function Edityourprofile(props) {
             value={userinfo.phonenumber}
           />
         </label>
-        <button type="submit" className="btn_profile" value="save changes" >
+        <button type="submit" className="btn_profile" value="save changes">
           save changes
         </button>
       </form>

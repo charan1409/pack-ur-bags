@@ -7,7 +7,7 @@ const Vedio = (props) => {
   return (
     <div className="home section" id="home">
       <div className="content">
-        {props.isvalidin? (<h3>Welcome {user.username} !</h3>):(<p></p>)}
+        {props.isvalidin ? <h3>Welcome {user.username} !</h3> : <p></p>}
         <h3>travelling is worthwhile</h3>
         <p>discover new places with us, adventure awaits</p>
         <a href="#gallery" className="btn">

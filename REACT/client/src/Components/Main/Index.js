@@ -16,44 +16,37 @@ const Index = (props) => {
     {
       title: "Home",
       path: "#home",
-      
     },
     {
       title: "Gallery",
       path: "#gallery",
-      
     },
     {
       title: "Places",
       path: "#places",
-      
     },
     {
       title: "About",
       path: "#about",
-      
     },
     {
       title: "Services",
       path: "#services",
-      
     },
     {
       title: "Reviews",
       path: "#review",
-      
     },
     {
       title: "Footer",
       path: "#footer",
-      
     },
   ];
   return (
     <div>
       <Upward />
-      <Header user={true} navItems={navItems}/>
-      <Vedio isvalidin={true}/>
+      <Header user={true} navItems={navItems} />
+      <Vedio isvalidin={true} />
       <Gallery />
       <Places />
       <About />

@@ -1,9 +1,9 @@
-import React from 'react'
-import { useState } from 'react';
-import Header from '../Navbar/Header';
-import Btn from '../Btn';
+import React from "react";
+import { useState } from "react";
+import Header from "../Navbar/Header";
+import Btn from "../Btn";
 import InputBox from "../Landing/InputBox";
-import axios from 'axios';
+import axios from "axios";
 
 function AddPlaces() {
   const navItems = [
@@ -20,12 +20,12 @@ function AddPlaces() {
       path: "/adminplaces",
     },
   ];
-  
+
   const [placeinfo, setplaceinfo] = useState({
     type: "",
     place: "",
     details: "",
-    location: ""
+    location: "",
   });
 
   const onUpdateField = (e) => {
@@ -41,16 +41,16 @@ function AddPlaces() {
     const newplace = {
       place: placeinfo.place,
       details: placeinfo.details,
-      location: placeinfo.location
-    }
+      location: placeinfo.location,
+    };
     axios.post("http://localhost:3001/places", newplace);
     setplaceinfo({
       type: "",
       place: "",
       details: "",
-      location: ""
-    })
-  }
+      location: "",
+    });
+  };
   return (
     <div>
       <Header user={false} navItems={navItems} />
@@ -89,7 +89,7 @@ function AddPlaces() {
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default AddPlaces
+export default AddPlaces;

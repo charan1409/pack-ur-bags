@@ -1,10 +1,10 @@
-.add{
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
+.add {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
-.add form{
-    width: 500px;
-    margin:3rem;
+.add form {
+  width: 500px;
+  margin: 3rem;
 }

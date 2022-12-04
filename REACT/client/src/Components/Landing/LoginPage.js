@@ -22,7 +22,10 @@ function LoginPage(props) {
         <div className="total-form-container">
           <div className="login-form-close">
             <Link to={"/"}>
-              <span className="login-form-close-btn" onClick={props.openLoginForm}>
+              <span
+                className="login-form-close-btn"
+                onClick={props.openLoginForm}
+              >
                 X
               </span>
             </Link>

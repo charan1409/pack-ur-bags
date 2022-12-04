@@ -28,7 +28,7 @@ const Tours = () => {
       <Link to="/book">
         <input type="submit" className="btn" value="Book Page" />
       </Link>
-      { tours.length === 0 ? (
+      {tours.length === 0 ? (
         <h1>Your Tour List is Empty</h1>
       ) : (
         <div>
@@ -47,17 +47,22 @@ const Tours = () => {
                         <div>
                           <button
                             onClick={() => {
-                              const user = JSON.parse(localStorage.getItem("user"));
+                              const user = JSON.parse(
+                                localStorage.getItem("user")
+                              );
                               axios
                                 .get(`http://localhost:3001/users/${user.id}`)
                                 .then((res) => {
                                   axios
-                                    .put(`http://localhost:3001/users/${user.id}`, {
-                                      ...res.data,
-                                      tours: res.data.tours.filter(
-                                        (ob, a) => a !== key
-                                      ),
-                                    })
+                                    .put(
+                                      `http://localhost:3001/users/${user.id}`,
+                                      {
+                                        ...res.data,
+                                        tours: res.data.tours.filter(
+                                          (ob, a) => a !== key
+                                        ),
+                                      }
+                                    )
                                     .then((res) => {
                                       setTours(res.data.tours);
                                     });

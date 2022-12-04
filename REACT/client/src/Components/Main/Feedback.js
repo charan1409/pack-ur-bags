@@ -20,7 +20,7 @@ const Feedback = () => {
       fdbk: fdbk,
     };
     console.log(feedback_data);
-    
+
     setName("");
     setEmail("");
     setFdbk("");

@@ -40,7 +40,7 @@ function ChangePassword() {
     } else {
       user.password = password.newpassword;
       localStorage.setItem("user", JSON.stringify(user));
-      setChanged(!changed)
+      setChanged(!changed);
 
       const modalBg = document.querySelector(".pass-modal-bg");
       modalBg.classList.toggle("bg-active");
