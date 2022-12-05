@@ -23,7 +23,7 @@ import { Provider } from "react-redux";
 import { legacy_createStore as createStore } from "redux";
 import change from "./Redux/counter";
 export const store1 = createContext();
-const store = createStore(change);
+const store = createStore(change,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [trans, setTrans] = useState([]);
