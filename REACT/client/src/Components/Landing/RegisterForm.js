@@ -31,8 +31,8 @@ function RegisterForm(props) {
     if (/\s/.test(userinfo.username || userinfo.username.trim().length < 1)) {
       setRegisterError([true, "Username should not contain spaces"]);
     } else if (
-      userinfo.email.trim().length < 1 ||
-      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userinfo.email)
+      // eslint-disable-next-line
+      userinfo.email.trim().length < 1 || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userinfo.email)
     ) {
       //  eslint-disable-line
       setRegisterError([true, "Invalid Email"]);

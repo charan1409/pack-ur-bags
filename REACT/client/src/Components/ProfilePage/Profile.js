@@ -27,6 +27,7 @@ const navItems = [
 function Profile() {
   const counter = useSelector((state) => state.value);
   const [user, setUser] = useState({});
+  // eslint-disable-next-line
   const [changed, setChanged] = useState(false);
   const userL = JSON.parse(localStorage.getItem("user"));
   const fetchData = async () => {
@@ -36,6 +37,7 @@ function Profile() {
   };
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, [counter]);
   return (
     <div>
