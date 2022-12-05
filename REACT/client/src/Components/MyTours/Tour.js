@@ -44,6 +44,7 @@ const Tours = () => {
                       <h2>Number of Child: {item.child}</h2>
                       <h2>Date of Departure: {item.depart}</h2>
                       <h2>Date of Arrival: {item.arrival}</h2>
+                      <h2>Total amount: {5000 + item.adult*100}</h2>
                       <div className="addtocart">
                         <div>
                           <button
