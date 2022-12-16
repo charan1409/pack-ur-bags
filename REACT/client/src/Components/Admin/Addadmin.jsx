@@ -37,34 +37,55 @@ function Addadmin(props) {
     } else if (userinfo.password !== userinfo.confirmedPassword) {
       alert("Passwords are not matching");
     } else {
-      axios.get("http://localhost:3001/users").then((res) => {
-        const userE = res.data.find((user) => user.email === userinfo.email);
-        const userN = res.data.find(
-          (user) => user.username === userinfo.username
-        );
-        if (userE) {
-          alert("Email is already registered.");
-        } else if (userN) {
-          alert("username is already in use.");
-        } else {
-          const newUser = {
-            id: new Date().valueOf(),
-            username: userinfo.username,
-            email: userinfo.email,
-            password: userinfo.password,
-            role: "admin",
-            tours: [],
-          };
-          axios.post("http://localhost:3001/users", newUser);
-          alert(`${userinfo.username} is registered successfully`);
+      // setRegisterError([false, ""]);
+      const user = {
+        id: new Date().valueOf(),
+        username: userinfo.username,
+        email: userinfo.email,
+        password: userinfo.password,
+        role: "admin"
+      };
+      axios.post("http://localhost:9000/users/register", user).then((resp) => {
+        if (resp.data.error) {
+          // setRegisterError([true, resp.data.error]);
+          alert(resp.data.error);
+        } else if (resp.data.success) {
           setUserinfo({
             username: "",
             email: "",
             password: "",
             confirmedPassword: "",
           });
+          alert(resp.data.success);
         }
       });
+    //   axios.get("http://localhost:3001/users").then((res) => {
+    //     const userE = res.data.find((user) => user.email === userinfo.email);
+    //     const userN = res.data.find(
+    //       (user) => user.username === userinfo.username
+    //     );
+    //     if (userE) {
+    //       alert("Email is already registered.");
+    //     } else if (userN) {
+    //       alert("username is already in use.");
+    //     } else {
+    //       const newUser = {
+    //         id: new Date().valueOf(),
+    //         username: userinfo.username,
+    //         email: userinfo.email,
+    //         password: userinfo.password,
+    //         role: "admin"
+    //       };
+    //       axios.post("http://localhost:3001/users", newUser);
+    //       alert(`${userinfo.username} is registered successfully`);
+    //       setUserinfo({
+    //         username: "",
+    //         email: "",
+    //         password: "",
+    //         confirmedPassword: "",
+    //       });
+    //     }
+    //   });
     }
   };
 

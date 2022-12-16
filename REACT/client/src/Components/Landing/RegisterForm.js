@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
@@ -6,6 +7,7 @@ import Error from "./LogError";
 import axios from "axios";
 
 function RegisterForm(props) {
+  const navigate = useNavigate();
   const [registerError, setRegisterError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
     username: "",
@@ -26,15 +28,14 @@ function RegisterForm(props) {
     setUserinfo(nextFieldState);
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     if (/\s/.test(userinfo.username || userinfo.username.trim().length < 1)) {
       setRegisterError([true, "Username should not contain spaces"]);
     } else if (
-      // eslint-disable-next-line
-      userinfo.email.trim().length < 1 || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userinfo.email)
+      userinfo.email.trim().length < 1 || // eslint-disable-next-line
+      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userinfo.email)
     ) {
-      //  eslint-disable-line
       setRegisterError([true, "Invalid Email"]);
     } else if (userinfo.password.trim().length < 6) {
       setRegisterError([true, "Password should be altleast 6 characters"]);
@@ -42,35 +43,57 @@ function RegisterForm(props) {
       setRegisterError([true, "Passwords are not matching"]);
     } else {
       setRegisterError([false, ""]);
-      axios.get("http://localhost:3001/users").then((res) => {
-        const userE = res.data.find((user) => user.email === userinfo.email);
-        const userN = res.data.find(
-          (user) => user.username === userinfo.username
-        );
-        if (userE) {
-          setRegisterError([true, "Email is already registered."]);
-        } else if (userN) {
-          setRegisterError([true, "username is already in use."]);
-        } else {
-          const newUser = {
-            id: new Date().valueOf(),
-            username: userinfo.username,
-            email: userinfo.email,
-            password: userinfo.password,
-            tours: [],
-          };
-          axios.post("http://localhost:3001/users", newUser);
-          alert(`${userinfo.username} is registered successfully`);
+      const user = {
+        id: new Date().valueOf(),
+        username: userinfo.username,
+        email: userinfo.email,
+        password: userinfo.password,
+        role: "user"
+      };
+      axios.post("http://localhost:9000/users/register", user).then((resp) => {
+        if (resp.data.error) {
+          setRegisterError([true, resp.data.error]);
+        } else if (resp.data.success) {
           setUserinfo({
             username: "",
             email: "",
             password: "",
             confirmedPassword: "",
           });
-          setRegisterError([false, ""]);
-          props.closeRegister();
+          alert(resp.data.success);
+          localStorage.setItem("user", JSON.stringify(user));
+          navigate("/index");
         }
       });
+      // axios.get("http://localhost:3001/users").then((res) => {
+      //   const userE = res.data.find((user) => user.email === userinfo.email);
+      //   const userN = res.data.find(
+      //     (user) => user.username === userinfo.username
+      //   );
+      //   if (userE) {
+      //     setRegisterError([true, "Email is already registered."]);
+      //   } else if (userN) {
+      //     setRegisterError([true, "username is already in use."]);
+      //   } else {
+      //     const newUser = {
+      //       id: new Date().valueOf(),
+      //       username: userinfo.username,
+      //       email: userinfo.email,
+      //       password: userinfo.password,
+      //       tours: [],
+      //     };
+      //     axios.post("http://localhost:3001/users", newUser);
+      //     alert(`${userinfo.username} is registered successfully`);
+      //     setUserinfo({
+      //       username: "",
+      //       email: "",
+      //       password: "",
+      //       confirmedPassword: "",
+      //     });
+      //     setRegisterError([false, ""]);
+      //     props.closeRegister();
+      //   }
+      // });
     }
   };
   return (

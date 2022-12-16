@@ -4,12 +4,14 @@ const cookieparser = require('cookie-parser');
 app.use(cookieparser());
 const mongoose=require('mongoose');
 const dotenv = require('dotenv');
+const cors = require("cors");
 dotenv.config();
 const port = 9000
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 //connect to mongo
 mongoose.connect(process.env.MONGODB_LINK_ATLAS,{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false})

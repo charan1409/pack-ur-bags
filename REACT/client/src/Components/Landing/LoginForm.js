@@ -32,21 +32,17 @@ function Form(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     if (/\s/.test(userinfo.username || userinfo.username.trim().length < 1)) {
-      setLoginError([true, "Username should not contain spaces"]);
+      setLoginError([true, "Invalid username"]);
     } else if (userinfo.password.trim().length < 6) {
-      setLoginError([true, "Password should be altleast 6 characters"]);
+      setLoginError([true, "Invalid password"]);
     } else {
       setLoginError([false, ""]);
-      axios.get("http://localhost:3001/users").then((res) => {
-        const user = res.data.find(
-          (user) =>
-            user.username === userinfo.username &&
-            user.password === userinfo.password
-        );
+      axios.post("http://localhost:9000/users/login",userinfo).then((resp) => {
+        const user = resp.data
         if (user) {
           setLoginuser(user);
           localStorage.setItem("user", JSON.stringify(user));
-          if (user.role === "admin") {
+          if (user.role === "admin" || user.role === "root") {
             navigate("/admin");
           } else {
             navigate("/index");
