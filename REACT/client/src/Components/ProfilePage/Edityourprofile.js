@@ -8,16 +8,13 @@ function Edityourprofile(props) {
   // on change userinfo refresh page once
 
   const user = JSON.parse(localStorage.getItem("user"));
-  const [changed, setChanged] = useState(false);
   const [userinfo, setUserinfo] = useState({
     id: user.id,
     username: user.username,
     name: user.name,
     phonenumber: user.phonenumber,
     gender: user.gender,
-    password: user.password,
     email: user.email,
-    tours: user.tours,
   });
 
   const onUpdateField = (e) => {
@@ -30,19 +27,26 @@ function Edityourprofile(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("user", JSON.stringify(userinfo));
-    axios.put(`http://localhost:3001/users/${user.id}`, user);
-    setChanged(!changed);
-    props.setChanged(true);
-    dispatch(add());
-    alert("updated");
-    const modalBg = document.querySelector(".modal-bg");
-    modalBg.classList.toggle("bg-active");
+    if (/\s/.test(userinfo.username)) {
+      alert("username shouldn't have spaces.");
+    } else {
+      axios
+        .post(`http://localhost:9000/profile/edit`, userinfo)
+        .then((resp) => {
+          if (resp.status !== 200) alert(resp.data.error);
+          else {
+            dispatch(add());
+            alert(resp.data.succ);
+            const modalBg = document.querySelector(".modal-bg");
+            modalBg.classList.toggle("bg-active");
+          }
+        });
+    }
   };
   return (
     <div>
       <form onSubmit={handleSubmit} className="editform">
-        <label htmlFor="upname">
+        <label htmlFor="name">
           Name:
           <input
             type="text"
@@ -54,19 +58,43 @@ function Edityourprofile(props) {
           />
         </label>
         <br></br>
+        <label htmlFor="username">
+          Username:
+          <input
+            type="text"
+            className="tbox"
+            name="username"
+            placeholder="Enter your username"
+            onChange={onUpdateField}
+            value={userinfo.username}
+          />
+        </label>
+        <br></br>
         <label
-          htmlFor="upgender"
+          htmlFor="gender"
           onChange={onUpdateField}
-          value={userinfo.name}
+          value={userinfo.gender}
         >
           Gender:
-          <input type="radio" name="gender" id="male" value="male" />
+          <input
+            type="radio"
+            name="gender"
+            id="male"
+            value="male"
+            defaultChecked={userinfo.gender === "male"}
+          />
           <label htmlFor="male">male</label>
-          <input type="radio" name="gender" id="female" value="female" />
+          <input
+            type="radio"
+            name="gender"
+            id="female"
+            value="female"
+            defaultChecked={userinfo.gender === "female"}
+          />
           <label htmlFor="female">female</label>
         </label>
         <br></br>
-        <label htmlFor="upphone">
+        <label htmlFor="phonenumber">
           Phone number:
           <input
             type="text"

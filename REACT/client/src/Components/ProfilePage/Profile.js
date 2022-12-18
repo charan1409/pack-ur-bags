@@ -7,6 +7,7 @@ import Tabledata from "./Tabledata";
 import Edityourprofile from "./Edityourprofile";
 import ChangePassword from "./ChangePassword";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 function edit_form() {
   const modalBg = document.querySelector(".modal-bg");
@@ -28,12 +29,12 @@ function Profile() {
   const counter = useSelector((state) => state.value);
   const [user, setUser] = useState({});
   // eslint-disable-next-line
-  const [changed, setChanged] = useState(false);
   const userL = JSON.parse(localStorage.getItem("user"));
   const fetchData = async () => {
-    const response = await fetch(`http://localhost:3001/users/${userL.id}`);
-    const data = await response.json();
-    return setUser(data);
+    await axios.get(`http://localhost:9000/users/loguser/${userL.username}`).then(async resp => {
+      localStorage.setItem("user", JSON.stringify(resp.data));
+      return setUser(resp.data);
+    })
   };
   useEffect(() => {
     fetchData();
@@ -85,7 +86,7 @@ function Profile() {
       <div className="modal-bg">
         <div className="edit-form">
           <h2>edit your profile</h2>
-          <Edityourprofile username="User" setChanged={setChanged} />
+          <Edityourprofile username="User"/>
           <span onClick={edit_form}>x</span>
         </div>
       </div>

@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { add } from "../../Redux/action";
+import { useDispatch } from "react-redux";
 
 function ChangePassword() {
   const user = JSON.parse(localStorage.getItem("user"));
-  const [changed, setChanged] = useState(false);
+  const dispatch = useDispatch();
   const [password, setPassword] = useState({
+    email: user.email,
     oldpassword: "",
     newpassword: "",
     conpassword: "",
@@ -14,18 +17,7 @@ function ChangePassword() {
     setPassword({ ...password, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    axios
-      .put(`http://localhost:3001/users/${user.id}`, user)
-      .then((resp) => {
-        // console.log(resp.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [changed, user]);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (
       !password.oldpassword &&
@@ -33,17 +25,29 @@ function ChangePassword() {
       !password.conpassword
     ) {
       alert("Enter all fields.");
-    } else if (password.oldpassword !== user.password) {
-      alert("incorrect password.");
     } else if (password.newpassword !== password.conpassword) {
       alert("new passwords doesn't match.");
     } else {
-      user.password = password.newpassword;
-      localStorage.setItem("user", JSON.stringify(user));
-      setChanged(!changed);
-
-      const modalBg = document.querySelector(".pass-modal-bg");
-      modalBg.classList.toggle("bg-active");
+      await axios
+        .post(`http://localhost:9000/profile/changepass`, password)
+        .then((resp) => {
+          if (resp.status !== 200) alert(resp.data.error);
+          else {
+            dispatch(add());
+            setPassword({
+              email: user.email,
+              oldpassword: "",
+              newpassword: "",
+              conpassword: "",
+            });
+            alert(resp.data.succ);
+            const modalBg = document.querySelector(".pass-modal-bg");
+            modalBg.classList.toggle("bg-active");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
   return (

@@ -30,7 +30,7 @@ function RegisterForm(props) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (/\s/.test(userinfo.username || userinfo.username.trim().length < 1)) {
+    if (/\s/.test(userinfo.username) || userinfo.username.trim().length < 1) {
       setRegisterError([true, "Username should not contain spaces"]);
     } else if (
       userinfo.email.trim().length < 1 || // eslint-disable-next-line
@@ -65,35 +65,6 @@ function RegisterForm(props) {
           navigate("/index");
         }
       });
-      // axios.get("http://localhost:3001/users").then((res) => {
-      //   const userE = res.data.find((user) => user.email === userinfo.email);
-      //   const userN = res.data.find(
-      //     (user) => user.username === userinfo.username
-      //   );
-      //   if (userE) {
-      //     setRegisterError([true, "Email is already registered."]);
-      //   } else if (userN) {
-      //     setRegisterError([true, "username is already in use."]);
-      //   } else {
-      //     const newUser = {
-      //       id: new Date().valueOf(),
-      //       username: userinfo.username,
-      //       email: userinfo.email,
-      //       password: userinfo.password,
-      //       tours: [],
-      //     };
-      //     axios.post("http://localhost:3001/users", newUser);
-      //     alert(`${userinfo.username} is registered successfully`);
-      //     setUserinfo({
-      //       username: "",
-      //       email: "",
-      //       password: "",
-      //       confirmedPassword: "",
-      //     });
-      //     setRegisterError([false, ""]);
-      //     props.closeRegister();
-      //   }
-      // });
     }
   };
   return (
