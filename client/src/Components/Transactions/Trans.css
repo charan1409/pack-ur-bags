@@ -1,0 +1,16 @@
+.cartitems{
+    display:flex;
+    flex-direction: column;
+}
+
+.item{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+
+.h2{
+    text-align: center;
+}

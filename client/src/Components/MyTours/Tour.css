@@ -1,0 +1,38 @@
+.cartitems{
+  display:flex;
+  flex-direction: column;
+}
+
+.item{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+
+.h2{
+  text-align: center; 
+}
+
+.item-class .item-box {
+  height: 100%;
+  margin: 7px 200px 15px 200px;
+  margin-bottom: 4rem;
+  border-radius: 25px;
+  padding: 10px 8px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  box-shadow: 7px 7px 7px 7px #1e1e1ea0;
+  
+}
+
+.item-class .item-box:hover{
+  box-shadow:7px 7px 7px 7px #033747e3;
+}
+
+.item-class .item-box .addtocart {
+  display:grid;
+  grid-template-columns: 3fr 10fr;
+  margin-bottom: 3rem;
+}
