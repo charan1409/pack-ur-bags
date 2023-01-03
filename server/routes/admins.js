@@ -99,6 +99,8 @@ router.post("/place/:id", (req, res) => {
         newplace.save().then(() => {
           res.status(200).json({ success: "place added Successfully" });
         });
+      } else{
+        res.status(201).json({ error: "error occurred" });
       }
     });
   }
