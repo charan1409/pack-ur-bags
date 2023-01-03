@@ -1,11 +1,14 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../Navbar/Header";
 import Btn from "../Btn";
 import axios from "axios";
 import "./AddPlaces.css";
 
 function AddPlaces() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
   const days = ["Three", "Five","Both"];
   const busType = ["AC", "NON-AC", "Both"];
   const navItems = [
@@ -68,8 +71,7 @@ function AddPlaces() {
       days: placeinfo.days,
       image: base64,
     };
-    console.log(newplace);
-    axios.post("http://localhost:9000/admins/place", newplace).then((resp) => {
+    axios.post(`http://localhost:9000/admins/place/${user.username}`, newplace).then((resp) => {
       if (resp.status === 200) {
         setplaceinfo({
           from: "",
@@ -81,7 +83,7 @@ function AddPlaces() {
         setImage();
         alert(resp.data.success);
       } else {
-        alert(resp.data.error);
+        navigate("/error")
       }
     });
   };
