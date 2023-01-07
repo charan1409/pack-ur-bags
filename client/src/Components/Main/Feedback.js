@@ -2,10 +2,11 @@ import React from "react";
 import "./main.css";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Feedback = () => {
   const [fdbk, setFdbk] = useState("");
-
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
 
   // Not Refreshing Page
@@ -21,7 +22,12 @@ const Feedback = () => {
       axios
         .post("http://localhost:9000/index/fd", feedback_data)
         .then((resp) => {
-          alert(resp.data.success);
+          if (resp.status === 200) {
+            const user = resp.data;
+            localStorage.setItem("user", JSON.stringify(user));
+          } else{
+            navigate("/error")
+          }
         });
       setFdbk("");
     }

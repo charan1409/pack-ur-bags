@@ -6,14 +6,20 @@ const cookieparser = require("cookie-parser");
 const { check, validationResult } = require("express-validator");
 const User = require("../schemas/user");
 const Admin = require("../schemas/admin");
+const FeedBack = require("../schemas/feedback")
 
 router.use(cookieparser());
 
 //login Page
 router.get("/loguser/:id", async (req, res) => {
   const inname = req.params.id;
-  const user = await User.findOne({ id: inname });
-  res.status(200).json(user);
+  const user = await User.findOne({ username: inname });
+  const fd = await FeedBack.findOne({username: inname});
+  const data = {
+    user:user,
+    fd:fd
+  }
+  res.status(200).json(data);
 });
 
 //  login handle
@@ -27,8 +33,14 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign({ id }, process.env.ACCESS_TOKEN, {
       expiresIn: "1d",
     });
+    const data = {
+      username: user.username,
+      role: user.role,
+      imagegiven: user.imagegiven,
+      feedbackgiven: user.feedbackgiven
+    }
     res.cookie("usertoken", token, { httpOnly: true });
-    res.status(200).json(user);
+    res.status(200).json(data);
   } else {
     res.status(201).json({ error: "User doesn't exist." });
   }
@@ -67,8 +79,14 @@ router.post("/register", async (req, res) => {
         const token = jwt.sign({ id }, process.env.ACCESS_TOKEN, {
           expiresIn: "1d",
         });
+        const data = {
+          username: user.username,
+          role: user.role,
+          imagegiven: user.imagegiven,
+          feedbackgiven: user.feedbackgiven
+        }
         res.cookie("usertoken", token, { httpOnly: true });
-        res.status(200).json({ success: "Registered Successfully",userL: user });
+        res.status(200).json({ success: "Registered Successfully",userL: data });
       });
     } catch (err) {
       res.status(404).json("token not created");

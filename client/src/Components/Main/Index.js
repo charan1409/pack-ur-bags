@@ -36,11 +36,7 @@ const Index = (props) => {
     {
       title: "Reviews",
       path: "#review",
-    },
-    {
-      title: "Footer",
-      path: "#footer",
-    },
+    }
   ];
   return (
     <div>

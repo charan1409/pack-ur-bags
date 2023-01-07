@@ -25,16 +25,18 @@ function Profile() {
   const hiddenFileInput = useRef(null);
   const counter = useSelector((state) => state.value);
   const [user, setUser] = useState({});
+  const [fd,setFd] = useState({})
   const [edit,setEdit] = useState(false)
-  const [changep,setChangeP] = useState(false)
   // eslint-disable-next-line
   const userL = JSON.parse(localStorage.getItem("user"));
   const fetchData = async () => {
     await axios
-      .get(`http://localhost:9000/users/loguser/${userL.id}`)
+      .get(`http://localhost:9000/users/loguser/${userL.username}`)
       .then(async (resp) => {
-        localStorage.setItem("user", JSON.stringify(resp.data));
-        return setUser(resp.data);
+        console.log(resp.data);
+        localStorage.setItem("user", JSON.stringify(resp.data.user));
+        setFd(resp.data.fd)
+        return setUser(resp.data.user);
       });
   };
   useEffect(() => {
@@ -166,7 +168,7 @@ function Profile() {
           </div>
           <hr style={{ height: "1px", backgroundColor: "black" }} />
           <div className="user-feedback">
-            <h2>Your feedback will appear here with edit option.</h2>
+            <h2>{fd ? fd.feedback : "Your submitted feedback will appear here." }</h2>
           </div>
           <hr style={{ height: "1px", backgroundColor: "black" }} />
           <div className="user-reviews">

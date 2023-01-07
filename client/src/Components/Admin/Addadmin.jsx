@@ -79,7 +79,7 @@ function Addadmin(props) {
 
   return (
     <>
-      <Header user={false} navItems={navItems} />
+      <Header user={true} navItems={navItems} />
       <div className="add">
         <h1>Add admin</h1>
         <form onSubmit={submitHandler}>

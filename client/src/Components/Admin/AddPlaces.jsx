@@ -89,7 +89,7 @@ function AddPlaces() {
   };
   return (
     <div>
-      <Header user={false} navItems={navItems} />
+      <Header user={true} navItems={navItems} />
       <div className="addplace">
         <h1>Add place</h1>
         <form onSubmit={submitHandler}>

@@ -36,7 +36,6 @@ function Form(props) {
       setLoginError([false, ""]);
       axios.post("http://localhost:9000/users/login",userinfo).then((resp) => {
         if (resp.status === 200) {
-          console.log(resp);
           const user = resp.data
           localStorage.setItem("user", JSON.stringify(user));
           if (user.role === "admin" || user.role === "root") {

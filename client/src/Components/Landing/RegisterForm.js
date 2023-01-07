@@ -30,17 +30,17 @@ function RegisterForm(props) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (/\s/.test(userinfo.username) || userinfo.username.trim().length < 1) {
-      setRegisterError([true, "Username should not contain spaces"]);
+    if (/\s/.test(userinfo.username) || userinfo.username.trim().length < 1 || userinfo.username.trim().length > 8) {
+      setRegisterError([true, "username contains more than 8 characters"]);
     } else if (
       userinfo.email.trim().length < 1 || // eslint-disable-next-line
       !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userinfo.email)
     ) {
       setRegisterError([true, "Invalid Email"]);
     } else if (userinfo.password.trim().length < 6) {
-      setRegisterError([true, "Password should be altleast 6 characters"]);
+      setRegisterError([true, "password should be altleast 6 characters"]);
     } else if (userinfo.password !== userinfo.confirmedPassword) {
-      setRegisterError([true, "Passwords are not matching"]);
+      setRegisterError([true, "passwords are not matching"]);
     } else {
       setRegisterError([false, ""]);
       const user = {
