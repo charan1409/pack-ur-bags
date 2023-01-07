@@ -1,14 +1,22 @@
-.Heading {
-  position: relative;
+.head {
+  display: flex;
+}
+.head .Heading{
+  width: 80%;
+}
+.head div{
+  font-size: large;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.head div select{
+  font-size: large;
 }
 .place-box1 {
-  height: 350px;
   margin: 7px 150px 10px 150px;
   margin-bottom: 5rem;
   border-radius: 25px;
   padding: 3px 3px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  display: flex;
   border: .4px solid black;
   position: relative;
 }
@@ -18,7 +26,7 @@
 }
 
 .place-box1 .place-pic {
-  width: 100%;
+  width: 40%;
   height: 100%;
   display: block;
   padding: 0.5%;
@@ -26,14 +34,16 @@
 }
 
 .place-box1 .place-pic img {
+  object-fit: fill;
   width: 100%;
-  height: 100%;
+  height: 343px;
   border-radius: 20px 0px 0px 20px;
 }
 
 .place-box1 .place-details {
   float: left;
   height: 100%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   padding: 1%;
