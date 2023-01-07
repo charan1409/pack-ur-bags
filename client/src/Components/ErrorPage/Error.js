@@ -14,7 +14,7 @@ const Error = () => {
       </div>
       <h1>
         Looks Like Landed Some Where Else{" "}
-        <Link to="/" className="btn new-btn" style={{ margin: "auto" }}>
+        <Link to="/" className="btn new-btn" style={{ margin: "auto" }} onClick={()=>{localStorage.removeItem("user")}}>
           GO BACK
         </Link>
       </h1>

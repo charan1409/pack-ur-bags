@@ -37,18 +37,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Landing />} />
               <Route path="index" element={<Index />} />
-              {Data.map((x) => (
-                <Route
-                  path={x.path}
-                  element={
-                    <ViewPlace
-                      placeType={x.place}
-                      path={"/BeachesHotel"}
-                      category={"Places"}
-                    />
-                  }
-                />
-              ))}
+              <Route path="places/:id" element={<ViewPlace />} />
               <Route path="BeachesHotel" element={<BeachesHotel />} />
               <Route path="book" element={<Book />} />
               <Route path="payment" element={<Payment />} />
