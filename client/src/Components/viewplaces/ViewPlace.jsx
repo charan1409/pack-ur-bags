@@ -20,16 +20,6 @@ function App() {
       setPlacesData(resp.data)
     })
   },[])
-  const createPost = (val, to, det, photo) => {
-    // navigate(props.path, {
-    //   state: {
-    //     post_id: val,
-    //     post_to: to,
-    //     post_det: det,
-    //     post_photo: photo,
-    //   },
-    // });
-  };
   return (
     <div>
       <Header user={true} navItems={navItems}/>
@@ -41,7 +31,7 @@ function App() {
             to={x.to}
             details={x.details}
             onClick={() => {
-              createPost(x.id, x.to, x.details, x.photo);
+              navigate(`/placedetails/${x.id}`)
             }}
           />
         ))}

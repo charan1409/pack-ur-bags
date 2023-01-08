@@ -21,17 +21,20 @@ router.get("/places/:id", async (req, res) => {
 //   }
 });
 
-router.get("/viewplace/:id", verifier, async (req, res) => {
-  const email = req.user.id;
+router.get("/placedetails/:id", async (req, res) => {
   const placeid = req.params.id;
-  const user = await User.findOne({ email: email });
-  if (user) {
-    const data = await Place.findOne({ id: placeid });
-    res.render("place", { user, data });
-  }
+  // const user = await User.findOne({ email: email });
+  // if (user) {
+    await Place.findOne({ id: placeid },(err,data)=>{
+      if(err) res.status(201).json({error: "Some error incurred."});
+      else{
+        res.status(200).json(data);
+      }
+    });
+  // }
 });
 
-router.post("/review/:id", verifier, async (req, res) => {
+router.post("/review/:id", async (req, res) => {
   const email = req.user.id;
   const placeid = req.params.id;
   const user = await User.findOne({ email: email });

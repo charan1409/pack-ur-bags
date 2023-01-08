@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./style.css";
-import Component from "./PlacesHotelComponent";
+import Img from "../viewplaces/ViewplacesComponents/Img";
+import Place from "../viewplaces/ViewplacesComponents/Details";
+import Rating from "../viewplaces/ViewplacesComponents/Rating";
+import Info from "./Info";
+import Review from "./Review";
 import Header from "../Navbar/Header";
 import img from "../viewplaces/img.jpg";
-import { useLocation } from "react-router-dom";
+import Btn from "../Btn";
+import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import photo11 from "../viewplaces/places/beach/blue-ocean-resort.jpg";
 import photo12 from "../viewplaces/places/beach/paradise.jpg";
 import photo13 from "../viewplaces/places/beach/radisson.jpg";
@@ -22,6 +29,7 @@ import photo53 from "./images/TajGanges.webp";
 import photo61 from "./images/GatewayHotel.webp";
 import photo62 from "./images/taj.webp";
 import photo63 from "./images/TajGanges.webp";
+import { useNavigator, useParams } from "react-router-dom";
 
 const desc1 =
   "If you’re among the one in six Australians to experience the bitter pain of a marine stinger such as abluebottle, you’ll know how quickly they can end a fun day at the beach.We can’t stop the summer winds that deliver these creatures to our shores, but we can choose the safestspots to swim.Our recent research provides the first evidence of what transports bluebottles to Australian beaches.We found the direction a beach faces, relative to wind direction, largely determines how manybluebottles are pushed to shore. We hope these findings will help beachgoers safely plan where to taketheir next dip.";
@@ -300,89 +308,47 @@ const navItems = [
   },
 ];
 function App() {
+  const navigate = useNavigate();
+  const [placedata, setPlacedata] = useState({});
+  const { id } = useParams();
+  useEffect(() => {
+    //http://localhost:3000/placedetails/1672295174880
+    axios.get(`http://localhost:9000/places/placedetails/${id}`).then((resp) => {
+      if (resp.status === 200) {
+        setPlacedata(resp.data);
+      } else {
+        navigate("/error");
+      }
+    });
+  }, []);
   const { state } = useLocation();
-  // console.log(state.post_id);
   return (
     <div>
       <Header user={true} navItems={navItems} />
-      {state.post_id === 1 && (
-        <Component
-          photo={state.post_photo}
-          to={state.post_to}
-          rate={state.post_rate}
-          details={state.post_det}
-          img={img}
-          hotels={hotel1}
-          description={desc1}
-          username="kamal"
-          review="good"
-        />
-      )}
-      {state.post_id === 2 && (
-        <Component
-          photo={state.post_photo}
-          to={state.post_to}
-          rate={state.post_rate}
-          details={state.post_det}
-          img={img}
-          hotels={hotel2}
-          description={desc2}
-          username="kamal"
-          review="good"
-        />
-      )}
-      {state.post_id === 3 && (
-        <Component
-          photo={state.post_photo}
-          to={state.post_to}
-          rate={state.post_rate}
-          details={state.post_det}
-          img={img}
-          hotels={hotel3}
-          description={desc3}
-          username="kamal"
-          review="good"
-        />
-      )}
-      {state.post_id === 4 && (
-        <Component
-          photo={state.post_photo}
-          to={state.post_to}
-          rate={state.post_rate}
-          details={state.post_det}
-          img={img}
-          hotels={hotel4}
-          description={desc4}
-          username="kamal"
-          review="good"
-        />
-      )}
-      {state.post_id === 5 && (
-        <Component
-          photo={state.post_photo}
-          to={state.post_to}
-          rate={state.post_rate}
-          details={state.post_det}
-          img={img}
-          hotels={hotel5}
-          description={desc5}
-          username="kamal"
-          review="good"
-        />
-      )}
-      {state.post_id === 6 && (
-        <Component
-          photo={state.post_photo}
-          to={state.post_to}
-          rate={state.post_rate}
-          details={state.post_det}
-          img={img}
-          hotels={hotel6}
-          description={desc6}
-          username="kamal"
-          review="good"
-        />
-      )}
+      <div className="single-place-details">
+        <div className="place-box">
+          <div className="heading">
+            <Img photo={placedata.photo} />
+            <div className="details">
+              <div className="content">
+                <Place from={placedata.from} to={placedata.to} details={placedata.status} />
+                <Rating />
+              </div>
+              <Link to="/book">
+                <Btn type="button" value="Book" />
+              </Link>
+            </div>
+          </div>
+          <Info details={placedata.details} />
+          <Review
+            image={img}
+            username="kamal"
+            review="perfect place to enjoy this pongal."
+            type="button"
+            name="Submit"
+          />
+        </div>
+      </div>
     </div>
   );
 }

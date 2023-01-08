@@ -6,7 +6,7 @@ import "./App.css";
 import Landing from "./Components/Landing/Landing";
 import Index from "./Components/Main/Index";
 import ViewPlace from "./Components/viewplaces/ViewPlace";
-import BeachesHotel from "./Components/PlacesHotel/BeachesHotel";
+import PlaceDetails from "./Components/PlacesHotel/PlaceDetails";
 import Book from "./Components/Book/Book";
 import Payment from "./Components/Pay/Payment";
 import Error from "./Components/ErrorPage/Error";
@@ -35,7 +35,7 @@ function App() {
               <Route path="/" element={<Landing />} />
               <Route path="index" element={<Index />} />
               <Route path="places/:id" element={<ViewPlace />} />
-              <Route path="BeachesHotel" element={<BeachesHotel />} />
+              <Route path="placedetails/:id" element={<PlaceDetails />} />
               <Route path="book" element={<Book />} />
               <Route path="payment" element={<Payment />} />
               <Route path="profile" element={<Profile />} />

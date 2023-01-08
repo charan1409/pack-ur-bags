@@ -4,7 +4,7 @@ function Details(props) {
   return (
     <div className="detail">
       <h2>
-        vizag - {props.to}
+        {props.from} - {props.to}
       </h2>
       <h3>Rs.400 per person</h3>
       <p>{props.details}</p>
