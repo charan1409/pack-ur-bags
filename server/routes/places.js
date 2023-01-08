@@ -17,6 +17,12 @@ router.get("/places/:id", async (req, res) => {
         if(err) res.status(201).json({error: "some error incurred."})
         res.status(200).json(data);
       });
+    }
+    else if(category){
+      await Place.find({category:category},(err,data)=>{
+        if(err) res.status(201).json({error: "some error incurred."})
+        res.status(200).json(data);
+      })
     } else res.status(201).json({error: "some error incurred."})
 //   }
 });

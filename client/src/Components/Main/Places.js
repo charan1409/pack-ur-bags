@@ -28,7 +28,7 @@ const Places = () => {
           <PlacesBox
             img={beach}
             btn={true}
-            link="/places/Beaches"
+            link="/places/cultural"
             place="Beach"
             data="Beach areas are popular types of tourist destinations. Some
             people travel a long way to reach a beach"
@@ -38,7 +38,7 @@ const Places = () => {
           <PlacesBox
             img={island}
             btn={true}
-            link="/places/Island"
+            link="/places/island"
             place="Islands"
             data="Islands are land masses that are surrounded by water. They are
             separated form the mainland."
@@ -48,7 +48,7 @@ const Places = () => {
           <PlacesBox
             img={hillstation}
             btn={true}
-            link="/places/Hillstation"
+            link="/places/hillstation"
             place="Hill Stations"
             data="There are many different activities that you can do in the
             mountains, such as hiking, skiing, horse riding, and more."
@@ -58,7 +58,7 @@ const Places = () => {
           <PlacesBox
             img={forest}
             btn={true}
-            link="/places/Forest"
+            link="/places/forest"
             place="Forest"
             data="There are forests all over the world, although the flora and
             fauna differs according to the geographical location."
@@ -68,7 +68,7 @@ const Places = () => {
           <PlacesBox
             img={winter}
             btn={true}
-            link="/places/Winter"
+            link="/places/winter"
             place="Winter"
             data="People travel to destinations with winter conditions for a range
             of winter sport activities."
@@ -78,7 +78,7 @@ const Places = () => {
           <PlacesBox
             img={cultural}
             btn={true}
-            link="/places/Cultural"
+            link="/places/cultural"
             place="Cultural"
             data="A type of tourism activity in which the visitor's essential
             motivation is to learn, discover, experience."
@@ -88,7 +88,7 @@ const Places = () => {
           <PlacesBox
             img={desert}
             btn={true}
-            link="/places/Desert"
+            link="/places/desert"
             place="Desert"
             data="Desert is an undulating sand plain covered with sand dunes."
             styleName=""
@@ -97,7 +97,7 @@ const Places = () => {
           <PlacesBox
             img={countryside}
             btn={true}
-            link="/places/Countryside"
+            link="/places/countryside"
             place="Countryside"
             data="A visit to countryside is a unique and wonderful experience."
             styleName=""
