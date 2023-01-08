@@ -24,16 +24,6 @@ function App() {
       setPlacesData(resp.data)
     })
   },[category])
-  const createPost = (val, to, det, photo) => {
-    // navigate(props.path, {
-    //   state: {
-    //     post_id: val,
-    //     post_to: to,
-    //     post_det: det,
-    //     post_photo: photo,
-    //   },
-    // });
-  };
   return (
     <div>
       <Header user={true} navItems={navItems}/>

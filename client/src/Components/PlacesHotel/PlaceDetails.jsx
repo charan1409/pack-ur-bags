@@ -10,7 +10,7 @@ import Header from "../Navbar/Header";
 import img from "../viewplaces/img.jpg";
 import Btn from "../Btn";
 import { Link } from "react-router-dom";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import photo11 from "../viewplaces/places/beach/blue-ocean-resort.jpg";
 import photo12 from "../viewplaces/places/beach/paradise.jpg";
 import photo13 from "../viewplaces/places/beach/radisson.jpg";
@@ -312,7 +312,6 @@ function App() {
   const [placedata, setPlacedata] = useState({});
   const { id } = useParams();
   useEffect(() => {
-    //http://localhost:3000/placedetails/1672295174880
     axios.get(`http://localhost:9000/places/placedetails/${id}`).then((resp) => {
       if (resp.status === 200) {
         setPlacedata(resp.data);
@@ -321,7 +320,6 @@ function App() {
       }
     });
   }, []);
-  const { state } = useLocation();
   return (
     <div>
       <Header user={true} navItems={navItems} />
