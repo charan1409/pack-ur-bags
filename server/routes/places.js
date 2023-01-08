@@ -41,9 +41,9 @@ router.get("/placedetails/:id", async (req, res) => {
 });
 
 router.post("/review/:id", async (req, res) => {
-  const email = req.user.id;
+  const username = req.user.id;
   const placeid = req.params.id;
-  const user = await User.findOne({ email: email });
+  const user = await User.findOne({ username: username });
   const rating = req.body.rating;
   const review = req.body.review;
   const feedback = [];

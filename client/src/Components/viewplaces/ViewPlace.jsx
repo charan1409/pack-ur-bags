@@ -49,6 +49,7 @@ function App() {
         {placesData && placesData.map((x) => (
           <Components
             photo={x.photo}
+            from={x.from}
             to={x.to}
             details={x.details}
             onClick={() => {

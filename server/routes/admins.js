@@ -64,14 +64,15 @@ router.get("/bookings", adminverifier, (req, res) => {
 });
 
 // to remove users by backend
-router.delete("/delete/:id", (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
   let username = req.params.id;
-  User.findOneAndDelete({ username: username }, (err, doc) => {
-    book.deleteMany({ username: username });
+  await User.findOneAndDelete({ username: username }, async (err, doc) => {
+    await book.deleteMany({ username: username });
+    await fdb.deleteOne({username: doc.username});
     if (err) {
       console.log(err);
     } else {
-      res.status(200).json({ msg: `user deleted ${username}` });
+      res.status(200).json({ msg: `user deleted ${doc.username}` });
     }
   });
 });

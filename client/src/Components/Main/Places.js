@@ -28,7 +28,7 @@ const Places = () => {
           <PlacesBox
             img={beach}
             btn={true}
-            link="/places/cultural"
+            link="/places/beach"
             place="Beach"
             data="Beach areas are popular types of tourist destinations. Some
             people travel a long way to reach a beach"
