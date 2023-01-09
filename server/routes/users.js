@@ -27,19 +27,13 @@ router.post("/login", async (req, res) => {
   const inname = req.body.username;
   const inpassword = req.body.password;
   const user = await User.findOne({ username: inname });
-  const validPass = await bcrypt.compare(inpassword, user.password);
-  if (validPass) {
-    const id = user.email;
-    const token = jwt.sign({ id }, process.env.ACCESS_TOKEN, {
-      expiresIn: "1d",
-    });
+  if (user && await bcrypt.compare(inpassword, user.password)) {
     const data = {
       username: user.username,
       role: user.role,
       imagegiven: user.imagegiven,
       feedbackgiven: user.feedbackgiven
     }
-    res.cookie("usertoken", token, { httpOnly: true });
     res.status(200).json(data);
   } else {
     res.status(201).json({ error: "User doesn't exist." });
@@ -75,17 +69,12 @@ router.post("/register", async (req, res) => {
     });
     try {
       await newUser.save().then(async (user) => {
-        const id = user.email;
-        const token = jwt.sign({ id }, process.env.ACCESS_TOKEN, {
-          expiresIn: "1d",
-        });
         const data = {
           username: user.username,
           role: user.role,
           imagegiven: user.imagegiven,
           feedbackgiven: user.feedbackgiven
         }
-        res.cookie("usertoken", token, { httpOnly: true });
         res.status(200).json({ success: "Registered Successfully",userL: data });
       });
     } catch (err) {
