@@ -12,7 +12,7 @@ function Components(props) {
       <Img photo={props.photo} alt="image related to place" />
       <div className="place-details">
         <div>
-        <Details to={props.to} details={props.details} />
+        <Details price={props.price} from={props.from} to={props.to} details={props.details} />
         <Rating rate={props.rate} />
         </div>
         <div className="button-holder">

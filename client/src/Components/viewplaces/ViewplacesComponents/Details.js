@@ -6,7 +6,7 @@ function Details(props) {
       <h2>
         {props.from} - {props.to}
       </h2>
-      <h3>Rs.400 per person</h3>
+      <h3>₹{props.price} per person</h3>
       <p>{props.details}</p>
     </div>
   );
