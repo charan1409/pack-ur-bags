@@ -336,6 +336,7 @@ function App() {
                     from={placedata.placeDetails.from}
                     to={placedata.placeDetails.to}
                     details={placedata.placeDetails.status}
+                    price={placedata.placeDetails.price}
                   />
                   <Rating />
                 </div>
