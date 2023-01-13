@@ -77,7 +77,7 @@ router.delete("/delete/:id", async (req, res) => {
   });
 });
 
-router.post("/place/:id", (req, res) => {
+router.post("/place/:id", async(req, res) => {
   if (!req.params.id) {
     res.status(201).json({ error: "error occurred" });
   } else {
@@ -95,7 +95,7 @@ router.post("/place/:id", (req, res) => {
       reviews: [],
       availability: true,
     });
-    User.findOne({ username: username }, (user) => {
+    await User.findOne({ username: username }).then((user) => {
       if(user.role === "admin"){
         newplace.save().then(() => {
           res.status(200).json({ success: "place added Successfully" });
