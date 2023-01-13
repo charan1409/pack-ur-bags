@@ -5,6 +5,7 @@ router.use(cookieparser());
 
 const User = require("../schemas/user");
 const Place = require("../schemas/place");
+const Review = require("../schemas/reviews");
 
 const verifier = require("../routes/verifier");
 
@@ -34,7 +35,13 @@ router.get("/placedetails/:id", async (req, res) => {
     await Place.findOne({ id: placeid },(err,data)=>{
       if(err) res.status(201).json({error: "Some error incurred."});
       else{
-        res.status(200).json(data);
+        Review.find({placeid: placeid}).then((reviews)=> {
+          const totalDetails = {
+            placeDetails: data,
+            reviews: reviews
+          }
+          res.status(200).json(totalDetails);
+        })
       }
     });
   // }

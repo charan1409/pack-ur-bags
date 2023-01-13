@@ -18,7 +18,6 @@ function App() {
   const [placesData,setPlacesData] = useState([]);
   const params=useParams();
   const [category,setCategory]=useState(params.id);
-  console.log(params.id)
   useEffect(()=>{
     axios.get(`http://localhost:9000/places/places/${category}`).then(resp => {
       setPlacesData(resp.data)

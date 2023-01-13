@@ -309,44 +309,56 @@ const navItems = [
 ];
 function App() {
   const navigate = useNavigate();
-  const [placedata, setPlacedata] = useState({});
+  const [placedata, setPlacedata] = useState();
   const { id } = useParams();
   useEffect(() => {
-    axios.get(`http://localhost:9000/places/placedetails/${id}`).then((resp) => {
-      if (resp.status === 200) {
-        setPlacedata(resp.data);
-      } else {
-        navigate("/error");
-      }
-    });
+    axios
+      .get(`http://localhost:9000/places/placedetails/${id}`)
+      .then((resp) => {
+        if (resp.status === 200) {
+          setPlacedata(resp.data);
+        } else {
+          navigate("/error");
+        }
+      });
   }, []);
   return (
     <div>
       <Header user={true} navItems={navItems} />
-      <div className="single-place-details">
-        <div className="place-box">
-          <div className="heading">
-            <Img photo={placedata.photo} />
-            <div className="details">
-              <div className="content">
-                <Place from={placedata.from} to={placedata.to} details={placedata.status} />
-                <Rating />
+      {placedata && (
+        <div className="single-place-details">
+          <div className="place-box">
+            <div className="heading">
+              <Img photo={placedata.placeDetails.photo} />
+              <div className="details">
+                <div className="content">
+                  <Place
+                    from={placedata.placeDetails.from}
+                    to={placedata.placeDetails.to}
+                    details={placedata.placeDetails.status}
+                  />
+                  <Rating />
+                </div>
+                <Link to="/book">
+                  <Btn type="button" value="Book" />
+                </Link>
               </div>
-              <Link to="/book">
-                <Btn type="button" value="Book" />
-              </Link>
             </div>
+            <Info details={placedata.placeDetails.details} />
+            {placedata.reviews.length !== 0 ? (
+              <Review
+                image={placedata.reviews.userimage}
+                username={placedata.reviews.username}
+                review={placedata.reviews.review}
+                type="button"
+                name="Submit"
+              />
+            ) : (
+              <h1>No reviews yet</h1>
+            )}
           </div>
-          <Info details={placedata.details} />
-          <Review
-            image={img}
-            username="kamal"
-            review="perfect place to enjoy this pongal."
-            type="button"
-            name="Submit"
-          />
         </div>
-      </div>
+      )}
     </div>
   );
 }
