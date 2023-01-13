@@ -52,6 +52,7 @@ function App() {
             from={x.from}
             to={x.to}
             details={x.details}
+            price={x.price}
             onClick={() => {
               navigate(`/placedetails/${x.id}`)
             }}
