@@ -45,33 +45,14 @@ function Profile() {
     // eslint-disable-next-line
   }, [counter]);
 
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
-
   const profileHandler = async (e) => {
     if (e.target.files[0]) {
-      // const fd = new FormData();
-      // fd.append("image", e.target.files[0], e.target.files[0].name);
-      // fd.append("email",user.email)
-      // axios.post("http://localhost:9000/profile/upload",fd,{
-      //   headers: {"Content-Type": "multipart/form-data"}
-      // })
-
-      const base64 = await convertToBase64(e.target.files[0]);
-      const fd = {
-        img: base64,
-        email: user.email,
-      };
+      const fd = new FormData();
+      fd.append("image", e.target.files[0], e.target.files[0].name);
+      fd.append("email",user.email)
+      axios.post("http://localhost:9000/profile/upload",fd,{
+        headers: {"Content-Type": "multipart/form-data"}
+      })
       await axios
         .post("http://localhost:9000/profile/upload", fd)
         .then((resp) => {
@@ -119,7 +100,9 @@ function Profile() {
                       type="file"
                       style={{ display: "none" }}
                       ref={hiddenFileInput}
+                      name="image"
                       onChange={profileHandler}
+                      
                     ></input>
                     {user.imagegiven && (
                       <i

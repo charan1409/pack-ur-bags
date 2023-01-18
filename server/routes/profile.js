@@ -109,22 +109,19 @@ router.post("/changepass", async (req, res) => {
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "../public/ProfileImg");
-    console.log("hi");
+    cb(null, "./public/profileImgs");
   },
   filename: function (req, file, callback) {
-    callback(null, Date.now() + path.extname(file.originalname));
+    callback(null, Date.now() + Math.random() + path.extname(file.originalname));
   },
 });
 
 const upload = multer({ storage: storage });
-// use upload.single("image") to store in image in server
-// await User.findOneAndUpdate({ email: email }, { image: req.file.filename });
-router.post("/upload", async (req, res) => {
+router.post("/upload",upload.single("image"), async (req, res) => {
   const email = req.body.email;
   await User.findOneAndUpdate(
     { email: email },
-    { image: req.body.img,imagegiven: true },
+    { image: "http://localhost:9000/profileImgs/"+req.file.filename,imagegiven: true },
     async function (err) {
       if (err) throw err;
       res.status(200).json({ succ: "profile updated successfully." });
