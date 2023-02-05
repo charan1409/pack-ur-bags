@@ -83,7 +83,7 @@ function RegisterForm(props) {
         />
         <InputBox
           placeholder={"email"}
-          leftIcon={"bi bi-envelope-open-fill"}
+          leftIcon={"bi bi-envelope-fill"}
           type={"text"}
           name={"email"}
           value={userinfo.email}

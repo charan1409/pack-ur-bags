@@ -20,12 +20,13 @@ function InputBox(props) {
         name={props.name}
         value={props.value}
         onChange={props.onChange}
+        autoComplete="off"
       ></input>
       <span className="right-icon">
         {props.type === "password" && (
           <i
             className={`bi bi-${
-              passwordType === "password" ? "eye-slash-fill" : "eye-fill"
+              passwordType === "password" ? "eye-slash" : "eye"
             }`}
             onClick={passwordShower}
           ></i>

@@ -11,7 +11,7 @@
 }
 
 .login-container {
-  background-color: rgba(0, 0, 0, 0.807);
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
 .login-container .total-form-container {
@@ -19,12 +19,13 @@
   height: 530px;
   width: 500px;
   transform: translate(-50%,-50%);
-  box-shadow: 1px 1px 20px rgba(251, 251, 251, 0.988);
   animation-name: moving;
   animation-duration: 0.8s;
   top: 55%;
   margin-left: 50%;
-  background-color: rgba(0, 0, 0, 0.422);
+  background-color: rgb(35, 35, 35);
+  border-radius: 15px;
+  overflow: hidden;
 }
 
 .login-container .login-form-container {
@@ -60,7 +61,6 @@
 }
 
 .login-container .login-form-close-btn:hover {
-  background-color: red;
-  color: black;
-  border-radius: 12px;
+  background-color: rgba(255, 0, 0, 0.79);
+  border-radius: 7px;
 }

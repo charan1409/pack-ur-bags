@@ -1,42 +1,42 @@
-.input-box{
-  border: 2px solid rgba(0, 0, 0, 0.5);
-  border-radius: 6px;
-  padding: 0%;
-  overflow: hidden;
-  background-color: whitesmoke;
-  height: 40px;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 40px 300px auto;
-  margin: 10px 0px;
+.input-box {
+  position: relative;
 }
 
-.input-box input{
-  border: none;
+.input-box input {
+  box-sizing: border-box;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
   outline: none;
   background: none;
   text-transform: none;
-  height: 100%;
-  width: 100%;
+  height: 50px;
+  width: 370px;
   line-height: 100%;
   font-size: 18px;
-  padding: 2px 5px;
+  padding-left: 45px;
+  color: #fff;
+  margin: 10px 0px;
+  transition: 0.3s;
 }
 
 .input-box .left-icon {
+  position: absolute;
   font-size: 30px;
-  background-color: #fac102;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  color: rgba(255, 255, 255, 0.7);
+  left: 7px;
+  top: 15px;
 }
 
 .input-box .right-icon {
+  position: absolute;
   font-size: 21px;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  right: 10px;
+  top: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.input-box input:focus {
+  border: 2px solid var(--orange);
+  box-shadow: 0 0 8px 0 var(--orange);
 }
