@@ -9,7 +9,7 @@ import "./AddPlaces.css";
 function AddPlaces() {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
-  const days = ["Three", "Five","Both"];
+  const days = ["Three", "Five", "Both"];
   const busType = ["AC", "NON-AC", "Both"];
   const navItems = [
     {
@@ -44,48 +44,36 @@ function AddPlaces() {
     setplaceinfo(nextFieldState);
   };
 
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
-
   const submitHandler = async (e) => {
     e.preventDefault();
-    const base64 = await convertToBase64(image);
-    const newplace = {
-      id: new Date().valueOf(),
-      from: placeinfo.from,
-      to: placeinfo.to,
-      price: placeinfo.price,
-      details: placeinfo.details,
-      category: placeinfo.category,
-      busType: placeinfo.busType,
-      days: placeinfo.days,
-      image: base64,
-    };
-    axios.post(`http://localhost:9000/admins/place/${user.username}`, newplace).then((resp) => {
-      if (resp.status === 200) {
-        setplaceinfo({
-          from: "",
-          to: "",
-          price: "",
-          details: "",
-          category: "",
-        });
-        setImage();
-        alert(resp.data.success);
-      } else {
-        navigate("/error")
-      }
-    });
+    const fd = new FormData();
+    fd.append("id", new Date().valueOf() + Math.floor(Math.random() * 10));
+    fd.append("from", placeinfo.from);
+    fd.append("to", placeinfo.to);
+    fd.append("details", placeinfo.details);
+    fd.append("category", placeinfo.category);
+    fd.append("busType", placeinfo.busType);
+    fd.append("days", placeinfo.days);
+    fd.append("photo", image);
+    axios
+      .post(`http://localhost:9000/admins/place/${user.username}`, fd, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((resp) => {
+        if (resp.status === 200) {
+          setplaceinfo({
+            from: "",
+            to: "",
+            price: "",
+            details: "",
+            category: "",
+          });
+          setImage();
+          alert(resp.data.success);
+        } else {
+          navigate("/error");
+        }
+      });
   };
   return (
     <div>
@@ -143,6 +131,7 @@ function AddPlaces() {
           <input
             placeholder="choose picture"
             type="file"
+            name="photo"
             onChange={(e) => setImage(e.target.files[0])}
           />
           <Btn type="submit" value="Add" />

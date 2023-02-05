@@ -63,7 +63,7 @@ router.post("/register", async (req, res) => {
       email: inemail,
       password: hashPassword,
       role: role,
-      image: process.env.DEFAULT_IMAGE,
+      image: "http://localhost:9000/profileImgs/default.png",
       imagegiven: false,
       feedbackgiven: false,
     });

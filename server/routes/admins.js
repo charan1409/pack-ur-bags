@@ -6,6 +6,8 @@ const jwt = require("jsonwebtoken");
 const cookieparser = require("cookie-parser");
 router.use(cookieparser());
 const url = require("url");
+const multer = require('multer');
+const path = require("path");
 
 const book = require("../schemas/book");
 const User = require("../schemas/user");
@@ -17,16 +19,6 @@ const adminverifier = require("../routes/adminverifier");
 // table data of users for admin
 router.get("/users", (req, res) => {
   let role = url.parse(req.url, true).query.role;
-  //   let email = req.user.id;
-  //   Admin.findOne({ email: email }).then((user) => {
-  //     User.find({}, (err, data) => {
-  //       if (data) {
-  //         res.render("users", { user, model: data });
-  //       } else {
-  //         console.log(err);
-  //       }
-  //     });
-  //   });
   User.find({ role: role }, (err, data) => {
     if (data) {
       res.status(200).json(data);
@@ -77,7 +69,18 @@ router.delete("/delete/:id", async (req, res) => {
   });
 });
 
-router.post("/place/:id", async(req, res) => {
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, './public/places')
+  },
+  filename: function (req, file, callback) {
+      callback(null, Date.now() + Math.floor(Math.random() * 10) + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({storage:storage})
+
+router.post("/place/:id",upload.single('photo'), async(req, res) => {
   if (!req.params.id) {
     res.status(201).json({ error: "error occurred" });
   } else {
@@ -86,7 +89,7 @@ router.post("/place/:id", async(req, res) => {
       id: req.body.id,
       from: req.body.from,
       to: req.body.to,
-      photo: req.body.image,
+      photo: "http://localhost:9000/places/"+req.file.filename,
       price: req.body.price,
       details: req.body.details,
       category: req.body.category,
