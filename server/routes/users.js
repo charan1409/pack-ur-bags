@@ -14,9 +14,21 @@ router.use(cookieparser());
 router.get("/loguser/:id", async (req, res) => {
   const inname = req.params.id;
   const user = await User.findOne({ username: inname });
+  const temp = {
+    id: user.id,
+    username: user.username,
+    email: user.email,
+    role: user.role,
+    image: "http://localhost:9000/profileImgs/"+user.image,
+    imagegiven: user.imagegiven,
+    gender: user.gender,
+    name: user.name,
+    phonenumber: user.phonenumber,
+    feedbackgiven: user.feedbackgiven
+  }
   const fd = await FeedBack.findOne({username: inname});
   const data = {
-    user:user,
+    user:temp,
     fd:fd
   }
   res.status(200).json(data);
@@ -63,7 +75,7 @@ router.post("/register", async (req, res) => {
       email: inemail,
       password: hashPassword,
       role: role,
-      image: "http://localhost:9000/profileImgs/default.png",
+      image: "default.png",
       imagegiven: false,
       feedbackgiven: false,
     });

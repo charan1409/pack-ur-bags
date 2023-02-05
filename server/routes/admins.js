@@ -8,6 +8,7 @@ router.use(cookieparser());
 const url = require("url");
 const multer = require('multer');
 const path = require("path");
+const fs = require("fs");
 
 const book = require("../schemas/book");
 const User = require("../schemas/user");
@@ -59,6 +60,8 @@ router.get("/bookings", adminverifier, (req, res) => {
 router.delete("/delete/:id", async (req, res) => {
   let username = req.params.id;
   await User.findOneAndDelete({ username: username }, async (err, doc) => {
+    const prof = doc.image
+    if(prof !== "default.png") fs.unlink(prof)
     await book.deleteMany({ username: username });
     await fdb.deleteOne({username: doc.username});
     if (err) {

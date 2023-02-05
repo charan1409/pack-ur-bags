@@ -12,24 +12,6 @@ const book = require("../schemas/book");
 
 const verifier = require("../routes/verifier");
 
-router.get("/profile", verifier, (req, res) => {
-  const email = req.user.id;
-  User.findOne({ email: email }).then(async (user) => {
-    book.find({ email: email }).then((bookings) => {
-      res.render("profile", { user, model: bookings });
-    });
-  });
-});
-
-router.get("/edit", verifier, (req, res) => {
-  const email = req.user.id;
-  let edit = [];
-  User.findOne({ email: email }).then((user) => {
-    edit.push({ msg: "Edit Your Profile" });
-    res.render("editprofile", { user, edit });
-  });
-});
-
 router.get("/changepass", verifier, (req, res) => {
   const email = req.user.id;
   let change = [];
@@ -121,7 +103,7 @@ router.post("/upload",upload.single("image"), async (req, res) => {
   const email = req.body.email;
   await User.findOneAndUpdate(
     { email: email },
-    { image: "http://localhost:9000/profileImgs/"+req.file.filename,imagegiven: true },
+    { image: req.file.filename,imagegiven: true },
     async function (err) {
       if (err) throw err;
       res.status(200).json({ succ: "profile updated successfully." });
