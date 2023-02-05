@@ -23,7 +23,7 @@
   animation-duration: 0.8s;
   top: 55%;
   margin-left: 50%;
-  background-color: rgb(35, 35, 35);
+  background-color: rgba(35, 35, 35, 0.7);
   border-radius: 15px;
   overflow: hidden;
 }
