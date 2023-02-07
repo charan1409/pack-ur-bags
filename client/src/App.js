@@ -8,7 +8,7 @@ import Index from "./Components/Main/Index";
 import ViewPlace from "./Components/viewplaces/ViewPlace";
 import PlaceDetails from "./Components/PlacesHotel/PlaceDetails";
 import Book from "./Components/Book/Book";
-import Payment from "./Components/Pay/Payment";
+import Payment from "./Components/PaymentGateway/Payment";
 import Error from "./Components/ErrorPage/Error";
 import Profile from "./Components/ProfilePage/Profile";
 import Tours from "./Components/MyTours/Tour";

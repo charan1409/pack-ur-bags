@@ -20,11 +20,6 @@ const Payment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // alert(`The Card Number Entered is: ${number}`);
-    // alert(`The Name Entered is: ${name}`);
-    // alert(`The Month Entered is: ${month}`);
-    // alert(`The Year Entered is: ${year}`);
-    // alert(`The CVV Entered is: ${cvv}`);
     alert(`Payment Successful`);
 
     const payment_data = {
