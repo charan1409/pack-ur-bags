@@ -12,6 +12,21 @@ const navItems = [
     path: "/index",
     
   },
+  {
+    title: "Gallery",
+    path: "/index/#gallery",
+    
+  },
+  {
+    title: "Places",
+    path: "/places/all",
+    
+  },
+  {
+    title: "Services",
+    path: "/index/#services",
+    
+  }
 ];
 function App() {
   const navigate = useNavigate();
@@ -24,7 +39,7 @@ function App() {
     })
   },[category])
   return (
-    <div>
+    <div className="viewAllPlaces">
       <Header user={true} navItems={navItems}/>
       <div className="head">
         <Heading category="Places" />

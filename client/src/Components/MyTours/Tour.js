@@ -9,7 +9,23 @@ const Tours = () => {
     {
       title: "Home",
       path: "/index",
+      
     },
+    {
+      title: "Gallery",
+      path: "/index/#gallery",
+      
+    },
+    {
+      title: "Places",
+      path: "/places/all",
+      
+    },
+    {
+      title: "Services",
+      path: "/index/#services",
+      
+    }
   ];
 
   const [tours, setTours] = useState([]);

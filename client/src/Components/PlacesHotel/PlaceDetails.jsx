@@ -17,7 +17,23 @@ const navItems = [
   {
     title: "Home",
     path: "/index",
+    
   },
+  {
+    title: "Gallery",
+    path: "/index/#gallery",
+    
+  },
+  {
+    title: "Places",
+    path: "/places/all",
+    
+  },
+  {
+    title: "Services",
+    path: "/index/#services",
+    
+  }
 ];
 function App() {
   const navigate = useNavigate();
