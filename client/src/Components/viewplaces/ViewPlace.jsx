@@ -48,7 +48,7 @@ function App() {
       <div className="head">
         <Heading category="Places" />
         {params.id === "all" ? (
-          <div>
+          <div className="allselect">
             <label htmlFor="places">
               Sort by:
               <select
