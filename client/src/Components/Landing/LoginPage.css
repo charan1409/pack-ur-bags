@@ -7,11 +7,11 @@
   right: 0;
   bottom: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 6;
 }
 
 .login-container {
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .login-container .total-form-container {
