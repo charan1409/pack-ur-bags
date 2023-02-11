@@ -13,6 +13,9 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
+import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../actions/actions";
 
 const navItems = [
   {
@@ -32,11 +35,19 @@ const navItems = [
     path: "/index/#services",
   },
 ];
-function App() {
+function App(props) {
   const navigate = useNavigate();
   const [placedata, setPlacedata] = useState();
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const userL = JSON.parse(localStorage.getItem("user"));
+  if(! props.username.username){
+    axios.get(`http://localhost:9000/users/loguser/${userL.username}`)
+          .then(async (resp) => {
+            dispatch(actionCreators.username(resp.data));
+          }) 
+  }
   useEffect(() => {
     axios
       .get(`http://localhost:9000/places/placedetails/${id}`)
@@ -96,4 +107,9 @@ function App() {
     </div>
   );
 }
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    username: state.username,
+  };
+};
+export default connect(mapStateToProps)(App);

@@ -4,6 +4,10 @@ import photo from "../viewplaces/places/beach/barefoot.jpg";
 import Form from "./Form";
 import "./book.css";
 import Header from "../Navbar/Header";
+import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../actions/actions";
+import axios from "axios";
 
 const navItems = [
   {
@@ -27,7 +31,16 @@ const navItems = [
     
   }
 ];
-function App() {
+
+function App(props) {
+  const dispatch = useDispatch();
+  const userL = JSON.parse(localStorage.getItem("user"));
+  if(! props.username.username){
+    axios.get(`http://localhost:9000/users/loguser/${userL.username}`)
+          .then(async (resp) => {
+            dispatch(actionCreators.username(resp.data));
+          }) 
+  }
   return (
     <div className="book">
       <Header user={true} navItems={navItems} />
@@ -54,4 +67,9 @@ function App() {
     </div>
   );
 }
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    username: state.username,
+  };
+};
+export default connect(mapStateToProps)(App);

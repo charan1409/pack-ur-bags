@@ -10,6 +10,11 @@ import Services from "./Services";
 import Review from "./Review";
 import Feedback from "./Feedback";
 import Footer from "./Footer";
+import { connect } from "react-redux";
+import axios from "axios";
+import { actionCreators } from "../../actions/actions";
+import { useDispatch } from "react-redux";
+
 
 const Index = (props) => {
   const navItems = [
@@ -38,6 +43,14 @@ const Index = (props) => {
       path: "#review",
     }
   ];
+  const dispatch = useDispatch();
+  const userL = JSON.parse(localStorage.getItem("user"));
+  if(! props.username.username){
+    axios.get(`http://localhost:9000/users/loguser/${userL.username}`)
+          .then(async (resp) => {
+            dispatch(actionCreators.username(resp.data));
+          }) 
+  }
   return (
     <div>
       <Upward />
@@ -53,5 +66,9 @@ const Index = (props) => {
     </div>
   );
 };
-
-export default Index;
+const mapStateToProps = (state) => {
+  return {
+    username: state.username,
+  };
+};
+export default connect(mapStateToProps)(Index);

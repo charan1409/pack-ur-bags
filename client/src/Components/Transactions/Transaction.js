@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 import Header from "../Navbar/Header";
 import { store1 } from "../../App.js";
 import "./Trans.css";
+import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../actions/actions";
+import axios from "axios";
 
-const Transaction = () => {
+const Transaction = (props) => {
   const { trans, setTrans } = useContext(store1);
 
   const removeItems = (key) => {
@@ -18,6 +22,14 @@ const Transaction = () => {
       path: "/index",
     },
   ];
+  const dispatch = useDispatch();
+  const userL = JSON.parse(localStorage.getItem("user"));
+  if(! props.username.username){
+    axios.get(`http://localhost:9000/users/loguser/${userL.username}`)
+          .then(async (resp) => {
+            dispatch(actionCreators.username(resp.data));
+          }) 
+  }
 
   return (
     <div>
@@ -60,5 +72,9 @@ const Transaction = () => {
     </div>
   );
 };
-
-export default Transaction;
+const mapStateToProps = (state) => {
+  return {
+    username: state.username,
+  };
+};
+export default connect(mapStateToProps)(Transaction);

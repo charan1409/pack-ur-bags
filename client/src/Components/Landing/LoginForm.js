@@ -42,7 +42,10 @@ function Form(props) {
           console.log(resp.data);
           const user = resp.data
           localStorage.setItem("user", JSON.stringify(user));
-          dispatch(actionCreators.username(user));
+          axios.get(`http://localhost:9000/users/loguser/${user.username}`)
+          .then(async (resp) => {
+            dispatch(actionCreators.username(resp.data));
+          }) 
           if (user.role === "admin" || user.role === "root") {
             navigate("/admin");
           } else {

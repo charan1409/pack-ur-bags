@@ -35,7 +35,7 @@ function Profile() {
       .then(async (resp) => {
         console.log(resp.data);
         localStorage.setItem("user", JSON.stringify(resp.data.user));
-        dispatch(actionCreators.username(user));
+        dispatch(actionCreators.username(resp.data));
         setFd(resp.data.fd)
         return setUser(resp.data.user);
       });

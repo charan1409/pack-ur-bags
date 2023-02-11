@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import Header from "../Navbar/Header";
 import "./Tour.css";
 import axios from "axios";
+import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../actions/actions";
 
-const Tours = () => {
+const Tours = (props) => {
   const navItems = [
     {
       title: "Home",
@@ -30,6 +33,13 @@ const Tours = () => {
 
   const [tours, setTours] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
+  const dispatch = useDispatch();
+  if(! props.username.username){
+    axios.get(`http://localhost:9000/users/loguser/${user.username}`)
+          .then(async (resp) => {
+            dispatch(actionCreators.username(resp.data));
+          }) 
+  }
 
   useEffect(() => {
     axios.get(`http://localhost:3001/users/${user.id}`).then((res) => {
@@ -112,4 +122,9 @@ const Tours = () => {
   );
 };
 
-export default Tours;
+const mapStateToProps = (state) => {
+  return {
+    username: state.username,
+  };
+};
+export default connect(mapStateToProps)(Tours);
