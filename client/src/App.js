@@ -16,14 +16,9 @@ import Transaction from "./Components/Transactions/Transaction";
 import Admin from "./Components/Admin/Admin";
 import Addadmin from "./Components/Admin/Addadmin";
 import AddPlaces from "./Components/Admin/AddPlaces";
+import store from "./store.js";
 import { Provider } from "react-redux";
-import { legacy_createStore as createStore } from "redux";
-import change from "./Redux/counter";
 export const store1 = createContext();
-const store = createStore(
-  change,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
 function App() {
   return (
     <>

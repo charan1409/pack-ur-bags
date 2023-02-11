@@ -6,7 +6,7 @@ import Edityourprofile from "./Edityourprofile";
 import ChangePassword from "./ChangePassword";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { add } from "../../Redux/action";
+import { actionCreators } from "../../actions/actions";
 import { useDispatch } from "react-redux";
 
 function change_pass() {
@@ -35,6 +35,7 @@ function Profile() {
       .then(async (resp) => {
         console.log(resp.data);
         localStorage.setItem("user", JSON.stringify(resp.data.user));
+        dispatch(actionCreators.username(user));
         setFd(resp.data.fd)
         return setUser(resp.data.user);
       });
@@ -57,7 +58,7 @@ function Profile() {
         .post("http://localhost:9000/profile/upload", fd)
         .then((resp) => {
           if (resp.status === 200) {
-            dispatch(add());
+            dispatch(actionCreators.add());
             alert(resp.data.succ);
           }
         });
@@ -71,7 +72,7 @@ function Profile() {
       .post("http://localhost:9000/profile/remove", fd)
       .then((resp) => {
         if (resp.status === 200) {
-          dispatch(add());
+          dispatch(actionCreators.add());
           alert(resp.data.succ);
         }
       });

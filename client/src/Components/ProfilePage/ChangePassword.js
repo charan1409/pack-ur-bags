@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { add } from "../../Redux/action";
+import { actionCreators } from "../../actions/actions";
 import { useDispatch } from "react-redux";
 
 function ChangePassword() {
@@ -33,7 +33,7 @@ function ChangePassword() {
         .then((resp) => {
           if (resp.status !== 200) alert(resp.data.error);
           else {
-            dispatch(add());
+            dispatch(actionCreators.add());
             setPassword({
               email: user.email,
               oldpassword: "",

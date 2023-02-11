@@ -5,8 +5,11 @@ import InputBox from "./InputBox";
 import Btn from "../Btn";
 import Error from "./LogError";
 import axios from "axios";
+import { actionCreators } from "../../actions/actions";
+import { useDispatch } from "react-redux";
 
 function Form(props) {
+  const dispatch = useDispatch();
   const [loginError, setLoginError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
     username: "",
@@ -39,6 +42,7 @@ function Form(props) {
           console.log(resp.data);
           const user = resp.data
           localStorage.setItem("user", JSON.stringify(user));
+          dispatch(actionCreators.username(user));
           if (user.role === "admin" || user.role === "root") {
             navigate("/admin");
           } else {
