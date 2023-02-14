@@ -69,7 +69,8 @@ function App(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    username: state.username,
+    user: state.user,
+    tour:state.tour
   };
 };
 export default connect(mapStateToProps)(App);

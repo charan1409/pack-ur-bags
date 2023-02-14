@@ -1,7 +1,7 @@
 
 const initialState = {
     user: {},
-    tours: []
+    tours: {}
   };
   function change(state = initialState, action) {
     switch (action.type) {

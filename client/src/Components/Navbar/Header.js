@@ -11,12 +11,12 @@ const Header = (props) => {
     <div className="header">
       <div id="menu-bar" className="fas fa-bars"></div>
 
-      {props.user ? (
+      {user.role==="user" ? (
         <Link to="/index" className="logo">
           <span>P</span>ACK <span>U</span>R <span>B</span>AGS
         </Link>
       ) : (
-        <Link className="logo">
+        <Link to="/admin" className="logo">
           <span>P</span>ACK <span>U</span>R <span>B</span>AGS
         </Link>
       )}
