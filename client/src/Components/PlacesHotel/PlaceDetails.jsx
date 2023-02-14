@@ -7,7 +7,6 @@ import Rating from "../viewplaces/ViewplacesComponents/Rating";
 import Info from "./Info";
 import Review from "./Review";
 import Header from "../Navbar/Header";
-import img from "../viewplaces/img.jpg";
 import Btn from "../Btn";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -59,7 +58,7 @@ function App(props) {
           navigate("/error");
         }
       });
-  }, []);
+  }, [id,navigate]);
   return (
     <div>
       <Header user={true} navItems={navItems} />

@@ -94,6 +94,7 @@ function App(props) {
             {placesData &&
               placesData.map((x) => (
                 <Components
+                  key={x.id}
                   photo={x.photo}
                   from={x.from}
                   to={x.to}
