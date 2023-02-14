@@ -42,10 +42,10 @@ function App(props) {
   const { id } = useParams();
   const dispatch = useDispatch();
   const userL = JSON.parse(localStorage.getItem("user"));
-  if(! props.username.username){
+  if(! props.user){
     axios.get(`http://localhost:9000/users/loguser/${userL.username}`)
           .then(async (resp) => {
-            dispatch(actionCreators.username(resp.data));
+            dispatch(actionCreators.user(resp.data));
           }) 
   }
   useEffect(() => {
@@ -109,7 +109,7 @@ function App(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    username: state.username,
+    user: state.user,
   };
 };
 export default connect(mapStateToProps)(App);

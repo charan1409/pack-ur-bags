@@ -34,10 +34,10 @@ const Tours = (props) => {
   const [tours, setTours] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
-  if(! props.username.username){
+  if(! props.user){
     axios.get(`http://localhost:9000/users/loguser/${user.username}`)
           .then(async (resp) => {
-            dispatch(actionCreators.username(resp.data));
+            dispatch(actionCreators.user(resp.data));
           }) 
   }
 

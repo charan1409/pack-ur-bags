@@ -4,10 +4,10 @@ import "./clientprofile.css";
 import Tabledata from "./Tabledata";
 import Edityourprofile from "./Edityourprofile";
 import ChangePassword from "./ChangePassword";
-import { useSelector } from "react-redux";
 import axios from "axios";
 import { actionCreators } from "../../actions/actions";
 import { useDispatch } from "react-redux";
+import { connect } from "react-redux";
 
 function change_pass() {
   const modalBg = document.querySelector(".pass-modal-bg");
@@ -20,13 +20,13 @@ const navItems = [
     path: "/index",
   },
 ];
-function Profile() {
+function Profile(props) {
   const dispatch = useDispatch();
   const hiddenFileInput = useRef(null);
-  const counter = useSelector((state) => state.value);
+  const userval = props.user.user.user;
   const [user, setUser] = useState({});
-  const [fd,setFd] = useState({})
-  const [edit,setEdit] = useState(false)
+  const [fd, setFd] = useState({})
+  const [edit, setEdit] = useState(false)
   // eslint-disable-next-line
   const userL = JSON.parse(localStorage.getItem("user"));
   const fetchData = async () => {
@@ -35,7 +35,7 @@ function Profile() {
       .then(async (resp) => {
         console.log(resp.data);
         localStorage.setItem("user", JSON.stringify(resp.data.user));
-        dispatch(actionCreators.username(resp.data));
+        dispatch(actionCreators.user(resp.data));
         setFd(resp.data.fd)
         return setUser(resp.data.user);
       });
@@ -44,21 +44,24 @@ function Profile() {
     fetchData();
     setEdit(false)
     // eslint-disable-next-line
-  }, [counter]);
+  }, []);
 
   const profileHandler = async (e) => {
     if (e.target.files[0]) {
       const fd = new FormData();
       fd.append("image", e.target.files[0], e.target.files[0].name);
-      fd.append("email",user.email)
-      axios.post("http://localhost:9000/profile/upload",fd,{
-        headers: {"Content-Type": "multipart/form-data"}
+      fd.append("email", userval.email)
+      axios.post("http://localhost:9000/profile/upload", fd, {
+        headers: { "Content-Type": "multipart/form-data" }
       })
       await axios
         .post("http://localhost:9000/profile/upload", fd)
         .then((resp) => {
           if (resp.status === 200) {
-            dispatch(actionCreators.add());
+            axios.get(`http://localhost:9000/users/loguser/${userL.username}`)
+              .then(async (response) => {
+                dispatch(actionCreators.user(response.data));
+              })
             alert(resp.data.succ);
           }
         });
@@ -66,13 +69,16 @@ function Profile() {
   };
   const imgDeleteHandler = async () => {
     const fd = {
-      email: user.email,
+      email: userval.email,
     };
     await axios
       .post("http://localhost:9000/profile/remove", fd)
       .then((resp) => {
         if (resp.status === 200) {
-          dispatch(actionCreators.add());
+          axios.get(`http://localhost:9000/users/loguser/${userL.username}`)
+            .then(async (response) => {
+              dispatch(actionCreators.user(response.data));
+            })
           alert(resp.data.succ);
         }
       });
@@ -103,7 +109,7 @@ function Profile() {
                       ref={hiddenFileInput}
                       name="image"
                       onChange={profileHandler}
-                      
+
                     ></input>
                     {user.imagegiven && (
                       <i
@@ -116,23 +122,23 @@ function Profile() {
               </div>
               <div className="_right">
                 {edit ? <div className="edit-form">
-          <h2>edit your profile</h2>
-          <Edityourprofile username="User" />
-          <span onClick={() => setEdit(false)}>x</span>
-        </div>:
-                <table>
-                <Tabledata heading={"Username:"} data={user.username} />
-                <Tabledata heading={"Name:"} data={user.name} />
-                <Tabledata heading={"Email:"} data={user.email} />
-                <Tabledata heading={"Gender:"} data={user.gender} />
-                <Tabledata
-                  heading={"Phone Number:"}
-                  data={user.phonenumber}
-                />
-              </table>}
+                  <h2>edit your profile</h2>
+                  <Edityourprofile username="User" />
+                  <span onClick={() => setEdit(false)}>x</span>
+                </div> :
+                  <table>
+                    <Tabledata heading={"Username:"} data={userval.username} />
+                    <Tabledata heading={"Name:"} data={userval.name} />
+                    <Tabledata heading={"Email:"} data={userval.email} />
+                    <Tabledata heading={"Gender:"} data={userval.gender} />
+                    <Tabledata
+                      heading={"Phone Number:"}
+                      data={userval.phonenumber}
+                    />
+                  </table>}
                 <div className="btns">
                   {!edit && <button className="btn_profile" onClick={() => setEdit(true
-                    )}>
+                  )}>
                     edit profile
                   </button>}
                   <button className="btn_profile" onClick={change_pass}>
@@ -152,7 +158,7 @@ function Profile() {
           </div>
           <hr style={{ height: "1px", backgroundColor: "black" }} />
           <div className="user-feedback">
-            <h2>{fd ? fd.feedback : "Your submitted feedback will appear here." }</h2>
+            <h2>{fd ? fd.feedback : "Your submitted feedback will appear here."}</h2>
           </div>
           <hr style={{ height: "1px", backgroundColor: "black" }} />
           <div className="user-reviews">
@@ -171,4 +177,10 @@ function Profile() {
   );
 }
 
-export default Profile;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(Profile);

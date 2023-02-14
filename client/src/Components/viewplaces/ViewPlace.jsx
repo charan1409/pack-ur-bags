@@ -37,10 +37,10 @@ function App(props) {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const userL = JSON.parse(localStorage.getItem("user"));
-  if(! props.username.username){
+  if(! props.user){
     axios.get(`http://localhost:9000/users/loguser/${userL.username}`)
           .then(async (resp) => {
-            dispatch(actionCreators.username(resp.data));
+            dispatch(actionCreators.user(resp.data));
           }) 
   }
 

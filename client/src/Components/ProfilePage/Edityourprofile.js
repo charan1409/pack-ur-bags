@@ -35,7 +35,10 @@ function Edityourprofile(props) {
         .then((resp) => {
           if (resp.status !== 200) alert(resp.data.error);
           else {
-            dispatch(actionCreators.add());
+            axios.get(`http://localhost:9000/users/loguser/${user.username}`)
+            .then(async (response) => {
+              dispatch(actionCreators.user(response.data));
+            })
             alert(resp.data.succ);
             // const modalBg = document.querySelector(".modal-bg");
             // modalBg.classList.toggle("bg-active");
