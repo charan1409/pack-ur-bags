@@ -14,8 +14,8 @@ const Payment = () => {
 
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
-  const [month, setMonth] = useState("01");
-  const [year, setYear] = useState("2021");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
   const [cvv, setCvv] = useState("");
 
   const handleSubmit = (e) => {
@@ -46,8 +46,19 @@ const Payment = () => {
 
   function number_space() {
     var str = number;
-    var res = str.replace(/(.{4})/g, "$1 ");
-    return res;
+    var length = str.length;
+    var replacedStr = "";
+    if (length < 12) {
+      // Replace all characters with '#' except for spaces
+      replacedStr = str.replace(/[^ ]/g, "#");
+    } else {
+      // Replace only the first 15 characters with '#' except for spaces
+      var firstPart = str.substring(0, 12);
+      var secondPart = str.substring(12, length);
+      firstPart = firstPart.replace(/[^ ]/g, "#");
+      replacedStr = firstPart + secondPart;
+    }
+    return replacedStr.replace(/(.{4})/g, "$1 ");
   }
 
   const navItems = [
@@ -60,175 +71,174 @@ const Payment = () => {
   return (
     <>
       <Header user={true} navItems={navItems} />
-      <div className="container">
-        <div className="card-container">
-          <div className="front">
-            <div className="image">
-              <img src={img1} alt="" />
-              <img src={img2} alt="" />
-            </div>
-            <div className="card-number-box">
-              {number.length === 0 ? "#### #### #### ####" : number_space()}
-            </div>
-            <div className="flexbox">
-              <div className="box">
-                <span>card holder</span>
-                <div className="card-holder-name">
-                  {name.length === 0 ? "full name" : name}
-                </div>
-              </div>
-              <div className="box">
-                <span>expires</span>
-                <div className="expiration">
-                  <span className="exp-month" style={{ marginRight: "10px" }}>
-                    {month.length === 0 ? "mm" : month}
-                  </span>
-                  <span className="exp-year">
-                    {year.length === 0 ? "yy" : year}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="back">
-            <div className="stripe"></div>
-            <div className="box">
-              <span>{cvv.length === 0 ? "cvv" : cvv}</span>
-              <div className="cvv-box"></div>
-              <img src={img2} alt="" />
-            </div>
+      <div className="payment-container">
+        <div className="bill-container">
+          <div className="bill">
+            <h2>BILL</h2>
+            <h3>From</h3>
+            <h3>To</h3>
+            <h3>Number of days</h3>
+            <h3>Total passengers</h3>
+            <h3>Price per passenger</h3>
+            <h2>Total Price</h2>
           </div>
         </div>
+        <div className="container">
+          <div className="card-container">
+            <div className="front">
+              <div className="image">
+                <img src={img1} alt="" />
+                <img src={img2} alt="" />
+              </div>
+              <div className="card-number-box">
+                {number.length === 0 ? "#### #### #### ####" : number_space()}
+              </div>
+              <div className="flexbox">
+                <div className="box">
+                  <span>card holder</span>
+                  <div className="card-holder-name">
+                    {name.length === 0 ? "FULL NAME" : name}
+                  </div>
+                </div>
+                <div className="box">
+                  <span>expires</span>
+                  <div className="expiration">
+                    <span className="exp-month" style={{ marginRight: "10px" }}>
+                      {month.length === 0 ? "MM" : month}
+                    </span>
+                    <span className="exp-year">
+                      {year.length === 0 ? "YYYY" : year}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <form onSubmit={handleSubmit}>
-          {/* <div className="inputBox">
-            <span>Amount</span>
-            <input
-              type="number"
-              name="number"
-              className="card-number-input"
-              required
-            />
-          </div> */}
-          <div className="inputBox">
-            <span>card number</span>
-            <input
-              type="number"
-              name="number"
-              maxLength="16"
-              className="card-number-input"
-              required
-              value={number}
-              onChange={(x) => {
-                // console.log(x.target.value);
-                return setNumber(x.target.value);
-              }}
-            />
-          </div>
-          <div className="inputBox">
-            <span>card holder</span>
-            <input
-              type="text"
-              name="holder"
-              className="card-holder-input"
-              required
-              value={name}
-              onChange={(x) => {
-                // console.log(x.target.value);
-                return setName(x.target.value);
-              }}
-            />
-          </div>
-          <div className="flexbox">
-            <div className="inputBox">
-              <span>expiration month</span>
-              <select
-                name="expmon"
-                id=""
-                className="month-input"
-                required
-                value={month}
-                onChange={(x) => {
-                  // console.log(x.target.value);
-                  return setMonth(x.target.value);
-                }}
-              >
-                <option value="month" disabled>
-                  month
-                </option>
-                <option value="01">01</option>
-                <option value="02">02</option>
-                <option value="03">03</option>
-                <option value="04">04</option>
-                <option value="05">05</option>
-                <option value="06">06</option>
-                <option value="07">07</option>
-                <option value="08">08</option>
-                <option value="09">09</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-              </select>
+            <div className="back">
+              <div className="stripe"></div>
+              <div className="box">
+                <span>{cvv.length === 0 ? "cvv" : cvv}</span>
+                <div className="cvv-box"></div>
+                <img src={img2} alt="" />
+              </div>
             </div>
+          </div>
+
+          <form onSubmit={handleSubmit}>
             <div className="inputBox">
-              <span>expiration year</span>
-              <select
-                name="expyear"
-                id=""
-                className="year-input"
-                required
-                value={year}
-                onChange={(x) => {
-                  // console.log(x.target.value);
-                  return setYear(x.target.value);
-                }}
-              >
-                <option value="year" disabled>
-                  year
-                </option>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
-                <option value="2023">2023</option>
-                <option value="2024">2024</option>
-                <option value="2025">2025</option>
-                <option value="2026">2026</option>
-                <option value="2027">2027</option>
-                <option value="2028">2028</option>
-                <option value="2029">2029</option>
-                <option value="2030">2030</option>
-              </select>
-            </div>
-            <div className="inputBox">
-              <span>cvv</span>
+              <span>card number</span>
               <input
                 type="text"
-                name="cvv"
-                maxLength="4"
-                className="cvv-input"
+                name="number"
+                maxLength="16"
+                className="card-number-input"
                 required
-                value={cvv}
+                value={number}
                 onChange={(x) => {
-                  // console.log(x.target.value);
-                  return setCvv(x.target.value);
-                }}
-                onMouseEnter={() => {
-                  document.querySelector(".front").style.transform =
-                    "perspective(1000px) rotateY(-180deg)";
-                  document.querySelector(".back").style.transform =
-                    "perspective(1000px) rotateY(0deg)";
-                }}
-                onMouseLeave={() => {
-                  document.querySelector(".front").style.transform =
-                    "perspective(1000px) rotateY(0deg)";
-                  document.querySelector(".back").style.transform =
-                    "perspective(1000px) rotateY(180deg)";
+                  return setNumber(x.target.value);
                 }}
               />
             </div>
-          </div>
-          <input type="submit" value="Pay" className="submit-btn" />
-        </form>
+            <div className="inputBox">
+              <span>card holder</span>
+              <input
+                type="text"
+                name="holder"
+                className="card-holder-input"
+                required
+                value={name}
+                onChange={(x) => {
+                  return setName(x.target.value);
+                }}
+              />
+            </div>
+            <div className="flexbox">
+              <div className="inputBox">
+                <span>expiration month</span>
+                <select
+                  name="expmon"
+                  id=""
+                  className="month-input"
+                  required
+                  value={month}
+                  onChange={(x) => {
+                    return setMonth(x.target.value);
+                  }}
+                >
+                  <option value="month" disabled>
+                    month
+                  </option>
+                  <option value="01">01</option>
+                  <option value="02">02</option>
+                  <option value="03">03</option>
+                  <option value="04">04</option>
+                  <option value="05">05</option>
+                  <option value="06">06</option>
+                  <option value="07">07</option>
+                  <option value="08">08</option>
+                  <option value="09">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
+              </div>
+              <div className="inputBox">
+                <span>expiration year</span>
+                <select
+                  name="expyear"
+                  id=""
+                  className="year-input"
+                  required
+                  value={year}
+                  onChange={(x) => {
+                    return setYear(x.target.value);
+                  }}
+                >
+                  <option value="year" disabled>
+                    year
+                  </option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                  <option value="2027">2027</option>
+                  <option value="2028">2028</option>
+                  <option value="2029">2029</option>
+                  <option value="2030">2030</option>
+                </select>
+              </div>
+              <div className="inputBox">
+                <span>cvv</span>
+                <input
+                  type="text"
+                  name="cvv"
+                  maxLength="4"
+                  className="cvv-input"
+                  required
+                  value={cvv}
+                  onChange={(x) => {
+                    return setCvv(x.target.value);
+                  }}
+                  onMouseEnter={() => {
+                    document.querySelector(".front").style.transform =
+                      "perspective(1000px) rotateY(-180deg)";
+                    document.querySelector(".back").style.transform =
+                      "perspective(1000px) rotateY(0deg)";
+                  }}
+                  onMouseLeave={() => {
+                    document.querySelector(".front").style.transform =
+                      "perspective(1000px) rotateY(0deg)";
+                    document.querySelector(".back").style.transform =
+                      "perspective(1000px) rotateY(180deg)";
+                  }}
+                />
+              </div>
+            </div>
+            <input type="submit" value="Pay" className="submit-btn" />
+          </form>
+        </div>
       </div>
     </>
   );
