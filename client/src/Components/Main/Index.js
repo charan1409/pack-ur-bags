@@ -28,7 +28,7 @@ const Index = (props) => {
     },
     {
       title: "Places",
-      path: "/places/all",
+      path: "#places",
     },
     {
       title: "About",

@@ -27,6 +27,7 @@ function Profile(props) {
   const [user, setUser] = useState({});
   const [fd, setFd] = useState({});
   const [edit, setEdit] = useState(false);
+  const [feedback, setFeedback] = useState("");
   // eslint-disable-next-line
   const userL = JSON.parse(localStorage.getItem("user"));
   const fetchData = async () => {
@@ -85,6 +86,29 @@ function Profile(props) {
         }
       });
   };
+
+  const changeFeedback = async (e) => {
+    // change the feedback in the backend
+    alert(e.target.value);
+    const fd = {
+      email: userval.email,
+      feedback: feedback,
+    };
+    await axios
+      .post("http://localhost:9000/profile/feedback", fd)
+      .then((resp) => {
+        if (resp.status === 200) {
+          axios
+            .get(`http://localhost:9000/users/loguser/${userL.username}`)
+            .then(async (response) => {
+              dispatch(actionCreators.user(response.data));
+            }
+            );
+          alert(resp.data.succ);
+        }
+      });
+  };
+
   return (
     <div>
       <Header user={true} navItems={navItems} />
@@ -158,22 +182,46 @@ function Profile(props) {
       </div>
       <div className="profile-down">
         <hr style={{ height: "5px", backgroundColor: "black" }} />
-        <div className="latest-upcoming-booking" style={{height: "150px"}}>
+        <div className="latest-upcoming-booking" style={{ height: "150px" }}>
           <h2>
             Your latest upcoming booking will appear here with view all booking
             buttons
           </h2>
         </div>
 
-        <hr style={{ height: "5px", backgroundColor: "black"}} />
-        <div className="user-feedback" style={{height: "150px"}}>
+        <hr style={{ height: "5px", backgroundColor: "black" }} />
+        <div className="user-feedback" style={{ height: "150px" }}>
           <h2>
-            {fd ? fd.feedback : "Your submitted feedback will appear here."}
+            {/* {fd ? fd.feedback : "Your submitted feedback will appear here."} */}
+            {/* when fd is present add the edit option for changing the feedback */}
+            {/* Your submitted feedback will appear here.
+             */}
+
+            {fd ? (
+              <>
+                {fd.feedback}
+                <div className="feedback">
+                  <textarea
+                    name="feedback"
+                    id="feedback"
+                    cols="30"
+                    rows="5"
+                    placeholder="Your feedback"
+                    onChange={(e) => setFeedback(e.target.value)}
+                  ></textarea>
+                  <button className="btn_profile" onClick={changeFeedback}>
+                    submit
+                  </button>
+                </div>
+              </>
+            ) : (
+              "Your submitted feedback will appear here."
+            )}
           </h2>
         </div>
         <hr style={{ height: "5px", backgroundColor: "black" }} />
 
-        <div className="user-reviews" style={{height: "150px"}}>
+        <div className="user-reviews" style={{ height: "150px" }}>
           <h2>Your reviews to your tours will appear here with edit option.</h2>
         </div>
         <hr style={{ height: "5px", backgroundColor: "black" }} />

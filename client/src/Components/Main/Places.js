@@ -1,5 +1,6 @@
 import React from "react";
 import "./main.css";
+import { useNavigate } from "react-router-dom";
 import beach from "./img/beach.jpg";
 import island from "./img/island.jpg";
 import hillstation from "./img/hillStation.jpg";
@@ -12,6 +13,7 @@ import countryside from "./img/countryside.jpg";
 import PlacesBox from "./Box";
 
 const Places = () => {
+  const navigate = useNavigate();
   return (
     <div className="section">
       <div className="places" id="places">
@@ -23,6 +25,12 @@ const Places = () => {
           <span>E</span>
           <span>S</span>
         </h1>
+
+        <button onClick={() => navigate("/places/all")} className="btn"
+        style={{ margin: "auto", display: "block", marginBottom: "2rem"}}
+        >
+          All Places
+        </button>
 
         <div className="box-container">
           <PlacesBox
