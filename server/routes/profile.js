@@ -8,6 +8,7 @@ const cookieparser = require("cookie-parser");
 router.use(cookieparser());
 
 const User = require("../schemas/user");
+const Feedback = require("../schemas/feedback");
 const book = require("../schemas/book");
 
 const verifier = require("../routes/verifier");
@@ -126,5 +127,21 @@ router.post("/remove", async (req, res) => {
     );
   }
 });
+
+router.post("/feedback", async (req,res) => {
+  const username = req.body.username;
+  const feedback = req.body.feedback;
+  const user = await User.findOne({ username: username });
+  if (user) {
+    await Feedback.findOneAndUpdate(
+      { username: username },
+      { feedback: feedback },
+      async function (err) {
+        if (err) res.status(401).json({succ:"Some error occurred."});
+        res.status(200).json({succ:"feedback submitted successfully"})
+      }
+    );
+  }
+})
 
 module.exports = router;

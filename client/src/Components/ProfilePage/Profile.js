@@ -89,9 +89,9 @@ function Profile(props) {
 
   const changeFeedback = async (e) => {
     // change the feedback in the backend
-    alert(e.target.value);
+    alert(feedback);
     const fd = {
-      email: userval.email,
+      username: userval.username,
       feedback: feedback,
     };
     await axios
@@ -207,6 +207,7 @@ function Profile(props) {
                     cols="30"
                     rows="5"
                     placeholder="Your feedback"
+                    value={feedback}
                     onChange={(e) => setFeedback(e.target.value)}
                   ></textarea>
                   <button className="btn_profile" onClick={changeFeedback}>
