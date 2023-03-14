@@ -145,15 +145,22 @@ router.post("/feedback", async (req,res) => {
 })
 
 // For deleting feedback
-router.delete("/deletefeedback", async (req,res) => {
-  const username = req.query.username;
+router.delete("/deletefeedback/:id", async (req,res) => {
+  const username = req.params.id;
   await Feedback.findOneAndDelete(
     { username: username },
     async function (err) {
       if (err) res.status(401).json({succ:"Some error occurred."});
-      res.status(200).json({succ:"feedback deleted successfully"})
     }
-  );
+    );
+    await User.findOneAndUpdate(
+      { username: username },
+      { feedbackgiven: false },
+      async function (err) {
+        if (err) res.status(401).json({succ:"Some error occurred."});
+        else res.status(200).json({succ:"feedback deleted successfully"})
+    }
+  )
 })
 
 module.exports = router;

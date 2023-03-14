@@ -126,7 +126,7 @@ function Profile(props) {
       username: userval.username,
     };
     await axios
-      .delete("http://localhost:9000/profile/deletefeedback", fd)
+      .delete(`http://localhost:9000/profile/deletefeedback/${userval.username}`)
       .then((resp) => {
         if (resp.status === 200) {
           axios
