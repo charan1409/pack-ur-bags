@@ -156,29 +156,34 @@ function Profile(props) {
           </div>
         </div>
       </div>
-      {/* <hr style={{ height: "100px", backgroundColor: "black" }} /> */}
-      <div className="latest-upcoming-booking">
-        <h2>
-          Your latest upcoming booking will appear here with view all booking
-          buttons
-        </h2>
-      </div>
-      <hr style={{ height: "1px", backgroundColor: "black" }} />
-      <div className="user-feedback">
-        <h2>
-          {fd ? fd.feedback : "Your submitted feedback will appear here."}
-        </h2>
-      </div>
-      <hr style={{ height: "1px", backgroundColor: "black" }} />
-      <div className="user-reviews">
-        <h2>Your reviews to your tours will appear here with edit option.</h2>
-      </div>
+      <div className="profile-down">
+        <hr style={{ height: "5px", backgroundColor: "black" }} />
+        <div className="latest-upcoming-booking" style={{height: "150px"}}>
+          <h2>
+            Your latest upcoming booking will appear here with view all booking
+            buttons
+          </h2>
+        </div>
 
-      <div className="pass-modal-bg">
-        <div className="edit-form">
-          <h2>Change your password</h2>
-          <ChangePassword username="User" />
-          <span onClick={change_pass}>x</span>
+        <hr style={{ height: "5px", backgroundColor: "black"}} />
+        <div className="user-feedback" style={{height: "150px"}}>
+          <h2>
+            {fd ? fd.feedback : "Your submitted feedback will appear here."}
+          </h2>
+        </div>
+        <hr style={{ height: "5px", backgroundColor: "black" }} />
+
+        <div className="user-reviews" style={{height: "150px"}}>
+          <h2>Your reviews to your tours will appear here with edit option.</h2>
+        </div>
+        <hr style={{ height: "5px", backgroundColor: "black" }} />
+
+        <div className="pass-modal-bg">
+          <div className="edit-form">
+            <h2>Change your password</h2>
+            <ChangePassword username="User" />
+            <span onClick={change_pass}>x</span>
+          </div>
         </div>
       </div>
     </div>
