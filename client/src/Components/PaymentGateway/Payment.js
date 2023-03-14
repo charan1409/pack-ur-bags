@@ -1,17 +1,19 @@
 import React from "react";
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./Payment.css";
 import "../Main/main.css";
 import img1 from "./img/chip.png";
 import img2 from "./img/visa.png";
 import Header from "../Navbar/Header";
 import { store1 } from "../../App.js";
+import axios from "axios";
 
 const Payment = () => {
   const navigate = useNavigate();
   const { trans, setTrans } = useContext(store1);
 
+  const {id} = useParams()
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
   const [month, setMonth] = useState("");
@@ -20,8 +22,7 @@ const Payment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Payment Successful`);
-
+    
     const payment_data = {
       number: number,
       name: name,
@@ -37,11 +38,19 @@ const Payment = () => {
     setYear("");
     setCvv("");
 
-    if (!trans.includes(payment_data)) {
-      setTrans([...trans, payment_data]);
-      console.log(trans);
-      navigate("/transactions");
-    }
+    // if (!trans.includes(payment_data)) {
+      //   setTrans([...trans, payment_data]);
+    //   console.log(trans);
+    //   navigate("/transactions");
+    // }
+    axios.get(`http://localhost:9000/payment/pay/${id}`).then(resp => {
+      if(resp.status === 200){
+        alert(`Payment Successful`);
+        navigate(`/index`);
+      } else{
+        navigate('/error');
+      }
+    })
   };
 
   function number_space() {

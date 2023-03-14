@@ -59,6 +59,20 @@ function App(props) {
         }
       });
   }, [id,navigate]);
+  const bookFunc = ()=>{
+    if(props.user){
+      axios.get(`http://localhost:9000/book/booking/${id}`)
+      .then((resp)=>{
+        if(resp.status === 200){
+          navigate(`/book/${id}`);
+        } else{
+          navigate('/error');
+        }
+      })
+    }else{
+      navigate('/error');
+    }
+  }
   return (
     <div>
       <Header user={true} navItems={navItems} />
@@ -79,9 +93,7 @@ function App(props) {
                       />
                       <Rating />
                     </div>
-                    <Link to="/book">
-                      <Btn type="button" value="Book" />
-                    </Link>
+                    <Btn type="button" onClick={bookFunc} value="Book" />
                   </div>
                 </div>
                 <Info details={placedata.placeDetails.details} />

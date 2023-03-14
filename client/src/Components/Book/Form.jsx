@@ -1,8 +1,7 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import InputBox from "./InputBox";
 import { store1 } from "../../App.js";
-import axios from "axios";
 
 var todayDate = new Date();
 var month = todayDate.getMonth() + 1;
@@ -16,7 +15,7 @@ if (tdate < 10) {
 }
 var maxDate = year + "-" + month + "-" + tdate;
 
-function Form() {
+function Form(props) {
   const navigate = useNavigate();
   const { cartItems, setCartItems } = useContext(store1);
 
@@ -26,7 +25,7 @@ function Form() {
   const [child, setchild] = useState("");
   const [depart, setdepart] = useState("");
   const [arrival, setarrival] = useState("");
-
+  const id = useParams()
   function fromHandle(event) {
     setfrom(event.target.value);
   }
@@ -46,35 +45,9 @@ function Form() {
     setarrival(event.target.value);
   }
 
-  function clicked(event) {
-    const bookData = {
-      from: from,
-      to: to,
-      adult: adult,
-      child: child,
-      depart: depart,
-      arrival: arrival,
-    };
-    console.log(bookData);
-
-    if (!cartItems.includes(bookData)) {
-      // setCartItems([...cartItems, bookData]);
-      const user = JSON.parse(localStorage.getItem("user"));
-      axios.get(`http://localhost:3001/users/${user.id}`).then((res) => {
-        const user = res.data;
-        user.tours.push(bookData);
-        axios.put(`http://localhost:3001/users/${user.id}`, user);
-        alert("Added to cart");
-        navigate("/mytours");
-      });
-    }
-
-    event.preventDefault();
-  }
-
   return (
     <div>
-      <form onSubmit={clicked}>
+      <form onSubmit={props.onSubmit}>
         <InputBox
           onchange={fromHandle}
           display="FROM"

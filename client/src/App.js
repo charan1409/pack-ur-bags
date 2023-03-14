@@ -31,8 +31,8 @@ function App() {
               <Route path="index" element={<Index />} />
               <Route path="places/:id" element={<ViewPlace />} />
               <Route path="placedetails/:id" element={<PlaceDetails />} />
-              <Route path="book" element={<Book />} />
-              <Route path="payment" element={<Payment />} />
+              <Route path="book/:id" element={<Book />} />
+              <Route path="payment/:id" element={<Payment />} />
               <Route path="profile" element={<Profile />} />
               <Route path="mytours" element={<Tours />} />
               <Route path="transactions" element={<Transaction />} />
