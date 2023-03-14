@@ -19,6 +19,18 @@ const navItems = [
     title: "Home",
     path: "/index",
   },
+  {
+    title: "Gallery",
+    path: "/index/#gallery",
+  },
+  {
+    title: "Places",
+    path: "/places/all",
+  },
+  {
+    title: "Services",
+    path: "/index/#services",
+  },
 ];
 function Profile(props) {
   const dispatch = useDispatch();
@@ -227,15 +239,13 @@ function Profile(props) {
                     onClick={() => setFeededit(true)}
                   ></i>
                 )}
-                {
-                  fd && (
-                    <i
-                      className="bi bi-trash fa-2x"
-                      style={{ cursor: "pointer" }}
-                      onClick={deleteFeedback}
-                    ></i>
-                  )
-                }
+                {fd && (
+                  <i
+                    className="bi bi-trash fa-2x"
+                    style={{ cursor: "pointer" }}
+                    onClick={deleteFeedback}
+                  ></i>
+                )}
                 {feededit && (
                   <div className="feedback">
                     <textarea

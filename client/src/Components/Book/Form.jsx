@@ -17,7 +17,6 @@ var maxDate = year + "-" + month + "-" + tdate;
 
 function Form(props) {
   const navigate = useNavigate();
-  const { cartItems, setCartItems } = useContext(store1);
 
   const [from, setfrom] = useState("");
   const [to, setto] = useState("");
@@ -44,6 +43,8 @@ function Form(props) {
   function arrivalHandle(event) {
     setarrival(event.target.value);
   }
+
+  const [adultdata, setadultdata] = useState([]);
 
   return (
     <div>
@@ -74,6 +75,7 @@ function Form(props) {
           min="1"
           max="15"
         />
+
         <InputBox
           display="number of children"
           onchange={childHandle}

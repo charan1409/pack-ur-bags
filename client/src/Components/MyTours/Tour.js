@@ -27,7 +27,6 @@ const Tours = (props) => {
     {
       title: "Services",
       path: "/index/#services",
-      
     }
   ];
 

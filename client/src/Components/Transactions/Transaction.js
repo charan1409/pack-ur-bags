@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../Navbar/Header";
-import { store1 } from "../../App.js";
 import "./Trans.css";
 import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -9,7 +8,7 @@ import { actionCreators } from "../../actions/actions";
 import axios from "axios";
 
 const Transaction = (props) => {
-  const { trans, setTrans } = useContext(store1);
+  const [trans, setTrans] = useState([]);
 
   const removeItems = (key) => {
     const newset = trans.filter((ob, a) => a !== key);
@@ -21,14 +20,27 @@ const Transaction = (props) => {
       title: "Home",
       path: "/index",
     },
+    {
+      title: "Gallery",
+      path: "/index/#gallery",
+    },
+    {
+      title: "Places",
+      path: "/places/all",
+    },
+    {
+      title: "Services",
+      path: "/index/#services",
+    },
   ];
   const dispatch = useDispatch();
   const userL = JSON.parse(localStorage.getItem("user"));
-  if(! props.user){
-    axios.get(`http://localhost:9000/users/loguser/${userL.username}`)
-          .then(async (resp) => {
-            dispatch(actionCreators.user(resp.data));
-          }) 
+  if (!props.user) {
+    axios
+      .get(`http://localhost:9000/users/loguser/${userL.username}`)
+      .then(async (resp) => {
+        dispatch(actionCreators.user(resp.data));
+      });
   }
 
   return (
