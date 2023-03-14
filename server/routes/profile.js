@@ -144,4 +144,16 @@ router.post("/feedback", async (req,res) => {
   }
 })
 
+// For deleting feedback
+router.delete("/deletefeedback", async (req,res) => {
+  const username = req.query.username;
+  await Feedback.findOneAndDelete(
+    { username: username },
+    async function (err) {
+      if (err) res.status(401).json({succ:"Some error occurred."});
+      res.status(200).json({succ:"feedback deleted successfully"})
+    }
+  );
+})
+
 module.exports = router;

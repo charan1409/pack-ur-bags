@@ -27,6 +27,7 @@ function Profile(props) {
   const [user, setUser] = useState({});
   const [fd, setFd] = useState({});
   const [edit, setEdit] = useState(false);
+  const [feededit, setFeededit] = useState(false);
   const [feedback, setFeedback] = useState("");
   // eslint-disable-next-line
   const userL = JSON.parse(localStorage.getItem("user"));
@@ -88,7 +89,6 @@ function Profile(props) {
   };
 
   const changeFeedback = async (e) => {
-    // change the feedback in the backend
     alert(feedback);
     const fd = {
       username: userval.username,
@@ -102,8 +102,26 @@ function Profile(props) {
             .get(`http://localhost:9000/users/loguser/${userL.username}`)
             .then(async (response) => {
               dispatch(actionCreators.user(response.data));
-            }
-            );
+            });
+          alert(resp.data.succ);
+        }
+      });
+  };
+
+  const deleteFeedback = async () => {
+    alert("Delete");
+    const fd = {
+      username: userval.username,
+    };
+    await axios
+      .delete("http://localhost:9000/profile/deletefeedback", fd)
+      .then((resp) => {
+        if (resp.status === 200) {
+          axios
+            .get(`http://localhost:9000/users/loguser/${userL.username}`)
+            .then(async (response) => {
+              dispatch(actionCreators.user(response.data));
+            });
           alert(resp.data.succ);
         }
       });
@@ -190,31 +208,52 @@ function Profile(props) {
         </div>
 
         <hr style={{ height: "5px", backgroundColor: "black" }} />
-        <div className="user-feedback" style={{ height: "150px" }}>
+        <div className="user-feedback" style={{ height: "300px" }}>
           <h2>
-            {/* {fd ? fd.feedback : "Your submitted feedback will appear here."} */}
-            {/* when fd is present add the edit option for changing the feedback */}
-            {/* Your submitted feedback will appear here.
-             */}
-
             {fd ? (
-              <>
+              <div className="">
                 {fd.feedback}
-                <div className="feedback">
-                  <textarea
-                    name="feedback"
-                    id="feedback"
-                    cols="30"
-                    rows="5"
-                    placeholder="Your feedback"
-                    value={feedback}
-                    onChange={(e) => setFeedback(e.target.value)}
-                  ></textarea>
-                  <button className="btn_profile" onClick={changeFeedback}>
-                    submit
-                  </button>
-                </div>
-              </>
+                <br />
+                {feededit ? (
+                  <i
+                    className="bi bi-x-square fa-2x"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setFeededit(false)}
+                  ></i>
+                ) : (
+                  <i
+                    style={{ cursor: "pointer" }}
+                    className="bi bi-pencil-square fa-2x"
+                    onClick={() => setFeededit(true)}
+                  ></i>
+                )}
+                {
+                  fd && (
+                    <i
+                      className="bi bi-trash fa-2x"
+                      style={{ cursor: "pointer" }}
+                      onClick={deleteFeedback}
+                    ></i>
+                  )
+                }
+                {feededit && (
+                  <div className="feedback">
+                    <textarea
+                      name="feedback"
+                      id="feedback"
+                      cols="30"
+                      rows="5"
+                      placeholder="Your feedback"
+                      value={feedback}
+                      onChange={(e) => setFeedback(e.target.value)}
+                    ></textarea>
+                    <br />
+                    <button className="btn_profile" onClick={changeFeedback}>
+                      submit
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
               "Your submitted feedback will appear here."
             )}
