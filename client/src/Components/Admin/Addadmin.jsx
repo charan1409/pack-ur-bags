@@ -82,7 +82,7 @@ function Addadmin(props) {
       <Header user={true} navItems={navItems} />
       <div className="add">
         <h1>Add admin</h1>
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler} className="addadmin">
           <InputBox
             placeholder={"username"}
             leftIcon={"bi bi-person-fill"}

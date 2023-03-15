@@ -16,7 +16,14 @@ const Header = (props) => {
   },[setpath,user])
   return (
     <div className="header">
-      <div id="menu-bar" className="fas fa-bars"></div>
+      <div id="menu-bar" className="fas fa-bars"
+      onClick = {
+        () => {
+          document.querySelector("#menu-bar").classList.toggle("fa-times");
+          document.querySelector(".navbar").classList.toggle("active");
+        }
+      }
+      ></div>
       <Link to={path} className="logo">
           <span>P</span>ACK <span>U</span>R <span>B</span>AGS
         </Link>
@@ -24,7 +31,14 @@ const Header = (props) => {
         {props.navItems.map((item) => {
           return (
             <li key={item.title} className="nav-item">
-              <HashLink to={item.path}>{item.title}</HashLink>
+              <HashLink to={item.path}
+              onClick = {
+                () => {
+                  document.querySelector("#menu-bar").classList.toggle("fa-times");
+                  document.querySelector(".navbar").classList.toggle("active");
+                }
+              }
+              >{item.title}</HashLink>
             </li>
           );
         })}
