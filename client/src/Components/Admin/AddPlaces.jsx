@@ -81,70 +81,74 @@ function AddPlaces() {
       <Header user={true} navItems={navItems} />
       <div className="add">
         <h1>Add place</h1>
-        <form onSubmit={submitHandler} className="addadmin" style={{height: "650px"}}>
-          <InputBox
-            placeholder={"from"}
-            leftIcon = {"bi bi-geo-alt-fill"}
-            type={"text"}
-            name={"from"}
-            value={placeinfo.from}
-            onChange={onUpdateField}
-          />
+        <form
+          onSubmit={submitHandler}
+          className="addadmin"
+          style={{ height: "650px", width: "600px" }}
+        >
+            <InputBox
+              placeholder={"from"}
+              leftIcon={"bi bi-geo-alt-fill"}
+              type={"text"}
+              name={"from"}
+              value={placeinfo.from}
+              onChange={onUpdateField}
+            />
 
-          <InputBox
-            placeholder={"to"}
-            leftIcon = {"bi bi-geo-alt-fill"}
-            type={"text"}
-            name={"to"}
-            value={placeinfo.to}
-            onChange={onUpdateField}
-          />
-          <InputBox
-            placeholder={"price"}
-            leftIcon = {"bi bi-cash"}
-            type={"number"}
-            name={"price"}
-            value={placeinfo.price}
-            onChange={onUpdateField}
-          />
+            <InputBox
+              placeholder={"to"}
+              leftIcon={"bi bi-geo-alt-fill"}
+              type={"text"}
+              name={"to"}
+              value={placeinfo.to}
+              onChange={onUpdateField}
+            />
+            <InputBox
+              placeholder={"price"}
+              leftIcon={"bi bi-cash"}
+              type={"number"}
+              name={"price"}
+              value={placeinfo.price}
+              onChange={onUpdateField}
+            />
 
-          <InputBox
-            placeholder={"details"}
-            leftIcon = {"bi bi-card-text"}
-            type={"text"}
-            name={"details"}
-            value={placeinfo.details}
-            onChange={onUpdateField}
-          />
+            <InputBox
+              placeholder={"details"}
+              leftIcon={"bi bi-card-text"}
+              type={"text"}
+              name={"details"}
+              value={placeinfo.details}
+              onChange={onUpdateField}
+            />
 
-          <InputBox
-            placeholder={"category"}
-            leftIcon = {"bi bi-card-text"}
-            type={"text"}
-            name={"category"}
-            value={placeinfo.category}
-            onChange={onUpdateField}
-          />
+            <InputBox
+              placeholder={"category"}
+              leftIcon={"bi bi-card-text"}
+              type={"text"}
+              name={"category"}
+              value={placeinfo.category}
+              onChange={onUpdateField}
+            />
 
-          <select name="days" onChange={onUpdateField}>
-            <option>No.of days</option>
-            {days.map((option, index) => {
-              return <option key={index}>{option}</option>;
-            })}
-          </select>
-          <select name="busType" onChange={onUpdateField}>
-            <option>Bus Types</option>
-            {busType.map((option, index) => {
-              return <option key={index}>{option}</option>;
-            })}
-          </select>
-          <input
-            placeholder="choose picture"
-            type="file"
-            name="photo"
-            onChange={(e) => setImage(e.target.files[0])}
-          />
-          <Btn type="submit" value="Add" />
+            <select name="days" onChange={onUpdateField}>
+              <option>No.of days</option>
+              {days.map((option, index) => {
+                return <option key={index}>{option}</option>;
+              })}
+            </select>
+            <select name="busType" onChange={onUpdateField}>
+              <option>Bus Types</option>
+              {busType.map((option, index) => {
+                return <option key={index}>{option}</option>;
+              })}
+            </select>
+            <input
+              placeholder="choose picture"
+              type="file"
+              name="photo"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+            <Btn type="submit" value="Add" />
         </form>
       </div>
     </div>
