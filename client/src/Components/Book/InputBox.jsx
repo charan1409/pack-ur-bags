@@ -5,9 +5,9 @@ function InputBox(props) {
       <h3>{props.display}</h3>
       <input
         type={props.type}
-        onChange={props.onchange}
+        onChange={props.onChange}
         value={props.value}
-        name={props.from}
+        name={props.name}
         placeholder={props.holder}
         min={props.min}
         max={props.max}
