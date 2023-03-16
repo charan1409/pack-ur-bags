@@ -5,6 +5,7 @@ import Header from "../Navbar/Header";
 import Btn from "../Btn";
 import axios from "axios";
 import "./AddPlaces.css";
+import InputBox from "../Landing/InputBox";
 
 function AddPlaces() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -78,44 +79,53 @@ function AddPlaces() {
   return (
     <div>
       <Header user={true} navItems={navItems} />
-      <div className="addplace">
+      <div className="add">
         <h1>Add place</h1>
-        <form onSubmit={submitHandler}>
-          <input
-            placeholder="from"
-            type="text"
-            name="from"
+        <form onSubmit={submitHandler} className="addadmin" style={{height: "650px"}}>
+          <InputBox
+            placeholder={"from"}
+            leftIcon = {"bi bi-geo-alt-fill"}
+            type={"text"}
+            name={"from"}
             value={placeinfo.from}
             onChange={onUpdateField}
           />
-          <input
-            placeholder="to"
-            type="text"
-            name="to"
+
+          <InputBox
+            placeholder={"to"}
+            leftIcon = {"bi bi-geo-alt-fill"}
+            type={"text"}
+            name={"to"}
             value={placeinfo.to}
             onChange={onUpdateField}
           />
-          <input
-            placeholder="price"
-            type="number"
-            name="price"
+          <InputBox
+            placeholder={"price"}
+            leftIcon = {"bi bi-cash"}
+            type={"number"}
+            name={"price"}
             value={placeinfo.price}
             onChange={onUpdateField}
           />
-          <input
-            placeholder="details"
-            type="text"
-            name="details"
+
+          <InputBox
+            placeholder={"details"}
+            leftIcon = {"bi bi-card-text"}
+            type={"text"}
+            name={"details"}
             value={placeinfo.details}
             onChange={onUpdateField}
           />
-          <input
-            placeholder="category"
-            type="text"
-            name="category"
+
+          <InputBox
+            placeholder={"category"}
+            leftIcon = {"bi bi-card-text"}
+            type={"text"}
+            name={"category"}
             value={placeinfo.category}
             onChange={onUpdateField}
           />
+
           <select name="days" onChange={onUpdateField}>
             <option>No.of days</option>
             {days.map((option, index) => {
