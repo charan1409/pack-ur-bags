@@ -18,3 +18,24 @@
   margin: 10px 0px;
   transition: 0.3s;
 }
+
+.add-left {
+  position: absolute;
+  margin-top: 14%;
+  margin-left: 15%;
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.7);
+  left: 7px;
+  top: 15px;
+}
+
+.add-right {
+  position: absolute;
+  margin-left: 60%;
+  margin-top: 14%;
+  font-size: 30px;
+  cursor: pointer;
+  left: 7px;
+  top: 15px;
+  color: rgba(255, 255, 255, 0.9);
+}
