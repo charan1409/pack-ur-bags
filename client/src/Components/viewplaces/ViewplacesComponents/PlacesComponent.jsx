@@ -4,7 +4,6 @@ import Img from "./Img";
 import Details from "./Details";
 import Btn from "../../Btn";
 import "../style.css";
-import { Link } from "react-router-dom";
 
 function Components(props) {
   return (
@@ -17,9 +16,7 @@ function Components(props) {
         </div>
         <div className="button-holder">
           <div>
-            <Link to="/book">
-              <Btn type="button" value="Book" />
-            </Link>
+              <Btn type="button" value="Book" onClick={props.onClickBook}/>
           </div>
           <div>
             <Btn type="button" value="See more" onClick={props.onClick} />

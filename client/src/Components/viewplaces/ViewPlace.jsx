@@ -100,6 +100,9 @@ function App(props) {
                   to={x.to}
                   details={x.details}
                   price={x.price}
+                  onClickBook={() => {
+                    navigate(`/book/${x.id}`);
+                  }}
                   onClick={() => {
                     navigate(`/placedetails/${x.id}`);
                   }}
