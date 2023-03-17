@@ -49,8 +49,8 @@ const Header = (props) => {
             onMouseEnter={() => setDropdown(true)}
             onMouseLeave={() => setDropdown(false)}
           >
-            <h2>{user.username}</h2>
-            {dropdown && <Dropdown />}
+            <img src={user.image} alt="profile_img" />
+            {dropdown && <Dropdown role={user.role}/>}
           </div>
         ) : (
           <i
