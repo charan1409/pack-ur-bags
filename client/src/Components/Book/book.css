@@ -27,13 +27,16 @@
   align-items: center;
 }
 
-.book .row .box {
+.book .row .box1 {
   border: 3px solid rgba(130, 127, 127, 0.5);
-  box-shadow: 1px 7px 7px rgba(30, 28, 28, 0.5);
-  /* padding: 3rem; */
   margin-right: 3rem;
   margin-left: 2rem;
-  width: 50%;
+}
+
+.book .row .box2 {
+  width: 70%;
+  height: 100%;
+  border-radius: 0.5rem;
 }
 
 .book .row .place-pic img {
@@ -87,4 +90,48 @@
 
 .book-btn:hover {
   background: rgba(47, 116, 121, 0.733);
+}
+
+.book .row form .Passengers{
+  border: 5px solid rgba(0, 0, 0, 0.607);
+  padding: 1rem;
+  display:flex;
+  gap:1rem;
+}
+
+.book .row form .Passengers .box1 {
+  width: 150px;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+  color: #333;
+  text-transform: none;
+  font-family: 'Nunito', sans-serif;
+}
+
+.book .row form .Passengers .box1 label {
+  font-size: 2rem;
+  color: #666;
+  width: 100%;
+  padding: 0%;
+}
+.book .row form .Passengers .box1 label select{
+  font-size: 2rem;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  margin-top: 8px;
+}
+
+
+.passname {
+  padding: 0.1rem 0;
+}
+
+.passname input {
+  width: 320px;
+  padding: 1rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+  color: #333;
+  text-transform: none;
 }

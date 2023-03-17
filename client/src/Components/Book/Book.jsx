@@ -91,10 +91,10 @@ function App(props) {
         </h1>
       </div>
       <div className="row">
-        <div className="box">
+        <div className="box1">
           <Img photo={photo} alt="Enjoy your trip" />
         </div>
-        <div className="box">
+        <div className="box2">
           <Form onSubmit={clicked} />
         </div>
       </div>

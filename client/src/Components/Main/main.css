@@ -139,33 +139,6 @@
   background: rgba(47, 116, 121, 0.733);
 }
 
-.book .row form .Passengers{
-  border: 0.2rem solid rgb(20, 20, 20,0.05);
-  padding: 1rem;
-  display:flex;
-  gap:1rem;
-}
-
-.book .row form .Passengers .box1 {
-  width: 150px;
-  /* padding: 1rem; */
-  border: 0.1rem solid rgba(0, 0, 0, 0.1);
-  font-size: 1.5rem;
-  color: #333;
-  text-transform: none;
-  font-family: 'Nunito', sans-serif;
-}
-
-.book .row form .Passengers .box1 label {
-  font-size: 2rem;
-  color: #666;
-  width: 100%;
-  padding: 0%;
-}
-.book .row form .Passengers .box1 label select{
-  width: 100%;
-  margin: 0;
-}
 
 .book .row form .inputBox input {
   width: 100%;
