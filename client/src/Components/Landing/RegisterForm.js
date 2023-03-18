@@ -51,17 +51,17 @@ function RegisterForm(props) {
         role: "user"
       };
       axios.post("http://localhost:9000/users/register", user).then((resp) => {
-        if (resp.data.error) {
-          setRegisterError([true, resp.data.error]);
-        } else if (resp.data.success) {
+        if (resp.status !== 200) {
+          setRegisterError([true, resp.data.msg]);
+        } else {
           setUserinfo({
             username: "",
             email: "",
             password: "",
             confirmedPassword: "",
           });
-          alert(resp.data.success);
-          localStorage.setItem("user", JSON.stringify(resp.data.userL));
+          alert(resp.data.msg);
+          localStorage.setItem("user", JSON.stringify(resp.data.user));
           navigate("/index");
         }
       });

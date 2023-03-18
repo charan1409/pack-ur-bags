@@ -31,7 +31,7 @@ const Landing = (props) => {
   return (
     <div>
       <Header
-        user={false}
+        user={props.user}
         openLoginForm={toggleLoginForm}
         navItems={navItems}
       />

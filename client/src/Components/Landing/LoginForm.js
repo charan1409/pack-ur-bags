@@ -39,14 +39,12 @@ function Form(props) {
       setLoginError([false, ""]);
       axios.post("http://localhost:9000/users/login",userinfo).then((resp) => {
         if (resp.status === 200) {
-          console.log(resp.data);
-          const user = resp.data
-          localStorage.setItem("user", JSON.stringify(user));
-          axios.get(`http://localhost:9000/users/loguser/${user.username}`)
-          .then(async (resp) => {
-            dispatch(actionCreators.username(resp.data));
-          }) 
-          if (user.role === "admin" || user.role === "root") {
+          localStorage.setItem("user", JSON.stringify(resp.data));
+          // axios.get(`http://localhost:9000/users/loguser/${user.username}`)
+          // .then(async (response) => {
+          //   dispatch(actionCreators.user(response.data.user));
+          // }) 
+          if (resp.data.role === "admin" || resp.data.role === "root") {
             navigate("/admin");
           } else {
             navigate("/index");

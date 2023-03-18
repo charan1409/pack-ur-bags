@@ -4,10 +4,9 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Feedback = () => {
+const Feedback = (props) => {
   const [fdbk, setFdbk] = useState("");
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
 
   // Not Refreshing Page
   const handleSubmit = (e) => {
@@ -15,8 +14,8 @@ const Feedback = () => {
     if (!fdbk) alert("please give your feedback");
     else {
       const feedback_data = {
-        username: user.username,
-        image: user.image,
+        username: props.user.username,
+        image: props.user.image,
         fdbk: fdbk,
       };
       axios
@@ -35,7 +34,7 @@ const Feedback = () => {
 
   return (
     <>
-      {user.feedbackgiven ? (
+      {props.feedbackgiven ? (
         <h2>Thank's for giving your feedback😎</h2>
       ) : (
         <>

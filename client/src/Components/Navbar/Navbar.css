@@ -63,17 +63,19 @@
   color: var(--orange);
 }
 
-.header .icons .profdet h2{
+.header .icons h2{
   color: whitesmoke;
-  font-size: 22px;
+  font-size: 28px;
   cursor: pointer;
+  line-height: 80px;
 }
 
 .header .icons .profdet img{
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   cursor: pointer;
+  border: 3px solid #ffffff48;
 }
 
 .header .icons i {

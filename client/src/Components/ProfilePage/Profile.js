@@ -35,7 +35,7 @@ const navItems = [
 function Profile(props) {
   const dispatch = useDispatch();
   const hiddenFileInput = useRef(null);
-  const userval = props.user.user.user;
+  // const user = props.user.user.user;
   const [user, setUser] = useState({});
   const [fd, setFd] = useState({});
   const [edit, setEdit] = useState(false);
@@ -47,9 +47,8 @@ function Profile(props) {
     await axios
       .get(`http://localhost:9000/users/loguser/${userL.username}`)
       .then(async (resp) => {
-        console.log(resp.data);
         localStorage.setItem("user", JSON.stringify(resp.data.user));
-        dispatch(actionCreators.user(resp.data));
+        // dispatch(actionCreators.user(resp.data));
         setFd(resp.data.fd);
         return setUser(resp.data.user);
       });
@@ -64,7 +63,7 @@ function Profile(props) {
     if (e.target.files[0]) {
       const fd = new FormData();
       fd.append("image", e.target.files[0], e.target.files[0].name);
-      fd.append("email", userval.email);
+      fd.append("email", user.email);
       axios.post("http://localhost:9000/profile/upload", fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
@@ -84,7 +83,7 @@ function Profile(props) {
   };
   const imgDeleteHandler = async () => {
     const fd = {
-      email: userval.email,
+      email: user.email,
     };
     await axios
       .post("http://localhost:9000/profile/remove", fd)
@@ -103,7 +102,7 @@ function Profile(props) {
   const changeFeedback = async (e) => {
     alert(feedback);
     const fd = {
-      username: userval.username,
+      username: user.username,
       feedback: feedback,
     };
     await axios
@@ -122,11 +121,8 @@ function Profile(props) {
 
   const deleteFeedback = async () => {
     alert("Delete");
-    const fd = {
-      username: userval.username,
-    };
     await axios
-      .delete(`http://localhost:9000/profile/deletefeedback/${userval.username}`)
+      .delete(`http://localhost:9000/profile/deletefeedback/${user.username}`)
       .then((resp) => {
         if (resp.status === 200) {
           axios
@@ -141,7 +137,7 @@ function Profile(props) {
 
   return (
     <div>
-      <Header user={true} navItems={navItems} />
+      <Header user={user} navItems={navItems} />
       <div className="profile-background">
         <div className="white-panel">
           <div className="user-details">
@@ -181,13 +177,13 @@ function Profile(props) {
                   </div>
                 ) : (
                   <table>
-                    <Tabledata heading={"Username:"} data={userval.username} />
-                    <Tabledata heading={"Name:"} data={userval.name} />
-                    <Tabledata heading={"Email:"} data={userval.email} />
-                    <Tabledata heading={"Gender:"} data={userval.gender} />
+                    <Tabledata heading={"Username:"} data={user.username} />
+                    <Tabledata heading={"Name:"} data={user.name} />
+                    <Tabledata heading={"Email:"} data={user.email} />
+                    <Tabledata heading={"Gender:"} data={user.gender} />
                     <Tabledata
                       heading={"Phone Number:"}
-                      data={userval.phonenumber}
+                      data={user.phonenumber}
                     />
                   </table>
                 )}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./main.css";
 import Upward from "./Upward";
 import Header from "../Navbar/Header";
@@ -12,11 +12,9 @@ import Feedback from "./Feedback";
 import Footer from "./Footer";
 import { connect } from "react-redux";
 import axios from "axios";
-import { actionCreators } from "../../actions/actions";
-import { useDispatch } from "react-redux";
 
-
-const Index = (props) => {
+const Index = () => {
+  const [user, setUser] = useState({});
   const navItems = [
     {
       title: "Home",
@@ -41,35 +39,34 @@ const Index = (props) => {
     {
       title: "Reviews",
       path: "#review",
-    }
+    },
   ];
-  const dispatch = useDispatch();
-  const userL = JSON.parse(localStorage.getItem("user"));
-  if(! props.user){
-    axios.get(`http://localhost:9000/users/loguser/${userL.username}`)
-          .then(async (resp) => {
-            dispatch(actionCreators.user(resp.data));
-            console.log(resp.data.user)
-          }) 
-  }
+  useEffect(() => {
+    const userL = JSON.parse(localStorage.getItem("user"));
+    axios
+      .get(`http://localhost:9000/users/loguser/${userL.username}`)
+      .then((resp) => {
+        return setUser(resp.data.user);
+      });
+  }, []);
   return (
     <div>
       <Upward />
-      <Header user={true} navItems={navItems} />
-      <Vedio isvalidin={true} />
+      <Header user={user} navItems={navItems} />
+      <Vedio user={user} />
       <Gallery />
       <Places />
       <About />
       <Services />
       <Review />
-      <Feedback />
+      <Feedback user={user} />
       <Footer />
     </div>
   );
 };
 const mapStateToProps = (state) => {
   return {
-    username: state.username,
+    user: state.user,
   };
 };
 export default connect(mapStateToProps)(Index);

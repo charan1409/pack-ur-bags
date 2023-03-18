@@ -114,7 +114,7 @@ router.post("/upload",upload.single("image"), async (req, res) => {
 
 router.post("/remove", async (req, res) => {
   const email = req.body.email;
-  const newvals = { image: process.env.DEFAULT_IMAGE,imagegiven: false };
+  const newvals = { image: "default.png",imagegiven: false };
   const user = await User.findOne({ email: email });
   if (user) {
     await User.findOneAndUpdate(
