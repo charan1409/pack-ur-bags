@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import InputBox from "./InputBox";
 
@@ -21,15 +21,31 @@ function Form(props) {
     gender: "male",
     age: "",
   });
-  const [regpassengers, setrepasse] = useState([]);
   const id = useParams();
+  const [finalData, setFinalData] = useState({
+    regpassengers: [],
+    total: 0,});
+  const [regpassengers, setrepasse] = useState([]);
+  useEffect(() => {
+    setFinalData({ regpassengers: regpassengers, total: regpassengers.length * props.price})
+  }, [regpassengers, id])
+  
   const onChangeField = (e) => {
     const nextField = { ...passengerDetails, [e.target.name]: e.target.value };
     setPassengerDetails(nextField);
   };
   return (
     <div>
-      <form>
+      <form onSubmit={(e)=>{
+        e.preventDefault();
+        if(!regpassengers.length){
+          alert("Please add passengers");
+          return;
+        }
+        props.setBookData({...finalData,placeid:id.id});
+        navigate("/book/confirm");
+
+      }}>
         <div className="Passengers">
           <div className="passname">
             <input
@@ -65,13 +81,14 @@ function Form(props) {
             name="age"
             holder={"Enter age"}
             min={3}
+            max={70}
             onChange={onChangeField}
           />
           <button>
             <i
               className="fas fa-plus"
               onClick={(e) => {
-                if (!passengerDetails.name || passengerDetails.age < 3) {
+                if (!passengerDetails.name || passengerDetails.age < 3 || passengerDetails.age > 70) {
                   alert("Please fill all the fields");
                   return;
                 }

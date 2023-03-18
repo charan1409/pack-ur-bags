@@ -112,8 +112,8 @@ function App(props) {
         <div className="box1">
           {placedata ? (
             <div className="details">
-              <h2>To: {placedata.placeDetails.to}</h2>
               <h2>From: {placedata.placeDetails.from}</h2>
+              <h2>To: {placedata.placeDetails.to}</h2>
               <h2>Price per person: ₹{placedata.placeDetails.price}</h2>
             </div>
           ):<Img photo={photo} alt="Enjoy your trip" />}
