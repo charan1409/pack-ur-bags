@@ -59,8 +59,8 @@ function App(props) {
       <div className="head">
         <Heading category="Places" />
         {params.id === "all" ? (
-          <div className="allselect">
-            <label htmlFor="places">
+          <div className="allselect" >
+            <label htmlFor="places" >
               Sort by:
               <select
                 name="places"
@@ -70,6 +70,7 @@ function App(props) {
                   setLoading(false);
                 }}
                 value={category}
+                style={{color: "black", border: "black solid 4px"}}
               >
                 <option value="all">all</option>
                 <option value="beach">beach</option>

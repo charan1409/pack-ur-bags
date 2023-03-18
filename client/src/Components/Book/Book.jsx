@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import Img from "./Img";
 import photo from "../viewplaces/places/beach/barefoot.jpg";
 import Form from "./Form";
@@ -43,6 +44,22 @@ function App(props) {
   }
 
   const {id} = useParams();
+  const [placedata, setPlacedata] = useState();
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:9000/places/placedetails/${id}`)
+      .then((resp) => {
+        if (resp.status === 200) {
+          setPlacedata(resp.data);
+          console.log(resp.data);
+          setLoading(true);
+        } else {
+          navigate("/error");
+        }
+      });
+  }, [id,navigate]);
+
   function clicked(event) {
     // const bookData = {
     //   from: from,
@@ -75,6 +92,7 @@ function App(props) {
       }
     });
   }
+  const price= placedata ? placedata.placeDetails.price : 0;
   return (
     <div className="book">
       <Header user={true} navItems={navItems} />
@@ -91,11 +109,19 @@ function App(props) {
         </h1>
       </div>
       <div className="row">
-        <div className="box">
-          <Img photo={photo} alt="Enjoy your trip" />
+        <div className="box1">
+          {placedata ? (
+            <div className="details">
+              <h2>From: {placedata.placeDetails.from}</h2>
+              <h2>To: {placedata.placeDetails.to}</h2>
+              <h2>Price per person: ₹{placedata.placeDetails.price}</h2>
+            </div>
+          ):<Img photo={photo} alt="Enjoy your trip" />}
+          
+          
         </div>
-        <div className="box">
-          <Form onSubmit={clicked} />
+        <div className="box2">
+          <Form onSubmit={clicked} price={placedata?placedata.placeDetails.price:0}/>
         </div>
       </div>
     </div>
