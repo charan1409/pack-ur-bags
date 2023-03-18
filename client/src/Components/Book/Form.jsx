@@ -135,7 +135,7 @@ function Form(props) {
             </table>
           </div>
         )}
-
+        <h2>Total cost is {regpassengers.length * props.price}</h2>
         {/* <Link to="/payment"><input type="submit" className="book-btn" value="Book" /></Link> */}
         <input type="submit" className="book-btn" value="Book Tour" />
       </form>

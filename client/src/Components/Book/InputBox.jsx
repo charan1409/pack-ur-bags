@@ -11,7 +11,7 @@ function InputBox(props) {
         placeholder={props.holder}
         min={props.min}
         max={props.max}
-        required
+        required={props.required}
       />
     </div>
   );
