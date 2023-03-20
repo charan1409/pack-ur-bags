@@ -46,7 +46,6 @@ router.post('/pay/:id',(req, res) => {
         bookid: bookid,
         timestamp: new Date()        
     });
-   
         //save user
         newpe.save().then(pay => {
             Book.findOneAndUpdate({ id: bookid},{paymentDone: true}).then(book=>{
@@ -54,6 +53,15 @@ router.post('/pay/:id',(req, res) => {
             })
         })
     
+})
+
+router.get('/getTransactions/:id', (req, res) => {
+    let username = req.params.id;
+    User.findOne({ username: username }).then(user => {
+        Pay.find({ name: username }).then(pay => {
+            res.status(200).json(pay);
+        })
+    })
 })
 
 module.exports = router;
