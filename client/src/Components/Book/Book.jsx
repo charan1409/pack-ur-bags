@@ -121,7 +121,7 @@ function App(props) {
           
         </div>
         <div className="box2">
-          <Form onSubmit={clicked} price={placedata?placedata.placeDetails.price:0}/>
+          <Form onSubmit={clicked} price={placedata?placedata.placeDetails.price:0} days={placedata?placedata.placeDetails.days:0}/>
         </div>
       </div>
     </div>
