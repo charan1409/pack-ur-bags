@@ -28,6 +28,10 @@ function App() {
             <ScrollTop smooth />
             <Routes>
               <Route path="/" element={<Landing />} />
+              <Route path="login" element={<Landing formType={"login"}/>} />
+              <Route path="registration/:id" element={<Landing formType={"register"}/>} />
+              <Route path="verification" element={<Landing formType={"verify"}/>} />
+              <Route path="forgotpassword" element={<Landing formType={"forgot"}/>} />
               <Route path="index" element={<Index />} />
               <Route path="places/:id" element={<ViewPlace />} />
               <Route path="placedetails/:id" element={<PlaceDetails />} />

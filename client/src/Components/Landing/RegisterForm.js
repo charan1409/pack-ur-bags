@@ -12,7 +12,6 @@ function RegisterForm(props) {
   const [registerError, setRegisterError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
     username: "",
-    email: "",
     password: "",
     confirmedPassword: "",
   });
@@ -33,11 +32,6 @@ function RegisterForm(props) {
     e.preventDefault();
     if (/\s/.test(userinfo.username) || userinfo.username.trim().length < 1 || userinfo.username.trim().length > 8) {
       setRegisterError([true, "username contains more than 8 characters"]);
-    } else if (
-      userinfo.email.trim().length < 1 || // eslint-disable-next-line
-      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userinfo.email)
-    ) {
-      setRegisterError([true, "Invalid Email"]);
     } else if (userinfo.password.trim().length < 6) {
       setRegisterError([true, "password should be altleast 6 characters"]);
     } else if (userinfo.password !== userinfo.confirmedPassword) {
@@ -47,7 +41,6 @@ function RegisterForm(props) {
       const user = {
         id: new Date().valueOf(),
         username: userinfo.username,
-        email: userinfo.email,
         password: userinfo.password,
         role: "user"
       };
@@ -57,7 +50,6 @@ function RegisterForm(props) {
         } else {
           setUserinfo({
             username: "",
-            email: "",
             password: "",
             confirmedPassword: "",
           });
@@ -84,14 +76,6 @@ function RegisterForm(props) {
           onChange={onUpdateField}
         />
         <InputBox
-          placeholder={"email"}
-          leftIcon={"bi bi-envelope-fill"}
-          type={"text"}
-          name={"email"}
-          value={userinfo.email}
-          onChange={onUpdateField}
-        />
-        <InputBox
           placeholder={"password"}
           leftIcon={"bi bi-key-fill"}
           type={"password"}
@@ -109,7 +93,9 @@ function RegisterForm(props) {
         />
         <Btn type={"submit"} value={"Sign Up"} />
         <p style={{ color: "white" }}>Already have an account?</p>
-        <Btn type={"button"} value={"Sign In"} onClick={props.closeRegister} />
+        <Btn type={"button"} value={"Sign In"} onClick={() => {
+          navigate("/login");
+        }} />
       </form>
     </div>
   );

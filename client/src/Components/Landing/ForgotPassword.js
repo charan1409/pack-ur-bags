@@ -7,13 +7,17 @@ import Btn from "../Btn";
 import Error from "./LogError";
 import axios from "axios";
 
-function ForgotPassword() {
+function ForgotPassword(props) {
+  const navigate = useNavigate();
   const [loginError, setLoginError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
-    otp: "",
     password1: "",
     password2: "",
   });
+
+  const closeLoginError = () => {
+    setLoginError([false, ""]);
+  };
 
   const onUpdateField = (e) => {
     const nextFieldState = {
@@ -23,20 +27,33 @@ function ForgotPassword() {
     setUserinfo(nextFieldState);
   };
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    navigate("/index");
+    // if (userinfo.password1 !== userinfo.password2) {
+    //   setLoginError([true, "Passwords do not match"]);
+    //   return;
+    // }
+    // axios
+    //   .post("http://localhost:9000/users/forgot", {
+    //     otp: userinfo.otp,
+    //     password: userinfo.password1,
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  };
+
+
   return <div>
     <TopBtn heading={"Forgot Password"} />
     <form className="loginForm" onSubmit={submitHandler}>
         {loginError[0] && (
           <Error msg={loginError[1]} onClick={closeLoginError} />
         )}
-        <InputBox
-          placeholder={"Enter OTP"}
-          leftIcon={"bi bi-person-fill"}
-          type={"text"}
-          name={"otp"}
-          value={userinfo.otp}
-          onChange={onUpdateField}
-        />
         <InputBox
           placeholder={"password"}
           leftIcon={"bi bi-key-fill"}
@@ -53,8 +70,7 @@ function ForgotPassword() {
           value={userinfo.password2}
           onChange={onUpdateField}
         />
-        <Btn type={"submit"} value={"Sign In"} onClick={props.closeRegister} /><br></br>
-        <p>Don't have an account?</p>
+        <Btn type={"submit"} value={"Submit"} /><br></br>
       </form>
   </div>;
 }

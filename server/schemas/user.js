@@ -11,7 +11,10 @@ const UserSchema=new mongoose.Schema({
     role:String,
     imagegiven:Boolean,
     feedbackgiven:Boolean,
-    password:String
+    password:String,
+    registered:Boolean,
+    OTP:String,
+    OTPTime:Date,
 });
 const User=mongoose.model('User',UserSchema);
 module.exports=User;

@@ -75,7 +75,9 @@ const Header = (props) => {
             className="fa fa-user"
             aria-hidden="true"
             id="login-btn"
-            onClick={props.openLoginForm}
+            onClick={() => {
+              navigate("/login")
+            }}
           ></i>
         )}
       </div>

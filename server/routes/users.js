@@ -51,9 +51,9 @@ router.post("/login", async (req, res) => {
 });
 
 //register handle
-router.post("/register", async (req, res) => {
+router.post("/register/:id", async (req, res) => {
   const inname = req.body.username;
-  const inemail = req.body.email;
+  const inemail = req.params.id;
   const inpass1 = req.body.password;
   const role = req.body.role;
   const salt = await bcrypt.genSalt(10);
@@ -89,6 +89,18 @@ router.post("/register", async (req, res) => {
       res.status(404).json("token not created");
     }
   }
+});
+
+router.post("/verify", async (req, res) => {
+  const email = req.body.email;
+  const otp = req.body.otp;
+  User.findOne({ email: email }).then((user) => {
+    if (user) {
+      res.status(200).json({ msg: "Email exists" });
+    } else {
+      res.status(201).json({ msg: "Email doesn't exist" });
+    }
+  });
 });
 
 module.exports = router;

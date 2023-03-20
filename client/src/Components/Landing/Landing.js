@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Header from "../Navbar/Header";
 import Vedio from "../Main/Vedio";
@@ -12,6 +12,14 @@ const Landing = (props) => {
   const toggleLoginForm = () => {
     setLogin(!login);
   };
+
+  useEffect(() => {
+    if (props.formType) {
+      return setLogin(true);
+    } else{
+      return setLogin(false);
+    }
+  }, [props.formType]);
 
   const navItems = [
     {
@@ -48,9 +56,8 @@ const Landing = (props) => {
 
       {login && (
         <LoginPage
-          users={props.users}
+          formType={props.formType}
           openLoginForm={toggleLoginForm}
-          loggedUser={props.loggedUser}
         />
       )}
     </div>

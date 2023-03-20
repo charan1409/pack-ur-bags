@@ -73,10 +73,14 @@ function Form(props) {
           value={userinfo.password}
           onChange={onUpdateField}
         />
-        <Btn type={"submit"} value={"Sign In"} onClick={props.closeRegister} /><br></br>
-        <h2>Forgot Password?</h2>
+        <Btn type={"submit"} value={"Sign In"}/><br></br>
+        <h2 onClick={() => {
+          navigate("/verification");
+        }}>Forgot Password?</h2>
         <p>Don't have an account?</p>
-        <Btn type={"button"} value={"Sign Up"} onClick={props.openRegister} /><br></br>
+        <Btn type={"button"} value={"Sign Up"} onClick={() => {
+          navigate("/verification");
+        }} /><br></br>
         <p>contact : packyourbagsofficial@gmail.com</p>
       </form>
     </div>
