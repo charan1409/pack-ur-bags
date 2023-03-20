@@ -28,32 +28,30 @@ router.get('/pay/:id',(req,res)=>{
 
 })
 router.post('/pay/:id',(req, res) => {
-    let username = req.params.id
+    const bookid = req.params.id;
+    let username = req.body.username;
     const num  = req.body.number;
     const hold = req.body.holder;
     const mon = req.body.expmon;
     const year = req.body.expyear;
     const cvv = req.body.cvv
+
     const newpe = new Pay({
         number : num,
         name: hold,
         expmonth: mon,
         expyear: year,
-        cvv: cvv        
+        cvv: cvv,
+        name: username,
+        bookid: bookid,
+        timestamp: new Date()        
     });
    
         //save user
         newpe.save().then(pay => {
-            // router.get('/book/:id',(req,res)=>{
-                // const username = req.params.id
-                User.findOne({ username: username})
-                .then(user=>{
-                    res.render('index',{user})
-                })
-            
-            // })
-            // console.log(book);
-            // res.redirect('/');
+            Book.findOneAndUpdate({ id: bookid},{paymentDone: true}).then(book=>{
+                res.status(200).json({msg: 'Payment Successful'});
+            })
         })
     
 })
