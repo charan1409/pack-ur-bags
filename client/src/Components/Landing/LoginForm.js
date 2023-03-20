@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
+import TopBtn from "./TopBtn";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
 import Error from "./LogError";
 import axios from "axios";
-import { actionCreators } from "../../actions/actions";
-import { useDispatch } from "react-redux";
 
 function Form(props) {
-  const dispatch = useDispatch();
   const [loginError, setLoginError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
     username: "",
@@ -40,10 +38,6 @@ function Form(props) {
       axios.post("http://localhost:9000/users/login",userinfo).then((resp) => {
         if (resp.status === 200) {
           localStorage.setItem("user", JSON.stringify(resp.data));
-          // axios.get(`http://localhost:9000/users/loguser/${user.username}`)
-          // .then(async (response) => {
-          //   dispatch(actionCreators.user(response.data.user));
-          // }) 
           if (resp.data.role === "admin" || resp.data.role === "root") {
             navigate("/admin");
           } else {
@@ -58,6 +52,7 @@ function Form(props) {
 
   return (
     <div>
+      <TopBtn heading={"SIGN IN"} />
       <form className="loginForm" onSubmit={submitHandler}>
         {loginError[0] && (
           <Error msg={loginError[1]} onClick={closeLoginError} />
@@ -79,10 +74,10 @@ function Form(props) {
           onChange={onUpdateField}
         />
         <Btn type={"submit"} value={"Sign In"} onClick={props.closeRegister} /><br></br>
-        <p style={{ color: "white" }}>Forgot Password?</p><br></br>
-        <p style={{ color: "white" }}>Don't have an account?</p>
+        <h2>Forgot Password?</h2>
+        <p>Don't have an account?</p>
         <Btn type={"button"} value={"Sign Up"} onClick={props.openRegister} /><br></br>
-        <p style={{ color: "white" }}>contact information: packyourbags@gmail.com</p>
+        <p>contact : packyourbagsofficial@gmail.com</p>
       </form>
     </div>
   );

@@ -13,4 +13,14 @@
   font-size: 15px;
   font-weight: 400;
   text-transform: none;
+  color: #fff;
+}
+
+.loginForm h2{
+  font-size: 22px;
+  font-weight: 400;
+  color: #fff;
+  cursor: pointer;
+  text-transform: none;
+  margin-bottom: 20px;
 }

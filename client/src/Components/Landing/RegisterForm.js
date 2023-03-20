@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
+import TopBtn from "./TopBtn";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
 import Error from "./LogError";
@@ -69,6 +70,7 @@ function RegisterForm(props) {
   };
   return (
     <div>
+      <TopBtn heading={"SIGN UP"} />
       <form className="loginForm" onSubmit={submitHandler}>
         {registerError[0] && (
           <Error msg={registerError[1]} onClick={closeRegisterError} />

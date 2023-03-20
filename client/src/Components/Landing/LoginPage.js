@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./LoginPage.css";
-import TopBtn from "./TopBtn";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 
@@ -21,17 +20,14 @@ function LoginPage(props) {
       <div className="login-container">
         <div className="total-form-container">
           <div className="login-form-close">
-            <Link to={"/"}>
-              <span
-                className="login-form-close-btn"
-                onClick={props.openLoginForm}
-              >
-                X
-              </span>
-            </Link>
+            <span
+              className="login-form-close-btn"
+              onClick={props.openLoginForm}
+            >
+              X
+            </span>
           </div>
           <div id="log" className="login-form-container">
-            <TopBtn heading={`${register ? "SIGN UP" : "SIGN IN"}`} />
             {!register ? (
               <LoginForm
                 register={register}
