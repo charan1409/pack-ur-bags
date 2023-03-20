@@ -30,9 +30,13 @@ function Form(props) {
     fromdate: todayDate,
     username:userL.username
   });
-  // var todate =new Date(finalData.fromdate);
-  // todate.setDate(todate.getDate() + props.days);
-  // console.log(todate);
+  var todate =new Date(finalData.fromdate);
+  var days =0;
+  if(props.days === "Three"){days=3}
+  else if(props.days === "Five"){days=5}
+  todate.setDate(todate.getDate() + days);
+  var todate_final = todate.getFullYear() + "-" + (todate.getMonth() + 1) + "-" + todate.getDate();
+
   const [regpassengers, setrepasse] = useState([]);
   useEffect(() => {
     setFinalData({...finalData, regpassengers: regpassengers, total: regpassengers.length * props.price})
@@ -49,19 +53,21 @@ function Form(props) {
           alert("Please add passengers");
           return;
         }
-        finalData.regpassengers.map((passenger)=>{
-          axios.post(`http://localhost:9000/book/passengers/${id.id}`, {username:userL.username, placeid:id.id, name:passenger.name, gender:passenger.gender, age:passenger.age}).then((resp)=>{
-            if(resp.status === 200){
-              alert(resp.data.success);
-            }
-          })
-          axios.post(`http://localhost:9000/book/book/${id.id}`,{username:userL.username, placeid:id.id, fromdate:finalData.fromdate,  paymentDone:false} ).then((resp)=>{
-            if(resp.status === 200){
-              alert(resp.data.success);
-              navigate(`/payment/${id.id}`)
-            }
-          })
+        // finalData.regpassengers.map((passenger)=>{
+        //   axios.post(`http://localhost:9000/book/passengers/${id.id}`, {username:userL.username, placeid:id.id, name:passenger.name, gender:passenger.gender, age:passenger.age}).then((resp)=>{
+        //     if(resp.status === 200){
+        //       // alert(resp.data);
+        //     }
+        //   })
+        // })
+        console.log(userL.username, id.id, finalData.fromdate, todate_final)
+        axios.post(`http://localhost:9000/book/book/${id.id}`,{username:userL.username, placeid:id.id, fromdate:finalData.fromdate, todate:todate_final,  paymentDone:false, numberOfpassengers:regpassengers.length} ).then((resp)=>{
+          if(resp.status === 200){
+            // alert(resp.data);
+            navigate(`/payment/${resp.data}`)
+          }
         })
+        
 
       }}>
         <div className="Passengers">
@@ -113,11 +119,11 @@ function Form(props) {
                 e.preventDefault();
                 setrepasse([...regpassengers, passengerDetails]);
                 setPassengerDetails({...passengerDetails, username:userL.username, placeid:id.id})
-                axios.post(`http://localhost:9000/passengers/${id.id}`, passengerDetails).then((resp)=>{
-                  if(resp.status === 200){
-                    alert(resp.data.success);
-                  }
-                })
+                // axios.post(`http://localhost:9000/passengers/${id.id}`, passengerDetails).then((resp)=>{
+                //   if(resp.status === 200){
+                //     alert(resp.data.success);
+                //   }
+                // })
                 setPassengerDetails({
                   name: "",
                   gender: "male",
@@ -182,11 +188,9 @@ function Form(props) {
           type="date"
           display="Select Date"  
           min={maxDate}
-          // onChange={(e) => {
-          //   console.log(e.target.value)
-          //   if(e.target.value>todayDate){setFinalData({ ...finalData, fromdate: e.target.value })}
-          //   else{alert("select proper date")}
-          // }}
+          onChange={(e) => {
+            setFinalData({ ...finalData, fromdate: e.target.value })
+          }}
         />
         <h2>Total cost is {regpassengers.length * props.price}</h2>
         <input type="submit" className="book-btn" value="Book Tour" />

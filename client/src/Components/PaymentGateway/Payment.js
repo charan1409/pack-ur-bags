@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext,useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Payment.css";
 import "../Main/main.css";
@@ -12,8 +12,12 @@ import axios from "axios";
 const Payment = () => {
   const navigate = useNavigate();
   const { trans, setTrans } = useContext(store1);
-
+  const [details,setDetails]=useState({})
   const {id} = useParams()
+  useEffect(() => {
+    axios.get(`http://localhost:9000/payment/pay/${id}`).then(resp => {
+      setDetails(resp.data)
+    })}, [id])
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
   const [month, setMonth] = useState("");
@@ -84,12 +88,12 @@ const Payment = () => {
         <div className="bill-container">
           <div className="bill">
             <h2>BILL</h2>
-            <h3>From</h3>
-            <h3>To</h3>
+            <h3>From: {details.from}</h3>
+            <h3>To: {details.to}</h3>
             <h3>Number of days</h3>
-            <h3>Total passengers</h3>
-            <h3>Price per passenger</h3>
-            <h2>Total Price</h2>
+            <h3>Total passengers: {details.numberOfpassengers}</h3>
+            <h3>Price per passenger: {details.price}</h3>
+            <h2>Total Price: {details.numberOfpassengers * details.price}</h2>
           </div>
         </div>
         <div className="container">
