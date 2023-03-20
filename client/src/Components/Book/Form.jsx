@@ -1,11 +1,12 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import InputBox from "./InputBox";
-
+import axios from "axios";
 var todayDate = new Date();
 var month = todayDate.getMonth() + 1;
 var year = todayDate.getUTCFullYear() - 0;
 var tdate = todayDate.getDate();
+
 if (month < 10) {
   month = "0" + month;
 }
@@ -16,6 +17,7 @@ var maxDate = year + "-" + month + "-" + tdate;
 
 function Form(props) {
   const navigate = useNavigate();
+  const userL=JSON.parse(localStorage.getItem("user"));
   const [passengerDetails, setPassengerDetails] = useState({
     name: "",
     gender: "male",
@@ -24,12 +26,17 @@ function Form(props) {
   const id = useParams();
   const [finalData, setFinalData] = useState({
     regpassengers: [],
-    total: 0,});
+    total: 0,
+    fromdate: todayDate,
+    username:userL.username
+  });
+  // var todate =new Date(finalData.fromdate);
+  // todate.setDate(todate.getDate() + props.days);
+  // console.log(todate);
   const [regpassengers, setrepasse] = useState([]);
   useEffect(() => {
-    setFinalData({ regpassengers: regpassengers, total: regpassengers.length * props.price})
+    setFinalData({...finalData, regpassengers: regpassengers, total: regpassengers.length * props.price})
   }, [regpassengers, id])
-  
   const onChangeField = (e) => {
     const nextField = { ...passengerDetails, [e.target.name]: e.target.value };
     setPassengerDetails(nextField);
@@ -42,8 +49,19 @@ function Form(props) {
           alert("Please add passengers");
           return;
         }
-        props.setBookData({...finalData,placeid:id.id});
-        navigate("/book/confirm");
+        finalData.regpassengers.map((passenger)=>{
+          axios.post(`http://localhost:9000/book/passengers/${id.id}`, {username:userL.username, placeid:id.id, name:passenger.name, gender:passenger.gender, age:passenger.age}).then((resp)=>{
+            if(resp.status === 200){
+              alert(resp.data.success);
+            }
+          })
+          axios.post(`http://localhost:9000/book/book/${id.id}`,{username:userL.username, placeid:id.id, fromdate:finalData.fromdate,  paymentDone:false} ).then((resp)=>{
+            if(resp.status === 200){
+              alert(resp.data.success);
+              navigate(`/payment/${id.id}`)
+            }
+          })
+        })
 
       }}>
         <div className="Passengers">
@@ -94,6 +112,12 @@ function Form(props) {
                 }
                 e.preventDefault();
                 setrepasse([...regpassengers, passengerDetails]);
+                setPassengerDetails({...passengerDetails, username:userL.username, placeid:id.id})
+                axios.post(`http://localhost:9000/passengers/${id.id}`, passengerDetails).then((resp)=>{
+                  if(resp.status === 200){
+                    alert(resp.data.success);
+                  }
+                })
                 setPassengerDetails({
                   name: "",
                   gender: "male",
@@ -152,8 +176,19 @@ function Form(props) {
             </table>
           </div>
         )}
+        <br/>
+        <InputBox
+          value={finalData.fromdate}
+          type="date"
+          display="Select Date"  
+          min={maxDate}
+          // onChange={(e) => {
+          //   console.log(e.target.value)
+          //   if(e.target.value>todayDate){setFinalData({ ...finalData, fromdate: e.target.value })}
+          //   else{alert("select proper date")}
+          // }}
+        />
         <h2>Total cost is {regpassengers.length * props.price}</h2>
-        {/* <Link to="/payment"><input type="submit" className="book-btn" value="Book" /></Link> */}
         <input type="submit" className="book-btn" value="Book Tour" />
       </form>
     </div>
