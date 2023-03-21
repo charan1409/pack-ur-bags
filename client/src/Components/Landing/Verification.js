@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./LoginForm.css";
 import TopBtn from "./TopBtn";
 import InputBox from "./InputBox";
@@ -8,6 +8,7 @@ import Error from "./LogError";
 import axios from "axios";
 
 function Verification(props) {
+  const { id } = useParams()
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
@@ -27,7 +28,7 @@ function Verification(props) {
       .post("http://localhost:9000/users/verify", { email: email, otp: otp })
       .then((res) => {
         if(res.status === 200){
-            navigate(`/registration/${email}`);
+            navigate(`/${res.data.keyword}/${email}`);
         } else {
             setLoginError([true, res.data.msg]);
         }
@@ -56,12 +57,12 @@ function Verification(props) {
           value={"Send OTP"}
           onClick={() => {
             axios
-              .post("http://localhost:9000/users/generateOTP", { email: email })
+              .post("http://localhost:9000/users/generateOTP", { email: email, keyword: id })
               .then((resp) => {
                 if(resp.status === 200){
                     setLoginError([true, resp.data.msg, "success"]);
                 } else {  
-                    setLoginError([true, resp.data.msg, "success"]);
+                    setLoginError([true, resp.data.msg, "error"]);
                 }
               })
               .catch((err) => {

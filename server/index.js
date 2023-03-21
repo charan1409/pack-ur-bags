@@ -20,8 +20,6 @@ mongoose.connect(process.env.MONGODB_LINK_ATLAS,{useNewUrlParser:true,useUnified
 
 // Static Files
 app.use(express.static('public'));
-app.set('views', './views');
-app.set('view engine', 'ejs');
 
 app.listen(port, function () {
     console.log("server is running on the port 9000");

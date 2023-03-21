@@ -7,11 +7,6 @@ import Edityourprofile from "./Edityourprofile";
 import ChangePassword from "./ChangePassword";
 import axios from "axios";
 
-function change_pass() {
-  const modalBg = document.querySelector(".pass-modal-bg");
-  modalBg.classList.toggle("bg-active");
-}
-
 const navItems = [
   {
     title: "Home",

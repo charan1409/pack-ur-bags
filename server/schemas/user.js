@@ -12,9 +12,6 @@ const UserSchema=new mongoose.Schema({
     imagegiven:Boolean,
     feedbackgiven:Boolean,
     password:String,
-    registered:Boolean,
-    OTP:String,
-    OTPTime:Number,
 });
 const User=mongoose.model('User',UserSchema);
 module.exports=User;

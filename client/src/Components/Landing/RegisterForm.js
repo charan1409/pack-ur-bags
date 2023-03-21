@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./LoginForm.css";
 import TopBtn from "./TopBtn";
 import InputBox from "./InputBox";
@@ -8,6 +8,7 @@ import Error from "./LogError";
 import axios from "axios";
 
 function RegisterForm(props) {
+  const { id } = useParams()
   const navigate = useNavigate();
   const [registerError, setRegisterError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
@@ -41,9 +42,11 @@ function RegisterForm(props) {
       const user = {
         id: new Date().valueOf(),
         username: userinfo.username,
+        email: id,
         password: userinfo.password,
         role: "user"
       };
+      console.log(id);
       axios.post("http://localhost:9000/users/register", user).then((resp) => {
         if (resp.status !== 200) {
           setRegisterError([true, resp.data.msg]);
@@ -53,6 +56,7 @@ function RegisterForm(props) {
             password: "",
             confirmedPassword: "",
           });
+          alert(id)
           alert(resp.data.msg);
           localStorage.setItem("user", JSON.stringify(resp.data.user));
           navigate("/index");

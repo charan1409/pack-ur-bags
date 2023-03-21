@@ -75,11 +75,11 @@ function Form(props) {
         />
         <Btn type={"submit"} value={"Sign In"}/><br></br>
         <h2 onClick={() => {
-          navigate("/verification");
+          navigate("/verification/forgotpassword");
         }}>Forgot Password?</h2>
         <p>Don't have an account?</p>
         <Btn type={"button"} value={"Sign Up"} onClick={() => {
-          navigate("/verification");
+          navigate("/verification/registration");
         }} /><br></br>
         <p>contact : packyourbagsofficial@gmail.com</p>
       </form>

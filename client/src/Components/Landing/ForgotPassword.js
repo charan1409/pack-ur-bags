@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import "./LoginForm.css";
 import TopBtn from "./TopBtn";
 import InputBox from "./InputBox";
@@ -8,6 +8,7 @@ import Error from "./LogError";
 import axios from "axios";
 
 function ForgotPassword(props) {
+  const { id } = useParams()
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
@@ -29,22 +30,24 @@ function ForgotPassword(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    if (userinfo.password1.trim().length < 6) {
+      setLoginError([true, "Password length must be greater than 6"]);
+    } else if (userinfo.password1 !== userinfo.password2) {
+      setLoginError([true, "Passwords do not match"]);
+    } else {
+      setLoginError([false, ""]);
+      axios
+        .post("http://localhost:9000/users/forgotpassword", {email: id, password: userinfo.password1})
+        .then((resp) => {
+          if (resp.status === 200) {
+            localStorage.setItem("user", resp.data);
+            navigate("/index");
+          } else {
+            setLoginError([true, resp.data.error]);
+          }
+        });
+    }
     navigate("/index");
-    // if (userinfo.password1 !== userinfo.password2) {
-    //   setLoginError([true, "Passwords do not match"]);
-    //   return;
-    // }
-    // axios
-    //   .post("http://localhost:9000/users/forgot", {
-    //     otp: userinfo.otp,
-    //     password: userinfo.password1,
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   };
 
 
