@@ -10,7 +10,6 @@ import Services from "./Services";
 import Review from "./Review";
 import Feedback from "./Feedback";
 import Footer from "./Footer";
-import { connect } from "react-redux";
 import axios from "axios";
 
 const Index = () => {
@@ -69,9 +68,5 @@ const Index = () => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
-export default connect(mapStateToProps)(Index);
+
+export default Index;

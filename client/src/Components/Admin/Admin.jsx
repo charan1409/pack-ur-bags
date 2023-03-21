@@ -3,16 +3,10 @@ import { useState, useEffect,useCallback } from "react";
 import axios from "axios";
 import "./Admin.css";
 import Header from "../Navbar/Header";
-import { actionCreators } from "../../actions/actions";
-import { useDispatch } from "react-redux";
-import { connect } from "react-redux";
 
 function Admin() {
-  const dispatch = useDispatch();
   const userL= JSON.parse(localStorage.getItem("user"));
-  axios.get(`http://localhost:9000/users/loguser/${userL.username}`).then(async (resp) => {
-    dispatch(actionCreators.user(resp.data));
-  })
+  
   const [role,setRole] = useState("user")
   const [Data, setData] = useState([]);
   const [state, setState] = useState([]);
@@ -21,7 +15,7 @@ function Admin() {
     await axios
       .get(`http://localhost:9000/admins/users?role=${role}`)
       .then((res) => {
-        setData(res.data);
+        return setData(res.data);
       });
   },[role]);
   useEffect(() => {
@@ -144,9 +138,4 @@ function Admin() {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user:state.user
-  };
-};
-export default connect(mapStateToProps)(Admin);
+export default Admin;

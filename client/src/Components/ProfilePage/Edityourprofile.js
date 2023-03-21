@@ -1,12 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { actionCreators } from "../../actions/actions";
-import { useDispatch } from "react-redux";
 
 function Edityourprofile(props) {
-  const dispatch = useDispatch();
   // on change userinfo refresh page once
-
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const [userinfo, setUserinfo] = useState({
     id: user.id,
@@ -37,11 +35,10 @@ function Edityourprofile(props) {
           else {
             axios.get(`http://localhost:9000/users/loguser/${user.username}`)
             .then(async (response) => {
-              dispatch(actionCreators.user(response.data));
+              if(response.status !== 200) navigate("/error")
+              else props.updated()
             })
             alert(resp.data.succ);
-            // const modalBg = document.querySelector(".modal-bg");
-            // modalBg.classList.toggle("bg-active");
           }
         });
     }

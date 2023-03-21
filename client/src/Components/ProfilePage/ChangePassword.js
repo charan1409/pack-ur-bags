@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { actionCreators } from "../../actions/actions";
-import { useDispatch } from "react-redux";
 
-function ChangePassword() {
+function ChangePassword(props) {
   const user = JSON.parse(localStorage.getItem("user"));
-  const dispatch = useDispatch();
   const [password, setPassword] = useState({
     email: user.email,
     oldpassword: "",
@@ -33,7 +30,6 @@ function ChangePassword() {
         .then((resp) => {
           if (resp.status !== 200) alert(resp.data.error);
           else {
-            dispatch(actionCreators.add());
             setPassword({
               email: user.email,
               oldpassword: "",
@@ -41,8 +37,7 @@ function ChangePassword() {
               conpassword: "",
             });
             alert(resp.data.succ);
-            const modalBg = document.querySelector(".pass-modal-bg");
-            modalBg.classList.toggle("bg-active");
+            props.onClick()
           }
         })
         .catch((error) => {

@@ -5,9 +5,7 @@ import photo from "../viewplaces/places/beach/barefoot.jpg";
 import Form from "./Form";
 import "./book.css";
 import Header from "../Navbar/Header";
-import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
-import { actionCreators } from "../../actions/actions";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -35,14 +33,6 @@ function App(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userL = JSON.parse(localStorage.getItem("user"));
-  if (!props.user) {
-    axios
-      .get(`http://localhost:9000/users/loguser/${userL.username}`)
-      .then(async (resp) => {
-        dispatch(actionCreators.user(resp.data));
-      });
-  }
-
   const {id} = useParams();
   const [placedata, setPlacedata] = useState();
   const [loading, setLoading] = useState(false);
@@ -127,10 +117,5 @@ function App(props) {
     </div>
   );
 }
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    tour: state.tour,
-  };
-};
-export default connect(mapStateToProps)(App);
+
+export default App;

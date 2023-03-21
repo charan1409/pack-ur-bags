@@ -37,6 +37,7 @@ function Profile(props) {
   const [user, setUser] = useState({});
   const [fd, setFd] = useState({});
   const [edit, setEdit] = useState(false);
+  const [pass, setPass] = useState(false);
   const [feededit, setFeededit] = useState(false);
   const [feedback, setFeedback] = useState("");
   const [updated, setUpdated] = useState(false);
@@ -75,8 +76,8 @@ function Profile(props) {
           if (resp.status === 200) {
             update();
             alert(resp.data.succ);
-          } else{
-            navigate("/error")
+          } else {
+            navigate("/error");
           }
         });
     }
@@ -91,8 +92,8 @@ function Profile(props) {
         if (resp.status === 200) {
           update();
           alert(resp.data.succ);
-        } else{
-          navigate("/error")
+        } else {
+          navigate("/error");
         }
       });
   };
@@ -109,8 +110,8 @@ function Profile(props) {
         if (resp.status === 200) {
           update();
           alert(resp.data.succ);
-        } else{
-          navigate("/error")
+        } else {
+          navigate("/error");
         }
       });
   };
@@ -122,8 +123,8 @@ function Profile(props) {
         if (resp.status === 200) {
           update();
           alert(resp.data.succ);
-        } else{
-          navigate("/error")
+        } else {
+          navigate("/error");
         }
       });
   };
@@ -165,7 +166,7 @@ function Profile(props) {
                 {edit ? (
                   <div className="edit-form">
                     <h2>edit your profile</h2>
-                    <Edityourprofile username="User" />
+                    <Edityourprofile username="User" updated={update} />
                     <span onClick={() => setEdit(false)}>x</span>
                   </div>
                 ) : (
@@ -189,7 +190,12 @@ function Profile(props) {
                       edit profile
                     </button>
                   )}
-                  <button className="btn_profile" onClick={change_pass}>
+                  <button
+                    className="btn_profile"
+                    onClick={() => {
+                      setPass(true);
+                    }}
+                  >
                     change password
                   </button>
                   <br></br>
@@ -265,12 +271,16 @@ function Profile(props) {
         </div>
         <hr style={{ height: "5px", backgroundColor: "black" }} />
 
-        <div className="pass-modal-bg">
-          <div className="edit-form">
-            <h2>Change your password</h2>
-            <ChangePassword username="User" />
-            <span onClick={change_pass}>x</span>
-          </div>
+        <div>
+          {pass && (
+            <div className="pass-modal-bg">
+              <div className="edit-form">
+                <h2>Change your password</h2>
+                <ChangePassword onClick={() => setPass(false)}/>
+                <span onClick={() => setPass(false)}>x</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

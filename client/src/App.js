@@ -16,13 +16,11 @@ import Transaction from "./Components/Transactions/Transaction";
 import Admin from "./Components/Admin/Admin";
 import Addadmin from "./Components/Admin/Addadmin";
 import AddPlaces from "./Components/Admin/AddPlaces";
-import store from "./store.js";
 import { Provider } from "react-redux";
 export const store1 = createContext();
 function App() {
   return (
     <>
-      <Provider store={store}>
         <store1.Provider value={{}}>
           <BrowserRouter>
             <ScrollTop smooth />
@@ -47,7 +45,6 @@ function App() {
             </Routes>
           </BrowserRouter>
         </store1.Provider>
-      </Provider>
     </>
   );
 }

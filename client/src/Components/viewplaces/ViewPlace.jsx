@@ -7,9 +7,6 @@ import Components from "./ViewplacesComponents/PlacesComponent";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
-import { connect } from "react-redux";
-import { useDispatch } from "react-redux";
-import { actionCreators } from "../../actions/actions";
 
 const navItems = [
   {
@@ -29,20 +26,13 @@ const navItems = [
     path: "/index/#services",
   },
 ];
-function App(props) {
+function ViewPlace(props) {
   const navigate = useNavigate();
   const [placesData, setPlacesData] = useState([]);
   const params = useParams();
   const [category, setCategory] = useState(params.id);
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
   const userL = JSON.parse(localStorage.getItem("user"));
-  if(! props.user){
-    axios.get(`http://localhost:9000/users/loguser/${userL.username}`)
-          .then(async (resp) => {
-            dispatch(actionCreators.user(resp.data));
-          }) 
-  }
 
   useEffect(() => {
     axios
@@ -117,9 +107,5 @@ function App(props) {
     </div>
   );
 }
-const mapStateToProps = (state) => {
-  return {
-    username: state.username,
-  };
-};
-export default connect(mapStateToProps)(App);
+
+export default ViewPlace;
