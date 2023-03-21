@@ -3,9 +3,18 @@ import "./LogError.css";
 
 const LogAlert = (props) => {
   return (
-    <div className="log-alert">
-      <p>{props.msg}</p>
-      <span onClick={props.onClick}>X </span>
+    <div>
+      {props.type === "error" ? (
+        <div className="log-error">
+          <p>{props.msg}</p>
+          <span onClick={props.onClick}>X </span>
+        </div>
+      ) : (
+        <div className="log-success">
+          <p>{props.msg}</p>
+          <span onClick={props.onClick}>X </span>
+        </div>
+      )}
     </div>
   );
 };

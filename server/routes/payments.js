@@ -26,6 +26,7 @@ router.get('/pay/:id', (req, res) => {
             })
         })
 })
+<<<<<<< HEAD
 
 router.get('/mybookings/:id', async (req, res) => {
     let username = req.params.id;
@@ -55,15 +56,23 @@ router.get('/mybookings/:id', async (req, res) => {
 router.post('/pay/:id', (req, res) => {
     let username = req.params.id
     const num = req.body.number;
+=======
+router.post('/pay/:id',(req, res) => {
+    const bookid = req.params.id;
+    let username = req.body.username;
+    const num  = req.body.number;
+>>>>>>> 9903b4623d55c5db9347f18a4a24fec668307a59
     const hold = req.body.holder;
     const mon = req.body.expmon;
     const year = req.body.expyear;
     const cvv = req.body.cvv
+
     const newpe = new Pay({
         number: num,
         name: hold,
         expmonth: mon,
         expyear: year,
+<<<<<<< HEAD
         cvv: cvv
     });
 
@@ -81,6 +90,29 @@ router.post('/pay/:id', (req, res) => {
         // res.redirect('/');
     })
 
+=======
+        cvv: cvv,
+        name: username,
+        bookid: bookid,
+        timestamp: new Date()        
+    });
+        //save user
+        newpe.save().then(pay => {
+            Book.findOneAndUpdate({ id: bookid},{paymentDone: true}).then(book=>{
+                res.status(200).json({msg: 'Payment Successful'});
+            })
+        })
+    
+>>>>>>> 9903b4623d55c5db9347f18a4a24fec668307a59
+})
+
+router.get('/getTransactions/:id', (req, res) => {
+    let username = req.params.id;
+    User.findOne({ username: username }).then(user => {
+        Pay.find({ name: username }).then(pay => {
+            res.status(200).json(pay);
+        })
+    })
 })
 
 module.exports = router;

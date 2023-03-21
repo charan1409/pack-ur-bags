@@ -24,6 +24,8 @@ const Payment = () => {
   const [year, setYear] = useState("");
   const [cvv, setCvv] = useState("");
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -33,6 +35,7 @@ const Payment = () => {
       month: month,
       year: year,
       cvv: cvv,
+      username: user.username,
     };
     console.log(payment_data);
 
@@ -41,15 +44,9 @@ const Payment = () => {
     setMonth("");
     setYear("");
     setCvv("");
-
-    // if (!trans.includes(payment_data)) {
-      //   setTrans([...trans, payment_data]);
-    //   console.log(trans);
-    //   navigate("/transactions");
-    // }
-    axios.get(`http://localhost:9000/payment/pay/${id}`).then(resp => {
+    axios.post(`http://localhost:9000/payment/pay/${id}`, payment_data).then(resp => {
       if(resp.status === 200){
-        alert(`Payment Successful`);
+        alert(resp.data.msg);
         navigate(`/index`);
       } else{
         navigate('/error');

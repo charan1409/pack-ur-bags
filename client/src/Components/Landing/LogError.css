@@ -1,5 +1,4 @@
-.log-alert {
-  /* display: none; */
+.log-error {
   height: 45px;
   width: 100%;
   background-color: #f63838;
@@ -9,7 +8,17 @@
   border-radius: 7px;
 }
 
-.log-alert p {
+.log-success{
+  height: 45px;
+  width: 100%;
+  background-color: #00b300;
+  position: relative;
+  padding-left: 20px;
+  grid-template-columns: 90% 10%;
+  border-radius: 7px;
+}
+
+.log-error,.log-success p {
   font-size: 13px;
   color: #fff;
   text-transform: none;
@@ -17,7 +26,7 @@
   line-height: 45px;
 }
 
-.log-alert span {
+.log-error,.log-success span {
   position: absolute;
   line-height: 45px;
   right: 10px;

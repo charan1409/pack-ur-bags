@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 const cookieparser = require("cookie-parser");
 const { check, validationResult } = require("express-validator");
@@ -76,6 +77,7 @@ router.post("/register/:id", async (req, res) => {
       image: "default.png",
       imagegiven: false,
       feedbackgiven: false,
+      registered: true,
     });
     try {
       await newUser.save().then(async (user) => {
@@ -89,6 +91,57 @@ router.post("/register/:id", async (req, res) => {
       res.status(404).json("token not created");
     }
   }
+});
+
+router.post("/generateOTP", async (req, res) => {
+  const email = req.body.email;
+  const otp = Math.floor(100000 + Math.random() * 900000)+"";
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // use SSL
+    auth: {
+      user: 'packurbagsofficial@gmail.com',
+      pass: 'onyavecwmwqcpkla'
+    }
+  });
+
+  const message = {
+    from: 'packurbagsofficial@gmail.com',
+    to: email,
+    subject: 'Your OTP',
+    text: `Your OTP is ${otp}. It will expire in 5 minutes.`
+  };
+  
+  // Send the email message
+  transporter.sendMail(message, (error, info) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(`Email sent: ${info.response}`);
+    }
+  });
+
+  // code for checking whether user exists or not and setting otp in db
+  User.findOne({ email: email }).then((user) => {
+    if (user) {
+      user.OTP = otp;
+      user.OTPTime = Date.now();
+      user.save();
+      res.status(200).json({ msg: "OTP sent to your mail" });
+    } else {
+      const newUser = new User({
+        email: email,
+        OTP: otp,
+        OTPTime: Date.now(),
+        registered: false,
+      });
+      newUser.save();
+      res.status(200).json({ msg: "OTP sent to your mail" });
+    }
+  }
+  );
+
 });
 
 router.post("/verify", async (req, res) => {

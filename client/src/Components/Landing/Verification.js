@@ -13,7 +13,7 @@ function Verification(props) {
   const [otp, setOtp] = useState("");
   const [loginError, setLoginError] = useState([false, ""]);
   const closeLoginError = () => {
-    setLoginError([false, ""]);
+    setLoginError([false, "",""]);
   };
   const submitHandler = (e) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ function Verification(props) {
       <TopBtn heading={"Verify Your Email"} />
       <form className="loginForm" onSubmit={submitHandler}>
         {loginError[0] && (
-          <Error msg={loginError[1]} onClick={closeLoginError} />
+          <Error msg={loginError[1]} type={loginError[2]} onClick={closeLoginError} />
         )}
         <InputBox
           placeholder={"Enter Your Email"}
@@ -56,9 +56,13 @@ function Verification(props) {
           value={"Send OTP"}
           onClick={() => {
             axios
-              .post("http://localhost:9000/api/user/verify", { email: email })
-              .then((res) => {
-                console.log(res.data);
+              .post("http://localhost:9000/users/generateOTP", { email: email })
+              .then((resp) => {
+                if(resp.status === 200){
+                    setLoginError([true, resp.data.msg, "success"]);
+                } else {  
+                    setLoginError([true, resp.data.msg, "success"]);
+                }
               })
               .catch((err) => {
                 console.log(err);
