@@ -72,13 +72,20 @@ function Admin() {
               setState(data);
             }}
           />
+
           <i className="fas fa-search"></i>
         </div>
         <div>
-          <button className="btn1" onClick={() => setRole("user")}>
+          <button className="btn1" onClick={() => {
+            setRole("user")
+            setState([])
+          }}>
             user
           </button>
-          <button className="btn1" onClick={() => setRole("admin")}>
+          <button className="btn1" onClick={() => {
+            setRole("admin")
+            setState([])
+          }}>
             admin
           </button>
         </div>
@@ -116,19 +123,7 @@ function Admin() {
                       <td>{x.id}</td>
                       <td className="admin">{x.username}</td>
                       <td className="admin">{x.email}</td>
-                      <td className="admin">{x.password}</td>
-                      <td>
-                        {x.tours.map((item) => (
-                          <div>
-                            <h3>From - {item.from}</h3>
-                            <h3>To - {item.to}</h3>
-                            <h3>Number of Adults- {item.adult}</h3>
-                            <h3>Number of Child- {item.child}</h3>
-                            <h3>Date of Departure- {item.depart}</h3>
-                            <h3>Date of Arrival- {item.arrival}</h3>
-                          </div>
-                        ))}
-                      </td>
+                      <td>view all</td>
                       <td>
                         <i
                           className="fas fa-trash-alt del"
