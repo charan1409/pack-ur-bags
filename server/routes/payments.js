@@ -26,7 +26,6 @@ router.get('/pay/:id', (req, res) => {
             })
         })
 })
-<<<<<<< HEAD
 
 router.get('/mybookings/:id', async (req, res) => {
     let username = req.params.id;
@@ -56,12 +55,10 @@ router.get('/mybookings/:id', async (req, res) => {
 router.post('/pay/:id', (req, res) => {
     let username = req.params.id
     const num = req.body.number;
-=======
 router.post('/pay/:id',(req, res) => {
     const bookid = req.params.id;
     let username = req.body.username;
     const num  = req.body.number;
->>>>>>> 9903b4623d55c5db9347f18a4a24fec668307a59
     const hold = req.body.holder;
     const mon = req.body.expmon;
     const year = req.body.expyear;
@@ -72,8 +69,10 @@ router.post('/pay/:id',(req, res) => {
         name: hold,
         expmonth: mon,
         expyear: year,
-<<<<<<< HEAD
-        cvv: cvv
+        cvv: cvv,
+        name: username,
+        bookid: bookid,
+        timestamp: new Date()
     });
 
     //save user
@@ -88,13 +87,7 @@ router.post('/pay/:id',(req, res) => {
         // })
         // console.log(book);
         // res.redirect('/');
-    })
-
-=======
-        cvv: cvv,
-        name: username,
-        bookid: bookid,
-        timestamp: new Date()        
+    })       
     });
         //save user
         newpe.save().then(pay => {
@@ -103,7 +96,6 @@ router.post('/pay/:id',(req, res) => {
             })
         })
     
->>>>>>> 9903b4623d55c5db9347f18a4a24fec668307a59
 })
 
 router.get('/getTransactions/:id', (req, res) => {
