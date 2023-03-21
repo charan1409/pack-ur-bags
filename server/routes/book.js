@@ -8,8 +8,6 @@ const User = require('../schemas/user');
 const Place = require('../schemas/place');
 const verifier = require('../routes/verifier');
 
-
-// router.get('/views/book/book',verifier, (req, res) => res.render('book'));
 router.get('/booking/:id',(req,res)=>{
     const placeid = req.params.id;
     Place.findOne({ id: placeid})
@@ -69,6 +67,7 @@ router.post('/book/:id',(req,res)=>{
     const todate=req.body.todate;
     const paymentDone=req.body.paymentDone;
     const numberOfpassengers=req.body.numberOfpassengers;
+    const passengers=req.body.passengers;
     const newBooking=new book({
         id:id,
         placeid:placeid,
@@ -76,30 +75,11 @@ router.post('/book/:id',(req,res)=>{
         fromdate:fromdate,
         todate:todate,
         paymentDone:paymentDone,
-        numberOfpassengers:numberOfpassengers
+        numberOfpassengers:numberOfpassengers,
+        passengers:passengers
     });
     newBooking.save().then(book=>{
         res.status(200).json(id)
-    })
-})
-
-
-const passenger=require('../schemas/passengers')
-router.post('/passengers/:id',(req,res)=>{
-    let placeid=req.params.id;
-    const username=req.body.username;
-    const name=req.body.name;
-    const gender=req.body.gender;
-    const age=req.body.age;
-    const newPassenger=new passenger({
-        placeid:placeid,
-        username:username,
-        name:name,
-        gender:gender,
-        age:age
-    });
-    newPassenger.save().then(passenger=>{
-        res.status(200).json({stat:"fine"})
     })
 })
 

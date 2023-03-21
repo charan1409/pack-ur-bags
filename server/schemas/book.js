@@ -8,6 +8,7 @@ const bookSchema=new mongoose.Schema({
     todate:String,
     paymentDone: Boolean,
     numberOfpassengers: Number,
+    passengers: Array,
 });
 const book=mongoose.model('book',bookSchema);
 module.exports=book;
