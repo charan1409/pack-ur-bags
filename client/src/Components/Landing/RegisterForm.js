@@ -65,7 +65,7 @@ function RegisterForm(props) {
       <TopBtn heading={"SIGN UP"} />
       <form className="loginForm" onSubmit={submitHandler}>
         {registerError[0] && (
-          <Error msg={registerError[1]} onClick={closeRegisterError} />
+          <Error msg={registerError[1]} type={"error"} onClick={closeRegisterError} />
         )}
         <InputBox
           placeholder={"username"}

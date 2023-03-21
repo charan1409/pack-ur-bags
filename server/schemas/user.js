@@ -14,7 +14,7 @@ const UserSchema=new mongoose.Schema({
     password:String,
     registered:Boolean,
     OTP:String,
-    OTPTime:Date,
+    OTPTime:Number,
 });
 const User=mongoose.model('User',UserSchema);
 module.exports=User;

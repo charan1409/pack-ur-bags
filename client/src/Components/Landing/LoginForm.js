@@ -55,7 +55,7 @@ function Form(props) {
       <TopBtn heading={"SIGN IN"} />
       <form className="loginForm" onSubmit={submitHandler}>
         {loginError[0] && (
-          <Error msg={loginError[1]} onClick={closeLoginError} />
+          <Error msg={loginError[1]} type={"error"} onClick={closeLoginError} />
         )}
         <InputBox
           placeholder={"username"}
