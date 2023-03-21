@@ -6,16 +6,21 @@ import axios from "axios";
 
 const Transaction = (props) => {
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState({});
   const [trans, setTrans] = useState([]);
-  
+
   const removeItems = (key) => {
     const newset = trans.filter((ob, a) => a !== key);
     setTrans([...newset]);
   };
   useEffect(() => {
-    axios.get(`http://localhost:9000/payment/getTransactions/${user.username}`).then((resp) => {
-      console.log(resp.data);
+    const userL = JSON.parse(localStorage.getItem("user"));
+    axios
+      .get(`http://localhost:9000/users/loguser/${userL.username}`)
+      .then((resp) => {
+        return setUser(resp.data.user);
+      });
+    axios.get(`http://localhost:9000/payment/getTransactions/${userL.username}`).then((resp) => {
       return setTrans(resp.data);
     });
   }, []);
@@ -41,7 +46,7 @@ const Transaction = (props) => {
 
   return (
     <div>
-      <Header user={true} navItems={navItems} />
+      <Header user={user} navItems={navItems} />
       <Link to="/payment">
         <input type="submit" className="btn" value="Payment" />
       </Link>
@@ -52,27 +57,27 @@ const Transaction = (props) => {
           <div className="item-class">
             {trans
               ? trans.map((item, key) => {
-                  return (
-                    <div className="item-box" key={key}>
-                      <h2>Card Number : {item.number}</h2>
-                      <h2>Name : {item.name}</h2>
-                      <h2>Month : {item.month}</h2>
-                      <h2>Year : {item.year}</h2>
-                      <h2>CVV: {item.cvv}</h2>
-                      <div className="addtocart">
-                        <button
-                          onClick={() => {
-                            removeItems(key);
-                            alert("You will contacted for Refund");
-                          }}
-                          className="book-btn btn-primary"
-                        >
-                          Cancel and Refund{" "}
-                        </button>
-                      </div>
+                return (
+                  <div className="item-box" key={key}>
+                    <h2>Card Number : {item.number}</h2>
+                    <h2>Name : {item.name}</h2>
+                    <h2>Month : {item.month}</h2>
+                    <h2>Year : {item.year}</h2>
+                    <h2>CVV: {item.cvv}</h2>
+                    <div className="addtocart">
+                      <button
+                        onClick={() => {
+                          removeItems(key);
+                          alert("You will contacted for Refund");
+                        }}
+                        className="book-btn btn-primary"
+                      >
+                        Cancel and Refund{" "}
+                      </button>
                     </div>
-                  );
-                })
+                  </div>
+                );
+              })
               : ""}
           </div>
         </div>
