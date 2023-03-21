@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import Header from "../Navbar/Header";
 import "./Tour.css";
 import axios from "axios";
-import { connect } from "react-redux";
-import { useDispatch } from "react-redux";
-import { actionCreators } from "../../actions/actions";
+import Btn from "../Btn";
 
 const Tours = (props) => {
+  const navigate=useNavigate();
+  const [user, setUser] = useState({});
   const navItems = [
     {
       title: "Home",
       path: "/index",
-      
+
     },
     {
       title: "Gallery",
       path: "/index/#gallery",
-      
+
     },
     {
       title: "Places",
       path: "/places/all",
-      
+
     },
     {
       title: "Services",
@@ -31,88 +31,49 @@ const Tours = (props) => {
   ];
 
   const [tours, setTours] = useState([]);
-  const user = JSON.parse(localStorage.getItem("user"));
-  const dispatch = useDispatch();
-  if(! props.user){
-    axios.get(`http://localhost:9000/users/loguser/${user.username}`)
-          .then(async (resp) => {
-            dispatch(actionCreators.user(resp.data));
-          }) 
-  }
+  const userL = JSON.parse(localStorage.getItem("user"));
+  useEffect(() => {
+    axios.get(`http://localhost:9000/payment/mybookings/${userL.username}`).then(resp => {
+      console.log(resp.data)
+      return setTours(resp.data)
+    })
+  }, [userL.username, setTours])
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/users/${user.id}`).then((res) => {
-      const user = res.data;
-      setTours(user.tours);
-    });
-    // eslint-disable-next-line
-  }, [tours.length]);
+    const userL = JSON.parse(localStorage.getItem("user"));
+    axios
+      .get(`http://localhost:9000/users/loguser/${userL.username}`)
+      .then((resp) => {
+        return setUser(resp.data.user);
+      });
+  }, []);
 
   return (
     <div>
-      <Header user={true} navItems={navItems} />
-      <Link to="/book">
-        <input type="submit" className="btn" value="Book Page" />
-      </Link>
+      <Header user={user} navItems={navItems} />
       {tours.length === 0 ? (
         <h1>Your Tour List is Empty</h1>
       ) : (
         <div>
-          <div className="item-class">
+          <div className="tour-item-class">
             {tours
               ? tours.map((item, key) => {
-                  return (
-                    <div className="item-box" key={key}>
-                      <h2>From : {item.from}</h2>
-                      <h2>To : {item.to}</h2>
-                      <h2>Number of Adults: {item.adult}</h2>
-                      <h2>Number of Child: {item.child}</h2>
-                      <h2>Date of Departure: {item.depart}</h2>
-                      <h2>Date of Arrival: {item.arrival}</h2>
-                      <h2>Total amount: {5000 + item.adult*100}</h2>
-                      <div className="addtocart">
-                        <div>
-                          <button
-                            onClick={() => {
-                              const user = JSON.parse(
-                                localStorage.getItem("user")
-                              );
-                              axios
-                                .get(`http://localhost:3001/users/${user.id}`)
-                                .then((res) => {
-                                  axios
-                                    .put(
-                                      `http://localhost:3001/users/${user.id}`,
-                                      {
-                                        ...res.data,
-                                        tours: res.data.tours.filter(
-                                          (ob, a) => a !== key
-                                        ),
-                                      }
-                                    )
-                                    .then((res) => {
-                                      setTours(res.data.tours);
-                                    });
-                                });
-                            }}
-                            className="book-btn btn-primary"
-                          >
-                            Remove{" "}
-                          </button>
-                        </div>
-                        <div>
-                          <Link to="/payment">
-                            <input
-                              type="submit"
-                              className="book-btn"
-                              value="Book"
-                            />
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })
+                return (
+                  <div className="tour-item-box" key={key}>
+                  <div className="tour-details">
+                    <h2>From : {item.from}</h2>
+                    <h2>To : {item.to}</h2>
+                    <h2>Number of Passengers: {item.numberOfpassengers}</h2>
+                    <h2>Date of Departure: {item.fromdate}</h2>
+                    <h2>Date of Arrival: {item.todate}</h2>
+                    <h2>Total amount: {item.numberOfpassengers * item.price}</h2>
+                  </div>
+                  <div className="tour-button"><Btn value="Continue booking" type="button" onClick={()=>{
+                    navigate(`/payment/${item.id}`)
+                  }}/></div>
+                  </div>
+                );
+              })
               : ""}
           </div>
         </div>
@@ -121,9 +82,4 @@ const Tours = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    username: state.username,
-  };
-};
-export default connect(mapStateToProps)(Tours);
+export default Tours;

@@ -61,7 +61,7 @@ function Form(props) {
         //   })
         // })
         console.log(userL.username, id.id, finalData.fromdate, todate_final)
-        axios.post(`http://localhost:9000/book/book/${id.id}`,{username:userL.username, placeid:id.id, fromdate:finalData.fromdate, todate:todate_final,  paymentDone:false, numberOfpassengers:regpassengers.length} ).then((resp)=>{
+        axios.post(`http://localhost:9000/book/book/${id.id}`,{username:userL.username, placeid:id.id, fromdate:finalData.fromdate, todate:todate_final,  paymentDone:false, numberOfpassengers:regpassengers.length,passengers:regpassengers} ).then((resp)=>{
           if(resp.status === 200){
             // alert(resp.data);
             navigate(`/payment/${resp.data}`)
