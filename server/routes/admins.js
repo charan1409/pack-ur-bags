@@ -13,9 +13,7 @@ const fs = require("fs");
 const book = require("../schemas/book");
 const User = require("../schemas/user");
 const fdb = require("../schemas/feedback");
-const Admin = require("../schemas/admin");
 const Place = require("../schemas/place");
-const adminverifier = require("../routes/adminverifier");
 
 // table data of users for admin
 router.get("/users", (req, res) => {
@@ -26,33 +24,6 @@ router.get("/users", (req, res) => {
     } else {
       console.log(err);
     }
-  });
-});
-
-router.get("/feedback", adminverifier, (req, res) => {
-  let email = req.user.id;
-  Admin.findOne({ email: email }).then((user) => {
-    fdb.find({}, (err, data) => {
-      if (data) {
-        res.render("feedback", { user, model: data });
-      } else {
-        console.log(err);
-      }
-    });
-  });
-});
-
-// table data of bookings for admin
-router.get("/bookings", adminverifier, (req, res) => {
-  let email = req.user.id;
-  Admin.findOne({ email: email }).then((user) => {
-    book.find({}, (err, data) => {
-      if (data) {
-        res.render("bookings", { user, model: data });
-      } else {
-        console.log(err);
-      }
-    });
   });
 });
 

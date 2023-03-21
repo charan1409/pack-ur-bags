@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 const cookieparser = require("cookie-parser");
 const { check, validationResult } = require("express-validator");
 const User = require("../schemas/user");
-const Admin = require("../schemas/admin");
 const FeedBack = require("../schemas/feedback");
 
 router.use(cookieparser());
@@ -61,9 +60,7 @@ router.post("/register/:id", async (req, res) => {
   const hashPassword = await bcrypt.hash(inpass1, salt);
   const user = await User.findOne({ username: inname });
   const user1 = await User.findOne({ email: inemail });
-  const admin = await Admin.findOne({ username: inname });
-  const admin1 = await Admin.findOne({ email: inemail });
-  if (admin || user) {
+  if (user) {
     res.status(201).json({ msg: "username already exists" });
   } else if (admin1 || user1) {
     res.status(201).json({ msg: "Email already exists" });
