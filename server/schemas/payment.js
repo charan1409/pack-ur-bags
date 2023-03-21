@@ -15,6 +15,12 @@ const payscheme = new mongoose.Schema({
     },
     cvv:{
         type:String
+    },
+    bookid: {
+        type: String
+    },
+    timestamp: {
+        type: Date
     }
 
 })

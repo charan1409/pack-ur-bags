@@ -61,25 +61,29 @@ router.get('/book/:id', (req, res) => {
     })
 })
 
-router.post('book/:id',(req,res)=>{
-    const id=Date.now();
+router.post('/book/:id',(req,res)=>{
+    const id=Date.now()+""+Math.floor(Math.random()*10);
     const placeid=req.params.id;
     const username=req.body.username;
     const fromdate=req.body.fromdate;
     const todate=req.body.todate;
     const paymentDone=req.body.paymentDone;
+    const numberOfpassengers=req.body.numberOfpassengers;
     const newBooking=new book({
         id:id,
         placeid:placeid,
         username:username,
         fromdate:fromdate,
         todate:todate,
-        paymentDone:paymentDone
+        paymentDone:paymentDone,
+        numberOfpassengers:numberOfpassengers
     });
     newBooking.save().then(book=>{
-        res.status(200).json({stat:"fine"})
+        res.status(200).json(id)
     })
 })
+
+
 const passenger=require('../schemas/passengers')
 router.post('/passengers/:id',(req,res)=>{
     let placeid=req.params.id;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext,useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Payment.css";
 import "../Main/main.css";
@@ -12,13 +12,19 @@ import axios from "axios";
 const Payment = () => {
   const navigate = useNavigate();
   const { trans, setTrans } = useContext(store1);
-
+  const [details,setDetails]=useState({})
   const {id} = useParams()
+  useEffect(() => {
+    axios.get(`http://localhost:9000/payment/pay/${id}`).then(resp => {
+      setDetails(resp.data)
+    })}, [id])
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [cvv, setCvv] = useState("");
+
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,6 +35,7 @@ const Payment = () => {
       month: month,
       year: year,
       cvv: cvv,
+      username: user.username,
     };
     console.log(payment_data);
 
@@ -37,15 +44,9 @@ const Payment = () => {
     setMonth("");
     setYear("");
     setCvv("");
-
-    // if (!trans.includes(payment_data)) {
-      //   setTrans([...trans, payment_data]);
-    //   console.log(trans);
-    //   navigate("/transactions");
-    // }
-    axios.get(`http://localhost:9000/payment/pay/${id}`).then(resp => {
+    axios.post(`http://localhost:9000/payment/pay/${id}`, payment_data).then(resp => {
       if(resp.status === 200){
-        alert(`Payment Successful`);
+        alert(resp.data.msg);
         navigate(`/index`);
       } else{
         navigate('/error');
@@ -84,12 +85,12 @@ const Payment = () => {
         <div className="bill-container">
           <div className="bill">
             <h2>BILL</h2>
-            <h3>From</h3>
-            <h3>To</h3>
+            <h3>From: {details.from}</h3>
+            <h3>To: {details.to}</h3>
             <h3>Number of days</h3>
-            <h3>Total passengers</h3>
-            <h3>Price per passenger</h3>
-            <h2>Total Price</h2>
+            <h3>Total passengers: {details.numberOfpassengers}</h3>
+            <h3>Price per passenger: {details.price}</h3>
+            <h2>Total Price: {details.numberOfpassengers * details.price}</h2>
           </div>
         </div>
         <div className="container">

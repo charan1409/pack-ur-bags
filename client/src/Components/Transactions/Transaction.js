@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../Navbar/Header";
 import "./Trans.css";
-import { connect } from "react-redux";
-import { useDispatch } from "react-redux";
-import { actionCreators } from "../../actions/actions";
 import axios from "axios";
 
 const Transaction = (props) => {
-  const [trans, setTrans] = useState([]);
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [trans, setTrans] = useState([]);
+  
   const removeItems = (key) => {
     const newset = trans.filter((ob, a) => a !== key);
     setTrans([...newset]);
   };
+  useEffect(() => {
+    axios.get(`http://localhost:9000/payment/getTransactions/${user.username}`).then((resp) => {
+      console.log(resp.data);
+      return setTrans(resp.data);
+    });
+  }, []);
 
   const navItems = [
     {
@@ -33,15 +38,6 @@ const Transaction = (props) => {
       path: "/index/#services",
     },
   ];
-  const dispatch = useDispatch();
-  const userL = JSON.parse(localStorage.getItem("user"));
-  if (!props.user) {
-    axios
-      .get(`http://localhost:9000/users/loguser/${userL.username}`)
-      .then(async (resp) => {
-        dispatch(actionCreators.user(resp.data));
-      });
-  }
 
   return (
     <div>
@@ -84,9 +80,5 @@ const Transaction = (props) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    username: state.username,
-  };
-};
-export default connect(mapStateToProps)(Transaction);
+
+export default Transaction;
