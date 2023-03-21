@@ -22,19 +22,19 @@ const Feedback = (props) => {
         .post("http://localhost:9000/index/fd", feedback_data)
         .then((resp) => {
           if (resp.status === 200) {
-            const user = resp.data;
-            localStorage.setItem("user", JSON.stringify(user));
+            props.updated();
+            setFdbk("");
+            return alert("Thank's for giving your feedback😎");
           } else{
             navigate("/error")
           }
         });
-      setFdbk("");
     }
   };
 
   return (
     <>
-      {props.feedbackgiven ? (
+      {props.user.feedbackgiven ? (
         <h2>Thank's for giving your feedback😎</h2>
       ) : (
         <>

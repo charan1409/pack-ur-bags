@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../Navbar/Header";
 import "./clientprofile.css";
 import Tabledata from "./Tabledata";
 import Edityourprofile from "./Edityourprofile";
 import ChangePassword from "./ChangePassword";
 import axios from "axios";
-import { actionCreators } from "../../actions/actions";
-import { useDispatch } from "react-redux";
-import { connect } from "react-redux";
 
 function change_pass() {
   const modalBg = document.querySelector(".pass-modal-bg");
@@ -33,22 +31,22 @@ const navItems = [
   },
 ];
 function Profile(props) {
-  const dispatch = useDispatch();
   const hiddenFileInput = useRef(null);
-  // const user = props.user.user.user;
+
+  const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [fd, setFd] = useState({});
   const [edit, setEdit] = useState(false);
   const [feededit, setFeededit] = useState(false);
   const [feedback, setFeedback] = useState("");
-  // eslint-disable-next-line
-  const userL = JSON.parse(localStorage.getItem("user"));
+  const [updated, setUpdated] = useState(false);
+
   const fetchData = async () => {
+    const userL = JSON.parse(localStorage.getItem("user"));
     await axios
       .get(`http://localhost:9000/users/loguser/${userL.username}`)
       .then(async (resp) => {
         localStorage.setItem("user", JSON.stringify(resp.data.user));
-        // dispatch(actionCreators.user(resp.data));
         setFd(resp.data.fd);
         return setUser(resp.data.user);
       });
@@ -57,7 +55,11 @@ function Profile(props) {
     fetchData();
     setEdit(false);
     // eslint-disable-next-line
-  }, []);
+  }, [updated]);
+
+  const update = () => {
+    setUpdated(!updated);
+  };
 
   const profileHandler = async (e) => {
     if (e.target.files[0]) {
@@ -71,12 +73,10 @@ function Profile(props) {
         .post("http://localhost:9000/profile/upload", fd)
         .then((resp) => {
           if (resp.status === 200) {
-            axios
-              .get(`http://localhost:9000/users/loguser/${userL.username}`)
-              .then(async (response) => {
-                dispatch(actionCreators.user(response.data));
-              });
+            update();
             alert(resp.data.succ);
+          } else{
+            navigate("/error")
           }
         });
     }
@@ -89,12 +89,10 @@ function Profile(props) {
       .post("http://localhost:9000/profile/remove", fd)
       .then((resp) => {
         if (resp.status === 200) {
-          axios
-            .get(`http://localhost:9000/users/loguser/${userL.username}`)
-            .then(async (response) => {
-              dispatch(actionCreators.user(response.data));
-            });
+          update();
           alert(resp.data.succ);
+        } else{
+          navigate("/error")
         }
       });
   };
@@ -109,28 +107,23 @@ function Profile(props) {
       .post("http://localhost:9000/profile/feedback", fd)
       .then((resp) => {
         if (resp.status === 200) {
-          axios
-            .get(`http://localhost:9000/users/loguser/${userL.username}`)
-            .then(async (response) => {
-              dispatch(actionCreators.user(response.data));
-            });
+          update();
           alert(resp.data.succ);
+        } else{
+          navigate("/error")
         }
       });
   };
 
   const deleteFeedback = async () => {
-    alert("Delete");
     await axios
       .delete(`http://localhost:9000/profile/deletefeedback/${user.username}`)
       .then((resp) => {
         if (resp.status === 200) {
-          axios
-            .get(`http://localhost:9000/users/loguser/${userL.username}`)
-            .then(async (response) => {
-              dispatch(actionCreators.user(response.data));
-            });
+          update();
           alert(resp.data.succ);
+        } else{
+          navigate("/error")
         }
       });
   };
@@ -284,10 +277,4 @@ function Profile(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps)(Profile);
+export default Profile;

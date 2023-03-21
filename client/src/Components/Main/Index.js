@@ -15,6 +15,7 @@ import axios from "axios";
 
 const Index = () => {
   const [user, setUser] = useState({});
+  const [updated, setUpdated] = useState(false);
   const navItems = [
     {
       title: "Home",
@@ -48,7 +49,11 @@ const Index = () => {
       .then((resp) => {
         return setUser(resp.data.user);
       });
-  }, []);
+  }, [updated]);
+
+  const update = () => {
+    setUpdated(!updated);
+  };
   return (
     <div>
       <Upward />
@@ -59,7 +64,7 @@ const Index = () => {
       <About />
       <Services />
       <Review />
-      <Feedback user={user} />
+      <Feedback user={user} updated={update}/>
       <Footer />
     </div>
   );
