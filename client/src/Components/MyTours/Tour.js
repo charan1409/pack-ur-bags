@@ -87,7 +87,20 @@ const Tours = (props) => {
                                 <td>{item.numberOfpassengers * item.price}</td>
                               </tr>
                             </table>
-                            
+                            <>{
+                              item.passengers.map((passenger, key) => {
+                                return (
+                                  <table>
+                                    <tr style={{fontSize: "20px"}}>
+                                      <th>Passenger {key + 1}</th>
+                                    </tr>
+                                    <tr>
+                                      <td>Name: {passenger.name}</td>
+                                    </tr>
+                                    </table>
+                                )
+                              })
+                            }</>
                           </div>
                           <div className="tour-button">
                             <Btn
@@ -106,11 +119,10 @@ const Tours = (props) => {
                             onClick={() => {
                               axios
                                 .delete(
-                                  `http://localhost:9000/payment/delete/${item.id}`
+                                  `http://localhost:9000/places/delete/${item.id}`
                                 )
                                 .then((resp) => {
-                                  console.log(resp.data);
-                                  alert("Deleted Successfully");
+                                  alert(resp.data.message);
                                   window.location.reload();
                                 });
                             }}

@@ -6,6 +6,7 @@ router.use(cookieparser());
 const User = require("../schemas/user");
 const Place = require("../schemas/place");
 const Review = require("../schemas/reviews");
+const Book = require("../schemas/book");
 
 const verifier = require("../routes/verifier");
 
@@ -72,6 +73,14 @@ router.post("/review/:id", async (req, res) => {
       res.render("place", { user, data, rating });
     }
   }
+});
+
+router.delete("/delete/:id", async (req, res) => {
+  const placeid = req.params.id;
+  Book.findOneAndDelete({ id: placeid }, (err, data) => {
+    if (err) res.status(201).json({ error: "some error incurred." });
+    else res.status(200).json({ message: "place deleted successfully." });
+  });
 });
 
 module.exports = router;

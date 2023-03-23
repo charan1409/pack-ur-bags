@@ -84,7 +84,7 @@ const Payment = () => {
 
   return (
     <>
-      <Header user={true} navItems={navItems} />
+      <Header user={user} navItems={navItems} />
       <div className="payment-container">
         <div className="bill-container">
           <div className="bill">

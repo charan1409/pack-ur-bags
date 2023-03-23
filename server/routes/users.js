@@ -136,20 +136,24 @@ router.post("/generateOTP", async (req, res) => {
   User.find({ email: email }).then((user) => {
     if (user.length > 0) {
       res.status(500).json({ msg: "Email already exists." });
+    } else {
+      newOTP.save().then((otp) => {
+        res.status(200).json({ msg: "OTP sent to your mail" });
+      });
     }
-  });
-  newOTP.save().then((otp) => {
-    res.status(200).json({ msg: "OTP sent to your mail" });
   });
 });
 
 router.post("/verify", async (req, res) => {
   const email = req.body.email;
-  const givenotp = req.body.otp+"";
+  const givenotp = req.body.otp + "";
   OTP.findOne({ email: email }).then((otp) => {
     if (!otp) {
       res.status(201).json({ msg: "Invalid OTP" });
-    } else if (otp.OTP === givenotp && (otp.OTPTime + 5 * 60 * 1000 > Date.now())) {
+    } else if (
+      otp.OTP === givenotp &&
+      otp.OTPTime + 5 * 60 * 1000 > Date.now()
+    ) {
       OTP.deleteOne({ _id: otp._id }, (err) => {
         if (err) {
           res.status(500).json({ msg: "Error deleting OTP" });
@@ -181,7 +185,6 @@ router.post("/forgotpassword", async (req, res) => {
       }
     }
   );
-
 });
 
 module.exports = router;
