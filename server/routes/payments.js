@@ -55,6 +55,8 @@ router.get('/mybookings/:id', async (req, res) => {
     }
 });
 
+
+
 router.post('/pay/:id', (req, res) => {
     let username = req.params.id
     const num = req.body.number;
@@ -109,5 +111,7 @@ router.get('/getTransactions/:id', (req, res) => {
         })
     })
 })
+
+
 
 module.exports = router;

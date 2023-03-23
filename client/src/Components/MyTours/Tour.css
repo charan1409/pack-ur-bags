@@ -47,3 +47,28 @@
   border: 2px solid #000;
 }
 
+
+.passenger-list table {
+  /* border-collapse: collapse; */
+  width: 100%;
+  border: 2px solid #000;
+}
+.passenger-list table th{
+  color: rgba(255, 0, 0, 0.836);
+}
+
+.passenger-list th,
+td {
+  text-align: left;
+  font-size: 20px;
+  padding: 8px;
+}
+
+.passenger-list tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.passenger-list th {
+  background-color: rgba(243, 243, 89, 0.842);
+  color: white;
+}

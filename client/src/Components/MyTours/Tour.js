@@ -49,6 +49,7 @@ const Tours = (props) => {
         return setUser(resp.data.user);
       });
   }, []);
+  
 
   return (
     <div>
@@ -97,6 +98,24 @@ const Tours = (props) => {
                               }}
                             />
                           </div>
+                          
+                          {/* Implement delete */}
+                          <Btn
+                            value="Delete"
+                            type="button"
+                            onClick={() => {
+                              axios
+                                .delete(
+                                  `http://localhost:9000/payment/delete/${item.id}`
+                                )
+                                .then((resp) => {
+                                  console.log(resp.data);
+                                  alert("Deleted Successfully");
+                                  window.location.reload();
+                                });
+                            }}
+                          />
+
                         </div>
                       );
                     })
