@@ -5,7 +5,7 @@ import "./Admin.css";
 import Header from "../Navbar/Header";
 
 function Admin() {
-  const userL= JSON.parse(localStorage.getItem("user"));
+  // const userL= JSON.parse(localStorage.getItem("user"));
   
   const [role,setRole] = useState("user")
   const [Data, setData] = useState([]);
@@ -100,7 +100,11 @@ function Admin() {
                       <td>{x.id}</td>
                       <td className="admin">{x.username}</td>
                       <td className="admin">{x.email}</td>
-                      <td>view all</td>
+                      <td>
+                        <a href={`/admin/tours/${x.username}`}>view all</a>
+                      </td>
+
+
                       <td style={{ textAlign: "center" }}>
                         <i
                           className="fas fa-trash-alt del"
