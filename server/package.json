@@ -21,6 +21,7 @@
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.17.2",
     "express-validator": "^6.14.0",
+    "fs": "^0.0.1-security",
     "i": "^0.3.7",
     "jsonwebtoken": "^8.5.1",
     "mjs": "^1.0.0",
@@ -32,6 +33,8 @@
     "nodemailer": "^6.9.1",
     "nodemon": "^2.0.15",
     "parser": "^0.1.4",
-    "progress": "^2.0.3"
+    "progress": "^2.0.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.2"
   }
 }
