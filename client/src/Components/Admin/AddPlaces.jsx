@@ -25,6 +25,10 @@ function AddPlaces() {
       title: "add place",
       path: "/adminplaces",
     },
+    {
+      title: "feedbacks",
+      path: "/feedbacks",
+    },
   ];
   const [image, setImage] = useState();
   const [placeinfo, setplaceinfo] = useState({

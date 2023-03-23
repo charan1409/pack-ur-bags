@@ -46,17 +46,16 @@ function Addadmin(props) {
         role: "admin"
       };
       axios.post("http://localhost:9000/users/register", user).then((resp) => {
-        if (resp.data.error) {
-          // setRegisterError([true, resp.data.error]);
-          alert(resp.data.error);
-        } else if (resp.data.success) {
+        if (resp.status !== 200) {
+          alert(resp.data.msg);
+        } else {
           setUserinfo({
             username: "",
             email: "",
             password: "",
             confirmedPassword: "",
           });
-          alert(resp.data.success);
+          alert(resp.data.msg);
         }
       });
     }
@@ -74,6 +73,10 @@ function Addadmin(props) {
     {
       title: "add place",
       path: "/adminplaces",
+    },
+    {
+      title: "feedbacks",
+      path: "/feedbacks",
     },
   ];
 

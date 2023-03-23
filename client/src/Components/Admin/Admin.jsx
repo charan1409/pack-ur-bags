@@ -1,13 +1,13 @@
 import React from "react";
-import { useState, useEffect,useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Admin.css";
 import Header from "../Navbar/Header";
 
 function Admin() {
-  // const userL= JSON.parse(localStorage.getItem("user"));
-  
-  const [role,setRole] = useState("user")
+  const navigate = useNavigate();
+  const [role, setRole] = useState("user");
   const [Data, setData] = useState([]);
   const [state, setState] = useState([]);
   const [datanotfound, setdatanotfound] = useState(true);
@@ -17,16 +17,18 @@ function Admin() {
       .then((res) => {
         return setData(res.data);
       });
-  },[role]);
+  }, [role]);
   useEffect(() => {
     fetchUsers();
   }, [fetchUsers]);
 
   async function Deluser(a) {
-    await axios.delete(`http://localhost:9000/admins/delete/${a}`).then(resp => {
-      alert(resp.data.msg);
-    })
-    fetchUsers("user")
+    await axios
+      .delete(`http://localhost:9000/admins/delete/${a}`)
+      .then((resp) => {
+        alert(resp.data.msg);
+      });
+    fetchUsers("user");
   }
   const navItems = [
     {
@@ -40,6 +42,10 @@ function Admin() {
     {
       title: "add place",
       path: "/adminplaces",
+    },
+    {
+      title: "feedbacks",
+      path: "/feedbacks",
     },
   ];
   return (
@@ -70,16 +76,22 @@ function Admin() {
           <i className="fas fa-search"></i>
         </div>
         <div>
-          <button className="btn1" onClick={() => {
-            setRole("user")
-            setState([])
-          }}>
+          <button
+            className="btn1"
+            onClick={() => {
+              setRole("user");
+              setState([]);
+            }}
+          >
             user
           </button>
-          <button className="btn1" onClick={() => {
-            setRole("admin")
-            setState([])
-          }}>
+          <button
+            className="btn1"
+            onClick={() => {
+              setRole("admin");
+              setState([]);
+            }}
+          >
             admin
           </button>
         </div>
@@ -89,7 +101,7 @@ function Admin() {
               <th style={{ textAlign: "center", width: "17%" }}>Id</th>
               <th>Username</th>
               <th>Email</th>
-              <th>Tours</th>
+              {role === "user" && <th>Tours</th>}
               <th style={{ textAlign: "center", width: "10%" }}>Delete</th>
             </tr>
             {datanotfound ? (
@@ -100,11 +112,11 @@ function Admin() {
                       <td>{x.id}</td>
                       <td className="admin">{x.username}</td>
                       <td className="admin">{x.email}</td>
-                      <td>
-                        <a href={`/admin/tours/${x.username}`}>view all</a>
-                      </td>
-
-
+                      {role === "user" && (
+                        <td style={{"cursor":"pointer"}} onClick={() => {
+                          navigate(`/viewtours/${x.username}`);
+                        }}>view tours</td>
+                      )}
                       <td style={{ textAlign: "center" }}>
                         <i
                           className="fas fa-trash-alt del"
@@ -121,7 +133,11 @@ function Admin() {
                       <td>{x.id}</td>
                       <td className="admin">{x.username}</td>
                       <td className="admin">{x.email}</td>
-                      <td>view all</td>
+                      {role === "user" && (
+                        <td style={{"cursor":"pointer"}} onClick={() => {
+                          navigate(`/viewtours/${x.username}`);
+                        }}>view tours</td>
+                      )}
                       <td>
                         <i
                           className="fas fa-trash-alt del"

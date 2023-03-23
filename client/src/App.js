@@ -16,12 +16,11 @@ import Transaction from "./Components/Transactions/Transaction";
 import Admin from "./Components/Admin/Admin";
 import Addadmin from "./Components/Admin/Addadmin";
 import AddPlaces from "./Components/Admin/AddPlaces";
-import { Provider } from "react-redux";
-export const store1 = createContext();
+import Feedbacks from "./Components/Admin/Feedbacks";
+import ViewAll from "./Components/Admin/ViewAll";
 function App() {
   return (
     <>
-        <store1.Provider value={{}}>
           <BrowserRouter>
             <ScrollTop smooth />
             <Routes>
@@ -41,10 +40,11 @@ function App() {
               <Route path="admin" element={<Admin />} />
               <Route path="adminform" element={<Addadmin />} />
               <Route path="adminplaces" element={<AddPlaces />} />
+              <Route path="feedbacks" element={<Feedbacks />} />
+              <Route path="viewtours/:id" element={<ViewAll />} />
               <Route path="*" element={<Error />} />
             </Routes>
           </BrowserRouter>
-        </store1.Provider>
     </>
   );
 }
