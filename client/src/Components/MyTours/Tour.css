@@ -21,7 +21,11 @@
 }
 
 .tour-item-class .tour-item-box .tour-button{
-  flex-basis: 30%;
+  /* flex-basis: 30%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5%;
 }
 
 .tour-item-class .tour-item-box:hover{
@@ -33,3 +37,13 @@
   grid-template-columns: 3fr 10fr;
   margin-bottom: 3rem;
 }
+
+.tour-details table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tour-details table tr, .tour-details table td{
+  border: 2px solid #000;
+}
+

@@ -8,13 +8,13 @@
 }
 .bill-container{
   height: 100%;
-  width: 700px;
+  width: 60%;
   padding-top: 8%;
   padding-left: .8%;
   padding-right: .8%;
 }
 .bill-container .bill{
-  border: 1px solid black;
+  border: 3px solid black;
   height: 100%;
   width: 100%;
 }
@@ -181,4 +181,16 @@
 .container .card-container .back .box img {
   margin-top: 30px;
   height: 30px;
+}
+
+
+.bill table{
+  font-size: 25px;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+.bill table tr, .bill table th{
+  border: 3px solid black;
 }

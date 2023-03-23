@@ -3,6 +3,7 @@ import Header from "../Navbar/Header";
 import "./Trans.css";
 import axios from "axios";
 import Loading from "../Loading/Loading";
+import Btn from "../Btn";
 
 const Transaction = (props) => {
   const [user, setUser] = useState({});
@@ -57,27 +58,46 @@ const Transaction = (props) => {
           {trans.length === 0 ? (
             <h1>Transactions are Empty</h1>
           ) : (
-            <div>
-              <div className="item-class">
+            <div className="">
+              <div className="tour-item-class">
                 {trans
                   ? trans.map((item, key) => {
                       return (
-                        <div className="item-box" key={key}>
-                          <h2>Card Number : {item.number}</h2>
-                          <h2>Name : {item.name}</h2>
-                          <h2>Month : {item.month}</h2>
-                          <h2>Year : {item.year}</h2>
-                          <h2>CVV: {item.cvv}</h2>
-                          <div className="addtocart">
-                            <button
+                        <div className="tour-item-box" key={key}>
+                          <div className="tour-details trans">
+                            <table>
+                              <tr>
+                                <th>Card Number</th>
+                                <th>{item.number}</th>
+                              </tr>
+                              <tr>
+                                <th>Name</th>
+                                <th>{item.name}</th>
+                              </tr>
+                              <tr>
+                                <th>Month</th>
+                                <th>{item.month}</th>
+                              </tr>
+                              <tr>
+                                <th>Year</th>
+                                <th>{item.year}</th>
+                              </tr>
+                              <tr>
+                                <th>CVV</th>
+                                <th>{item.cvv}</th>
+                              </tr>
+                            </table>
+                          </div>
+
+                          <div className="tour-button">
+                            <Btn
+                              value="Cancel"
+                              type="button"
                               onClick={() => {
                                 removeItems(key);
                                 alert("You will contacted for Refund");
                               }}
-                              className="book-btn btn-primary"
-                            >
-                              Cancel and Refund{" "}
-                            </button>
+                            />
                           </div>
                         </div>
                       );

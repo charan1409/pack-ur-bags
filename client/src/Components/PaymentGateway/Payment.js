@@ -88,13 +88,34 @@ const Payment = () => {
       <div className="payment-container">
         <div className="bill-container">
           <div className="bill">
-            <h2>BILL</h2>
-            <h3>From: {details.from}</h3>
-            <h3>To: {details.to}</h3>
-            <h3>Number of days</h3>
-            <h3>Total passengers: {details.numberOfpassengers}</h3>
-            <h3>Price per passenger: {details.price}</h3>
-            <h2>Total Price: {details.numberOfpassengers * details.price}</h2>
+            <h1>BILL</h1>
+            <table>
+              <tr>
+                <th>From</th>
+                <th>{details.from}</th>
+              </tr>
+              <tr>
+                <th>To</th>
+                <th>{details.to}</th>
+              </tr>
+              <tr>
+                <th>Number of days</th>
+                <th>{details.numberOfdays}</th>
+              </tr>
+              <tr>
+                <th>Total passengers</th>
+                <th>{details.numberOfpassengers}</th>
+              </tr>
+              <tr>
+                <th>Price per passenger</th>
+                <th>{details.price}</th>
+              </tr>
+              <tr>
+                <th>Total Price</th>
+                <th>{details.numberOfpassengers * details.price}</th>
+              </tr>
+            </table>
+
           </div>
         </div>
         <div className="container">

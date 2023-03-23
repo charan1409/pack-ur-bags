@@ -14,3 +14,11 @@
 .h2{
     text-align: center;
 }
+
+.trans table{
+    font-size: 20px;
+}
+
+.trans th{
+    border: 2px solid #000;
+}
