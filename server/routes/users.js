@@ -99,7 +99,7 @@ router.post("/generateOTP", async (req, res) => {
     secure: true, // use SSL
     auth: {
       user: "packurbagsofficial@gmail.com",
-      pass: "onyavecwmwqcpkla",
+      pass: "outxfdjqudpfkuum",
     },
   });
 

@@ -37,21 +37,29 @@ function Profile(props) {
   const [feedback, setFeedback] = useState("");
   const [updated, setUpdated] = useState(false);
 
-  const fetchData = async () => {
+  // const fetchData = async () => {
+  //   const userL = JSON.parse(localStorage.getItem("user"));
+  //   axios
+  //     .get(`http://localhost:9000/users/loguser/${userL.username}`)
+  //     .then(async (resp) => {
+  //       localStorage.setItem("user", JSON.stringify(resp.data.user));
+  //       setFd(resp.data.fd);
+  //       if (resp.data.user) return setUser(resp.data.user);
+  //       else navigate("/error");
+  //     });
+  // };
+  useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
-    await axios
+    axios
       .get(`http://localhost:9000/users/loguser/${userL.username}`)
       .then(async (resp) => {
         localStorage.setItem("user", JSON.stringify(resp.data.user));
         setFd(resp.data.fd);
-        return setUser(resp.data.user);
+        if (resp.data.user) return setUser(resp.data.user);
+        else navigate("/error");
       });
-  };
-  useEffect(() => {
-    fetchData();
     setEdit(false);
-    // eslint-disable-next-line
-  }, [updated]);
+  }, [updated,setEdit]);
 
   const update = () => {
     setUpdated(!updated);
@@ -271,7 +279,7 @@ function Profile(props) {
             <div className="pass-modal-bg">
               <div className="edit-form">
                 <h2>Change your password</h2>
-                <ChangePassword onClick={() => setPass(false)}/>
+                <ChangePassword onClick={() => setPass(false)} />
                 <span onClick={() => setPass(false)}>x</span>
               </div>
             </div>

@@ -33,12 +33,18 @@ const navItems = [
 ];
 function App(props) {
   const navigate = useNavigate();
+  const [user, setUser] = useState({});
   const [placedata, setPlacedata] = useState();
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
-  const userL = JSON.parse(localStorage.getItem("user"));
   
   useEffect(() => {
+    const userL = JSON.parse(localStorage.getItem("user"));
+    axios
+      .get(`http://localhost:9000/users/loguser/${userL.username}`)
+      .then((resp) => {
+        return setUser(resp.data.user);
+      });
     axios
       .get(`http://localhost:9000/places/placedetails/${id}`)
       .then((resp) => {
@@ -51,7 +57,7 @@ function App(props) {
       });
   }, [id,navigate]);
   const bookFunc = ()=>{
-    if(props.user){
+    if(user){
       axios.get(`http://localhost:9000/book/booking/${id}`)
       .then((resp)=>{
         if(resp.status === 200){
@@ -66,7 +72,7 @@ function App(props) {
   }
   return (
     <div>
-      <Header user={true} navItems={navItems} />
+      <Header user={user} navItems={navItems} />
       {loading ? (
         <div>
           {placedata && (

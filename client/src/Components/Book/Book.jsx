@@ -5,7 +5,6 @@ import photo from "../viewplaces/places/beach/barefoot.jpg";
 import Form from "./Form";
 import "./book.css";
 import Header from "../Navbar/Header";
-import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -31,19 +30,23 @@ const navItems = [
 
 function App(props) {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const userL = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState({});
   const {id} = useParams();
   const [placedata, setPlacedata] = useState();
-  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    const userL = JSON.parse(localStorage.getItem("user"));
+    axios
+      .get(`http://localhost:9000/users/loguser/${userL.username}`)
+      .then((resp) => {
+        if(resp.data.user) return setUser(resp.data.user);
+        else navigate("/error")
+      });
     axios
       .get(`http://localhost:9000/places/placedetails/${id}`)
       .then((resp) => {
         if (resp.status === 200) {
           setPlacedata(resp.data);
           console.log(resp.data);
-          setLoading(true);
         } else {
           navigate("/error");
         }
@@ -51,28 +54,6 @@ function App(props) {
   }, [id,navigate]);
 
   function clicked(event) {
-    // const bookData = {
-    //   from: from,
-    //   to: to,
-    //   adult: adult,
-    //   child: child,
-    //   depart: depart,
-    //   arrival: arrival,
-    // };
-    // console.log(bookData);
-
-    // if (!cartItems.includes(bookData)) {
-    //   // setCartItems([...cartItems, bookData]);
-    //   const user = JSON.parse(localStorage.getItem("user"));
-    //   axios.get(`http://localhost:3001/users/${user.id}`).then((res) => {
-    //     const user = res.data;
-    //     user.tours.push(bookData);
-    //     axios.put(`http://localhost:3001/users/${user.id}`, user);
-    //     alert("Added to cart");
-    //     navigate("/mytours");
-    //   });
-    // }
-
     event.preventDefault();
     axios.get(`http://localhost:9000/book/booking/${id}`).then((resp) => {
       if (resp.status === 200) {
@@ -82,10 +63,9 @@ function App(props) {
       }
     });
   }
-  const price= placedata ? placedata.placeDetails.price : 0;
   return (
     <div className="book">
-      <Header user={true} navItems={navItems} />
+      <Header user={user} navItems={navItems} />
       <div>
         <h1 className="heading">
           <span>B</span>

@@ -1,22 +1,28 @@
 import React from "react";
-import { useState, useContext,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Payment.css";
 import "../Main/main.css";
 import img1 from "./img/chip.png";
 import img2 from "./img/visa.png";
 import Header from "../Navbar/Header";
-import { store1 } from "../../App.js";
 import axios from "axios";
 
 const Payment = () => {
   const navigate = useNavigate();
-  const { trans, setTrans } = useContext(store1);
+  const [user, setUser] = useState({})
   const [details,setDetails]=useState({})
   const {id} = useParams()
   useEffect(() => {
+    const userL = JSON.parse(localStorage.getItem("user"));
+    axios
+      .get(`http://localhost:9000/users/loguser/${userL.username}`)
+      .then((resp) => {
+        if(resp.data.user) return setUser(resp.data.user);
+        else navigate("/error")
+      });
     axios.get(`http://localhost:9000/payment/pay/${id}`).then(resp => {
-      setDetails(resp.data)
+      return setDetails(resp.data)
     })}, [id])
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
@@ -24,9 +30,8 @@ const Payment = () => {
   const [year, setYear] = useState("");
   const [cvv, setCvv] = useState("");
 
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = (e) => {    
     e.preventDefault();
     
     const payment_data = {
@@ -37,7 +42,6 @@ const Payment = () => {
       cvv: cvv,
       username: user.username,
     };
-    console.log(payment_data);
 
     setNumber("");
     setName("");
