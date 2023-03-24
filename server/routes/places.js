@@ -13,8 +13,6 @@ const verifier = require("../routes/verifier");
 router.get("/places/:id", async (req, res) => {
   const category = req.params.id;
   if (category === "all") {
-    // const user = await User.findOne({ username: username });
-    // if (user) {
       await Place.find({},(err,data) => {
         if(err) res.status(201).json({error: "some error incurred."})
         res.status(200).json(data);
