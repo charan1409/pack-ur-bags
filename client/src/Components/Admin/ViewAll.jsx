@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Header from "../Navbar/Header";
+import "./ViewAll.css";
 
 const ViewAll = () => {
   const { id } = useParams();
@@ -37,14 +38,58 @@ const ViewAll = () => {
   return (
     <>
       <Header user={true} navItems={navItems} />
-      {tours.map((tour) => {
-        return (
+      <div>
+        {tours.length === 0 ? (
+          <h1>Your Tour List is Empty</h1>
+        ) : (
           <div>
-            <h2>{tour.fromdate}</h2>
-            <h2>{tour.todate}</h2>
+            <div className="tour-item-class">
+              {tours
+                ? tours.map((item, key) => {
+                    return (
+                      <div className="tour-item-box" key={key}>
+                        <div className="tour-details">
+                          <table>
+                            <tr style={{ fontSize: "20px" }}>
+                              <th>From</th>
+                              <th>To</th>
+                              <th>No. of Passengers</th>
+                              <th>Departure</th>
+                              <th>Arrival</th>
+                              <th>Total amount</th>
+                            </tr>
+                            <tr>
+                              <td>{item.fromdate}</td>
+                              <td>{item.todate}</td>
+                              <td>{item.numberOfpassengers}</td>
+                              <td>{item.fromdate}</td>
+                              <td>{item.todate}</td>
+                              <td>{item.numberOfpassengers * item.price}</td>
+                            </tr>
+                          </table>
+                          <>
+                            {item.passengers.map((passenger, key) => {
+                              return (
+                                <table>
+                                  <tr style={{ fontSize: "20px" }}>
+                                    <th>Passenger {key + 1}</th>
+                                  </tr>
+                                  <tr>
+                                    <td>Name: {passenger.name}</td>
+                                  </tr>
+                                </table>
+                              );
+                            })}
+                          </>
+                        </div>
+                      </div>
+                    );
+                  })
+                : ""}
+            </div>
           </div>
-        );
-      })}
+        )}
+      </div>
     </>
   );
 };
