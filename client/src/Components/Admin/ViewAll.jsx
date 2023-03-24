@@ -8,7 +8,7 @@ const ViewAll = () => {
   const { id } = useParams();
   const [tours, setTours] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:9000/admins/tours/${id}`).then((resp) => {
+    axios.get(`http://localhost:9000/payment/mybookings/${id}`).then((resp) => {
       if (resp.status !== 200) {
         alert(resp.data.msg);
       } else {
@@ -59,8 +59,8 @@ const ViewAll = () => {
                               <th>Total amount</th>
                             </tr>
                             <tr>
-                              <td>{item.fromdate}</td>
-                              <td>{item.todate}</td>
+                              <td>{item.from}</td>
+                              <td>{item.to}</td>
                               <td>{item.numberOfpassengers}</td>
                               <td>{item.fromdate}</td>
                               <td>{item.todate}</td>

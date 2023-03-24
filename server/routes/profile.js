@@ -95,26 +95,43 @@ const storage = multer.diskStorage({
     cb(null, "./public/profileImgs");
   },
   filename: function (req, file, callback) {
-    callback(null, Date.now() + Math.random() + path.extname(file.originalname));
+    callback(
+      null,
+      Date.now() +
+        Math.floor(Math.random() * 9) +
+        path.extname(file.originalname)
+    );
   },
 });
 
 const upload = multer({ storage: storage });
-router.post("/upload",upload.single("image"), async (req, res) => {
+router.post("/upload", upload.single("image"), async (req, res) => {
   const email = req.body.email;
-  await User.findOneAndUpdate(
-    { email: email },
-    { image: req.file.filename,imagegiven: true },
-    async function (err) {
-      if (err) throw err;
-      res.status(200).json({ succ: "profile updated successfully." });
-    }
-  );
+  const user = await User.findOne({ email: email });
+  if (user) {
+    await User.findOneAndUpdate(
+      { email: email },
+      { image: req.file.filename, imagegiven: true },
+      async function (err) {
+        if (err) throw err;
+        await Feedback.findOneAndUpdate(
+          { username: user.username },
+          { image: req.file.filename },
+          async function (err) {
+            if (err) throw err;
+          }
+        );
+        res.status(200).json({ succ: "profile updated successfully." });
+      }
+    );
+  } else {
+    res.status(201).json({ error: "user not found." });
+  }
 });
 
 router.post("/remove", async (req, res) => {
   const email = req.body.email;
-  const newvals = { image: "default.png",imagegiven: false };
+  const newvals = { image: "default.png", imagegiven: false };
   const user = await User.findOne({ email: email });
   if (user) {
     await User.findOneAndUpdate(
@@ -122,45 +139,56 @@ router.post("/remove", async (req, res) => {
       newvals,
       async function (err) {
         if (err) throw err;
-        res.status(200).json({succ:"profile updated successfully"})
+        fs.unlink("./public/profileImgs/" + user.image, (err) => {
+          if (err) throw err;
+        });
+        Feedback.findOneAndUpdate(
+          { username: user.username },
+          { image: "default.png" },
+          async function (err) {
+            if (err) throw err;
+          }
+        );
+        res.status(200).json({ succ: "profile updated successfully" });
       }
     );
+  } else {
+    res.status(201).json({ error: "user not found." });
   }
 });
 
-router.post("/feedback", async (req,res) => {
+router.post("/feedback", async (req, res) => {
   const username = req.body.username;
   const feedback = req.body.feedback;
   const user = await User.findOne({ username: username });
   if (user) {
     await Feedback.findOneAndUpdate(
       { username: username },
-      { feedback: feedback },
+      { feedback: feedback, image: user.image },
       async function (err) {
-        if (err) res.status(401).json({succ:"Some error occurred."});
-        res.status(200).json({succ:"feedback submitted successfully"})
+        if (err) res.status(401).json({ succ: "Some error occurred." });
+        res.status(200).json({ succ: "feedback submitted successfully" });
       }
     );
+  } else {
+    res.status(201).json({ error: "user not found." });
   }
-})
+});
 
 // For deleting feedback
-router.delete("/deletefeedback/:id", async (req,res) => {
+router.delete("/deletefeedback/:id", async (req, res) => {
   const username = req.params.id;
-  await Feedback.findOneAndDelete(
+  await Feedback.findOneAndDelete({ username: username }, async function (err) {
+    if (err) res.status(401).json({ succ: "Some error occurred." });
+  });
+  await User.findOneAndUpdate(
     { username: username },
+    { feedbackgiven: false },
     async function (err) {
-      if (err) res.status(401).json({succ:"Some error occurred."});
+      if (err) res.status(401).json({ succ: "Some error occurred." });
+      else res.status(200).json({ succ: "feedback deleted successfully" });
     }
-    );
-    await User.findOneAndUpdate(
-      { username: username },
-      { feedbackgiven: false },
-      async function (err) {
-        if (err) res.status(401).json({succ:"Some error occurred."});
-        else res.status(200).json({succ:"feedback deleted successfully"})
-    }
-  )
-})
+  );
+});
 
 module.exports = router;

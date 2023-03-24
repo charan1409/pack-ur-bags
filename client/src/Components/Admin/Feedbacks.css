@@ -27,7 +27,7 @@
   text-align: center;
   padding: 2rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   /* flex-wrap: wrap; */
   justify-content: space-around;
   align-items: center;
