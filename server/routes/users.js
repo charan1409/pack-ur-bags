@@ -98,13 +98,13 @@ router.post("/generateOTP", async (req, res) => {
     port: 465,
     secure: true, // use SSL
     auth: {
-      user: "packurbagsofficial@gmail.com",
-      pass: "outxfdjqudpfkuum",
+      user: "officialpackurbags@gmail.com",
+      pass: "",
     },
   });
 
   const message = {
-    from: "packurbagsofficial@gmail.com",
+    from: "officialpackurbags@gmail.com",
     to: email,
     subject: "Your OTP",
     text: `Your OTP is ${otp}. It will expire in 5 minutes.`,
