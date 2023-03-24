@@ -1,7 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Img from "./Img";
-import photo from "../viewplaces/places/beach/barefoot.jpg";
 import Form from "./Form";
 import "./book.css";
 import Header from "../Navbar/Header";
@@ -86,9 +84,7 @@ function App(props) {
               <h2>To: {placedata.placeDetails.to}</h2>
               <h2>Price per person: ₹{placedata.placeDetails.price}</h2>
             </div>
-          ):<Img photo={photo} alt="Enjoy your trip" />}
-          
-          
+          ):<h2>Enjoy your trip</h2>}
         </div>
         <div className="box2">
           <Form onSubmit={clicked} price={placedata?placedata.placeDetails.price:0} days={placedata?placedata.placeDetails.days:0}/>
