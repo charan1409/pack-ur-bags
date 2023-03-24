@@ -99,7 +99,7 @@ router.post("/generateOTP", async (req, res) => {
     secure: true, // use SSL
     auth: {
       user: "officialpackurbags@gmail.com",
-      pass: "",
+      pass: process.env.PASSWORD,
     },
   });
 
@@ -117,7 +117,19 @@ router.post("/generateOTP", async (req, res) => {
       console.log(`Email sent: ${info.response}`);
     }
   });
-
+  if(keyword === "forgotpassword"){
+    User.findOne({email: email}).then((user) => {
+      if(!user){
+        res.status(201).json({msg: "User doesn't exist"})
+      }
+    })
+  } else if(keyword === "register"){
+    User.findOne({email: email}).then((user) => {
+      if(user){
+        res.status(201).json({msg: "User already exists"})
+      }
+    })  
+  }
   const newOTP = new OTP({
     email: email,
     OTP: otp,
@@ -129,16 +141,11 @@ router.post("/generateOTP", async (req, res) => {
       OTP.deleteMany({ email: email }, (err) => {
         if (err) {
           res.status(500).json({ msg: "Error deleting OTP" });
+        } else {
+          newOTP.save().then((otp) => {
+            res.status(200).json({ msg: "OTP sent to your mail" });
+          });
         }
-      });
-    }
-  });
-  User.find({ email: email }).then((user) => {
-    if (user.length > 0) {
-      res.status(500).json({ msg: "Email already exists." });
-    } else {
-      newOTP.save().then((otp) => {
-        res.status(200).json({ msg: "OTP sent to your mail" });
       });
     }
   });
