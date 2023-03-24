@@ -9,6 +9,11 @@ const bookSchema=new mongoose.Schema({
     paymentDone: Boolean,
     numberOfpassengers: Number,
     passengers: Array,
+    place: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Places',
+        select: 'from to price'
+    }
 });
 const book=mongoose.model('book',bookSchema);
 module.exports=book;

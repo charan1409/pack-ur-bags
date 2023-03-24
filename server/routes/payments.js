@@ -27,6 +27,13 @@ router.get("/pay/:id", (req, res) => {
 
 router.get("/mybookings/:id", async (req, res) => {
   let username = req.params.id;
+  // Book.find({username: username}).populate('place').exec((err,bookings)=>{
+  //   if(err) res.status(201).json({error: "Some error incurred."});
+  //   else{
+  //     console.log(bookings);
+  //     res.status(200).json(bookings);
+  //   }
+  // })
   try {
     const bookings = await Book.find({ username: username });
     const tours = [];

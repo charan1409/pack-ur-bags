@@ -29,8 +29,6 @@ router.get("/places/:id", async (req, res) => {
 
 router.get("/placedetails/:id", async (req, res) => {
   const placeid = req.params.id;
-  // const user = await User.findOne({ email: email });
-  // if (user) {
     await Place.findOne({ id: placeid },(err,data)=>{
       if(err) res.status(201).json({error: "Some error incurred."});
       else{
