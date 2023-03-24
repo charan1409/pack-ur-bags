@@ -47,18 +47,15 @@ const Feedbacks = () => {
         <div className="feedbacks">
           {feedbacks.map((feedback) => {
             return (
-              <div>
-                <div className="adminfeed">
-                  <img src={feedback.image} alt="" />
-                  <h3>{feedback.username}</h3>
-                  <div className="stars">
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star-half-alt"></i>
+              <div className="place-box1">
+                <div className="feed-pic">
+                  <img src={feedback.image} alt={"image"} />
+                </div>
+                <div className="place-details">
+                  <h1>{feedback.username}</h1>
+                  <div>
+                    <p>{feedback.feedback}</p>
                   </div>
-                  <p>{feedback.feedback}</p>
                 </div>
               </div>
             );

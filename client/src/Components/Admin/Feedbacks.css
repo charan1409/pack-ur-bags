@@ -67,3 +67,19 @@
 .adminfeed {
   margin: 10px;
 }
+
+
+.place-box1 .feed-pic {
+  width: 40%;
+  height: 100%;
+  display: block;
+  padding: 0.5%;
+  float: left;
+}
+
+.place-box1 .feed-pic img {
+  object-fit: fill;
+  width: 70%;
+  height: 250px;
+  border-radius: 50%;
+}
