@@ -70,7 +70,6 @@ const swaggerOptions = {
     },
   },
   apis: ["./index.js","./routes/*.js"],
-  // apis: ["./routes/*.js"]
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -94,7 +93,7 @@ app.listen(port, function () {
 });
 
 
-// Working
+// Swagger Testing --------------------------------------------------------------------------------
 /**
  * @swagger
  * /:
@@ -106,7 +105,8 @@ app.listen(port, function () {
  *              description: To test Get Method
  */
 
-// Feedbacks
+
+// Admin --------------------------------------------------------------------------------------------
 /**
  * @swagger
  * /admins/feedbacks:
@@ -121,44 +121,6 @@ app.listen(port, function () {
  *                    schema: 
  *                     type: object
  *                    properties:
- */
-
-/**
- * @swagger
- * /admins/users:
- *  get:
- *      summary: This api is used to check users in admin
- *      tags: [Admin]
- *      responses:
- *          200:
- *              description: To test Get Method
- *              content:
- *                  application/json:
- *                    schema: 
- *                     type: object
- *                    properties:
- */
-
-/**
- * @swagger
- * /admins/delete/{id}:
- *  delete:
- *      summary: Delete a user by ID
- *      description: Deletes a single user by ID
- *      tags: [Admin]
- *      parameters:
- *          - in: path
- *            name: id
- *            description: ID of the user
- *            required: true
- *            schema:
- *              type: string
- *      responses:
- *          200:
- *              description: User Deleted
- *          500:
- *              description: Error
- * 
  */
 
 /**
@@ -183,78 +145,47 @@ app.listen(port, function () {
  *              description: Internal Server Error
  */
 
-
-
-
-// Payment
-
 /**
  * @swagger
- * /payment/pay/{id}:
+ * /admins/users:
  *  get:
- *      summary: This api is used to check feedbacks
- *      tags: [Payment]
- *      parameters:
- *          - in: path
- *            name: id
- *            required: true;
- *            description:  String
- *            schema:
- *               type: string
+ *      summary: This api is used to check users in admin
+ *      tags: [Admin]
  *      responses:
  *          200:
  *              description: To test Get Method
- *          404:
- *              description: Not Found
- *          500:
- *              description: Internal Server Error
+ *              content:
+ *                  application/json:
+ *                    schema: 
+ *                     type: object
+ *                    properties:
  */
+
 
 /**
  * @swagger
- * /payment/mybookings/{id}:
- *  get:
- *      summary: This api is used to check feedbacks
- *      tags: [Payment]
+ * /admins/delete/{id}:
+ *  delete:
+ *      summary: Delete a user by ID
+ *      description: Deletes a single user by ID
+ *      tags: [Admin]
  *      parameters:
  *          - in: path
  *            name: id
- *            required: true;
- *            description:  String
+ *            description: ID of the user
+ *            required: true
  *            schema:
- *               type: string
+ *              type: string
  *      responses:
  *          200:
- *              description: To test Get Method
- *          404:
- *              description: Not Found
+ *              description: User Deleted
  *          500:
- *              description: Internal Server Error
+ *              description: Error
+ * 
  */
 
-/**
- * @swagger
- * /payment/getTransactions/{id}:
- *  get:
- *      summary: This api is used to check feedbacks
- *      tags: [Payment]
- *      parameters:
- *          - in: path
- *            name: id
- *            required: true;
- *            description:  String
- *            schema:
- *               type: string
- *      responses:
- *          200:
- *              description: To test Get Method
- *          404:
- *              description: Not Found
- *          500:
- *              description: Internal Server Error
- */
 
-// Book.js
+// Book --------------------------------------------------------------------------------------------
 /**
  * @swagger
  * /book/booking/{id}:
@@ -300,8 +231,346 @@ app.listen(port, function () {
  */
 
 
+// index --------------------------------------------------------------------------------------------
+/**
+* @swagger
+* /index/fd:
+*  post:
+*     summary: used to insert data to mongodb
+*     tags: [Index]
+*     requestBody:
+*         required: true
+*         content:
+*             application/json:
+*                 schema:
+*                     type: object
+*                     properties:
+*                         username:
+*                             type: string
+*                         fdbk:
+*                             type: string
+*     responses:
+*         200:
+*             description: Added Successfully
+*         404:
+*             description: Not Found
+*         500:
+*             description: Internal Server Error
+*/
 
 
+// payment--------------------------------------------------------------------------------------------
+/**
+ * @swagger
+ * /payment/pay/{id}:
+ *  get:
+ *      summary: This api is used to check feedbacks
+ *      tags: [Payment]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true;
+ *            description:  String
+ *            schema:
+ *               type: string
+ *      responses:
+ *          200:
+ *              description: To test Get Method
+ *          404:
+ *              description: Not Found
+ *          500:
+ *              description: Internal Server Error
+ */
+
+/**
+ * @swagger
+ * /payment/mybookings/{id}:
+ *  get:
+ *      summary: This api is used to check feedbacks
+ *      tags: [Payment]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true;
+ *            description:  String
+ *            schema:
+ *               type: string
+ *      responses:
+ *          200:
+ *              description: To test Get Method
+ *          404:
+ *              description: Not Found
+ *          500:
+ *              description: Internal Server Error
+ */
+
+/**
+* @swagger
+* /payment/post/{id}:
+*  post:
+*     summary: used to insert data to mongodb
+*     tags: [Payment]
+*     parameters:
+*          - in: path
+*            name: id
+*            required: true;
+*            description:  String
+*            schema:
+*               type: string
+*     requestBody:
+*         required: true
+*         content:
+*             application/json:
+*                 schema:
+*                     type: object
+*                     properties:
+*                         username:
+*                             type: string
+*                         number:
+*                             type: string
+*                         name:
+*                             type: string
+*                         expmonth:
+*                             type: string
+*                         expyear:
+*                             type: string
+*                         cvv:
+*                             type: string
+*     responses:
+*         200:
+*             description: Added Successfully
+*         404:
+*             description: Not Found
+*         500:
+*             description: Internal Server Error
+*/
+
+/**
+ * @swagger
+ * /payment/getTransactions/{id}:
+ *  get:
+ *      summary: This api is used to check feedbacks
+ *      tags: [Payment]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true;
+ *            description:  String
+ *            schema:
+ *               type: string
+ *      responses:
+ *          200:
+ *              description: To test Get Method
+ *          404:
+ *              description: Not Found
+ *          500:
+ *              description: Internal Server Error
+ */
+
+
+// places--------------------------------------------------------------------------------------------
+
+/**
+ * @swagger
+ * /places/places/{id}:
+ *  get:
+ *      summary: This api is used to check feedbacks
+ *      tags: [Places]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true;
+ *            description:  String
+ *            schema:
+ *               type: string
+ *      responses:
+ *          200:
+ *              description: To test Get Method
+ *          404:
+ *              description: Not Found
+ *          500:
+ *              description: Internal Server Error
+ */
+
+/**
+ * @swagger
+ * /places/placedetails/{id}:
+ *  get:
+ *      summary: This api is used to check feedbacks
+ *      tags: [Places]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true;
+ *            description:  String
+ *            schema:
+ *               type: string
+ *      responses:
+ *          200:
+ *              description: To test Get Method
+ *          404:
+ *              description: Not Found
+ *          500:
+ *              description: Internal Server Error
+ */
+
+// profile--------------------------------------------------------------------------------------------
+/**
+* @swagger
+* /profile/edit:
+*  post:
+*     summary: This is used to edit profile
+*     tags: [Profile]
+*     requestBody:
+*         required: true
+*         content:
+*             application/json:
+*                 schema:
+*                     type: object
+*                     properties:
+*                         username:
+*                             type: string
+*                         name:
+*                             type: string
+*                         phonenumber:
+*                             type: string
+*                         gender:
+*                             type: string
+*                         email:  
+*                             type: string
+*     responses:
+*         200:
+*             description: Added Successfully
+*         404:
+*             description: Not Found
+*         500:
+*             description: Internal Server Error
+*/
+
+/**
+* @swagger
+* /profile/changepass:
+*  post:
+*     summary: This is used to change password
+*     tags: [Profile]
+*     requestBody:
+*         required: true
+*         content:
+*             application/json:
+*                 schema:
+*                     type: object
+*                     properties:
+*                         email:  
+*                             type: string
+*                         oldpassword:
+*                             type: string
+*                         newpassword:
+*                             type: string
+*     responses:
+*         200:
+*             description: Added Successfully
+*         404:
+*             description: Not Found
+*         500:
+*             description: Internal Server Error
+*/
+
+/**
+* @swagger
+* /profile/remove:
+*  post:
+*     summary: This is used to remove profile image 
+*     tags: [Profile]
+*     requestBody:
+*         required: true
+*         content:
+*             application/json:
+*                 schema:
+*                     type: object
+*                     properties:
+*                         email:  
+*                             type: string
+*     responses:
+*         200:
+*             description: Added Successfully
+*         404:
+*             description: Not Found
+*         500:
+*             description: Internal Server Error
+*/
+
+/**
+* @swagger
+* /profile/feedback:
+*  post:
+*     summary: This is used to change feedback from profile page
+*     tags: [Profile]
+*     requestBody:
+*         required: true
+*         content:
+*             application/json:
+*                 schema:
+*                     type: object
+*                     properties:
+*                         username:  
+*                             type: string
+*                         feedback:
+*                             type: string
+*     responses:
+*         200:
+*             description: Added Successfully
+*         404:
+*             description: Not Found
+*         500:
+*             description: Internal Server Error
+*/
+
+/**
+ * @swagger
+ * /profile/deletefeedback/{id}:
+ *  delete:
+ *      summary: Delete a user by ID
+ *      description: Deletes a single user by ID
+ *      tags: [Profile]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            description: ID of the user
+ *            required: true
+ *            schema:
+ *              type: string
+ *      responses:
+ *          200:
+ *              description: User Deleted
+ *          500:
+ *              description: Error
+ * 
+ */
+
+
+// users--------------------------------------------------------------------------------------------
+
+/**
+ * @swagger
+ * /users/loguser/{id}:
+ *  get:
+ *      summary: This api is used to check feedbacks
+ *      tags: [Users]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true;
+ *            description:  String
+ *            schema:
+ *               type: string
+ *      responses:
+ *          200:
+ *              description: To test Get Method
+ *          404:
+ *              description: Not Found
+ *          500:
+ *              description: Internal Server Error
+ */
 
 /**
 * @swagger

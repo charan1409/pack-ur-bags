@@ -15,6 +15,30 @@ const User = require("../schemas/user");
 const fdb = require("../schemas/feedback");
 const Place = require("../schemas/place");
 
+// Feedbacks display for admin
+router.get("/feedbacks", (req, res) => {
+  fdb.find({}, (err, data) => {
+    if (data) {
+      res.status(200).json(data);
+    } else {
+      res.status(201).json({ msg: "error occurred" });
+    }
+  });
+});
+
+
+//get tours of username
+router.get("/tours/:id", (req, res) => {
+  let username = req.params.id;
+  book.find({username: username}, (err, data) => {
+    if (data) {
+      res.status(200).json(data);
+    } else {
+      res.status(201).json({ msg: "error occurred" });
+    }
+  });
+});
+
 // table data of users for admin
 router.get("/users", (req, res) => {
   let role = url.parse(req.url, true).query.role;
@@ -84,26 +108,5 @@ router.post("/place/:id",upload.single('photo'), async(req, res) => {
   }
 });
 
-router.get("/feedbacks", (req, res) => {
-  fdb.find({}, (err, data) => {
-    if (data) {
-      res.status(200).json(data);
-    } else {
-      res.status(201).json({ msg: "error occurred" });
-    }
-  });
-});
-
-//get tours of username
-router.get("/tours/:id", (req, res) => {
-  let username = req.params.id;
-  book.find({username: username}, (err, data) => {
-    if (data) {
-      res.status(200).json(data);
-    } else {
-      res.status(201).json({ msg: "error occurred" });
-    }
-  });
-});
 
 module.exports = router;
