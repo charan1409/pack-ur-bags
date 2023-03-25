@@ -100,6 +100,7 @@ app.listen(port, function () {
  * /:
  *  get:
  *      summary: This api is used to check if get method is working or not
+ *      tags: [Sample]
  *      responses:
  *          200:
  *              description: To test Get Method
@@ -111,6 +112,7 @@ app.listen(port, function () {
  * /admins/feedbacks:
  *  get:
  *      summary: This api is used to check feedbacks
+ *      tags: [Admin]
  *      responses:
  *          200:
  *              description: To test Get Method
@@ -126,6 +128,7 @@ app.listen(port, function () {
  * /admins/users:
  *  get:
  *      summary: This api is used to check users in admin
+ *      tags: [Admin]
  *      responses:
  *          200:
  *              description: To test Get Method
@@ -136,10 +139,98 @@ app.listen(port, function () {
  *                    properties:
  */
 
+/**
+ * @swagger
+ * /admins/delete/{id}:
+ *  delete:
+ *      summary: Delete a user by ID
+ *      description: Deletes a single user by ID
+ *      tags: [Admin]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            description: ID of the user
+ *            required: true
+ *            schema:
+ *              type: string
+ *      responses:
+ *          200:
+ *              description: User Deleted
+ *          500:
+ *              description: Error
+ * 
+ */
+
+/**
+ * @swagger
+ * /admins/tours/{id}:
+ *  get:
+ *      summary: This api is used to check feedbacks
+ *      tags: [Admin]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true;
+ *            description:  String
+ *            schema:
+ *               type: string
+ *      responses:
+ *          200:
+ *              description: To test Get Method
+ *          404:
+ *              description: Not Found
+ *          500:
+ *              description: Internal Server Error
+ */
+
+
 
 
 // Payment
 
+/**
+ * @swagger
+ * /payment/pay/{id}:
+ *  get:
+ *      summary: This api is used to check feedbacks
+ *      tags: [Payment]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true;
+ *            description:  String
+ *            schema:
+ *               type: string
+ *      responses:
+ *          200:
+ *              description: To test Get Method
+ *          404:
+ *              description: Not Found
+ *          500:
+ *              description: Internal Server Error
+ */
+
+/**
+ * @swagger
+ * /payment/mybookings/{id}:
+ *  get:
+ *      summary: This api is used to check feedbacks
+ *      tags: [Payment]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true;
+ *            description:  String
+ *            schema:
+ *               type: string
+ *      responses:
+ *          200:
+ *              description: To test Get Method
+ *          404:
+ *              description: Not Found
+ *          500:
+ *              description: Internal Server Error
+ */
 
 /**
  * @swagger
@@ -163,21 +254,54 @@ app.listen(port, function () {
  *              description: Internal Server Error
  */
 
+// Book.js
+/**
+ * @swagger
+ * /book/booking/{id}:
+ *  get:
+ *      summary: This api is used to check feedbacks
+ *      tags: [Book]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true;
+ *            description:  String
+ *            schema:
+ *               type: string
+ *      responses:
+ *          200:
+ *              description: To test Get Method
+ *          404:
+ *              description: Not Found
+ *          500:
+ *              description: Internal Server Error
+ */
 
 /**
  * @swagger
- * /profile/remove:
- *  post:
- *      summary: used to insert data to mongodb
- *      requestBody:
- *          required: true
- *          content:
- *              application/json:
- *                 schema:
+ * /book/book/{id}:
+ *  get:
+ *      summary: This api is used to check feedbacks
+ *      tags: [Book]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true;
+ *            description:  String
+ *            schema:
+ *               type: string
  *      responses:
  *          200:
- *              description: Added Successfully
+ *              description: To test Get Method
+ *          404:
+ *              description: Not Found
+ *          500:
+ *              description: Internal Server Error
  */
+
+
+
+
 
 /**
 * @swagger
@@ -193,9 +317,9 @@ app.listen(port, function () {
 *                     type: object
 *                     properties:
 *                         username:
-*                            type: string
+*                             type: string
 *                         password:
-*                            type: string
+*                             type: string
 *     responses:
 *         200:
 *             description: Added Successfully
@@ -204,3 +328,6 @@ app.listen(port, function () {
 *         500:
 *             description: Internal Server Error
 */
+
+
+

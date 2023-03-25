@@ -12,16 +12,16 @@ router.get('/booking/:id',(req,res)=>{
     const placeid = req.params.id;
     Place.findOne({ id: placeid})
     .then(place=>{
-        if(place) res.status(200).json({stat:"fine"})
-        else res.status(400).json({stat:"fine"})
+        if(place) res.status(200).json({stat:"found"})
+        else res.status(400).json({stat:"Not found"})
     })
 })
 router.get('/book/:id', (req, res) => {
     const placeid = req.params.id;
     Place.findOne({ id: placeid})
     .then(place=>{
-        if(place) res.status(200).json({stat:"fine"})
-        else res.status(401).json({stat:"fine"})
+        if(place) res.status(200).json({stat:"found"})
+        else res.status(401).json({stat:"Not found"})
     })
 })
 
