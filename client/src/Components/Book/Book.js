@@ -44,7 +44,6 @@ function App(props) {
       .then((resp) => {
         if (resp.status === 200) {
           setPlacedata(resp.data);
-          console.log(resp.data);
         } else {
           navigate("/error");
         }

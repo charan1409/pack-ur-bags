@@ -25,7 +25,7 @@ router.get('/book/:id', (req, res) => {
     })
 })
 
-router.post('/book/:id',(req,res)=>{
+router.post('/book/:id',async (req,res)=>{
     const id=Date.now()+""+Math.floor(Math.random()*10);
     const placeid=req.params.id;
     const username=req.body.username;
@@ -34,15 +34,16 @@ router.post('/book/:id',(req,res)=>{
     const paymentDone=req.body.paymentDone;
     const numberOfpassengers=req.body.numberOfpassengers;
     const passengers=req.body.passengers;
+    const place = await Place.findOne({ id: placeid });
     const newBooking=new book({
         id:id,
-        placeid:placeid,
         username:username,
         fromdate:fromdate,
         todate:todate,
         paymentDone:paymentDone,
         numberOfpassengers:numberOfpassengers,
-        passengers:passengers
+        passengers:passengers,
+        placedetails:place
     });
     newBooking.save().then(book=>{
         res.status(200).json(id)

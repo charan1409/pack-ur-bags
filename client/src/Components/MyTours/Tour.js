@@ -79,12 +79,12 @@ const Tours = (props) => {
                                 <th>Total amount</th>
                               </tr>
                               <tr>
-                                <td>{item.from}</td>
-                                <td>{item.to}</td>
+                                <td>{item.placedetails.from}</td>
+                                <td>{item.placedetails.to}</td>
                                 <td>{item.numberOfpassengers}</td>
                                 <td>{item.fromdate}</td>
                                 <td>{item.todate}</td>
-                                <td>{item.numberOfpassengers * item.price}</td>
+                                <td>{item.numberOfpassengers * item.placedetails.price}</td>
                               </tr>
                             </table>
                             <>{

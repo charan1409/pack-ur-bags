@@ -10,30 +10,33 @@ import axios from "axios";
 
 const Payment = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState({})
-  const [details,setDetails]=useState({})
-  const {id} = useParams()
+  const [user, setUser] = useState({});
+  const [details, setDetails] = useState(null);
+  const { id } = useParams();
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
-    axios
-      .get(`http://localhost:9000/users/loguser/${userL.username}`)
-      .then((resp) => {
-        if(resp.data.user) return setUser(resp.data.user);
-        else navigate("/error")
+    const fetchData = () => {
+      axios
+        .get(`http://localhost:9000/users/loguser/${userL.username}`)
+        .then((resp) => {
+          if (resp.data.user) setUser(resp.data.user);
+          else navigate("/error");
+        });
+      axios.get(`http://localhost:9000/payment/pay/${id}`).then((resp) => {
+        setDetails(resp.data);
       });
-    axios.get(`http://localhost:9000/payment/pay/${id}`).then(resp => {
-      return setDetails(resp.data)
-    })}, [id])
+    };
+    fetchData();
+  }, []);
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [cvv, setCvv] = useState("");
 
-  
-  const handleSubmit = (e) => {    
+  const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     const payment_data = {
       number: number,
       name: name,
@@ -48,14 +51,16 @@ const Payment = () => {
     setMonth("");
     setYear("");
     setCvv("");
-    axios.post(`http://localhost:9000/payment/pay/${id}`, payment_data).then(resp => {
-      if(resp.status === 200){
-        alert(resp.data.msg);
-        navigate(`/index`);
-      } else{
-        navigate('/error');
-      }
-    })
+    axios
+      .post(`http://localhost:9000/payment/pay/${id}`, payment_data)
+      .then((resp) => {
+        if (resp.status === 200) {
+          alert(resp.data.msg);
+          navigate(`/index`);
+        } else {
+          navigate("/error");
+        }
+      });
   };
 
   function number_space() {
@@ -86,38 +91,41 @@ const Payment = () => {
     <>
       <Header user={user} navItems={navItems} />
       <div className="payment-container">
-        <div className="bill-container">
-          <div className="bill">
-            <h1>BILL</h1>
-            <table>
-              <tr>
-                <th>From</th>
-                <th>{details.from}</th>
-              </tr>
-              <tr>
-                <th>To</th>
-                <th>{details.to}</th>
-              </tr>
-              <tr>
-                <th>Number of days</th>
-                <th>{details.numberOfdays}</th>
-              </tr>
-              <tr>
-                <th>Total passengers</th>
-                <th>{details.numberOfpassengers}</th>
-              </tr>
-              <tr>
-                <th>Price per passenger</th>
-                <th>{details.price}</th>
-              </tr>
-              <tr>
-                <th>Total Price</th>
-                <th>{details.numberOfpassengers * details.price}</th>
-              </tr>
-            </table>
-
+       {details && (
+          <div className="bill-container">
+            <div className="bill">
+              <h1>BILL</h1>
+              <table>
+                <tr>
+                  <th>From</th>
+                  <th>{details.placedetails.from}</th>
+                </tr>
+                <tr>
+                  <th>To</th>
+                  <th>{details.placedetails.to}</th>
+                </tr>
+                <tr>
+                  <th>Number of days</th>
+                  <th>{details.placedetails.days}</th>
+                </tr>
+                <tr>
+                  <th>Total passengers</th>
+                  <th>{details.numberOfpassengers}</th>
+                </tr>
+                <tr>
+                  <th>Price per passenger</th>
+                  <th>{details.placedetails.price}</th>
+                </tr>
+                <tr>
+                  <th>Total Price</th>
+                  <th>
+                    {details.numberOfpassengers * details.placedetails.price}
+                  </th>
+                </tr>
+              </table>
+            </div>
           </div>
-        </div>
+        )}
         <div className="container">
           <div className="card-container">
             <div className="front">
@@ -192,7 +200,6 @@ const Payment = () => {
                 <span>expiration month</span>
                 <select
                   name="expmon"
-                  id=""
                   className="month-input"
                   required
                   value={month}
@@ -221,7 +228,6 @@ const Payment = () => {
                 <span>expiration year</span>
                 <select
                   name="expyear"
-                  id=""
                   className="year-input"
                   required
                   value={year}
