@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import InputBox from "./InputBox";
 import axios from "axios";
@@ -40,7 +40,7 @@ function Form(props) {
   const [regpassengers, setrepasse] = useState([]);
   useEffect(() => {
     setFinalData({...finalData, regpassengers: regpassengers, total: regpassengers.length * props.price})
-  }, [regpassengers, id])
+  }, [regpassengers, id,finalData,setFinalData, props.price])
   const onChangeField = (e) => {
     const nextField = { ...passengerDetails, [e.target.name]: e.target.value };
     setPassengerDetails(nextField);
