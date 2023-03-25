@@ -18,6 +18,7 @@ import Addadmin from "./Components/Admin/Addadmin";
 import AddPlaces from "./Components/Admin/AddPlaces";
 import Feedbacks from "./Components/Admin/Feedbacks";
 import ViewAll from "./Components/Admin/ViewAll";
+import Edit from "./Components/MyTours/Edit";
 function App() {
   return (
     <>
@@ -42,6 +43,7 @@ function App() {
               <Route path="adminplaces" element={<AddPlaces />} />
               <Route path="feedbacks" element={<Feedbacks />} />
               <Route path="viewtours/:id" element={<ViewAll />} />
+              <Route path="edit/:id" element={<Edit />} />
               <Route path="*" element={<Error />} />
             </Routes>
           </BrowserRouter>

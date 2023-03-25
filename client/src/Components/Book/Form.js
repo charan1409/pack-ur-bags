@@ -184,6 +184,7 @@ function Form(props) {
         )}
         <br/>
         <InputBox
+          name="fromdate"
           value={finalData.fromdate}
           type="date"
           display="Select Date"  

@@ -1,0 +1,83 @@
+import React, { useEffect } from 'react'
+import axios from 'axios'
+import { useParams } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+function Edit() {
+    const id = useParams()
+    const navigate = useNavigate()
+    const [tours, setTours] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [passengerDetails, setPassenger] = useState([]);
+    useEffect(() => {
+        setTours({ ...tours, passengers: passengerDetails });
+    }, [passengerDetails, setPassenger]);
+    const update = (key, e) => {
+        return passengerDetails.map((passenger, index) => {
+            if (index === key) {
+                return { ...passenger, [e.target.name]: e.target.value };
+            } else {
+                return passenger;
+            }
+        });
+    }
+    const SubmitHandle = (e) => {
+        e.preventDefault();
+        axios.put(`http://localhost:9000/payment/bookings/${id.id}`, {fromdate:tours.fromdate,passengers: passengerDetails, todate:tours.todate }).then((resp) => {
+            navigate('/mytours')
+        });
+    }
+
+    useEffect(() => {
+        axios.get(`http://localhost:9000/payment/bookings/${id.id}`).then((resp) => {
+            setPassenger(resp.data.passengers);
+            setLoading(false);
+            return setTours(resp.data);
+        });
+    }, [id.id, setTours]);
+    return (
+        <div>
+            <h2>From: {tours.from}</h2>
+            <h2>To: {tours.to}</h2>
+            <h2>Price: {tours.price}</h2>
+            <form onSubmit={SubmitHandle}>
+                {passengerDetails.map((passenger, key) => {
+                    return (
+                        <div key={key}>
+                            <label>Name: </label>
+                            <input type="text" name='name' value={passenger.name} onChange={(e) => setPassenger(update(key, e))} />
+                            <label name='gender' value={passenger.gender} >Gender:
+                                <select name="gender" onChange={(e) => setPassenger(update(key, e))}>
+                                    <option value="male">male</option>
+                                    <option value="female">female</option>
+                                </select>
+                            </label>
+                            <label>Age: </label>
+                            <input type="text" name='age' value={passenger.age} onChange={(e) => setPassenger(update(key, e))} />
+                        </div>
+                    )
+                })}
+                <input type="Date" name='fromdate' value={tours.fromdate} onChange={(e) => {
+                    const fromdate1=new Date()
+                    var todate =new Date(e.target.value);
+                    var days =0;
+                    if(tours.days === "Three"){days=3}
+                    else if(tours.days === "Five"){days=5}
+                    todate.setDate(todate.getDate() + days);
+                    var todate_final = todate.getFullYear() + "-" + (todate.getMonth() + 1) + "-" + todate.getDate();
+                    if (new Date(e.target.value).getTime() > fromdate1.getTime()) {
+                        setTours({ ...tours, fromdate: e.target.value, todate: todate_final })
+                    }
+                    else {
+                        alert("You cannot select a date from within 3 days from today");
+                    }
+                }
+                } />
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    )
+}
+
+export default Edit

@@ -29,6 +29,42 @@ router.get("/mybookings/:id", async (req, res) => {
   })
 });
 
+router.get("/bookings/:id", async (req, res) => {
+  let bookid = req.params.id;
+  try {
+    const bookings= await Book.findOne({ id: bookid }).populate('placedetails');
+    // const place= await Place.findOne({ id: bookings.placeid });
+    const det = {
+      id: bookings.id,
+      from: bookings.placedetails.from,
+      to: bookings.placedetails.to,
+      price: bookings.placedetails.price,
+      days: bookings.placedetails.days,
+      numberOfpassengers: bookings.numberOfpassengers,
+      fromdate: bookings.fromdate,
+      todate: bookings.todate,
+      passengers: bookings.passengers,
+    };
+    res.status(200).json(det);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
+router.put("/bookings/:id", async (req, res) => {
+  let bookid = req.params.id;
+  try {
+    bookings=await Book.findOne({ id: bookid });
+    Book.findOneAndUpdate({ id: bookid }, {passengers:req.body.passengers, fromdate:req.body.fromdate, todate:req.body.todate}).then((book) => {
+      res.status(200).json({ msg: "updated Successfully" });
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 router.post("/pay/:id", (req, res) => {
   const bookid = req.params.id;
   let username = req.body.username;

@@ -49,7 +49,7 @@ const Tours = (props) => {
         return setUser(resp.data.user);
       });
   }, []);
-  
+
 
   return (
     <div>
@@ -66,71 +66,78 @@ const Tours = (props) => {
               <div className="tour-item-class">
                 {tours
                   ? tours.map((item, key) => {
-                      return (
-                        <div className="tour-item-box" key={key}>
-                          <div className="tour-details">
-                            <table>
-                              <tr style={{fontSize: "20px"}}>
-                                <th>From</th>
-                                <th>To</th>
-                                <th>No. of Passengers</th>
-                                <th>Departure</th>
-                                <th>Arrival</th>
-                                <th>Total amount</th>
-                              </tr>
-                              <tr>
-                                <td>{item.placedetails.from}</td>
-                                <td>{item.placedetails.to}</td>
-                                <td>{item.numberOfpassengers}</td>
-                                <td>{item.fromdate}</td>
-                                <td>{item.todate}</td>
-                                <td>{item.numberOfpassengers * item.placedetails.price}</td>
-                              </tr>
-                            </table>
-                            <>{
-                              item.passengers.map((passenger, key) => {
-                                return (
-                                  <table>
-                                    <tr style={{fontSize: "20px"}}>
-                                      <th>Passenger {key + 1}</th>
-                                    </tr>
-                                    <tr>
-                                      <td>Name: {passenger.name}</td>
-                                    </tr>
-                                    </table>
-                                )
-                              })
-                            }</>
-                          </div>
-                          <div className="tour-button">
-                            <Btn
-                              value="Book Now"
-                              type="button"
-                              onClick={() => {
-                                navigate(`/payment/${item.id}`);
-                              }}
-                            />
-                          </div>
-                          
-                          {/* Implement delete */}
+                    return (
+                      <div className="tour-item-box" key={key}>
+                        <div className="tour-details">
+                          <table>
+                            <tr style={{ fontSize: "20px" }}>
+                              <th>From</th>
+                              <th>To</th>
+                              <th>No. of Passengers</th>
+                              <th>Departure</th>
+                              <th>Arrival</th>
+                              <th>Total amount</th>
+                            </tr>
+                            <tr>
+                              <td>{item.placedetails.from}</td>
+                              <td>{item.placedetails.to}</td>
+                              <td>{item.numberOfpassengers}</td>
+                              <td>{item.fromdate}</td>
+                              <td>{item.todate}</td>
+                              <td>{item.numberOfpassengers * item.placedetails.price}</td>
+                            </tr>
+                          </table>
+                          <>{
+                            item.passengers.map((passenger, key) => {
+                              return (
+                                <table>
+                                  <tr style={{ fontSize: "20px" }}>
+                                    <th>Passenger {key + 1}</th>
+                                  </tr>
+                                  <tr>
+                                    <td>Name: {passenger.name}</td>
+                                  </tr>
+                                </table>
+                              )
+                            })
+                          }</>
+                        </div>
+                        <div className="tour-button">
                           <Btn
-                            value="Delete"
+                            value="Book Now"
                             type="button"
                             onClick={() => {
-                              axios
-                                .delete(
-                                  `http://localhost:9000/places/delete/${item.id}`
-                                )
-                                .then((resp) => {
-                                  alert(resp.data.message);
-                                  window.location.reload();
-                                });
+                              navigate(`/payment/${item.id}`);
                             }}
                           />
-
                         </div>
-                      );
-                    })
+                        <Btn
+                          value="Edit"
+                          type="button"
+                          onClick={() => {
+                            navigate(`/edit/${item.id}`);
+                          }}
+                        />
+
+                        {/* Implement delete */}
+                        <Btn
+                          value="Delete"
+                          type="button"
+                          onClick={() => {
+                            axios
+                              .delete(
+                                `http://localhost:9000/places/delete/${item.id}`
+                              )
+                              .then((resp) => {
+                                alert(resp.data.message);
+                                window.location.reload();
+                              });
+                          }}
+                        />
+
+                      </div>
+                    );
+                  })
                   : ""}
               </div>
             </div>
