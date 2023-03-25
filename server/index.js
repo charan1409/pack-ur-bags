@@ -111,7 +111,8 @@ app.listen(port, function () {
  * @swagger
  * /admins/feedbacks:
  *  get:
- *      summary: This api is used to check feedbacks
+ *      summary: Fetching feedbacks from database
+ *      description: Fetching feedbacks from database
  *      tags: [Admin]
  *      responses:
  *          200:
@@ -127,7 +128,8 @@ app.listen(port, function () {
  * @swagger
  * /admins/tours/{id}:
  *  get:
- *      summary: This api is used to check feedbacks
+ *      summary: Fetching tours of particular user from the database
+ *      description: Fetching tours of particular user from the database
  *      tags: [Admin]
  *      parameters:
  *          - in: path
@@ -149,7 +151,8 @@ app.listen(port, function () {
  * @swagger
  * /admins/users:
  *  get:
- *      summary: This api is used to check users in admin
+ *      summary: List of all users
+ *      description: List of all users
  *      tags: [Admin]
  *      responses:
  *          200:
@@ -190,7 +193,8 @@ app.listen(port, function () {
  * @swagger
  * /book/booking/{id}:
  *  get:
- *      summary: This api is used to check feedbacks
+ *      summary: List all the bookings of a particular user
+ *      description: List all the bookings of a particular user
  *      tags: [Book]
  *      parameters:
  *          - in: path
@@ -212,7 +216,8 @@ app.listen(port, function () {
  * @swagger
  * /book/book/{id}:
  *  get:
- *      summary: This api is used to check feedbacks
+ *      summary: List all the bookings of a particular user
+ *      description: List all the bookings of a particular user
  *      tags: [Book]
  *      parameters:
  *          - in: path
@@ -236,7 +241,8 @@ app.listen(port, function () {
 * @swagger
 * /index/fd:
 *  post:
-*     summary: used to insert data to mongodb
+*     summary: Give feedback
+*     description: Give feedback
 *     tags: [Index]
 *     requestBody:
 *         required: true
@@ -264,7 +270,8 @@ app.listen(port, function () {
  * @swagger
  * /payment/pay/{id}:
  *  get:
- *      summary: This api is used to check feedbacks
+ *      summary: List all the payments of a particular user
+ *      description: List all the payments of a particular user
  *      tags: [Payment]
  *      parameters:
  *          - in: path
@@ -286,7 +293,8 @@ app.listen(port, function () {
  * @swagger
  * /payment/mybookings/{id}:
  *  get:
- *      summary: This api is used to check feedbacks
+ *      summary: List all the bookings of a particular user
+ *      description: List all the bookings of a particular user
  *      tags: [Payment]
  *      parameters:
  *          - in: path
@@ -308,7 +316,8 @@ app.listen(port, function () {
 * @swagger
 * /payment/post/{id}:
 *  post:
-*     summary: used to insert data to mongodb
+*     summary: Doing Payment for a particular booking
+*     description: Doing Payment for a particular booking
 *     tags: [Payment]
 *     parameters:
 *          - in: path
@@ -349,7 +358,8 @@ app.listen(port, function () {
  * @swagger
  * /payment/getTransactions/{id}:
  *  get:
- *      summary: This api is used to check feedbacks
+ *      summary: This api is used to check payment history
+ *      description: This api is used to check payment history
  *      tags: [Payment]
  *      parameters:
  *          - in: path
@@ -374,7 +384,8 @@ app.listen(port, function () {
  * @swagger
  * /places/places/{id}:
  *  get:
- *      summary: This api is used to check feedbacks
+ *      summary: This api is used to list all the places with the id
+ *      description: This api is used to list all the places with the id
  *      tags: [Places]
  *      parameters:
  *          - in: path
@@ -396,7 +407,8 @@ app.listen(port, function () {
  * @swagger
  * /places/placedetails/{id}:
  *  get:
- *      summary: This api is used to check feedbacks
+ *      summary: This api is used to list the details about a particular place
+ *      description: This api is used to list the details about a particular place
  *      tags: [Places]
  *      parameters:
  *          - in: path
@@ -420,6 +432,7 @@ app.listen(port, function () {
 * /profile/edit:
 *  post:
 *     summary: This is used to edit profile
+*     description: This is used to edit profile
 *     tags: [Profile]
 *     requestBody:
 *         required: true
@@ -452,6 +465,7 @@ app.listen(port, function () {
 * /profile/changepass:
 *  post:
 *     summary: This is used to change password
+*     description: This is used to change password
 *     tags: [Profile]
 *     requestBody:
 *         required: true
@@ -480,6 +494,7 @@ app.listen(port, function () {
 * /profile/remove:
 *  post:
 *     summary: This is used to remove profile image 
+*     description: This is used to remove profile image
 *     tags: [Profile]
 *     requestBody:
 *         required: true
@@ -504,6 +519,7 @@ app.listen(port, function () {
 * /profile/feedback:
 *  post:
 *     summary: This is used to change feedback from profile page
+*     description: This is used to change feedback from profile page
 *     tags: [Profile]
 *     requestBody:
 *         required: true
@@ -554,7 +570,8 @@ app.listen(port, function () {
  * @swagger
  * /users/loguser/{id}:
  *  get:
- *      summary: This api is used to check feedbacks
+ *      summary: This api is used to show the user details which is logged in
+ *      description: This api is used to show the user details which is logged in
  *      tags: [Users]
  *      parameters:
  *          - in: path
@@ -576,7 +593,8 @@ app.listen(port, function () {
 * @swagger
 * /users/login:
 *  post:
-*     summary: used to insert data to mongodb
+*     summary: This API is used to login and whether the user present or not
+*     description: This API is used to login and whether the user present or not
 *     tags: [Users]
 *     requestBody:
 *         required: true
@@ -597,6 +615,3 @@ app.listen(port, function () {
 *         500:
 *             description: Internal Server Error
 */
-
-
-
