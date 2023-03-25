@@ -55,7 +55,8 @@ app.use(morgan("combined", { stream: accessLogStream }));
 // Implement Swagger
 
 const swaggerOptions = {
-  swaggerDefinition: {
+  definition: {
+    openapi: "3.0.0",
     info: {
       title: "Travel API",
       version: "1.0.0",
@@ -63,10 +64,12 @@ const swaggerOptions = {
       contact: {
         name: "Travel API",
       },
-      servers: ["http://localhost:9000"],
+      servers: [{
+        url: "http://localhost:9000"
+      }],
     },
   },
-  apis: ["./index.js"],
+  apis: ["./index.js","./routes/*.js"],
   // apis: ["./routes/*.js"]
 };
 
@@ -190,9 +193,9 @@ app.listen(port, function () {
 *                     type: object
 *                     properties:
 *                         username:
-*                             type: string
+*                            type: string
 *                         password:
-*                             type: string
+*                            type: string
 *     responses:
 *         200:
 *             description: Added Successfully
@@ -201,6 +204,3 @@ app.listen(port, function () {
 *         500:
 *             description: Internal Server Error
 */
-
-
-
