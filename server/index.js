@@ -6,9 +6,10 @@ app.use(cookieparser());
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
-// Swagger
 const cors = require("cors");
 dotenv.config();
+
+// Swagger
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
@@ -57,7 +58,7 @@ const swaggerOptions = {
   swaggerDefinition: {
     info: {
       title: "Travel API",
-        version: "1.0.0",
+      version: "1.0.0",
       description: "Travel API Information",
       contact: {
         name: "Travel API",
@@ -65,45 +66,16 @@ const swaggerOptions = {
       servers: ["http://localhost:9000"],
     },
   },
-  apis: ["index.js"],
+  apis: ["./index.js"],
   // apis: ["./routes/*.js"]
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-/**
- * @swagger
- * /userdetails:
- * get:
- * description: Use to request all users
- * responses:
- * '200':
- * description: A successful response
- */
-
-app.get("/userdetails", (req, res) => {
-    res.send(
-        [
-            {
-                "id": "5f9f1b0b1b9d8c2b1c8b8b8b",
-                "username": "admin",
-                "email": "admin@gmail.com",
-                "role": "admin",
-                "image": "http://localhost:9000/profileImgs/5f9f1b0b1b9d8c2b1c8b8b8b.jpg",
-                "imagegiven": true,
-            },
-            {
-                "id": "5f9f1b0b1b9d8c2b1c8b8b8c",
-                "username": "user",
-                "email": "user@gmail.com",
-                "role": "user",
-                "image": "http://localhost:9000/profileImgs/5f9f1b0b1b9d8c2b1c8b8b8c.jpg",
-                "imagegiven": true,
-            },
-        ]
-    )
-})
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 //routes
 app.use("/users", require("./routes/users"));
@@ -117,3 +89,118 @@ app.use("/payment", require("./routes/payments"));
 app.listen(port, function () {
   console.log("server is running on the port 9000");
 });
+
+
+// Working
+/**
+ * @swagger
+ * /:
+ *  get:
+ *      summary: This api is used to check if get method is working or not
+ *      responses:
+ *          200:
+ *              description: To test Get Method
+ */
+
+// Feedbacks
+/**
+ * @swagger
+ * /admins/feedbacks:
+ *  get:
+ *      summary: This api is used to check feedbacks
+ *      responses:
+ *          200:
+ *              description: To test Get Method
+ *              content:
+ *                  application/json:
+ *                    schema: 
+ *                     type: object
+ *                    properties:
+ */
+
+/**
+ * @swagger
+ * /admins/users:
+ *  get:
+ *      summary: This api is used to check users in admin
+ *      responses:
+ *          200:
+ *              description: To test Get Method
+ *              content:
+ *                  application/json:
+ *                    schema: 
+ *                     type: object
+ *                    properties:
+ */
+
+
+
+// Payment
+
+
+/**
+ * @swagger
+ * /payment/getTransactions/{id}:
+ *  get:
+ *      summary: This api is used to check feedbacks
+ *      tags: [Payment]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true;
+ *            description:  String
+ *            schema:
+ *               type: string
+ *      responses:
+ *          200:
+ *              description: To test Get Method
+ *          404:
+ *              description: Not Found
+ *          500:
+ *              description: Internal Server Error
+ */
+
+
+/**
+ * @swagger
+ * /profile/remove:
+ *  post:
+ *      summary: used to insert data to mongodb
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                 schema:
+ *      responses:
+ *          200:
+ *              description: Added Successfully
+ */
+
+/**
+* @swagger
+* /users/login:
+*  post:
+*     summary: used to insert data to mongodb
+*     tags: [Users]
+*     requestBody:
+*         required: true
+*         content:
+*             application/json:
+*                 schema:
+*                     type: object
+*                     properties:
+*                         username:
+*                             type: string
+*                         password:
+*                             type: string
+*     responses:
+*         200:
+*             description: Added Successfully
+*         404:
+*             description: Not Found
+*         500:
+*             description: Internal Server Error
+*/
+
+
+

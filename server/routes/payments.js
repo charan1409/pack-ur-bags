@@ -6,7 +6,7 @@ const User = require("../schemas/user");
 const Place = require("../schemas/place");
 const Book = require("../schemas/book");
 
-router.get("/views/payment", (req, res) => res.render("payment"));
+
 router.get("/pay/:id", (req, res) => {
   let bookid = req.params.id;
   Book.findOne({ id: bookid }).then((book) => {
