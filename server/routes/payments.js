@@ -9,55 +9,24 @@ const Book = require("../schemas/book");
 
 router.get("/pay/:id", (req, res) => {
   let bookid = req.params.id;
-  Book.findOne({ id: bookid }).then((book) => {
-    var numberOfpassengers1 = book.numberOfpassengers;
-    console.log(book.numberOfpassengers);
-    Place.findOne({ id: book.placeid }).then((place) => {
-      const det = {
-        from: place.from,
-        to: place.to,
-        price: place.price,
-        numberOfpassengers: numberOfpassengers1,
-      };
-      console.log(det);
-      res.status(200).json(det);
-    });
-  });
+  Book.findOne({id: bookid}).populate('placedetails').exec((err,bookings)=>{
+    if(err) res.status(201).json({error: "Some error incurred."});
+    else{
+      console.log(bookings);
+      res.status(200).json(bookings);
+    }
+  })
 });
 
 router.get("/mybookings/:id", async (req, res) => {
   let username = req.params.id;
-  // Book.find({username: username}).populate('place').exec((err,bookings)=>{
-  //   if(err) res.status(201).json({error: "Some error incurred."});
-  //   else{
-  //     console.log(bookings);
-  //     res.status(200).json(bookings);
-  //   }
-  // })
-  try {
-    const bookings = await Book.find({ username: username });
-    const tours = [];
-    for (let i = 0; i < bookings.length; i++) {
-      if (bookings[i].paymentDone === false) {
-        const place = await Place.findOne({ id: bookings[i].placeid });
-        const det = {
-          id: bookings[i].id,
-          from: place.from,
-          to: place.to,
-          price: place.price,
-          numberOfpassengers: bookings[i].numberOfpassengers,
-          fromdate: bookings[i].fromdate,
-          todate: bookings[i].todate,
-          passengers: bookings[i].passengers,
-        };
-        tours.push(det);
-      }
+  Book.find({username: username}).populate('placedetails').exec((err,bookings)=>{
+    console.log(bookings);
+    if(err) res.status(201).json({error: "Some error incurred."});
+    else{
+      res.status(200).json(bookings);
     }
-    res.status(200).json(tours);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server Error" });
-  }
+  })
 });
 
 router.post("/pay/:id", (req, res) => {

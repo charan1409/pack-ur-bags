@@ -1,5 +1,4 @@
 import React from "react";
-import InputBox from "../Landing/InputBox";
 import { useState } from "react";
 import Btn from "../Btn";
 import axios from "axios";
@@ -9,9 +8,12 @@ import Header from "../Navbar/Header";
 function Addadmin(props) {
   const [userinfo, setUserinfo] = useState({
     username: "",
+    name: "",
     email: "",
     password: "",
     confirmedPassword: "",
+    gender: "",
+    phonenumber: "",
     role: "admin",
   });
 
@@ -43,7 +45,7 @@ function Addadmin(props) {
         username: userinfo.username,
         email: userinfo.email,
         password: userinfo.password,
-        role: "admin"
+        role: "admin",
       };
       axios.post("http://localhost:9000/users/register", user).then((resp) => {
         if (resp.status !== 200) {
@@ -51,9 +53,12 @@ function Addadmin(props) {
         } else {
           setUserinfo({
             username: "",
+            name: "",
             email: "",
             password: "",
             confirmedPassword: "",
+            gender: "",
+            phonenumber: "",
           });
           alert(resp.data.msg);
         }
@@ -83,41 +88,84 @@ function Addadmin(props) {
   return (
     <>
       <Header user={true} navItems={navItems} />
-      <div className="add">
-        <h1>Add admin</h1>
-        <form onSubmit={submitHandler} className="addadmin" style={{height: "400px", width: "600px"}}>
-          <InputBox
-            placeholder={"username"}
-            leftIcon={"bi bi-person-fill"}
-            type={"text"}
-            name={"username"}
-            value={userinfo.username}
-            onChange={onUpdateField}
-          />
-          <InputBox
-            placeholder={"email"}
-            leftIcon={"bi bi-envelope-open-fill"}
-            type={"text"}
-            name={"email"}
-            value={userinfo.email}
-            onChange={onUpdateField}
-          />
-          <InputBox
-            placeholder={"password"}
-            leftIcon={"bi bi-key-fill"}
-            type={"password"}
-            name={"password"}
-            value={userinfo.password}
-            onChange={onUpdateField}
-          />
-          <InputBox
-            placeholder={"confirm your password"}
-            leftIcon={"bi bi-key-fill"}
-            type={"password"}
-            name={"confirmedPassword"}
-            value={userinfo.confirmedPassword}
-            onChange={onUpdateField}
-          />
+      <div className="addadminpage">
+        <h2>Add admin</h2>
+        <form onSubmit={submitHandler} className="addadmin">
+          <label htmlFor="name">
+            Name:
+            <input
+              placeholder={"name"}
+              type={"text"}
+              name={"name"}
+              value={userinfo.name}
+              onChange={onUpdateField}
+            />
+          </label>
+          <label htmlFor="username">
+            Username:
+            <input
+              placeholder={"username"}
+              type={"text"}
+              name={"username"}
+              value={userinfo.username}
+              onChange={onUpdateField}
+            />
+          </label>
+          <label htmlFor="email">
+            Email:
+            <input
+              placeholder={"email"}
+              type={"text"}
+              name={"email"}
+              value={userinfo.email}
+              onChange={onUpdateField}
+            />
+          </label>
+          <label htmlFor="phonenumber">
+            Phone number:
+            <input
+              placeholder={"phonenumber"}
+              type={"text"}
+              name={"phonenumber"}
+              value={userinfo.phonenumber}
+              onChange={onUpdateField}
+            />
+          </label>
+          <label htmlFor="gender" value={userinfo.gender}>
+            {" "}
+            Gender:
+            <select name="gender" onChange={onUpdateField}>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </label>
+          <label htmlFor="image">
+            {" "}
+            Profile photo:
+            <input type="file" name="image" />
+          </label>
+          <label htmlFor="password">
+            {" "}
+            Password:
+            <input
+              placeholder={"password"}
+              type={"password"}
+              name={"password"}
+              value={userinfo.password}
+              onChange={onUpdateField}
+            />
+          </label>
+          <label htmlFor="confirmedPassword">
+            {" "}
+            Confirm Password:
+            <input
+              placeholder={"confirm password"}
+              type={"password"}
+              name={"confirmpassword"}
+              value={userinfo.confirmedPassword}
+              onChange={onUpdateField}
+            />
+          </label>
           <Btn type="submit" value="register" />
         </form>
       </div>
