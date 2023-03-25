@@ -10,9 +10,6 @@ function Edit() {
     const [tours, setTours] = useState({});
     const [loading, setLoading] = useState(true);
     const [passengerDetails, setPassenger] = useState([]);
-    var days = 0;
-    if (tours.days === "Three") { days = 3 }
-    else if (tours.days === "Five") { days = 5 }
     var todayDate = new Date();
     todayDate.setDate(todayDate.getDate() + 3);
     var month = todayDate.getMonth() + 1;
@@ -28,7 +25,7 @@ function Edit() {
     var maxDate = year + "-" + month + "-" + tdate;
     useEffect(() => {
         setTours({ ...tours, passengers: passengerDetails });
-    }, [passengerDetails, setPassenger, tours, setTours]);
+    }, [passengerDetails, setPassenger]);
     const update = (key, e) => {
         return passengerDetails.map((passenger, index) => {
             if (index === key) {
@@ -51,7 +48,7 @@ function Edit() {
             setLoading(false);
             return setTours(resp.data);
         });
-    }, [id.id, setTours]);
+    }, [setTours,id.id]);
     return (
         <div>
             <h2>From: {tours.from}</h2>
@@ -77,6 +74,9 @@ function Edit() {
                 <input type="Date" name='fromdate' value={tours.fromdate} min={maxDate} onChange={(e) => {
                     const fromdate1 = new Date()
                     var todate = new Date(e.target.value);
+                    var days = 0;
+                    if (tours.days === "Three") { days = 3 }
+                    else if (tours.days === "Five") { days = 5 }
                     todate.setDate(todate.getDate() + days);
                     var todate_final = todate.getFullYear() + "-" + (todate.getMonth() + 1) + "-" + todate.getDate();
                     if (new Date(e.target.value).getTime() > fromdate1.getTime()) {
