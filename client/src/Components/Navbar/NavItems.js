@@ -8,7 +8,7 @@ export const navItems = [
     path: "#gallery",
   },
   {
-    title: "Places",
+    title: "Packages",
     path: "#places",
   },
   {

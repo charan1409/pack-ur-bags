@@ -25,14 +25,14 @@ function Dropdown(props) {
               className="submenu-item"
               onClick={() => setDropdown(false)}
             >
-              My Tours
+              cart
             </Link>
             <Link
               to="/transactions"
               className="submenu-item"
               onClick={() => setDropdown(false)}
             >
-              Transactions
+              My tours
             </Link>
             <Link
               to="/"

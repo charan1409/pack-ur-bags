@@ -34,7 +34,6 @@ router.post('/book/:id',async (req,res)=>{
     const paymentDone=req.body.paymentDone;
     const numberOfpassengers=req.body.numberOfpassengers;
     const passengers=req.body.passengers;
-    const test = new BookRepository();
     const place = await Place.findOne({ id: placeid});
     const newBooking=new book({
         id:id,
