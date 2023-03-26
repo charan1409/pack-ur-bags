@@ -52,6 +52,19 @@ router.get("/bookings/:id", async (req, res) => {
   }
 });
 
+router.put("/updatePassengers/:id", async (req, res) => {
+  let bookid = req.params.id;
+  try {
+    bookings=await Book.findOne({ id: bookid });
+    Book.findOneAndUpdate({ id: bookid }, {passengers:req.body.passengers}).then((book) => {
+      res.status(200).json({ msg: "updated Successfully" });
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 router.put("/bookings/:id", async (req, res) => {
   let bookid = req.params.id;
   try {
