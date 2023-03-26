@@ -11,15 +11,11 @@ const verifier = require('../routes/verifier');
 
 router.get('/booking/:id',(req,res)=>{
     const placeid = req.params.id;
-    BookRepository.findPlace(placeid).then(place=>{
+    Place.findOne({ id: placeid})
+    .then(place=>{
         if(place) res.status(200).json(place)
         else res.status(400).json({stat:"Not found"})
     })
-    // Place.findOne({ id: placeid})
-    // .then(place=>{
-    //     if(place) res.status(200).json(place)
-    //     else res.status(400).json({stat:"Not found"})
-    // })
 })
 router.get('/book/:id', (req, res) => {
     const placeid = req.params.id;
@@ -39,8 +35,9 @@ router.post('/book/:id',async (req,res)=>{
     const paymentDone=req.body.paymentDone;
     const numberOfpassengers=req.body.numberOfpassengers;
     const passengers=req.body.passengers;
-    const place = BookRepository.findPlace(placeid);
-    const newBooking={
+    const test = new BookRepository();
+    const place = await Place.findOne({ id: placeid});
+    const newBooking=new book({
         id:id,
         username:username,
         fromdate:fromdate,
@@ -49,13 +46,11 @@ router.post('/book/:id',async (req,res)=>{
         numberOfpassengers:numberOfpassengers,
         passengers:passengers,
         placedetails:place
-    };
-    BookRepository.saveBooing(newBooking).then(book=>{
-        res.status(200).json(book)
     })
-    // newBooking.save().then(book=>{
-    //     res.status(200).json(id)
-    // })
+
+    newBooking.save().then(book=>{
+        res.status(200).json(id)
+    })
 })
 
 module.exports = router;
