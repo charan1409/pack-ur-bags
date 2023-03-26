@@ -19,6 +19,7 @@ import AddPlaces from "./Components/Admin/AddPlaces";
 import Feedbacks from "./Components/Admin/Feedbacks";
 import ViewAll from "./Components/Admin/ViewAll";
 import Edit from "./Components/MyTours/Edit";
+import DisplayPackages from "./Components/Admin/DisplayPackages";
 function App() {
   return (
     <>
@@ -41,6 +42,7 @@ function App() {
               <Route path="admin" element={<Admin />} />
               <Route path="adminform" element={<Addadmin />} />
               <Route path="adminplaces" element={<AddPlaces />} />
+              <Route path="packages" element={<DisplayPackages />} />
               <Route path="feedbacks" element={<Feedbacks />} />
               <Route path="viewtours/:id" element={<ViewAll />} />
               <Route path="edit/:id" element={<Edit />} />

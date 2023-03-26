@@ -6,30 +6,14 @@ import Btn from "../Btn";
 import axios from "axios";
 import "./AddPlaces.css";
 import InputBox from "../Landing/InputBox";
+import { navItems } from "./NavItems";
 
 function AddPlaces() {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   const days = ["Three", "Five", "Both"];
   const busType = ["AC", "NON-AC", "Both"];
-  const navItems = [
-    {
-      title: "Home",
-      path: "/admin",
-    },
-    {
-      title: "add admin",
-      path: "/adminform",
-    },
-    {
-      title: "add place",
-      path: "/adminplaces",
-    },
-    {
-      title: "feedbacks",
-      path: "/feedbacks",
-    },
-  ];
+
   const [image, setImage] = useState();
   const [placeinfo, setplaceinfo] = useState({
     from: "",
