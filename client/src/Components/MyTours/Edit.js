@@ -4,13 +4,14 @@ import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from "../Navbar/Header";
+import InputBox from '../Book/InputBox'
 
 function Edit() {
     const id = useParams()
     const navigate = useNavigate()
     const [tours, setTours] = useState({});
     const [loading, setLoading] = useState(true);
-    const [passengerDetails, setPassenger] = useState([]);
+    const [passengerDetails, setPassengerDetails] = useState([]);
     var todayDate = new Date();
     todayDate.setDate(todayDate.getDate() + 3);
     var month = todayDate.getMonth() + 1;
@@ -26,7 +27,17 @@ function Edit() {
     var maxDate = year + "-" + month + "-" + tdate;
     useEffect(() => {
         setTours({ ...tours, passengers: passengerDetails });
-    }, [passengerDetails, setPassenger]);
+    }, [passengerDetails, setPassengerDetails]);
+
+    const [passenger, setPassenger] = useState({
+        name: "",
+        gender: "male",
+        age: "",
+    });
+    const onChangeField = (e) => {
+        setPassenger({ ...passenger, [e.target.name]: e.target.value });
+    };
+
     const update = (key, e) => {
         return passengerDetails.map((passenger, index) => {
             if (index === key) {
@@ -45,7 +56,7 @@ function Edit() {
 
     useEffect(() => {
         axios.get(`http://localhost:9000/payment/bookings/${id.id}`).then((resp) => {
-            setPassenger(resp.data.passengers);
+            setPassengerDetails(resp.data.passengers);
             setLoading(false);
             return setTours(resp.data);
         });
@@ -89,18 +100,117 @@ function Edit() {
                         return (
                             <div key={key}>
                                 <label>Name: </label>
-                                <input type="text" name='name' value={passenger.name} onChange={(e) => setPassenger(update(key, e))} />
+                                <input type="text" name='name' value={passenger.name} onChange={(e) => setPassengerDetails(update(key, e))} />
                                 <label name='gender' value={passenger.gender} >Gender:
-                                    <select name="gender" onChange={(e) => setPassenger(update(key, e))}>
+                                    <select name="gender" onChange={(e) => setPassengerDetails(update(key, e))}>
                                         <option value="male">male</option>
                                         <option value="female">female</option>
                                     </select>
                                 </label>
                                 <label>Age: </label>
-                                <input type="text" name='age' value={passenger.age} onChange={(e) => setPassenger(update(key, e))} />
+                                <input type="text" name='age' value={passenger.age} onChange={(e) => setPassengerDetails(update(key, e))} />
+                                <button onClick={(e) => {
+                                    e.preventDefault();
+                                    let regpass = tours.passengers;
+                                    console.log(regpass)
+                                    let temp = regpass;
+                                    console.log("first", temp);
+                                    temp.splice(key, 1);
+                                    console.log("second ", temp);
+                                    axios.put(`http://localhost:9000/payment/updatePassengers/${tours.id}`, { passengers: temp }).then((resp) => {
+                                        if (resp.status === 200) {
+                                            alert(resp.data.msg);
+                                            // window.location.reload();
+                                        }
+                                    })
+                                    setPassenger({
+                                        name: "",
+                                        gender: "male",
+                                        age: "",
+                                    });
+                                }}>delete</button>
                             </div>
                         )
                     })}
+
+                    <div className="Passengers">
+                        <form>
+                            <div className="passname">
+                                <input
+                                    type="text"
+                                    placeholder="Enter name"
+                                    name="name"
+                                    value={passenger.name}
+                                    onChange={onChangeField}
+                                />
+                            </div>
+
+                            <div className="box1 passname">
+                                <label name="gender">
+                                    <select
+                                        name="gender"
+                                        onChange={(e) => {
+                                            console.log(e.target.value);
+                                            setPassenger({
+                                                ...passenger,
+                                                gender: e.target.value,
+                                            });
+                                        }}
+                                    >
+                                        <option value="male">male</option>
+                                        <option value="female">female</option>
+                                    </select>
+                                </label>{" "}
+                            </div>
+
+                            <InputBox
+                                value={passenger.age}
+                                type={"number"}
+                                name="age"
+                                holder={"Enter age"}
+                                min={3}
+                                max={70}
+                                onChange={onChangeField}
+                            />
+                            <button>
+                                <i
+                                    className="fas fa-plus"
+                                    onClick={(e) => {
+                                        let regpass = tours.passengers;
+                                        console.log(regpass)
+                                        let temp = regpass;
+                                        console.log("first", temp);
+                                        if (!passenger.name || passenger.age < 3 || passenger.age > 70) {
+                                            alert("Please fill all the fields");
+                                            return;
+                                        }
+                                        console.log(passenger)
+                                        temp = [...temp, passenger];
+                                        console.log("second ", temp);
+                                        axios.put(`http://localhost:9000/payment/updatePassengers/${tours.id}`, { passengers: temp }).then((resp) => {
+                                            if (resp.status === 200) {
+                                                alert("Changes will be saved");
+                                                window.location.reload();
+                                            }
+                                        })
+                                        setPassenger({
+                                            name: "",
+                                            gender: "male",
+                                            age: "",
+                                        });
+                                        e.preventDefault();
+                                    }}
+                                    style={{
+                                        width: "30px",
+                                        height: "30px",
+                                        marginTop: "15px",
+                                        cursor: "pointer",
+                                    }}
+                                ></i>
+                            </button>
+                        </form>
+                    </div>
+
                     <input type="Date" name='fromdate' value={tours.fromdate} onChange={(e) => {
                         const fromdate1 = new Date()
                         var todate = new Date(e.target.value);
@@ -117,7 +227,7 @@ function Edit() {
                         }
                     }
                     } />
-                    <button type="submit">Submit</button>
+                    <button type="submit">Update</button>
                 </form>
             </div>
         </div>
