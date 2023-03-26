@@ -14,33 +14,6 @@ const book = require("../schemas/book");
 
 const verifier = require("../routes/verifier");
 
-router.get("/changepass", verifier, (req, res) => {
-  const email = req.user.id;
-  let change = [];
-  User.findOne({ email: email }).then((user) => {
-    change.push({ msg: "Change your Password" });
-    res.render("editprofile", { user, change });
-  });
-});
-
-router.get("/upload", verifier, (req, res) => {
-  const email = req.user.id;
-  let changep = [];
-  User.findOne({ email: email }).then((user) => {
-    changep.push({ msg: "upload profile photo" });
-    res.render("editprofile", { user, changep });
-  });
-});
-
-router.get("/remove", verifier, (req, res) => {
-  const email = req.user.id;
-  let removep = [];
-  User.findOne({ email: email }).then((user) => {
-    removep.push({ msg: "remove profile photo" });
-    res.render("editprofile", { user, removep });
-  });
-});
-
 router.post("/edit", async (req, res) => {
   const email = req.body.email;
   const name = req.body.name;

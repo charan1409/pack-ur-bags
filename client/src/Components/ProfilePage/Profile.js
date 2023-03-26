@@ -59,9 +59,6 @@ function Profile(props) {
       const fd = new FormData();
       fd.append("image", e.target.files[0], e.target.files[0].name);
       fd.append("email", user.email);
-      axios.post("http://localhost:9000/profile/upload", fd, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
       await axios
         .post("http://localhost:9000/profile/upload", fd)
         .then((resp) => {
