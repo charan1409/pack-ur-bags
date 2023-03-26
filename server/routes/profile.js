@@ -7,6 +7,7 @@ const bcrypt = require("bcryptjs");
 const cookieparser = require("cookie-parser");
 router.use(cookieparser());
 
+const OTP = require("../schemas/otp");
 const User = require("../schemas/user");
 const Feedback = require("../schemas/feedback");
 const book = require("../schemas/book");
@@ -69,6 +70,7 @@ router.post("/edit", async (req, res) => {
 
 router.post("/changepass", async (req, res) => {
   const email = req.body.email;
+  const otp = req.body.otp;
   const pass = req.body.oldpassword;
   const pass1 = req.body.newpassword;
   const user = await User.findOne({ email: email });
@@ -76,18 +78,36 @@ router.post("/changepass", async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(pass1, salt);
   const newvals = { password: hashPassword };
-  if (user && validPass) {
-    await User.findOneAndUpdate(
-      { email: email },
-      newvals,
-      async function (err) {
-        if (err) throw err;
-        res.status(200).json({ succ: "password updated successfully." });
-      }
-    );
-  } else {
-    res.status(201).json({ error: "entered incorrect password." });
-  }
+  const givenotp = req.body.otp + "";
+  OTP.findOne({ email: email }).then(async (otp) => {
+    if (!otp) {
+      res.status(201).json({ msg: "Invalid OTP" });
+    } else if (
+      otp.OTP === givenotp &&
+      otp.OTPTime + 5 * 60 * 1000 > Date.now()
+    ) {
+      OTP.deleteOne({ _id: otp._id }, async (err) => {
+        if (err) {
+          res.status(500).json({ msg: "Error deleting OTP" });
+        } else {
+          if (user && validPass) {
+            await User.findOneAndUpdate(
+              { email: email },
+              newvals,
+              async function (err) {
+                if (err) throw err;
+                res.status(200).json({ msg: "password updated successfully." });
+              }
+            );
+          } else {
+            res.status(201).json({ msg: "entered incorrect password." });
+          }
+        }
+      });
+    } else {
+      res.status(201).json({ msg: "Invalid OTP" });
+    }
+  });
 });
 
 const storage = multer.diskStorage({

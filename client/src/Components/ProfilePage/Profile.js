@@ -37,17 +37,6 @@ function Profile(props) {
   const [feedback, setFeedback] = useState("");
   const [updated, setUpdated] = useState(false);
 
-  // const fetchData = async () => {
-  //   const userL = JSON.parse(localStorage.getItem("user"));
-  //   axios
-  //     .get(`http://localhost:9000/users/loguser/${userL.username}`)
-  //     .then(async (resp) => {
-  //       localStorage.setItem("user", JSON.stringify(resp.data.user));
-  //       setFd(resp.data.fd);
-  //       if (resp.data.user) return setUser(resp.data.user);
-  //       else navigate("/error");
-  //     });
-  // };
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
     axios
@@ -59,7 +48,7 @@ function Profile(props) {
         else navigate("/error");
       });
     setEdit(false);
-  }, [updated,setEdit]);
+  }, [updated, setEdit]);
 
   const update = () => {
     setUpdated(!updated);
@@ -196,7 +185,23 @@ function Profile(props) {
                   <button
                     className="btn_profile"
                     onClick={() => {
-                      setPass(true);
+                      axios
+                        .post("http://localhost:9000/users/generateOTP", {
+                          email: user.email,
+                          keyword: "change password",
+                        })
+                        .then((resp) => {
+                          if (resp.status === 200) {
+                            alert(resp.data.succ);
+                            setPass(true);
+                          } else {
+                            alert("something went wrong");
+                            navigate("/error");
+                          }
+                        })
+                        .catch((err) => {
+                          console.log(err);
+                        });
                     }}
                   >
                     change password
@@ -279,7 +284,11 @@ function Profile(props) {
             <div className="pass-modal-bg">
               <div className="edit-form">
                 <h2>Change your password</h2>
-                <ChangePassword onClick={() => setPass(false)} />
+                <ChangePassword
+                  onClick={() => {
+                    setPass(false);
+                  }}
+                />
                 <span onClick={() => setPass(false)}>x</span>
               </div>
             </div>

@@ -8,6 +8,7 @@ function ChangePassword(props) {
     oldpassword: "",
     newpassword: "",
     conpassword: "",
+    otp: "",
   });
 
   const change = (e) => {
@@ -19,7 +20,7 @@ function ChangePassword(props) {
     if (
       !password.oldpassword &&
       !password.newpassword &&
-      !password.conpassword
+      !password.conpassword && !password.otp
     ) {
       alert("Enter all fields.");
     } else if (password.newpassword !== password.conpassword) {
@@ -28,16 +29,17 @@ function ChangePassword(props) {
       await axios
         .post(`http://localhost:9000/profile/changepass`, password)
         .then((resp) => {
-          if (resp.status !== 200) alert(resp.data.error);
+          if (resp.status !== 200) alert(resp.data.msg);
           else {
             setPassword({
               email: user.email,
               oldpassword: "",
               newpassword: "",
               conpassword: "",
+              otp: "",
             });
-            alert(resp.data.succ);
-            props.onClick()
+            alert(resp.data.msg);
+            props.onClick();
           }
         })
         .catch((error) => {
@@ -48,6 +50,17 @@ function ChangePassword(props) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <label htmlFor="otp">
+          Enter OTP:
+          <input 
+            type="text"
+            className="tbox"
+            name="otp"
+            placeholder="Enter OTP"
+            value={password.otp}
+            onChange={change}
+          />
+        </label>
         <label htmlFor="oldpassword">
           Old Password:
           <input
