@@ -5,6 +5,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from "../Navbar/Header";
 import InputBox from '../Book/InputBox'
+import './Edit.css'
+import Btn from '../Btn'
 
 function Edit() {
     const id = useParams()
@@ -89,16 +91,16 @@ function Edit() {
             });
     }, []);
     return (
-        <div>
+        <div className='main'>
             <Header user={user} navItems={navItems} />
-            <div>
+            <div className='edit-box'>
                 <h2>From: {tours.from}</h2>
                 <h2>To: {tours.to}</h2>
-                <h2>Price: {tours.price}</h2>
+                <h2>Price per person: {tours.price}</h2>
                 <form onSubmit={SubmitHandle}>
                     {passengerDetails.map((passenger, key) => {
                         return (
-                            <div key={key}>
+                            <div className='edit-input' key={key}>
                                 <label>Name: </label>
                                 <input type="text" name='name' value={passenger.name} onChange={(e) => setPassengerDetails(update(key, e))} />
                                 <label name='gender' value={passenger.gender} >Gender:
@@ -128,13 +130,12 @@ function Edit() {
                                         gender: "male",
                                         age: "",
                                     });
-                                }}>delete</button>
+                                }}><i className="fas fa-trash-alt"></i></button>
                             </div>
                         )
                     })}
 
                     <div className="Passengers">
-                        <form>
                             <div className="passname">
                                 <input
                                     type="text"
@@ -208,10 +209,10 @@ function Edit() {
                                     }}
                                 ></i>
                             </button>
-                        </form>
+                        
                     </div>
 
-                    <input type="Date" name='fromdate' value={tours.fromdate} onChange={(e) => {
+                    <InputBox type="Date" name='fromdate' value={tours.fromdate} onChange={(e) => {
                         const fromdate1 = new Date()
                         var todate = new Date(e.target.value);
                         var days = 0;
@@ -226,8 +227,9 @@ function Edit() {
                             alert("You cannot select a date from within 3 days from today");
                         }
                     }
-                    } />
-                    <button type="submit">Update</button>
+                    } /><br/>
+                    <h2>Total price: {tours.passengers ? tours.passengers.length * tours.price : 0}</h2>
+                    <Btn type="submit" value="Update" />
                 </form>
             </div>
         </div>

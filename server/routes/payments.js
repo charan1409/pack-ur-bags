@@ -13,6 +13,7 @@ router.get("/pay/:id", (req, res) => {
     .exec((err, bookings) => {
       if (err) res.status(201).json({ error: "Some error incurred." });
       else {
+        console.log(bookings);
         res.status(200).json(bookings);
       }
     });
@@ -20,9 +21,10 @@ router.get("/pay/:id", (req, res) => {
 
 router.get("/mybookings/:id", async (req, res) => {
   let username = req.params.id;
-  Book.find({ username: username, paymentDone: false })
+  Book.find({ username: username })
     .populate("placedetails")
     .exec((err, bookings) => {
+      console.log(bookings);
       if (err) res.status(201).json({ error: "Some error incurred." });
       else {
         res.status(200).json(bookings);
@@ -33,10 +35,9 @@ router.get("/mybookings/:id", async (req, res) => {
 router.get("/bookings/:id", async (req, res) => {
   let bookid = req.params.id;
   try {
-    const bookings = await Book.find({ id: bookid })
+    const bookings = await Book.findOne({ id: bookid })
       .populate("placedetails")
       .exec();
-      console.log(bookings);
     const det = {
       id: bookings.id,
       from: bookings.placedetails.from,
@@ -61,7 +62,7 @@ router.put("/updatePassengers/:id", async (req, res) => {
     bookings = await Book.findOne({ id: bookid });
     Book.findOneAndUpdate(
       { id: bookid },
-      { passengers: req.body.passengers }
+      { passengers: req.body.passengers, numberOfpassengers: req.body.passengers.length }
     ).then((book) => {
       res.status(200).json({ msg: "updated Successfully" });
     });
@@ -124,7 +125,7 @@ router.post("/pay/:id", (req, res) => {
 router.get("/getTransactions/:id", async (req, res) => {
   let username = req.params.id;
   try {
-    await Book.find({ username: username, paymentDone: true })
+    await Book.find({ username: username })
       .populate("placedetails")
       .populate("paymentDetails")
       .exec((err,bookings) => {

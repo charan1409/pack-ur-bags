@@ -123,7 +123,7 @@ const Payment = () => {
                   </td>
                 </tr> */}
               </table>
-              <h1 className="head-tag">Price: {details.numberOfpassengers * details.placedetails.price}</h1>
+              <h1 className="head-tag2">Price: {details.numberOfpassengers * details.placedetails.price}</h1>
             </div>
           </div>
         )}

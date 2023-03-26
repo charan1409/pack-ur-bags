@@ -191,14 +191,14 @@
   min-width: 400px;
   border-radius: 5px 5px 0 0;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); */
   margin-left: 10%;
   width: 80%;
 }
 
 .bill-table th{
-  background-color: #ebaf2dd6;
-  color: #ffffff;
+  background-color: #ffffffee;
+  color: #000000;
   text-align: left;
   font-weight: bold;
 }
@@ -214,16 +214,21 @@
 .bill-table tbody tr:nth-of-type(even){
   background-color: #f3f3f3;
   font-weight: bold;
-  color: #EBB02D;
+  color: #0b0b0bd6;
 }
 
 .bill-table tbody tr:last-of-type{
-  border-bottom: 2px solid #EBB02D;
+  border-bottom: 2px solid #0b0b0bd6;
 }
 
 .head-tag{
-  background-color: #ebaf2dee;
+  background-color: #0b0b0bd6;
   color: #ffffff;
+}
+
+.head-tag2{
+  font-size: 30px;
+  text-align: center;
 }
 
 /* .payment-container{
