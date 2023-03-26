@@ -13,7 +13,6 @@ router.get("/pay/:id", (req, res) => {
     .exec((err, bookings) => {
       if (err) res.status(201).json({ error: "Some error incurred." });
       else {
-        console.log(bookings);
         res.status(200).json(bookings);
       }
     });
@@ -24,7 +23,6 @@ router.get("/mybookings/:id", async (req, res) => {
   Book.find({ username: username, paymentDone: false })
     .populate("placedetails")
     .exec((err, bookings) => {
-      console.log(bookings);
       if (err) res.status(201).json({ error: "Some error incurred." });
       else {
         res.status(200).json(bookings);
