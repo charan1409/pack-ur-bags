@@ -6,6 +6,10 @@
   display: flex;
 }
 
+.tour-box{
+  width: 100%;
+}
+
 .tour-item-class .tour-item-box {
   height: 100%;
   margin: 7px 200px 15px 200px;
@@ -13,18 +17,13 @@
   border-radius: 25px;
   padding: 10px 8px;
   display: flex;
-  /* flex:30 1 auto; */
   flex-direction: row;
   box-shadow: 7px 7px 7px 7px #1e1e1ea0;
   
 }
 
-.tour-item-class .tour-item-box .tour-details{
-  flex-basis: 70%;
-}
 
 .tour-item-class .tour-item-box .tour-button{
-  /* flex-basis: 30%; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,18 +40,7 @@
   margin-bottom: 3rem;
 }
 
-.tour-details table{
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.tour-details table tr, .tour-details table td{
-  border: 2px solid #000;
-}
-
-
 .passenger-list table {
-  /* border-collapse: collapse; */
   width: 100%;
   border: 2px solid #000;
 }
@@ -75,3 +63,76 @@ td {
   background-color: rgba(243, 243, 89, 0.842);
   color: white;
 }
+
+.tour-parent{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  /* grid-gap: 10px; */
+  height: 47%;
+}
+
+.tour-btns{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 20%;
+  padding-bottom: 20%;
+}
+
+.tour-passenger-table{
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin-left: 10%;
+  width: 80%;
+}
+
+.tour-passenger-table thead tr{
+  background-color: #EBB02D;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.tour-passenger-table th, .tour-passenger-table td{
+  padding: 12px 15px;
+}
+
+.tour-passenger-table tbody tr{
+  border-bottom: 1px solid #dddddd;
+}
+
+.tour-passenger-table tbody tr:nth-of-type(even){
+  background-color: #f3f3f3;
+  font-weight: bold;
+  color: #EBB02D;
+}
+
+.tour-passenger-table tbody tr:last-of-type{
+  border-bottom: 2px solid #EBB02D;
+}
+
+.tour-details-table{
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin-left: 10%;
+  width: 80%;
+}
+
+.tour-details-table th{
+  font-size: 20px;
+  text-align: left;
+  padding: 10px;
+}
+
+
