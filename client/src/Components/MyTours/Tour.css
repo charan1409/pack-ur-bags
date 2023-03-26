@@ -2,6 +2,9 @@
   text-align: center; 
 }
 
+.tour-item-class .Passengers{
+  display: flex;
+}
 
 .tour-item-class .tour-item-box {
   height: 100%;

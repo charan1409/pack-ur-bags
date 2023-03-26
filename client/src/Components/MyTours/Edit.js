@@ -71,7 +71,7 @@ function Edit() {
                         </div>
                     )
                 })}
-                <input type="Date" name='fromdate' value={tours.fromdate} min={maxDate} onChange={(e) => {
+                <input type="Date" name='fromdate' value={tours.fromdate} onChange={(e) => {
                     const fromdate1 = new Date()
                     var todate = new Date(e.target.value);
                     var days = 0;
@@ -79,7 +79,7 @@ function Edit() {
                     else if (tours.days === "Five") { days = 5 }
                     todate.setDate(todate.getDate() + days);
                     var todate_final = todate.getFullYear() + "-" + (todate.getMonth() + 1) + "-" + todate.getDate();
-                    if (new Date(e.target.value).getTime() > fromdate1.getTime()) {
+                    if (new Date(e.target.value).getTime() > new Date(maxDate).getTime()) {
                         setTours({ ...tours, fromdate: e.target.value, todate: todate_final })
                     }
                     else {
