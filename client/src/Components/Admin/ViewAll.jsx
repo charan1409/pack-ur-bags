@@ -4,6 +4,7 @@ import axios from "axios";
 import Header from "../Navbar/Header";
 import "./ViewAll.css";
 import Loading from "../Loading/Loading";
+import { navItems } from "./NavItems";
 
 const ViewAll = () => {
   const { id } = useParams();
@@ -22,24 +23,7 @@ const ViewAll = () => {
       }
     });
   }, []);
-  const navItems = [
-    {
-      title: "Home",
-      path: "/admin",
-    },
-    {
-      title: "add admin",
-      path: "/adminform",
-    },
-    {
-      title: "add place",
-      path: "/adminplaces",
-    },
-    {
-      title: "feedbacks",
-      path: "/feedbacks",
-    },
-  ];
+
   return (
     <>
       <Header user={true} navItems={navItems} />

@@ -108,5 +108,50 @@ router.post("/place/:id",upload.single('photo'), async(req, res) => {
   }
 });
 
+router.get("/packages", (req, res) => {
+  Place.find({}, (err, data) => {
+    if (data) {
+      res.status(200).json(data);
+    } else {
+      res.status(201).json({ msg: "error occurred" });
+    }
+  });
+});
+
+router.delete("/deleteplace/:id", async (req, res) => {
+  let id = req.params.id;
+  Place.findOneAndDelete({ id: id }, async (err, doc) => {
+    const prof = doc.photo
+    if(prof !== "default.png") fs.unlink(prof)
+    if (err) {
+      console.log(err);
+    } else {
+      res.status(200).json({ msg: `place deleted ${doc.id}` });
+    }
+  });
+});
+
+router.put("/updateplace/:id", async (req, res) => {
+  let id = req.params.id;
+  Place.findOneAndUpdate({ id: id}, async (err, doc) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.status(200).json({ msg: `place updated ${doc.id}` });
+    }
+  });
+});
+
+router.get("/place/:id", (req, res) => {
+  let id = req.params.id;
+  Place.findOne({ id: id }, (err, data) => {
+    if (data) {
+      res.status(200).json(data);
+    } else {
+      res.status(201).json({ msg: "error occurred" });
+    }
+  });
+});
+
 
 module.exports = router;

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Admin.css";
 import Header from "../Navbar/Header";
+import {navItems} from "./NavItems";
 
 function Admin() {
   const navigate = useNavigate();
@@ -30,24 +31,24 @@ function Admin() {
       });
     fetchUsers("user");
   }
-  const navItems = [
-    {
-      title: "Home",
-      path: "/admin",
-    },
-    {
-      title: "add admin",
-      path: "/adminform",
-    },
-    {
-      title: "add place",
-      path: "/adminplaces",
-    },
-    {
-      title: "feedbacks",
-      path: "/feedbacks",
-    },
-  ];
+  // const navItems = [
+  //   {
+  //     title: "Home",
+  //     path: "/admin",
+  //   },
+  //   {
+  //     title: "add admin",
+  //     path: "/adminform",
+  //   },
+  //   {
+  //     title: "add place",
+  //     path: "/adminplaces",
+  //   },
+  //   {
+  //     title: "feedbacks",
+  //     path: "/feedbacks",
+  //   },
+  // ];
   return (
     <div>
       <Header user={true} navItems={navItems} />

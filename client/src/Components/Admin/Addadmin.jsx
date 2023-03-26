@@ -4,6 +4,7 @@ import Btn from "../Btn";
 import axios from "axios";
 import "./Addadmin.css";
 import Header from "../Navbar/Header";
+import { navItems } from "./NavItems";
 
 function Addadmin(props) {
   const [userinfo, setUserinfo] = useState({
@@ -65,25 +66,6 @@ function Addadmin(props) {
       });
     }
   };
-
-  const navItems = [
-    {
-      title: "Home",
-      path: "/admin",
-    },
-    {
-      title: "add admin",
-      path: "/adminform",
-    },
-    {
-      title: "add place",
-      path: "/adminplaces",
-    },
-    {
-      title: "feedbacks",
-      path: "/feedbacks",
-    },
-  ];
 
   return (
     <>

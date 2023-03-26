@@ -3,6 +3,7 @@ import axios from "axios";
 import Header from "../Navbar/Header";
 import "./Feedbacks.css";
 import Loading from "../Loading/Loading";
+import { navItems } from "./NavItems";
 
 const Feedbacks = () => {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -19,24 +20,7 @@ const Feedbacks = () => {
       }
     });
   }, []);
-  const navItems = [
-    {
-      title: "Home",
-      path: "/admin",
-    },
-    {
-      title: "add admin",
-      path: "/adminform",
-    },
-    {
-      title: "add place",
-      path: "/adminplaces",
-    },
-    {
-      title: "feedbacks",
-      path: "/feedbacks",
-    },
-  ];
+
   return (
     <>
       <Header user={true} navItems={navItems} />
