@@ -143,7 +143,7 @@ function Addadmin(props) {
             <input
               placeholder={"confirm password"}
               type={"password"}
-              name={"confirmpassword"}
+              name={"confirmedPassword"}
               value={userinfo.confirmedPassword}
               onChange={onUpdateField}
             />
