@@ -104,10 +104,10 @@ const Payment = () => {
                   <th>To</th>
                   <td>{details.placedetails.to}</td>
                 </tr>
-                <tr>
+                {/* <tr>
                   <th>Number of days</th>
                   <td>{details.placedetails.days}</td>
-                </tr>
+                </tr> */}
                 <tr>
                   <th>Total passengers</th>
                   <td>{details.numberOfpassengers}</td>

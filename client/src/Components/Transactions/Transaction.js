@@ -3,18 +3,12 @@ import Header from "../Navbar/Header";
 import "./Trans.css";
 import axios from "axios";
 import Loading from "../Loading/Loading";
-import Btn from "../Btn";
 
 const Transaction = (props) => {
   const [user, setUser] = useState({});
   const [trans, setTrans] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [tours, setTours] = useState([]);
 
-  const removeItems = (key) => {
-    const newset = trans.filter((ob, a) => a !== key);
-    setTrans([...newset]);
-  };
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
     axios
@@ -26,6 +20,7 @@ const Transaction = (props) => {
       .get(`http://localhost:9000/payment/getTransactions/${userL.username}`)
       .then((resp) => {
         setLoading(false);
+        console.log(resp.data);
         return setTrans(resp.data);
       });
   }, []);
@@ -65,7 +60,39 @@ const Transaction = (props) => {
                   ? trans.map((item, key) => {
                       return (
                         <div className="tour-item-box" key={key}>
-                          <div className="trans-detail-table">
+                          <div className="trans-detail-tableup">
+                                <table style={{ width: "100%" }}>
+                                  <tr>
+                                    <th>From</th>
+                                    <td>{item.placedetails.from}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>To</th>
+                                    <td>{item.placedetails.to}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>No. of Passengers</th>
+                                    <td>{item.numberOfpassengers}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Departure</th>
+                                    <td>{item.fromdate}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Arrival</th>
+                                    <td>{item.todate}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Total amount</th>
+                                    <td>
+                                      {item.numberOfpassengers *
+                                        item.placedetails.price}
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+
+                          <div className="trans-detail-tabledown">
                             <table style={{ width: "100%" }}>
                               <tr>
                                 <th>Card Number</th>
@@ -80,17 +107,6 @@ const Transaction = (props) => {
                                 <th>{item.paymentDetails.cvv}</th>
                               </tr>
                             </table>
-                          </div>
-
-                          <div className="tour-button">
-                            <Btn
-                              value="Cancel"
-                              type="button"
-                              onClick={() => {
-                                removeItems(key);
-                                alert("You will contacted for Refund");
-                              }}
-                            />
                           </div>
                         </div>
                       );

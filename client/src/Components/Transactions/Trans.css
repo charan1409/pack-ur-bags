@@ -23,7 +23,7 @@
   border: 2px solid #000;
 }
 
-.trans-detail-table {
+.trans-detail-tableup {
   border-collapse: collapse;
   margin: 25px 0;
   font-size: 0.9em;
@@ -31,11 +31,32 @@
   border-radius: 5px 5px 0 0;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  margin-left: 10%;
-  width: 80%;
+  margin-left: 5%;
+  width: 50%;
 }
 
-.trans-detail-table th {
+.trans-detail-tableup th {
+  font-size: 20px;
+  text-align: left;
+  padding: 10px;
+}
+
+.trans-detail-tabledown {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 9%;
+  width: 50%;
+  height: 30%;
+}
+
+.trans-detail-tabledown th {
   font-size: 20px;
   text-align: left;
   padding: 10px;
