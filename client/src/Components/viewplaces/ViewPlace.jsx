@@ -54,7 +54,7 @@ function ViewPlace(props) {
       <Header user={user} navItems={navItems} />
 
       <div className="head">
-        <Heading category="Places" />
+        <Heading category="Packages" />
         {params.id === "all" ? (
           <div className="allselect" >
             <label htmlFor="places" >

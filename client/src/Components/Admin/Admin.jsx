@@ -31,24 +31,6 @@ function Admin() {
       });
     fetchUsers("user");
   }
-  // const navItems = [
-  //   {
-  //     title: "Home",
-  //     path: "/admin",
-  //   },
-  //   {
-  //     title: "add admin",
-  //     path: "/adminform",
-  //   },
-  //   {
-  //     title: "add place",
-  //     path: "/adminplaces",
-  //   },
-  //   {
-  //     title: "feedbacks",
-  //     path: "/feedbacks",
-  //   },
-  // ];
   return (
     <div>
       <Header user={true} navItems={navItems} />

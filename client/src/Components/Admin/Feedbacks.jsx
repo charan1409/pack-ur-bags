@@ -24,26 +24,27 @@ const Feedbacks = () => {
   return (
     <>
       <Header user={true} navItems={navItems} />
-      <h1>Feedbacks of User's</h1>
+      <h1>Feedbacks</h1>
       {loading ? (
         <Loading />
       ) : (
         <div className="feedbacks">
-          {feedbacks.map((feedback) => {
-            return (
-              <div className="place-box1">
-                <div className="feed-pic">
-                  <img src={feedback.image} alt={"image"} />
-                </div>
-                <div className="place-details">
-                  <h1>{feedback.username}</h1>
-                  <div>
-                    <p>{feedback.feedback}</p>
+          {feedbacks &&
+            feedbacks.map((feedback) => {
+              return (
+                <div className="place-box1">
+                  <div className="feed-pic">
+                    <img src={feedback.image} alt={"image"} />
+                  </div>
+                  <div className="place-details">
+                    <h1>{feedback.username}</h1>
+                    <div>
+                      <p>{feedback.feedback}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       )}
     </>

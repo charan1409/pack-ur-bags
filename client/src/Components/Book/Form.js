@@ -108,7 +108,7 @@ function Form(props) {
             max={70}
             onChange={onChangeField}
           />
-          <button>
+          <button type="button">
             <i
               className="fas fa-plus"
               onClick={(e) => {
