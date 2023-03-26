@@ -9,6 +9,7 @@ const Transaction = (props) => {
   const [user, setUser] = useState({});
   const [trans, setTrans] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [tours, setTours] = useState([]);
 
   const removeItems = (key) => {
     const newset = trans.filter((ob, a) => a !== key);
@@ -25,6 +26,7 @@ const Transaction = (props) => {
       .get(`http://localhost:9000/payment/getTransactions/${userL.username}`)
       .then((resp) => {
         setLoading(false);
+        console.log("This is Payment", resp.data);
         return setTrans(resp.data);
       });
   }, []);
@@ -64,8 +66,8 @@ const Transaction = (props) => {
                   ? trans.map((item, key) => {
                       return (
                         <div className="tour-item-box" key={key}>
-                          <div className="tour-details trans">
-                            <table>
+                          <div className="trans-detail-table">
+                            <table style={{ width: "100%" }}>
                               <tr>
                                 <th>Card Number</th>
                                 <th>{item.number}</th>

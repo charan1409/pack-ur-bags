@@ -1,24 +1,42 @@
-.cartitems{
-    display:flex;
-    flex-direction: column;
+.cartitems {
+  display: flex;
+  flex-direction: column;
 }
 
-.item{
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px;
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
 }
 
-.h2{
-    text-align: center;
+.h2 {
+  text-align: center;
 }
 
-.trans table{
-    font-size: 20px;
+.trans table {
+  font-size: 20px;
 }
 
-.trans th{
-    border: 2px solid #000;
+.trans th {
+  border: 2px solid #000;
+}
+
+.trans-detail-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin-left: 10%;
+  width: 80%;
+}
+
+.trans-detail-table th {
+  font-size: 20px;
+  text-align: left;
+  padding: 10px;
 }
