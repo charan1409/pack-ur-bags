@@ -11,6 +11,10 @@ const bookSchema=new mongoose.Schema({
     placedetails: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'place'
+    },
+    paymentDetails: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'payment'
     }
 });
 const book=mongoose.model('book',bookSchema);
