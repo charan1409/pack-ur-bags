@@ -94,35 +94,36 @@ const Payment = () => {
        {details && (
           <div className="bill-container">
             <div className="bill">
-              <h1>BILL</h1>
-              <table>
+              <h1 className="head-tag">BILL</h1>
+              <table className="bill-table">
                 <tr>
                   <th>From</th>
-                  <th>{details.placedetails.from}</th>
+                  <td>{details.placedetails.from}</td>
                 </tr>
                 <tr>
                   <th>To</th>
-                  <th>{details.placedetails.to}</th>
+                  <td>{details.placedetails.to}</td>
                 </tr>
                 <tr>
                   <th>Number of days</th>
-                  <th>{details.placedetails.days}</th>
+                  <td>{details.placedetails.days}</td>
                 </tr>
                 <tr>
                   <th>Total passengers</th>
-                  <th>{details.numberOfpassengers}</th>
+                  <td>{details.numberOfpassengers}</td>
                 </tr>
                 <tr>
                   <th>Price per passenger</th>
-                  <th>{details.placedetails.price}</th>
+                  <td>{details.placedetails.price}</td>
                 </tr>
-                <tr>
+                {/* <tr>
                   <th>Total Price</th>
-                  <th>
+                  <td>
                     {details.numberOfpassengers * details.placedetails.price}
-                  </th>
-                </tr>
+                  </td>
+                </tr> */}
               </table>
+              <h1 className="head-tag">Price: {details.numberOfpassengers * details.placedetails.price}</h1>
             </div>
           </div>
         )}

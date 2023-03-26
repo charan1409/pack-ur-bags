@@ -8,7 +8,7 @@
 }
 .bill-container{
   height: 100%;
-  width: 60%;
+  width: 80%;
   padding-top: 8%;
   padding-left: .8%;
   padding-right: .8%;
@@ -21,7 +21,7 @@
 .container {
   height: 100%;
   width: 100%;
-  background: linear-gradient(rgb(134, 179, 243), rgba(229, 240, 76, 0.659));
+  /* background: linear-gradient(rgb(134, 179, 243), rgba(229, 240, 76, 0.659)); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,7 +33,7 @@
 .container form {
   background: #fff;
   border-radius: 5px;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 15px rgb(0, 0, 0);
   padding: 20px;
   width: 600px;
   padding-top: 160px;
@@ -54,7 +54,7 @@
   width: 100%;
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgb(0, 0, 0);
   color: #444;
 }
 
@@ -184,13 +184,48 @@
 }
 
 
-.bill table{
-  font-size: 25px;
-  width: 100%;
+.bill-table{
   border-collapse: collapse;
-  border: 1px solid black;
+  margin: 25px 0;
+  font-size: 20px;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin-left: 10%;
+  width: 80%;
 }
 
-.bill table tr, .bill table th{
-  border: 3px solid black;
+.bill-table th{
+  background-color: #ebaf2dd6;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
 }
+
+.bill-table th, .bill-table td{
+  padding: 12px 15px;
+}
+
+.bill-table tbody tr{
+  border-bottom: 1px solid #dddddd;
+}
+
+.bill-table tbody tr:nth-of-type(even){
+  background-color: #f3f3f3;
+  font-weight: bold;
+  color: #EBB02D;
+}
+
+.bill-table tbody tr:last-of-type{
+  border-bottom: 2px solid #EBB02D;
+}
+
+.head-tag{
+  background-color: #ebaf2dee;
+  color: #ffffff;
+}
+
+/* .payment-container{
+  
+} */
