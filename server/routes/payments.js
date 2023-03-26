@@ -21,7 +21,7 @@ router.get("/pay/:id", (req, res) => {
 
 router.get("/mybookings/:id", async (req, res) => {
   let username = req.params.id;
-  Book.find({ username: username })
+  Book.find({ username: username, paymentDone: false })
     .populate("placedetails")
     .exec((err, bookings) => {
       console.log(bookings);
@@ -35,9 +35,10 @@ router.get("/mybookings/:id", async (req, res) => {
 router.get("/bookings/:id", async (req, res) => {
   let bookid = req.params.id;
   try {
-    const bookings = await Book.findOne({ id: bookid })
+    const bookings = await Book.find({ id: bookid })
       .populate("placedetails")
       .exec();
+      console.log(bookings);
     const det = {
       id: bookings.id,
       from: bookings.placedetails.from,
@@ -125,7 +126,7 @@ router.post("/pay/:id", (req, res) => {
 router.get("/getTransactions/:id", async (req, res) => {
   let username = req.params.id;
   try {
-    await Book.find({ username: username })
+    await Book.find({ username: username, paymentDone: true })
       .populate("placedetails")
       .populate("paymentDetails")
       .exec((err,bookings) => {
