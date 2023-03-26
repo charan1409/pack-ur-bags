@@ -26,7 +26,6 @@ const Transaction = (props) => {
       .get(`http://localhost:9000/payment/getTransactions/${userL.username}`)
       .then((resp) => {
         setLoading(false);
-        console.log("This is Payment", resp.data);
         return setTrans(resp.data);
       });
   }, []);
@@ -70,23 +69,15 @@ const Transaction = (props) => {
                             <table style={{ width: "100%" }}>
                               <tr>
                                 <th>Card Number</th>
-                                <th>{item.number}</th>
+                                <th>{item.paymentDetails.number}</th>
                               </tr>
                               <tr>
                                 <th>Name</th>
-                                <th>{item.name}</th>
-                              </tr>
-                              <tr>
-                                <th>Month</th>
-                                <th>{item.month}</th>
-                              </tr>
-                              <tr>
-                                <th>Year</th>
-                                <th>{item.year}</th>
+                                <th>{item.paymentDetails.name}</th>
                               </tr>
                               <tr>
                                 <th>CVV</th>
-                                <th>{item.cvv}</th>
+                                <th>{item.paymentDetails.cvv}</th>
                               </tr>
                             </table>
                           </div>
