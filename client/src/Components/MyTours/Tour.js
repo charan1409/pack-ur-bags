@@ -165,7 +165,7 @@ const Tours = (props) => {
                                 </tbody>
                               </table>
                             </div>
-                            <div className="Passengers">
+                            {/* <div className="Passengers">
                               <form>
                                 <div className="passname">
                                   <input
@@ -249,7 +249,7 @@ const Tours = (props) => {
                                   ></i>
                                 </button>
                               </form>
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                       );
