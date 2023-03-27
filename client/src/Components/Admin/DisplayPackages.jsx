@@ -79,7 +79,7 @@ const DisplayPackages = () => {
                         <td>
                             <i
                                 className="fas fa-edit edit"
-                                // onClick={() => navigate(`/admin/edit/${x.id}`)}
+                                onClick={() => navigate(`/editpackage/${x.id}`)}
                             ></i>
                         </td>
                         <td style={{ textAlign: "center" }}>
@@ -102,7 +102,7 @@ const DisplayPackages = () => {
                         <td>
                             <i
                                 className="fas fa-edit edit"
-                                // onClick={() => navigate(`/admin/edit/${x.id}`)}
+                                onClick={() => navigate(`/editpackage/${x.id}`)}
                             ></i>
                         </td>
                         <td style={{ textAlign: "center" }}>
