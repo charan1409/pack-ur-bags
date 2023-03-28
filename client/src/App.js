@@ -42,6 +42,7 @@ function App() {
               <Route path="admin" element={<Admin />} />
               <Route path="adminform" element={<Addadmin />} />
               <Route path="adminplaces" element={<AddPlaces />} />
+              <Route path="editpackage/:id" element={<AddPlaces keyType={"edit"}/>} />
               <Route path="packages" element={<DisplayPackages />} />
               <Route path="feedbacks" element={<Feedbacks />} />
               <Route path="viewtours/:id" element={<ViewAll />} />
