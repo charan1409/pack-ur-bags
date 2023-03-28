@@ -16,12 +16,16 @@ const fdb = require("../schemas/feedback");
 const Place = require("../schemas/place");
 
 // Feedbacks display for admin
-router.get("/feedbacks", (req, res) => {
-  fdb.find({}, (err, data) => {
-    if (data) {
-      res.status(200).json(data);
-    } else {
-      res.status(201).json({ msg: "error occurred" });
+router.get("/feedbacks", async (req, res) => {
+  await fdb.find()
+  .sort({ createdAt: -1 })
+  .populate('userDetails')
+  .exec((err, feedbacks) => {
+    if (err) {
+      console.error(err);
+      return;
+    } else{
+      res.status(200).json(feedbacks);
     }
   });
 });

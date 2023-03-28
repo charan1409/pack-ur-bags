@@ -189,7 +189,7 @@ function Profile(props) {
                         })
                         .then((resp) => {
                           if (resp.status === 200) {
-                            alert(resp.data.succ);
+                            alert(resp.data.msg);
                             setPass(true);
                           } else {
                             alert("something went wrong");
@@ -220,7 +220,7 @@ function Profile(props) {
         </div>
 
         <hr style={{ height: "5px", backgroundColor: "black" }} />
-        <div className="user-feedback" style={{ height: "450px" }}>
+        <div className="user-feedback" >
           <h2>
             {fd ? (
               <div className="">
