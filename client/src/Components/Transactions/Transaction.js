@@ -15,7 +15,7 @@ const Transaction = (props) => {
     axios
       .get(`http://localhost:9000/users/loguser/${userL.username}`)
       .then((resp) => {
-        return setUser(resp.data.user);
+        return setUser(resp.data);
       });
     axios
       .get(`http://localhost:9000/payment/getTransactions/${userL.username}`)

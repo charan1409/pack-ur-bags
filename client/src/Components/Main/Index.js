@@ -46,7 +46,7 @@ const Index = () => {
     axios
       .get(`http://localhost:9000/users/loguser/${userL.username}`)
       .then((resp) => {
-        return setUser(resp.data.user);
+        return setUser(resp.data);
       });
   }, [updated]);
 
@@ -63,7 +63,7 @@ const Index = () => {
       <About />
       <Services />
       <Review />
-      <Feedback user={user} updated={update}/>
+      <Feedback user={user} updated={update} />
       <Footer />
     </div>
   );

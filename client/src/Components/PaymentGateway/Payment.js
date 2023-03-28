@@ -19,7 +19,7 @@ const Payment = () => {
       axios
         .get(`http://localhost:9000/users/loguser/${userL.username}`)
         .then((resp) => {
-          if (resp.data.user) setUser(resp.data.user);
+          if (resp.data) setUser(resp.data);
           else navigate("/error");
         });
       axios.get(`http://localhost:9000/payment/pay/${id}`).then((resp) => {

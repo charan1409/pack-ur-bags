@@ -30,7 +30,6 @@ function Profile(props) {
 
   const navigate = useNavigate();
   const [user, setUser] = useState({});
-  const [fd, setFd] = useState({});
   const [edit, setEdit] = useState(false);
   const [pass, setPass] = useState(false);
   const [feededit, setFeededit] = useState(false);
@@ -42,9 +41,8 @@ function Profile(props) {
     axios
       .get(`http://localhost:9000/users/loguser/${userL.username}`)
       .then(async (resp) => {
-        localStorage.setItem("user", JSON.stringify(resp.data.user));
-        setFd(resp.data.fd);
-        if (resp.data.user) return setUser(resp.data.user);
+        localStorage.setItem("user", JSON.stringify(resp.data));
+        if (resp.data) return setUser(resp.data);
         else navigate("/error");
       });
     setEdit(false);
@@ -90,6 +88,7 @@ function Profile(props) {
   const changeFeedback = async (e) => {
     alert(feedback);
     const fd = {
+      id: user.givenfeedback._id,
       username: user.username,
       feedback: feedback,
     };
@@ -107,7 +106,7 @@ function Profile(props) {
 
   const deleteFeedback = async () => {
     await axios
-      .delete(`http://localhost:9000/profile/deletefeedback/${user.username}`)
+      .delete(`http://localhost:9000/profile/deletefeedback/${user.givenfeedback._id}`)
       .then((resp) => {
         if (resp.status === 200) {
           update();
@@ -222,11 +221,11 @@ function Profile(props) {
         <hr style={{ height: "5px", backgroundColor: "black" }} />
         <div className="user-feedback" >
           <h2>
-            {fd ? (
+            {user.givenfeedback ? (
               <div className="">
                 <div className="profile-feed">
                   <h3>Feedback</h3>
-                  {fd.feedback}
+                  {user.givenfeedback.feedback}
                 </div>
                 <br />
                 {feededit ? (
@@ -242,7 +241,7 @@ function Profile(props) {
                     onClick={() => setFeededit(true)}
                   ></i>
                 )}
-                {fd && (
+                {user.givenfeedback && (
                   <i
                     className="bi bi-trash fa-2x"
                     style={{ cursor: "pointer", color: "red" }}
