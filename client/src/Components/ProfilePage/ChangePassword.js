@@ -60,7 +60,7 @@ function ChangePassword(props) {
             value={password.otp}
             onChange={change}
           />
-        </label>
+        </label><br/>
         <label htmlFor="oldpassword">
           Old Password:
           <input

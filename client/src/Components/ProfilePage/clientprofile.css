@@ -166,6 +166,7 @@ h1 {
   left: 0;
   position: fixed;
   display: flex;
+  align-items: center;
   justify-content:center;
   visibility: visible;
   opacity: 1;
@@ -175,13 +176,20 @@ h1 {
 .pass-modal-bg .edit-form {
   position: relative;
   background-color: #fff;
-  height: 40%;
-  width: 33%;
+  height: auto;
+  width: 35%;
   align-items: center;
   margin: 20px 0px 0px 0px;
   padding: 0;
   border-radius: 10px;
   overflow: hidden;
+}
+
+.pass-modal-bg .edit-form form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 ._right .edit-form {
