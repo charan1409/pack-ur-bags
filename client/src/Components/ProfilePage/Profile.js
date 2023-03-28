@@ -220,11 +220,14 @@ function Profile(props) {
         </div>
 
         <hr style={{ height: "5px", backgroundColor: "black" }} />
-        <div className="user-feedback" style={{ height: "300px" }}>
+        <div className="user-feedback" style={{ height: "450px" }}>
           <h2>
             {fd ? (
               <div className="">
-                {fd.feedback}
+                <div className="profile-feed">
+                  <h3>Feedback</h3>
+                  {fd.feedback}
+                </div>
                 <br />
                 {feededit ? (
                   <i
@@ -234,7 +237,7 @@ function Profile(props) {
                   ></i>
                 ) : (
                   <i
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer", color: "green" }}
                     className="bi bi-pencil-square fa-2x"
                     onClick={() => setFeededit(true)}
                   ></i>
@@ -242,7 +245,7 @@ function Profile(props) {
                 {fd && (
                   <i
                     className="bi bi-trash fa-2x"
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer", color: "red" }}
                     onClick={deleteFeedback}
                   ></i>
                 )}

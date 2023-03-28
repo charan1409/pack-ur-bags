@@ -88,8 +88,8 @@ function AddPlaces(props) {
   return (
     <div>
       <Header user={true} navItems={navItems} />
-      <div className="add">
         <h1>Add place</h1>
+      <div className="add">
         <form
           onSubmit={submitHandler}
           className="addadmin"
@@ -107,7 +107,8 @@ function AddPlaces(props) {
             />
           </label>
 
-          <label htmlFor="to">To:
+          <label htmlFor="to" style={{marginLeft: "30%"}}>
+            To:
           <input
             placeholder={"to"}
             leftIcon={"bi bi-geo-alt-fill"}
@@ -128,7 +129,8 @@ function AddPlaces(props) {
           />
           </label>
 
-          <label htmlFor="details">Details:
+          <label htmlFor="details" style={{marginLeft: "30%"}}>
+            Details:
           <input
             placeholder={"details"}
             leftIcon={"bi bi-card-text"}
@@ -148,7 +150,7 @@ function AddPlaces(props) {
             onChange={onUpdateField}
           />
 
-          <select name="days" onChange={onUpdateField}>
+          <select name="days" onChange={onUpdateField} style={{marginLeft: "30%"}}>
             <option>No.of days</option>
             {days.map((option, index) => {
               return <option key={index}>{option}</option>;
@@ -161,6 +163,7 @@ function AddPlaces(props) {
             })}
           </select>
           <input
+            style={{marginLeft: "30%"}}
             placeholder="choose picture"
             type="file"
             name="photo"

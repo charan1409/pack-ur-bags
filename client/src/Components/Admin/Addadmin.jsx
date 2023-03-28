@@ -71,9 +71,9 @@ function Addadmin(props) {
     <>
       <Header user={true} navItems={navItems} />
       <div className="addadminpage">
-        <h2>Add admin</h2>
+        <h1>Add admin</h1>
         <form onSubmit={submitHandler} className="addadmin">
-          <label htmlFor="name">
+          <label htmlFor="name" style={{ textAlign: "center" }}>
             Name:
             <input
               placeholder={"name"}
@@ -93,7 +93,7 @@ function Addadmin(props) {
               onChange={onUpdateField}
             />
           </label>
-          <label htmlFor="email">
+          <label htmlFor="email" style={{ textAlign: "center" }}>
             Email:
             <input
               placeholder={"email"}
@@ -113,7 +113,11 @@ function Addadmin(props) {
               onChange={onUpdateField}
             />
           </label>
-          <label htmlFor="gender" value={userinfo.gender}>
+          <label
+            htmlFor="gender"
+            value={userinfo.gender}
+            style={{ textAlign: "center" }}
+          >
             {" "}
             Gender:
             <select name="gender" onChange={onUpdateField}>
@@ -126,7 +130,7 @@ function Addadmin(props) {
             Profile photo:
             <input type="file" name="image" />
           </label>
-          <label htmlFor="password">
+          <label htmlFor="password" style={{ textAlign: "center" }}>
             {" "}
             Password:
             <input
@@ -148,7 +152,9 @@ function Addadmin(props) {
               onChange={onUpdateField}
             />
           </label>
-          <Btn type="submit" value="register" />
+          <div style={{marginLeft: "80%"}}> 
+            <Btn type="submit" value="register" />
+          </div>
         </form>
       </div>
     </>

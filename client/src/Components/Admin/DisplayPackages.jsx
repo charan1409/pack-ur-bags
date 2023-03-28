@@ -78,6 +78,7 @@ const DisplayPackages = () => {
                         <td className="admin">{x.category}</td>
                         <td>
                             <i
+                                style={{ cursor: "pointer", color: "blue" }}
                                 className="fas fa-edit edit"
                                 onClick={() => navigate(`/editpackage/${x.id}`)}
                             ></i>
@@ -101,6 +102,7 @@ const DisplayPackages = () => {
                         <td className="admin">{x.category}</td>
                         <td>
                             <i
+                                style={{ cursor: "pointer", color: "blue" }}
                                 className="fas fa-edit edit"
                                 onClick={() => navigate(`/editpackage/${x.id}`)}
                             ></i>
