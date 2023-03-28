@@ -151,13 +151,14 @@ router.post("/remove", async (req, res) => {
 });
 
 router.post("/feedback", async (req, res) => {
+  const id = req.body.id;
   const username = req.body.username;
   const feedback = req.body.feedback;
   const user = await User.findOne({ username: username });
   if (user) {
     await Feedback.findOneAndUpdate(
-      { username: username },
-      { feedback: feedback, image: user.image },
+      { _id: id },
+      { feedback: feedback},
       async function (err) {
         if (err) res.status(401).json({ succ: "Some error occurred." });
         res.status(200).json({ succ: "feedback submitted successfully" });
@@ -170,18 +171,21 @@ router.post("/feedback", async (req, res) => {
 
 // For deleting feedback
 router.delete("/deletefeedback/:id", async (req, res) => {
-  const username = req.params.id;
-  await Feedback.findOneAndDelete({ username: username }, async function (err) {
+  const id = req.params.id;
+  const fd = await Feedback.findOne({ _id: id })
+  .populate('userDetails')
+  .exec();
+  await Feedback.findOneAndDelete({ _id: id }, async function (err) {
     if (err) res.status(401).json({ succ: "Some error occurred." });
+    await User.findOneAndUpdate(
+      { username: fd.userDetails.username },
+      { feedbackgiven: false,$unset: { referencedDocument: '' } },
+      async function (err) {
+        if (err) res.status(401).json({ succ: "Some error occurred." });
+        else res.status(200).json({ succ: "feedback deleted successfully" });
+      }
+    );
   });
-  await User.findOneAndUpdate(
-    { username: username },
-    { feedbackgiven: false },
-    async function (err) {
-      if (err) res.status(401).json({ succ: "Some error occurred." });
-      else res.status(200).json({ succ: "feedback deleted successfully" });
-    }
-  );
 });
 
 module.exports = router;

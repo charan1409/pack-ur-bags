@@ -12,8 +12,8 @@ router.use(cookieparser());
 //login Page
 router.get("/loguser/:id", async (req, res) => {
   const inname = req.params.id;
-  const user = await User.findOne({ username: inname });
-  const temp = {
+  const user = await User.findOne({ username: inname }).populate("givenfeedback").exec();
+  const data = {
     id: user.id,
     username: user.username,
     email: user.email,
@@ -24,11 +24,7 @@ router.get("/loguser/:id", async (req, res) => {
     name: user.name,
     phonenumber: user.phonenumber,
     feedbackgiven: user.feedbackgiven,
-  };
-  const fd = await FeedBack.findOne({ username: inname });
-  const data = {
-    user: temp,
-    fd: fd,
+    givenfeedback: user.givenfeedback,
   };
   res.status(200).json(data);
 });

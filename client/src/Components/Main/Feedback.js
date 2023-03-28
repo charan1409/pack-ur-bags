@@ -15,7 +15,6 @@ const Feedback = (props) => {
     else {
       const feedback_data = {
         username: props.user.username,
-        image: props.user.image,
         fdbk: fdbk,
       };
       axios

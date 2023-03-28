@@ -39,7 +39,7 @@ function ViewPlace(props) {
     axios
       .get(`http://localhost:9000/users/loguser/${userL.username}`)
       .then((resp) => {
-        if(resp.data.user) return setUser(resp.data.user);
+        if(resp.data) return setUser(resp.data);
         else navigate("/error")
       });
     axios

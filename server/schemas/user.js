@@ -11,6 +11,10 @@ const UserSchema=new mongoose.Schema({
     role:String,
     imagegiven:Boolean,
     feedbackgiven:Boolean,
+    givenfeedback:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'feedback'
+    },
     password:String,
 });
 const User=mongoose.model('User',UserSchema);

@@ -55,7 +55,7 @@ const Tours = (props) => {
     axios
       .get(`http://localhost:9000/users/loguser/${userL.username}`)
       .then((resp) => {
-        return setUser(resp.data.user);
+        return setUser(resp.data);
       });
   }, []);
 
