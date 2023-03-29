@@ -137,4 +137,20 @@ router.get("/getTransactions/:id", async (req, res) => {
   }
 });
 
+router.delete("/deleteBooking/:id", async (req, res) => {
+  let bookid = req.params.id;
+  const booking = await Book.findOne({ id: bookid }).populate("paymentDetails").exec();
+  try {
+    console.log(booking);
+    Book.findOneAndDelete({ id: bookid }).then((book) => {
+      Pay.findOneAndDelete({ bookid: bookid }).then((pay) => {
+        res.status(200).json({ msg: "Booking cancelled and your amount will be refunded" });
+      });
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 module.exports = router;

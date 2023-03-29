@@ -72,10 +72,10 @@ router.post("/review/:id", async (req, res) => {
 });
 
 router.delete("/delete/:id", async (req, res) => {
-  const placeid = req.params.id;
-  Book.findOneAndDelete({ id: placeid }, (err, data) => {
+  const id = req.params.id;
+  Book.findOneAndDelete({ id: id }, (err, data) => {
     if (err) res.status(201).json({ error: "some error incurred." });
-    else res.status(200).json({ message: "place deleted successfully." });
+    else res.status(200).json({ msg: "Booking deleted successfully." });
   });
 });
 
