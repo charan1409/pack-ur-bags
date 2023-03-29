@@ -4,12 +4,17 @@ import "./Trans.css";
 import axios from "axios";
 import Loading from "../Loading/Loading";
 import Btn from "../Btn";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Transaction = (props) => {
+  const navigate = useNavigate();
+  const { id } = useParams();
   const [user, setUser] = useState({});
   const [trans, setTrans] = useState([]);
   const [loading, setLoading] = useState(true);
   const [giveFeedback, setGiveFeedback] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState("");
 
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
@@ -24,7 +29,12 @@ const Transaction = (props) => {
         setLoading(false);
         return setTrans(resp.data);
       });
-  }, []);
+    if (id) {
+      setGiveFeedback(true);
+    } else {
+      setGiveFeedback(false);
+    }
+  }, [id]);
 
   const navItems = [
     {
@@ -44,6 +54,25 @@ const Transaction = (props) => {
       path: "/index/#services",
     },
   ];
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const new_review = {
+      bookid: id,
+      username: user.username,
+      rating: rating,
+      review: review,
+    };
+    axios
+      .post("http://localhost:9000/places/review", new_review)
+      .then((resp) => {
+        alert(resp.data.msg);
+        navigate("/transactions");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div>
@@ -112,12 +141,18 @@ const Transaction = (props) => {
                             </table>
                             <div className="trans-btn">
                               {new Date(item.todate) < new Date(Date.now()) ? (
-                                <Btn
-                                  value="Feedback"
-                                  onClick={() => {
-                                    setGiveFeedback(true);
-                                  }}
-                                />
+                                <>
+                                  {item.reviewGiven ? (
+                                    <h2>Thank you for your feedback</h2>
+                                  ) : (
+                                    <Btn
+                                      value="Feedback"
+                                      onClick={() => {
+                                        navigate(`/givefeedback/${item.id}`);
+                                      }}
+                                    />
+                                  )}
+                                </>
                               ) : new Date(fromDate) > new Date() ? (
                                 <Btn
                                   value="Cancel"
@@ -150,21 +185,30 @@ const Transaction = (props) => {
       {giveFeedback && (
         <div className="trans-feedback">
           <div className="feedback-box">
-            <span className="feed-close-btn" onClick={()=>setGiveFeedback(false)}>X</span>
+            <span
+              className="feed-close-btn"
+              onClick={() => navigate("/transactions")}
+            >
+              X
+            </span>
             <h1>Feedback</h1>
             <div className="feedback-form">
-              <form>
+              <form onSubmit={submitHandler}>
                 <div className="form-group">
                   <label for="rating">Rating: </label>
                   <select
                     className="form-control"
                     id="rating"
+                    name="rating"
+                    value={rating}
+                    onChange={(e) => setRating(e.target.value)}
                   >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <option value="">rating</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                   </select>
                 </div>
                 <div className="form-group">
@@ -175,8 +219,11 @@ const Transaction = (props) => {
                     id="exampleFormControlTextarea1"
                     rows="3"
                     columns="100"
+                    value={review}
+                    onChange={(e) => setReview(e.target.value)}
                   ></textarea>
                 </div>
+                <Btn value="Submit" />
               </form>
             </div>
           </div>

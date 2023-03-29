@@ -15,7 +15,8 @@ const bookSchema=new mongoose.Schema({
     paymentDetails: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'payment'
-    }
+    },
+    feedbackGiven: Boolean
 });
 const book=mongoose.model('book',bookSchema);
 module.exports=book;

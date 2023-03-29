@@ -39,6 +39,7 @@ function App() {
               <Route path="profile" element={<Profile />} />
               <Route path="mytours" element={<Tours />} />
               <Route path="transactions" element={<Transaction />} />
+              <Route path="givefeedback/:id" element={<Transaction />} />
               <Route path="admin" element={<Admin />} />
               <Route path="adminform" element={<Addadmin />} />
               <Route path="adminplaces" element={<AddPlaces />} />

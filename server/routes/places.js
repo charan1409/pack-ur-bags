@@ -8,67 +8,87 @@ const Place = require("../schemas/place");
 const Review = require("../schemas/reviews");
 const Book = require("../schemas/book");
 
-const verifier = require("../routes/verifier");
-
 router.get("/places/:id", async (req, res) => {
   const category = req.params.id;
   if (category === "all") {
-      await Place.find({},(err,data) => {
-        if(err) res.status(201).json({error: "some error incurred."})
-        res.status(200).json(data);
-      });
-    }
-    else if(category){
-      await Place.find({category:category},(err,data)=>{
-        if(err) res.status(201).json({error: "some error incurred."})
-        res.status(200).json(data);
-      })
-    } else res.status(201).json({error: "some error incurred."})
-//   }
+    await Place.find({}, (err, data) => {
+      if (err) res.status(201).json({ error: "some error incurred." });
+      res.status(200).json(data);
+    });
+  } else if (category) {
+    await Place.find({ category: category }, (err, data) => {
+      if (err) res.status(201).json({ error: "some error incurred." });
+      res.status(200).json(data);
+    });
+  } else res.status(201).json({ error: "some error incurred." });
+  //   }
 });
 
 router.get("/placedetails/:id", async (req, res) => {
   const placeid = req.params.id;
-    await Place.findOne({ id: placeid },(err,data)=>{
-      if(err) res.status(201).json({error: "Some error incurred."});
-      else{
-        Review.find({placeid: placeid}).then((reviews)=> {
-          const totalDetails = {
-            placeDetails: data,
-            reviews: reviews
-          }
-          res.status(200).json(totalDetails);
-        })
-      }
-    });
+  await Place.findOne({ id: placeid }, (err, data) => {
+    if (err) res.status(201).json({ error: "Some error incurred." });
+    else {
+      Review.find({ placeid: placeid }).then((reviews) => {
+        const totalDetails = {
+          placeDetails: data,
+          reviews: reviews,
+        };
+        res.status(200).json(totalDetails);
+      });
+    }
+  });
   // }
 });
 
-router.post("/review/:id", async (req, res) => {
-  const username = req.user.id;
-  const placeid = req.params.id;
+router.post("/review", async (req, res) => {
+  const username = req.body.username;
+  const bookid = req.body.bookid;
   const user = await User.findOne({ username: username });
   const rating = req.body.rating;
   const review = req.body.review;
-  const feedback = [];
-  const reviewrating = [];
   if (user) {
-    feedback.push({ placeid, user, rating, review });
-    reviewrating.push({ placeid, rating, review });
-    console.log(feedback);
-    const updated = await Place.findOneAndUpdate(
-      { id: placeid },
-      { reviews: feedback }
-    );
-    if (updated) {
-      await User.findOneAndUpdate(
-        { email: email },
-        { tourReview: reviewrating }
-      );
-      const data = await Place.findOne({ id: placeid });
-      res.render("place", { user, data, rating });
-    }
-  }
+    Book.findOne({ id: bookid })
+      .populate("placedetails")
+      .exec((err, data) => {
+        if (err) console.error(err);
+        else {
+          Place.findOne({ id: data.placedetails.id }, (err, place) => {
+            if (err) console.error(err);
+            else {
+              const new_reviews = []
+              if(place && place.reviews) place.reviews.forEach((review) => {
+                new_reviews.push(review);
+              });
+              const new_review = {
+                userDetail: user,
+                rating: rating,
+                review: review,
+              };
+              new_reviews.push(new_review);
+              Place.findOneAndUpdate(
+                { id: data.placedetails.id },
+                { reviews: new_reviews },
+                (err, data) => {
+                  if (err) console.error(err);
+                  else {
+                    Book.findOneAndUpdate(
+                      { id: bookid },
+                      { reviewGiven: true },
+                      (err, data) => {
+                        if (err) console.error(err);
+                        else {
+                          res.status(200).json({ msg: "Review added successfully." });
+                        }
+                      });
+                  }
+                }
+              );
+            }
+          });
+        }
+      });
+  } else res.status(201).json({ error: "Some error incurred." });
 });
 
 router.delete("/delete/:id", async (req, res) => {

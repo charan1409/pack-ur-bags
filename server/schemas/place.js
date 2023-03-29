@@ -8,8 +8,16 @@ const placeSchema=new mongoose.Schema({
     price:Number,
     details:String,
     category:String,
-    rating:String,
-    reviews:Array,
+    reviews:[
+        {
+            userDetails: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'user'
+            },
+            rating: Number,
+            review: String
+        }
+    ],
     availability:Boolean,
     buseType:String,
     days:String
