@@ -107,7 +107,7 @@ router.post("/pay/:id", (req, res) => {
     expmonth: mon,
     expyear: year,
     cvv: cvv,
-    name: username,
+    name: req.body.name,
     bookid: bookid,
     timestamp: new Date(),
   });

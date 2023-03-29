@@ -9,6 +9,7 @@ const Transaction = (props) => {
   const [user, setUser] = useState({});
   const [trans, setTrans] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [giveFeedback, setGiveFeedback] = useState(false);
 
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
@@ -97,22 +98,25 @@ const Transaction = (props) => {
                           <div className="trans-detail-tabledown">
                             <table style={{ width: "100%" }}>
                               <tr>
-                                <th>Card Number</th>
-                                <th>{item.paymentDetails.number}</th>
+                                <th>Transaction ID:</th>
+                                <th>{item.paymentDetails.bookid}</th>
                               </tr>
                               <tr>
                                 <th>Name</th>
                                 <th>{item.paymentDetails.name}</th>
                               </tr>
                               <tr>
-                                <th>CVV</th>
-                                <th>{item.paymentDetails.cvv}</th>
+                                <th>Paid through</th>
+                                <th>card</th>
                               </tr>
                             </table>
                             <div className="trans-btn">
                               {new Date(item.todate) < new Date(Date.now()) ? (
                                 <Btn
                                   value="Feedback"
+                                  onClick={() => {
+                                    setGiveFeedback(true);
+                                  }}
                                 />
                               ) : new Date(fromDate) > new Date() ? (
                                 <Btn
@@ -141,6 +145,41 @@ const Transaction = (props) => {
               </div>
             </div>
           )}
+        </div>
+      )}
+      {giveFeedback && (
+        <div className="trans-feedback">
+          <div className="feedback-box">
+            <span className="feed-close-btn" onClick={()=>setGiveFeedback(false)}>X</span>
+            <h1>Feedback</h1>
+            <div className="feedback-form">
+              <form>
+                <div className="form-group">
+                  <label for="rating">Rating: </label>
+                  <select
+                    className="form-control"
+                    id="rating"
+                  >
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label for="feedback">Feedback: </label>
+                  <textarea
+                    name="feedback"
+                    className="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                    columns="100"
+                  ></textarea>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       )}
     </div>
