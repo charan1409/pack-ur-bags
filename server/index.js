@@ -149,11 +149,18 @@ app.listen(port, function () {
 
 /**
  * @swagger
- * /admins/users:
+ * /admins/users/?role={role}:
  *  get:
  *      summary: List of all users
  *      description: List of all users
  *      tags: [Admin]
+ *      parameters:
+ *          - in: path
+ *            name: role
+ *            required: true;
+ *            description:  String
+ *            schema:
+ *               type: string
  *      responses:
  *          200:
  *              description: To test Get Method
