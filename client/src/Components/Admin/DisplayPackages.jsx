@@ -16,7 +16,6 @@ const DisplayPackages = () => {
       if (resp.status !== 200) {
         alert(resp.data.msg);
       } else {
-        console.log(resp.data);
         return setPackages(resp.data);
       }
     });
@@ -86,7 +85,12 @@ const DisplayPackages = () => {
                         <td style={{ textAlign: "center" }}>
                           <i
                             className="fas fa-trash-alt del"
-                            onClick={() => Deluser(x.id)}
+                            onClick={() => {
+                              axios.delete('http://localhost:9000/admins/deleteplace/'+x.id).then((resp)=>{
+                                alert(resp.data.msg);
+                                window.location.reload();
+                              })
+                            }}
                           ></i>
                         </td>
                       </tr>
@@ -110,7 +114,11 @@ const DisplayPackages = () => {
                         <td style={{ textAlign: "center" }}>
                           <i
                             className="fas fa-trash-alt del"
-                            onClick={() => Deluser(x.id)}
+                            onClick={() => {
+                              axios.delete('http://localhost:9000/admins/deleteplace/'+x.id).then((resp)=>{
+                                alert(resp.data.msg);
+                              })
+                            }}
                           ></i>
                         </td>
                       </tr>

@@ -125,12 +125,12 @@ router.get("/packages", (req, res) => {
 router.delete("/deleteplace/:id", async (req, res) => {
   let id = req.params.id;
   Place.findOneAndDelete({ id: id }, async (err, doc) => {
-    const prof = doc.photo
-    if(prof !== "default.png") fs.unlink(prof)
+    // const prof = doc.photo
+    // if(prof !== "default.png") fs.unlink(prof)
     if (err) {
       console.log(err);
     } else {
-      res.status(200).json({ msg: `place deleted ${doc.id}` });
+      res.status(200).json({ msg: `place deleted` });
     }
   });
 });
