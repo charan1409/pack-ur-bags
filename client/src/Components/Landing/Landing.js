@@ -48,9 +48,10 @@ const Landing = (props) => {
       <Services />
       <h1>
         Please{" "}
-        <button className="btn" onClick={toggleLoginForm}>
+        {/* <button className="btn" onClick={toggleLoginForm}> */}
           Login
-        </button>{" "}
+        {/* </button>{" "} */}
+        {" "}
         For More
       </h1>
 

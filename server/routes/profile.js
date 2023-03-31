@@ -12,7 +12,7 @@ const User = require("../schemas/user");
 const Feedback = require("../schemas/feedback");
 const book = require("../schemas/book");
 
-const verifier = require("../routes/verifier");
+// const verifier = require("../routes/verifier");
 
 router.post("/edit", async (req, res) => {
   const email = req.body.email;
