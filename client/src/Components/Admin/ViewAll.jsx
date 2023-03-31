@@ -33,7 +33,7 @@ const ViewAll = () => {
         ) : (
           <div>
             {tours.length === 0 ? (
-              <h1>Your Tour List is Empty</h1>
+              <h1>Tour List is Empty</h1>
             ) : (
               <div>
                 <div className="tour-item-class">
