@@ -38,7 +38,7 @@ const DisplayPackages = () => {
             <input
               className="admin"
               type="text"
-              placeholder="Search for User"
+              placeholder="Search for place"
               onChange={(e) => {
                 const search = e.target.value.trimStart().trimEnd();
                 setdatanotfound(true);
