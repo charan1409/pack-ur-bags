@@ -6,7 +6,7 @@ router.use(cookieparser());
 const book = require('../schemas/book');
 const User = require('../schemas/user');
 const Place = require('../schemas/place');
-const verifier = require('../routes/verifier');
+// const verifier = require('../routes/verifier');
 
 router.get('/booking/:id',(req,res)=>{
     const placeid = req.params.id;
