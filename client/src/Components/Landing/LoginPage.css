@@ -18,19 +18,14 @@
   position: absolute;
   height: 530px;
   width: 500px;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%,-50%);
   animation-name: moving;
   animation-duration: 0.8s;
-  top: 55%;
-  margin-left: 50%;
   background-color: rgb(23, 23, 23);
   border-radius: 15px;
   overflow: hidden;
-}
-
-.login-container .login-form-container {
-  position: relative;
-  padding: 0px 30px 30px 30px;
 }
 
 @keyframes moving {
@@ -38,7 +33,7 @@
     top: -20%;
   }
   to {
-    top: 55%;
+    top: 50%;
   }
 }
 

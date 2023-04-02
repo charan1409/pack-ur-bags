@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate,useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./LoginForm.css";
-import TopBtn from "./TopBtn";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
-import Error from "./LogError";
 import axios from "axios";
 
 function ForgotPassword(props) {
-  const { id } = useParams()
+  const { id } = useParams();
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
@@ -37,7 +35,10 @@ function ForgotPassword(props) {
     } else {
       setLoginError([false, ""]);
       axios
-        .post("http://localhost:9000/users/forgotpassword", {email: id, password: userinfo.password1})
+        .post("http://localhost:9000/users/forgotpassword", {
+          email: id,
+          password: userinfo.password1,
+        })
         .then((resp) => {
           if (resp.status === 200) {
             localStorage.setItem("user", resp.data);
@@ -50,12 +51,19 @@ function ForgotPassword(props) {
     navigate("/index");
   };
 
-
-  return <div>
-    <TopBtn heading={"Forgot Password"} />
-    <form className="loginForm" onSubmit={submitHandler}>
+  return (
+    <div>
+      <div className="top-btn">
+        <h2>FORGOT PASSWORD</h2>
+      </div>
+      <form className="loginForm" onSubmit={submitHandler}>
         {loginError[0] && (
-          <Error msg={loginError[1]} onClick={closeLoginError} />
+          <div className="log-error">
+            <p>{loginError[1]}</p>
+            <span onClick={closeLoginError} className="close-error">
+              X
+            </span>
+          </div>
         )}
         <InputBox
           placeholder={"password"}
@@ -73,9 +81,11 @@ function ForgotPassword(props) {
           value={userinfo.password2}
           onChange={onUpdateField}
         />
-        <Btn type={"submit"} value={"Submit"} /><br></br>
+        <Btn type={"submit"} value={"Submit"} />
+        <br></br>
       </form>
-  </div>;
+    </div>
+  );
 }
 
 export default ForgotPassword;

@@ -74,15 +74,6 @@ const Landing = (props) => {
       <Vedio isvalidin={false} />
       <Gallery />
       <Services />
-      <h1>
-        Please{" "}
-        {/* <button className="btn" onClick={toggleLoginForm}> */}
-          Login
-        {/* </button>{" "} */}
-        {" "}
-        For More
-      </h1>
-
       {login && (
         <LoginPage
           formType={props.formType}

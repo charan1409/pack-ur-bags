@@ -24,12 +24,12 @@ function LoginPage(props) {
               X
             </span>
           </div>
-          <div id="log" className="login-form-container">
+          <>
             {props.formType === "login" && <LoginForm />}
             {props.formType === "register" && <RegisterForm />}
             {props.formType === "verify" && <VerificationForm />}
             {props.formType === "forgot" && <ForgotPasswordForm />}
-          </div>
+          </>
         </div>
       </div>
     </div>

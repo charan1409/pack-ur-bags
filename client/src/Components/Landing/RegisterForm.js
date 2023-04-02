@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./LoginForm.css";
-import TopBtn from "./TopBtn";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
-import Error from "./LogError";
 import axios from "axios";
 
 function RegisterForm(props) {
-  const { id } = useParams()
+  const { id } = useParams();
   const navigate = useNavigate();
   const [registerError, setRegisterError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
@@ -31,7 +29,11 @@ function RegisterForm(props) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (/\s/.test(userinfo.username) || userinfo.username.trim().length < 1 || userinfo.username.trim().length > 8) {
+    if (
+      /\s/.test(userinfo.username) ||
+      userinfo.username.trim().length < 1 ||
+      userinfo.username.trim().length > 8
+    ) {
       setRegisterError([true, "username contains more than 8 characters"]);
     } else if (userinfo.password.trim().length < 6) {
       setRegisterError([true, "password should be altleast 6 characters"]);
@@ -44,7 +46,7 @@ function RegisterForm(props) {
         username: userinfo.username,
         email: id,
         password: userinfo.password,
-        role: "user"
+        role: "user",
       };
       console.log(id);
       axios.post("http://localhost:9000/users/register", user).then((resp) => {
@@ -56,7 +58,7 @@ function RegisterForm(props) {
             password: "",
             confirmedPassword: "",
           });
-          alert(id)
+          alert(id);
           alert(resp.data.msg);
           localStorage.setItem("user", JSON.stringify(resp.data.user));
           navigate("/index");
@@ -66,11 +68,18 @@ function RegisterForm(props) {
   };
   return (
     <div>
-      <TopBtn heading={"SIGN UP"} />
+      <div className="top-btn">
+        <h2>SIGN UP</h2>
+      </div>
+      {registerError[0] && (
+        <div className="log-error">
+          <p>{registerError[1]}</p>
+          <span onClick={closeRegisterError} className="close-error">
+            X
+          </span>
+        </div>
+      )}
       <form className="loginForm" onSubmit={submitHandler}>
-        {registerError[0] && (
-          <Error msg={registerError[1]} type={"error"} onClick={closeRegisterError} />
-        )}
         <InputBox
           placeholder={"username"}
           leftIcon={"bi bi-person-fill"}
@@ -97,9 +106,13 @@ function RegisterForm(props) {
         />
         <Btn type={"submit"} value={"Sign Up"} />
         <p style={{ color: "white" }}>Already have an account?</p>
-        <Btn type={"button"} value={"Sign In"} onClick={() => {
-          navigate("/login");
-        }} />
+        <Btn
+          type={"button"}
+          value={"Sign In"}
+          onClick={() => {
+            navigate("/login");
+          }}
+        />
       </form>
     </div>
   );

@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import "./LoginForm.css";
-import TopBtn from "./TopBtn";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
-import Error from "./LogError";
 import axios from "axios";
 
 function Form(props) {
@@ -40,7 +38,7 @@ function Form(props) {
       axios.post("http://localhost:9000/users/login", userinfo).then((resp) => {
         if (resp.status === 200) {
           localStorage.setItem("user", JSON.stringify(resp.data.user));
-          setCookie("user", resp.data.token, { path: "/" , maxAge: 3600});
+          setCookie("user", resp.data.token, { path: "/", maxAge: 3600 });
           if (cookies.user) {
             if (
               resp.data.user.role === "admin" ||
@@ -50,7 +48,7 @@ function Form(props) {
             } else {
               navigate("/index");
             }
-          } else{
+          } else {
             setLoginError([true, "Something went wrong"]);
             navigate("/login");
           }
@@ -62,12 +60,19 @@ function Form(props) {
   };
 
   return (
-    <div>
-      <TopBtn heading={"SIGN IN"} />
+    <div className="login-form-container">
+      <div className="top-btn">
+        <h2>SIGN IN</h2>
+      </div>
+      {loginError[0] && 
+      <div className="log-error">
+        <p>{loginError[1]}</p>
+        <span onClick={closeLoginError} className="close-error">
+          X
+        </span>
+      </div>
+      }
       <form className="loginForm" onSubmit={submitHandler}>
-        {loginError[0] && (
-          <Error msg={loginError[1]} type={"error"} onClick={closeLoginError} />
-        )}
         <InputBox
           placeholder={"username"}
           leftIcon={"bi bi-person-fill"}

@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./LoginForm.css";
-import TopBtn from "./TopBtn";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
-import Error from "./LogError";
 import axios from "axios";
 
 function Verification(props) {
-  const { id } = useParams()
+  const { id } = useParams();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [loginError, setLoginError] = useState([false, ""]);
   const closeLoginError = () => {
-    setLoginError([false, "",""]);
+    setLoginError([false, "", ""]);
   };
   const submitHandler = (e) => {
     e.preventDefault();
@@ -27,10 +25,10 @@ function Verification(props) {
     axios
       .post("http://localhost:9000/users/verify", { email: email, otp: otp })
       .then((res) => {
-        if(res.status === 200){
-            navigate(`/${res.data.keyword}/${email}`);
+        if (res.status === 200) {
+          navigate(`/${res.data.keyword}/${email}`);
         } else {
-            setLoginError([true, res.data.msg]);
+          setLoginError([true, res.data.msg]);
         }
       })
       .catch((err) => {
@@ -39,11 +37,22 @@ function Verification(props) {
   };
   return (
     <div>
-      <TopBtn heading={"Verify Your Email"} />
+      <div className="top-btn">
+        <h2>EMAIL VERIFICATION</h2>
+      </div>
+      {loginError[0] && (
+        <div
+          className={`${
+            loginError[2] === "error" ? "log-error" : "log-success"
+          }`}
+        >
+          <p>{loginError[1]}</p>
+          <span onClick={closeLoginError} className="close-error">
+            X
+          </span>
+        </div>
+      )}
       <form className="loginForm" onSubmit={submitHandler}>
-        {loginError[0] && (
-          <Error msg={loginError[1]} type={loginError[2]} onClick={closeLoginError} />
-        )}
         <InputBox
           placeholder={"Enter Your Email"}
           leftIcon={"bi bi-key-fill"}
@@ -57,12 +66,15 @@ function Verification(props) {
           value={"Send OTP"}
           onClick={() => {
             axios
-              .post("http://localhost:9000/users/generateOTP", { email: email, keyword: id })
+              .post("http://localhost:9000/users/generateOTP", {
+                email: email,
+                keyword: id,
+              })
               .then((resp) => {
-                if(resp.status === 200){
-                    setLoginError([true, resp.data.msg, "success"]);
-                } else {  
-                    setLoginError([true, resp.data.msg, "error"]);
+                if (resp.status === 200) {
+                  setLoginError([true, resp.data.msg, "success"]);
+                } else {
+                  setLoginError([true, resp.data.msg, "error"]);
                 }
               })
               .catch((err) => {
