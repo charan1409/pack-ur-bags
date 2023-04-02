@@ -2,7 +2,10 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
+const jwt = require("jsonwebtoken");
 const cookieparser = require("cookie-parser");
+
+const TokenVerifier = require("./TokenVerifier");
 const User = require("../schemas/user");
 const FeedBack = require("../schemas/feedback");
 const OTP = require("../schemas/otp");
@@ -10,23 +13,28 @@ const OTP = require("../schemas/otp");
 router.use(cookieparser());
 
 //login Page
-router.get("/loguser/:id", async (req, res) => {
-  const inname = req.params.id;
-  const user = await User.findOne({ username: inname }).populate("givenfeedback").exec();
-  const data = {
-    id: user.id,
-    username: user.username,
-    email: user.email,
-    role: user.role,
-    image: "http://localhost:9000/profileImgs/" + user.image,
-    imagegiven: user.imagegiven,
-    gender: user.gender,
-    name: user.name,
-    phonenumber: user.phonenumber,
-    feedbackgiven: user.feedbackgiven,
-    givenfeedback: user.givenfeedback,
-  };
-  res.status(200).json(data);
+router.get("/loguser/:id", TokenVerifier, async (req, res) => {
+  if (!req.user) res.status(201).json("req.user is null");
+  else {
+    const inname = req.params.id;
+    const user = await User.findOne({ username: inname })
+      .populate("givenfeedback")
+      .exec();
+    const data = {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      role: user.role,
+      image: "http://localhost:9000/profileImgs/" + user.image,
+      imagegiven: user.imagegiven,
+      gender: user.gender,
+      name: user.name,
+      phonenumber: user.phonenumber,
+      feedbackgiven: user.feedbackgiven,
+      givenfeedback: user.givenfeedback,
+    };
+    res.status(200).json(data);
+  }
 });
 
 //  login handle
@@ -39,7 +47,10 @@ router.post("/login", async (req, res) => {
       username: user.username,
       role: user.role,
     };
-    res.status(200).json(data);
+    const token = jwt.sign({ id: user.username }, process.env.TOKEN, {
+      expiresIn: "1d",
+    });
+    res.status(200).json({ user: data, token: token });
   } else {
     res.status(201).json({ error: "User doesn't exist." });
   }
@@ -77,7 +88,12 @@ router.post("/register", async (req, res) => {
           username: user.username,
           role: user.role,
         };
-        res.status(200).json({ msg: "Registered Successfully", user: data });
+        const token = jwt.sign({ id: user.username }, process.env.TOKEN, {
+          expiresIn: "1d",
+        });
+        res
+          .status(200)
+          .json({ msg: "Registered Successfully", user: data, token: token });
       });
     } catch (err) {
       res.status(404).json("token not created");
@@ -183,7 +199,16 @@ router.post("/forgotpassword", async (req, res) => {
           username: user.username,
           role: user.role,
         };
-        res.status(200).json(data);
+        const token = jwt.sign({ id: user.username }, process.env.TOKEN, {
+          expiresIn: "1d",
+        });
+        res
+          .status(200)
+          .json({
+            msg: "Password changed successfully",
+            user: data,
+            token: token,
+          });
       }
     }
   );

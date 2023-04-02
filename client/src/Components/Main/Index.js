@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./main.css";
 import Upward from "./Upward";
 import Header from "../Navbar/Header";
@@ -13,6 +14,7 @@ import Footer from "./Footer";
 import axios from "axios";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [updated, setUpdated] = useState(false);
   const navItems = [
@@ -46,7 +48,10 @@ const Index = () => {
     axios
       .get(`http://localhost:9000/users/loguser/${userL.username}`)
       .then((resp) => {
-        return setUser(resp.data);
+        if(resp.status === 200)
+          return setUser(resp.data);
+        else
+          return navigate("/login");
       });
   }, [updated]);
 

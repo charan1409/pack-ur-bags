@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import "./LoginForm.css";
 import TopBtn from "./TopBtn";
 import InputBox from "./InputBox";
@@ -8,6 +9,7 @@ import Error from "./LogError";
 import axios from "axios";
 
 function Form(props) {
+  const [cookies, setCookie] = useCookies(["user"]);
   const [loginError, setLoginError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
     username: "",
@@ -35,13 +37,22 @@ function Form(props) {
       setLoginError([true, "Invalid password"]);
     } else {
       setLoginError([false, ""]);
-      axios.post("http://localhost:9000/users/login",userinfo).then((resp) => {
+      axios.post("http://localhost:9000/users/login", userinfo).then((resp) => {
         if (resp.status === 200) {
-          localStorage.setItem("user", JSON.stringify(resp.data));
-          if (resp.data.role === "admin" || resp.data.role === "root") {
-            navigate("/admin");
-          } else {
-            navigate("/index");
+          localStorage.setItem("user", JSON.stringify(resp.data.user));
+          setCookie("user", resp.data.token, { path: "/" , maxAge: 3600});
+          if (cookies.user) {
+            if (
+              resp.data.user.role === "admin" ||
+              resp.data.user.role === "root"
+            ) {
+              navigate("/admin");
+            } else {
+              navigate("/index");
+            }
+          } else{
+            setLoginError([true, "Something went wrong"]);
+            navigate("/login");
           }
         } else {
           setLoginError([true, resp.data.error]);
@@ -73,14 +84,24 @@ function Form(props) {
           value={userinfo.password}
           onChange={onUpdateField}
         />
-        <Btn type={"submit"} value={"Sign In"}/><br></br>
-        <h2 onClick={() => {
-          navigate("/verification/forgotpassword");
-        }}>Forgot Password?</h2>
+        <Btn type={"submit"} value={"Sign In"} />
+        <br></br>
+        <h2
+          onClick={() => {
+            navigate("/verification/forgotpassword");
+          }}
+        >
+          Forgot Password?
+        </h2>
         <p>Don't have an account?</p>
-        <Btn type={"button"} value={"Sign Up"} onClick={() => {
-          navigate("/verification/registration");
-        }} /><br></br>
+        <Btn
+          type={"button"}
+          value={"Sign Up"}
+          onClick={() => {
+            navigate("/verification/registration");
+          }}
+        />
+        <br></br>
         <p>contact : packyourbagsofficial@gmail.com</p>
       </form>
     </div>
