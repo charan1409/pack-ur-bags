@@ -213,7 +213,6 @@ function Edit() {
                     </div>
 
                     <InputBox type="Date" name='fromdate' value={tours.fromdate} onChange={(e) => {
-                        const fromdate1 = new Date()
                         var todate = new Date(e.target.value);
                         var days = 0;
                         if (tours.days === "Three") { days = 3 }

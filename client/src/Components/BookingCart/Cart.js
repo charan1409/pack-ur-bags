@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../Navbar/Header";
-import "./Tour.css";
+import "./Cart.css";
 import axios from "axios";
 import Btn from "../Btn";
 import Loading from "../Loading/Loading";
-import InputBox from "../Book/InputBox";
 
 const Tours = (props) => {
   const navigate = useNavigate();
@@ -29,14 +28,6 @@ const Tours = (props) => {
       path: "/index/#services",
     },
   ];
-  const [passenger, setPassenger] = useState({
-    name: "",
-    gender: "male",
-    age: "",
-  });
-  const onChangeField = (e) => {
-    setPassenger({ ...passenger, [e.target.name]: e.target.value });
-  };
 
   const [tours, setTours] = useState([]);
   const userL = JSON.parse(localStorage.getItem("user"));
@@ -165,91 +156,6 @@ const Tours = (props) => {
                                 </tbody>
                               </table>
                             </div>
-                            {/* <div className="Passengers">
-                              <form>
-                                <div className="passname">
-                                  <input
-                                    type="text"
-                                    placeholder="Enter name"
-                                    name="name"
-                                    value={passenger.name}
-                                    onChange={onChangeField}
-                                  />
-                                </div>
-
-                                <div className="box1 passname">
-                                  <label name="gender">
-                                    <select
-                                      name="gender"
-                                      onChange={(e) => {
-                                        console.log(e.target.value);
-                                        setPassenger({
-                                          ...passenger,
-                                          gender: e.target.value,
-                                        });
-                                      }}
-                                    >
-                                      <option value="male">male</option>
-                                      <option value="female">female</option>
-                                    </select>
-                                  </label>{" "}
-                                </div>
-
-                                <InputBox
-                                  value={passenger.age}
-                                  type={"number"}
-                                  name="age"
-                                  holder={"Enter age"}
-                                  min={3}
-                                  max={70}
-                                  onChange={onChangeField}
-                                />
-                                <button>
-                                  <i
-                                    className="fas fa-plus"
-                                    onClick={(e) => {
-                                      let regpass = item.passengers;
-                                      console.log(regpass);
-                                      let temp = regpass;
-                                      console.log("first", temp);
-                                      if (
-                                        !passenger.name ||
-                                        passenger.age < 3 ||
-                                        passenger.age > 70
-                                      ) {
-                                        alert("Please fill all the fields");
-                                        return;
-                                      }
-                                      console.log(passenger);
-                                      temp = [...temp, passenger];
-                                      console.log("second ", temp);
-                                      axios
-                                        .put(
-                                          `http://localhost:9000/payment/updatePassengers/${item.id}`,
-                                          { passengers: temp }
-                                        )
-                                        .then((resp) => {
-                                          if (resp.status === 200) {
-                                            alert(resp.data.msg);
-                                          }
-                                        });
-                                      setPassenger({
-                                        name: "",
-                                        gender: "male",
-                                        age: "",
-                                      });
-                                      e.preventDefault();
-                                    }}
-                                    style={{
-                                      width: "30px",
-                                      height: "30px",
-                                      marginTop: "15px",
-                                      cursor: "pointer",
-                                    }}
-                                  ></i>
-                                </button>
-                              </form>
-                            </div> */}
                           </div>
                         </div>
                       );

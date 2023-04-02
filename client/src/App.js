@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollTop from "./Components/ScrollTop";
 
@@ -11,14 +11,14 @@ import Book from "./Components/Book/Book";
 import Payment from "./Components/PaymentGateway/Payment";
 import Error from "./Components/ErrorPage/Error";
 import Profile from "./Components/ProfilePage/Profile";
-import Tours from "./Components/MyTours/Tour";
-import Transaction from "./Components/Transactions/Transaction";
+import Tours from "./Components/BookingCart/Cart";
+import Bookings from "./Components/Bookings/Bookings";
 import Admin from "./Components/Admin/Admin";
 import Addadmin from "./Components/Admin/Addadmin";
 import AddPlaces from "./Components/Admin/AddPlaces";
 import Feedbacks from "./Components/Admin/Feedbacks";
 import ViewAll from "./Components/Admin/ViewAll";
-import Edit from "./Components/MyTours/Edit";
+import Edit from "./Components/BookingCart/Edit";
 import DisplayPackages from "./Components/Admin/DisplayPackages";
 function App() {
   return (
@@ -38,8 +38,8 @@ function App() {
               <Route path="payment/:id" element={<Payment />} />
               <Route path="profile" element={<Profile />} />
               <Route path="mytours" element={<Tours />} />
-              <Route path="transactions" element={<Transaction />} />
-              <Route path="givefeedback/:id" element={<Transaction />} />
+              <Route path="transactions" element={<Bookings/>} />
+              <Route path="givefeedback/:id" element={<Bookings />} />
               <Route path="admin" element={<Admin />} />
               <Route path="adminform" element={<Addadmin />} />
               <Route path="adminplaces" element={<AddPlaces />} />
