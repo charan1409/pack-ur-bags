@@ -1,8 +1,8 @@
-import React from "react";
-import "./main.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+import "./main.css";
 
 const Feedback = (props) => {
   const [fdbk, setFdbk] = useState("");
@@ -24,48 +24,55 @@ const Feedback = (props) => {
             props.updated();
             setFdbk("");
             return alert("Thank's for giving your feedback😎");
-          } else{
-            navigate("/error")
+          } else {
+            navigate("/error");
           }
         });
     }
   };
 
-  return (
-    <>
-      {props.user.feedbackgiven ? (
-        <h2>Thank's for giving your feedback😎</h2>
-      ) : (
-        <>
-          <div className="fd_bk">
-            <span>Give Feedback</span>
-            <div className="shortdesc2">
-              <p>Please share your valuable feedback to us</p>
+  if (!props.user) return <> </>;
+  else {
+    return (
+      <>
+        {props.user.feedbackgiven ? (
+          <h2>Thank's for giving your feedback😎</h2>
+        ) : (
+          <>
+            <div className="fd_bk">
+              <span>Give Feedback</span>
+              <div className="shortdesc2">
+                <p>Please share your valuable feedback to us</p>
+              </div>
             </div>
-          </div>
-          <div className="feed_box">
-            <div className="feed">
-              <form onSubmit={handleSubmit}>
-                <label>
-                  Your feedback
-                  <br />
-                  <textarea
-                    value={fdbk}
-                    onChange={(x) => setFdbk(x.target.value)}
-                    name="addtional"
-                  ></textarea>
-                  <br />
-                </label>
-                <button type="submit" id="fsubmit" style={{ fontSize: "20px" }}>
-                  Submit feedback
-                </button>
-              </form>
+            <div className="feed_box">
+              <div className="feed">
+                <form onSubmit={handleSubmit}>
+                  <label>
+                    Your feedback
+                    <br />
+                    <textarea
+                      value={fdbk}
+                      onChange={(x) => setFdbk(x.target.value)}
+                      name="addtional"
+                    ></textarea>
+                    <br />
+                  </label>
+                  <button
+                    type="submit"
+                    id="fsubmit"
+                    style={{ fontSize: "20px" }}
+                  >
+                    Submit feedback
+                  </button>
+                </form>
+              </div>
             </div>
-          </div>
-        </>
-      )}
-    </>
-  );
+          </>
+        )}
+      </>
+    );
+  }
 };
 
 export default Feedback;

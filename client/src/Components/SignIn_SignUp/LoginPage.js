@@ -8,8 +8,7 @@ import VerificationForm from "./Verification";
 import ForgotPasswordForm from "./ForgotPassword";
 
 function LoginPage(props) {
-  const navigate = useNavigate();
-
+  const navigate = useNavigate()
   return (
     <div className="modal">
       <div className="login-container">
@@ -18,7 +17,7 @@ function LoginPage(props) {
             <span
               className="login-form-close-btn"
               onClick={() => {
-                navigate("/");
+                navigate("/index")
               }}
             >
               X

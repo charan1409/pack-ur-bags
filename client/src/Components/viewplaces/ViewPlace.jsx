@@ -28,20 +28,20 @@ const navItems = [
 ];
 function ViewPlace(props) {
   const navigate = useNavigate();
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [placesData, setPlacesData] = useState([]);
   const params = useParams();
   const [category, setCategory] = useState(params.id);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const userL = JSON.parse(localStorage.getItem("user"));
-    axios
-      .get(`http://localhost:9000/users/loguser/${userL.username}`)
-      .then((resp) => {
-        if(resp.data) return setUser(resp.data);
-        else navigate("/error")
-      });
+    // const userL = JSON.parse(localStorage.getItem("user"));
+    // axios
+    //   .get(`http://localhost:9000/users/loguser/${userL.username}`)
+    //   .then((resp) => {
+    //     if(resp.data) return setUser(resp.data);
+    //     else navigate("/error")
+    //   });
     axios
       .get(`http://localhost:9000/places/places/${category}`)
       .then((resp) => {
@@ -51,7 +51,7 @@ function ViewPlace(props) {
   }, [category]);
   return (
     <div className="viewAllPlaces">
-      <Header user={user} navItems={navItems} />
+      <Header user={user} navItems={navItems} openLoginForm={props.openLoginForm}/>
 
       <div className="head">
         <Heading category="Packages" />

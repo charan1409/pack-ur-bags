@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Dropdown from "./Dropdown";
 import { useNavigate } from "react-router-dom";
+
+import "./Navbar.css";
 
 const Header = (props) => {
   const navigate = useNavigate();

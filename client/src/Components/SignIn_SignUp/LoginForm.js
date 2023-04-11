@@ -93,7 +93,8 @@ function Form(props) {
         <br></br>
         <h2
           onClick={() => {
-            navigate("/verification/forgotpassword");
+            props.changeFormType("forgot");
+            // navigate("/verification/forgotpassword");
           }}
         >
           Forgot Password?

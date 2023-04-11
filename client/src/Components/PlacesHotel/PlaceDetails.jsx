@@ -33,18 +33,18 @@ const navItems = [
 ];
 function App(props) {
   const navigate = useNavigate();
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [placedata, setPlacedata] = useState();
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   
   useEffect(() => {
-    const userL = JSON.parse(localStorage.getItem("user"));
-    axios
-      .get(`http://localhost:9000/users/loguser/${userL.username}`)
-      .then((resp) => {
-        return setUser(resp.data);
-      });
+    // const userL = JSON.parse(localStorage.getItem("user"));
+    // axios
+    //   .get(`http://localhost:9000/users/loguser/${userL.username}`)
+    //   .then((resp) => {
+    //     return setUser(resp.data);
+    //   });
     axios
       .get(`http://localhost:9000/places/placedetails/${id}`)
       .then((resp) => {
@@ -67,12 +67,12 @@ function App(props) {
         }
       })
     }else{
-      navigate('/error');
+      navigate('/login');
     }
   }
   return (
     <div>
-      <Header user={user} navItems={navItems} />
+      <Header user={user} navItems={navItems} openLoginForm={props.openLoginForm}/>
       {loading ? (
         <div>
           {placedata && (

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import "./main.css";
 import Upward from "./Upward";
 import Header from "../Navbar/Header";
@@ -11,12 +14,14 @@ import Services from "./Services";
 import Review from "./Review";
 import Feedback from "./Feedback";
 import Footer from "./Footer";
-import axios from "axios";
+import LoginPage from "../SignIn_SignUp/LoginPage"
 
-const Index = () => {
+const Index = (props) => {
   const navigate = useNavigate();
+  const [login, setLogin] = useState(false);
   const [user, setUser] = useState({});
   const [updated, setUpdated] = useState(false);
+  const [cookies] = useCookies(["user"]);
   const navItems = [
     {
       title: "Home",
@@ -44,24 +49,54 @@ const Index = () => {
     },
   ];
   useEffect(() => {
+    if (props.formType) {
+      return setLogin(true);
+    } else{
+      return setLogin(false);
+    }
+  }, [props.formType]);
+  useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
-    axios
-      .get(`http://localhost:9000/users/loguser/${userL.username}`)
-      .then((resp) => {
-        if(resp.status === 200)
-          return setUser(resp.data);
-        else
-          return navigate("/login");
-      });
+    if (userL) {
+      axios
+        .get(`http://localhost:9000/users/loguser/${userL.username}`)
+        .then((resp) => {
+          if (resp.status === 200) return setUser(resp.data);
+        });
+    } else {
+      setUser(null)
+    }
   }, [updated]);
+  useEffect(() => {
+    const userL = JSON.parse(localStorage.getItem("user"));
+    if(userL){
+      axios
+        .get(`http://localhost:9000/users/loguser/${userL.username}`)
+        .then((resp) => {
+          if (resp.status === 200) {
+            localStorage.setItem("user", JSON.stringify(resp.data));
+            if (cookies.user) {
+              if (
+                resp.data.role === "admin" ||
+                resp.data.role === "root"
+              ) {
+                navigate("/admin");
+              } else {
+                navigate("/index");
+              }
+            }
+          }
+        });
+    }
+  }, []);
 
   const update = () => {
     setUpdated(!updated);
   };
   return (
-    <div>
+    <>
       <Upward />
-      <Header user={user} navItems={navItems} />
+      <Header user={user} navItems={navItems} openLoginForm={props.openLoginForm}/>
       <Vedio user={user} />
       <Gallery />
       <Places />
@@ -70,7 +105,12 @@ const Index = () => {
       <Review />
       <Feedback user={user} updated={update} />
       <Footer />
-    </div>
+      {login && (
+        <LoginPage
+          formType={props.formType}
+        />
+      )}
+    </>
   );
 };
 
