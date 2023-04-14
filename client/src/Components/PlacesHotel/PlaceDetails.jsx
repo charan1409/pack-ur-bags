@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
-import { useCookies } from "react-cookie";
+import Cookies from "js-cookie";
 
 import Img from "../viewplaces/ViewplacesComponents/Img";
 import Place from "../viewplaces/ViewplacesComponents/Details";
@@ -13,7 +13,6 @@ import Btn from "../Btn";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
-
 
 const navItems = [
   {
@@ -34,13 +33,12 @@ const navItems = [
   },
 ];
 function App(props) {
-  const [cookies,setCookie] = useCookies(["user","redirectLink"]);
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [placedata, setPlacedata] = useState();
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
-  
+
   useEffect(() => {
     // const userL = JSON.parse(localStorage.getItem("user"));
     // axios
@@ -58,25 +56,30 @@ function App(props) {
           navigate("/error");
         }
       });
-  }, [id,navigate]);
-  const bookFunc = ()=>{
-    if (cookies.user !== undefined && user) {
-      axios.get(`http://localhost:9000/book/booking/${id}`)
-      .then((resp)=>{
-        if(resp.status === 200){
+  }, [id, navigate]);
+  const bookFunc = () => {
+    if (Cookies.get("user") && user) {
+      axios.get(`http://localhost:9000/book/booking/${id}`).then((resp) => {
+        if (resp.status === 200) {
           navigate(`/book/${id}`);
-        } else{
-          navigate('/error');
+        } else {
+          navigate("/error");
         }
-      })
-    } else{
-      setCookie("redirectLink",`/book/${id}`,{path:"/", maxAge: 300 });
+      });
+    } else {
+      var date = new Date();
+      date.setTime(date.getTime() + 60 * 1000);
+      Cookies.set("redirect", `/book/${id}`, { expires: date });
       navigate("/login");
     }
-  }
+  };
   return (
     <div>
-      <Header user={user} navItems={navItems} openLoginForm={props.openLoginForm}/>
+      <Header
+        user={user}
+        navItems={navItems}
+        openLoginForm={props.openLoginForm}
+      />
       {loading ? (
         <div>
           {placedata && (

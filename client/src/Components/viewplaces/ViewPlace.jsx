@@ -45,12 +45,16 @@ function ViewPlace(props) {
   }, [category]);
   return (
     <div className="viewAllPlaces">
-      <Header user={user} navItems={navItems} openLoginForm={props.openLoginForm}/>
+      <Header
+        user={user}
+        navItems={navItems}
+        openLoginForm={props.openLoginForm}
+      />
       <div className="head">
         <Heading category="Packages" />
         {params.id === "all" ? (
-          <div className="allselect" >
-            <label htmlFor="places" >
+          <div className="allselect">
+            <label htmlFor="places">
               Sort by:
               <select
                 name="places"
@@ -60,7 +64,7 @@ function ViewPlace(props) {
                   setLoading(false);
                 }}
                 value={category}
-                style={{color: "black", border: "black solid 4px"}}
+                style={{ color: "black", border: "black solid 4px" }}
               >
                 <option value="all">all</option>
                 <option value="beach">beach</option>
@@ -93,9 +97,13 @@ function ViewPlace(props) {
                   price={x.price}
                   onClickBook={() => {
                     if (!Cookies.get("user")) {
-                      Cookies.set("redirectLink", `/book/${x.id}`, { expires: 1 });
+                      var date = new Date();
+                      date.setTime(date.getTime() + 60 * 1000);
+                      Cookies.set("redirectLink", `/book/${x.id}`, {
+                        expires: date,
+                      });
                       navigate("/login");
-                    } else{
+                    } else {
                       navigate(`/book/${x.id}`);
                     }
                   }}
