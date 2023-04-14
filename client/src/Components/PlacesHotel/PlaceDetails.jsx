@@ -40,12 +40,14 @@ function App(props) {
   const { id } = useParams();
 
   useEffect(() => {
-    // const userL = JSON.parse(localStorage.getItem("user"));
-    // axios
-    //   .get(`http://localhost:9000/users/loguser/${userL.username}`)
-    //   .then((resp) => {
-    //     return setUser(resp.data);
-    //   });
+    const userL = JSON.parse(localStorage.getItem("user"));
+    if (userL) {
+      axios
+        .get(`http://localhost:9000/users/loguser/${userL.username}`)
+        .then((resp) => {
+          return setUser(resp.data);
+        });
+    }
     axios
       .get(`http://localhost:9000/places/placedetails/${id}`)
       .then((resp) => {
@@ -86,29 +88,31 @@ function App(props) {
             <div className="single-place-details">
               <div className="place-box">
                 <div className="heading">
-                  <Img photo={placedata.placeDetails.photo} />
+                  <Img photo={placedata.photo} />
                   <div className="details">
                     <div className="content">
                       <Place
-                        from={placedata.placeDetails.from}
-                        to={placedata.placeDetails.to}
-                        details={placedata.placeDetails.status}
-                        price={placedata.placeDetails.price}
+                        from={placedata.from}
+                        to={placedata.to}
+                        details={placedata.status}
+                        price={placedata.price}
                       />
                       <Rating />
                     </div>
                     <Btn type="button" onClick={bookFunc} value="Book" />
                   </div>
                 </div>
-                <Info details={placedata.placeDetails.details} />
+                <Info details={placedata.details} />
                 {placedata.reviews.length !== 0 ? (
-                  <Review
-                    image={placedata.reviews.userimage}
-                    username={placedata.reviews.username}
-                    review={placedata.reviews.review}
-                    type="button"
-                    name="Submit"
-                  />
+                  <>
+                    {placedata.reviews.map((review) => {
+                      <Review
+                        image={"http://localhost:9000/profileImgs/"+review.user.image}
+                        username={review.user.username}
+                        review={review.review}
+                      />;
+                    })}
+                  </>
                 ) : (
                   <h1>No reviews yet</h1>
                 )}

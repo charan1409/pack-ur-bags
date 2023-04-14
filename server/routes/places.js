@@ -6,7 +6,7 @@ router.use(cookieparser());
 const User = require("../schemas/user");
 const Place = require("../schemas/place");
 const Review = require("../schemas/reviews");
-const Book = require("../schemas/book");
+const Book = require("../schemas/booking");
 
 router.get("/places/:id", async (req, res) => {
   const category = req.params.id;
@@ -26,19 +26,12 @@ router.get("/places/:id", async (req, res) => {
 
 router.get("/placedetails/:id", async (req, res) => {
   const placeid = req.params.id;
-  await Place.findOne({ id: placeid }, (err, data) => {
-    if (err) res.status(201).json({ error: "Some error incurred." });
-    else {
-      Review.find({ placeid: placeid }).then((reviews) => {
-        const totalDetails = {
-          placeDetails: data,
-          reviews: reviews,
-        };
-        res.status(200).json(totalDetails);
-      });
-    }
+  const place = await Place.findOne({ id: placeid }).populate({
+    path: "reviews",
+    populate: { path: "user" },
   });
-  // }
+  if (place) res.status(200).json(place);
+  else res.status(201).json({ error: "Some error incurred." });
 });
 
 router.post("/review", async (req, res) => {
@@ -50,38 +43,38 @@ router.post("/review", async (req, res) => {
   if (user) {
     Book.findOne({ id: bookid })
       .populate("placedetails")
-      .exec((err, data) => {
+      .exec((err, booking) => {
         if (err) console.error(err);
         else {
-          Place.findOne({ id: data.placedetails.id }, (err, place) => {
+          const place = booking.placedetails;
+          const new_review = new Review({
+            user: user,
+            place: place,
+            rating: rating,
+            review: review,
+          });
+          new_review.save(async (err, newReview) => {
             if (err) console.error(err);
             else {
-              const new_reviews = []
-              if(place && place.reviews) place.reviews.forEach((review) => {
-                new_reviews.push(review);
-              });
-              const new_review = {
-                userDetail: user,
-                rating: rating,
-                review: review,
-              };
-              new_reviews.push(new_review);
-              const new_rating = (place.rating * place.reviews.length + rating) / (place.reviews.length + 1);
-              Place.findOneAndUpdate(
-                { id: data.placedetails.id },
-                { rating: new_rating ,reviews: new_reviews },
+              const reviews = await Review.find({ place: place });
+              let newRating = 0;
+              if (reviews.length > 0) {
+                newRating =
+                  reviews.reduce((sum, review) => sum + review.rating, 0) /
+                  reviews.length;
+              }
+              place.reviews.push(newReview._id);
+              place.rating = newRating;
+              await place.save();
+              user.tourReviews.push(newReview._id);
+              await user.save();
+              await Book.findOneAndUpdate(
+                { id: bookid },
+                { reviewGiven: true },
                 (err, data) => {
                   if (err) console.error(err);
                   else {
-                    Book.findOneAndUpdate(
-                      { id: bookid },
-                      { reviewGiven: true },
-                      (err, data) => {
-                        if (err) console.error(err);
-                        else {
-                          res.status(200).json({ msg: "Review added successfully." });
-                        }
-                      });
+                    res.status(200).json({ msg: "Review added successfully." });
                   }
                 }
               );
@@ -89,7 +82,7 @@ router.post("/review", async (req, res) => {
           });
         }
       });
-  } else res.status(201).json({ error: "Some error incurred." });
+  } else res.status(201).json({ msg: "User not found." });
 });
 
 router.delete("/delete/:id", async (req, res) => {

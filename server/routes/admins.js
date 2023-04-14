@@ -10,7 +10,7 @@ const multer = require('multer');
 const path = require("path");
 const fs = require("fs");
 
-const book = require("../schemas/book");
+const book = require("../schemas/booking");
 const User = require("../schemas/user");
 const fdb = require("../schemas/feedback");
 const Place = require("../schemas/place");

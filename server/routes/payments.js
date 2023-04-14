@@ -1,10 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const bodyParser = require("body-parser");
 const Pay = require("../schemas/payment");
-const User = require("../schemas/user");
-const Place = require("../schemas/place");
-const Book = require("../schemas/book");
+const Book = require("../schemas/booking");
 
 router.get("/pay/:id", (req, res) => {
   let bookid = req.params.id;

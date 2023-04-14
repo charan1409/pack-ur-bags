@@ -10,7 +10,7 @@ router.use(cookieparser());
 const OTP = require("../schemas/otp");
 const User = require("../schemas/user");
 const Feedback = require("../schemas/feedback");
-const book = require("../schemas/book");
+const book = require("../schemas/booking");
 
 // const verifier = require("../routes/verifier");
 

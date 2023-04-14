@@ -15,6 +15,7 @@ const Transaction = (props) => {
   const [giveFeedback, setGiveFeedback] = useState(false);
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
+  const [update,setUpdate] = useState(false);
 
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
@@ -34,7 +35,7 @@ const Transaction = (props) => {
     } else {
       setGiveFeedback(false);
     }
-  }, [id]);
+  }, [id,update]);
 
   const navItems = [
     {
@@ -67,6 +68,7 @@ const Transaction = (props) => {
       .post("http://localhost:9000/places/review", new_review)
       .then((resp) => {
         alert(resp.data.msg);
+        setUpdate(!update);
         navigate("/transactions");
       })
       .catch((err) => {

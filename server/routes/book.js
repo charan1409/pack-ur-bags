@@ -3,7 +3,7 @@ const router = express.Router();
 const cookieparser = require('cookie-parser');
 router.use(cookieparser());
 
-const book = require('../schemas/book');
+const book = require('../schemas/booking');
 const User = require('../schemas/user');
 const Place = require('../schemas/place');
 // const verifier = require('../routes/verifier');

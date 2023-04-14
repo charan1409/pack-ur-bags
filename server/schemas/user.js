@@ -16,6 +16,10 @@ const UserSchema=new mongoose.Schema({
         ref:'feedback'
     },
     password:String,
+    tourReviews:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'review'
+    }],
 });
 const User=mongoose.model('User',UserSchema);
 module.exports=User;
