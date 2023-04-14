@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import { useCookies } from "react-cookie";
+import Cookies from "js-cookie";
 import Dropdown from "./Dropdown";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +9,6 @@ import "./Navbar.css";
 
 const Header = (props) => {
   const navigate = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const [dropdown, setDropdown] = useState(false);
   const [path, setpath] = useState("");
 
@@ -60,14 +59,15 @@ const Header = (props) => {
                 onMouseLeave={() => setDropdown(false)}
               >
                 <img src={props.user.image} alt="profile_img" />
-                {dropdown && <Dropdown role={props.user.role} />}
+                {dropdown && <Dropdown role={props.user.role} updated={props.updated}/>}
               </div>
             ) : (
               <h2
                 onClick={() => {
                   localStorage.removeItem("user");
-                  removeCookie("user");
-                  return <Navigate to="/" />;
+                  Cookies.remove("user");
+                  if (typeof props.updated === 'function') props.updated()
+                  navigate("/");
                 }}
               >
                 Logout

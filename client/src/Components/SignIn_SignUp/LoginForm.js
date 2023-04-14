@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
 import axios from "axios";
 
 function Form(props) {
-  const [cookies, setCookie] = useCookies(["user","redirectLink"]);
   const [loginError, setLoginError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
     username: "",
@@ -38,24 +37,19 @@ function Form(props) {
       axios.post("http://localhost:9000/users/login", userinfo).then((resp) => {
         if (resp.status === 200) {
           localStorage.setItem("user", JSON.stringify(resp.data.user));
-          setCookie("user", resp.data.token, { path: "/", maxAge: 3600 });
-          if (cookies.user) {
-            if (
-              resp.data.user.role === "admin" ||
-              resp.data.user.role === "root"
-            ) {
-              navigate("/admin");
-            } else {
-              if(cookies.redirectLink){
-                console.log(cookies.redirectLink);
-                navigate(cookies.redirectLink);
-              } else{
-                return <Navigate to="/index" />;
-              }
-            }
+          Cookies.set("user", resp.data.token, { expires: 1 });
+          if (
+            resp.data.user.role === "admin" ||
+            resp.data.user.role === "root"
+          ) {
+            navigate("/admin");
           } else {
-            setLoginError([true, "Something went wrong"]);
-            navigate("/login");
+            if(Cookies.get("redirectLink")){
+              navigate(Cookies.get("redirectLink"));
+            } else {
+              props.updated();
+              navigate("/index");
+            }
           }
         } else {
           setLoginError([true, resp.data.error]);
@@ -69,14 +63,14 @@ function Form(props) {
       <div className="top-btn">
         <h2>SIGN IN</h2>
       </div>
-      {loginError[0] && 
-      <div className="log-error">
-        <p>{loginError[1]}</p>
-        <span onClick={closeLoginError} className="close-error">
-          X
-        </span>
-      </div>
-      }
+      {loginError[0] && (
+        <div className="log-error">
+          <p>{loginError[1]}</p>
+          <span onClick={closeLoginError} className="close-error">
+            X
+          </span>
+        </div>
+      )}
       <form className="loginForm" onSubmit={submitHandler}>
         <InputBox
           placeholder={"username"}

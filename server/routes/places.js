@@ -66,9 +66,10 @@ router.post("/review", async (req, res) => {
                 review: review,
               };
               new_reviews.push(new_review);
+              const new_rating = (place.rating * place.reviews.length + rating) / (place.reviews.length + 1);
               Place.findOneAndUpdate(
                 { id: data.placedetails.id },
-                { reviews: new_reviews },
+                { rating: new_rating ,reviews: new_reviews },
                 (err, data) => {
                   if (err) console.error(err);
                   else {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import Cookies from "js-cookie";
 
 import Heading from "./ViewplacesComponents/Heading";
 import "./style.css";
@@ -35,16 +35,7 @@ function ViewPlace(props) {
   const [category, setCategory] = useState(params.id);
   const [loading, setLoading] = useState(false);
 
-  const [cookies,setCookie] = useCookies(["user","redirectLink"]);
-
   useEffect(() => {
-    // const userL = JSON.parse(localStorage.getItem("user"));
-    // axios
-    //   .get(`http://localhost:9000/users/loguser/${userL.username}`)
-    //   .then((resp) => {
-    //     if(resp.data) return setUser(resp.data);
-    //     else navigate("/error")
-    //   });
     axios
       .get(`http://localhost:9000/places/places/${category}`)
       .then((resp) => {
@@ -55,7 +46,6 @@ function ViewPlace(props) {
   return (
     <div className="viewAllPlaces">
       <Header user={user} navItems={navItems} openLoginForm={props.openLoginForm}/>
-
       <div className="head">
         <Heading category="Packages" />
         {params.id === "all" ? (
@@ -102,11 +92,11 @@ function ViewPlace(props) {
                   details={x.details}
                   price={x.price}
                   onClickBook={() => {
-                    if (cookies.user) {
-                      navigate(`/book/${x.id}`);
-                    } else{
-                      setCookie("redirectLink",`/book/${x.id}`,{path:"/", maxAge: 300 });
+                    if (!Cookies.get("user")) {
+                      Cookies.set("redirectLink", `/book/${x.id}`, { expires: 1 });
                       navigate("/login");
+                    } else{
+                      navigate(`/book/${x.id}`);
                     }
                   }}
                   onClick={() => {

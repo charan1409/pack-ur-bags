@@ -1,4 +1,5 @@
 const mongoose=require('mongoose')
+const Float = require('mongoose-float').loadType(mongoose, 2);
 
 const placeSchema=new mongoose.Schema({
     id:String,
@@ -8,6 +9,10 @@ const placeSchema=new mongoose.Schema({
     price:Number,
     details:String,
     category:String,
+    rating: {
+        type: Float,
+        default: 0
+    },
     reviews:[
         {
             userDetails: {

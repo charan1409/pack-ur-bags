@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
+import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -14,14 +14,13 @@ import Services from "./Services";
 import Review from "./Review";
 import Feedback from "./Feedback";
 import Footer from "./Footer";
-import LoginPage from "../SignIn_SignUp/LoginPage"
+import LoginPage from "../SignIn_SignUp/LoginPage";
 
 const Index = (props) => {
   const navigate = useNavigate();
   const [login, setLogin] = useState(false);
   const [user, setUser] = useState({});
   const [updated, setUpdated] = useState(false);
-  const [cookies] = useCookies(["user"]);
   const navItems = [
     {
       title: "Home",
@@ -51,7 +50,7 @@ const Index = (props) => {
   useEffect(() => {
     if (props.formType) {
       return setLogin(true);
-    } else{
+    } else {
       return setLogin(false);
     }
   }, [props.formType]);
@@ -64,29 +63,34 @@ const Index = (props) => {
           if (resp.status === 200) return setUser(resp.data);
         });
     } else {
-      setUser(null)
+      setUser(null);
     }
   }, [updated]);
   useEffect(() => {
+    if (Cookies.get("user")) {
+      console.log("this is gonna redirect to index");
+      axios.get(`http://localhost:9000/users/loguser`).then((resp) => {
+        if (resp.status === 200) {
+          if (resp.data.role === "admin" || resp.data.role === "root") {
+            navigate("/admin");
+          } else {
+            navigate("/index");
+          }
+        }
+      });
+    }
+  }, []);
+
+  useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
-    if(userL){
+    if (userL) {
       axios
         .get(`http://localhost:9000/users/loguser/${userL.username}`)
         .then((resp) => {
-          if (resp.status === 200) {
-            localStorage.setItem("user", JSON.stringify(resp.data));
-            if (cookies.user) {
-              if (
-                resp.data.role === "admin" ||
-                resp.data.role === "root"
-              ) {
-                navigate("/admin");
-              } else {
-                navigate("/index");
-              }
-            }
-          }
+          if (resp.status === 200) return setUser(resp.data);
         });
+    } else {
+      setUser(null);
     }
   }, []);
 
@@ -96,7 +100,12 @@ const Index = (props) => {
   return (
     <>
       <Upward />
-      <Header user={user} navItems={navItems} openLoginForm={props.openLoginForm}/>
+      <Header
+        user={user}
+        navItems={navItems}
+        openLoginForm={props.openLoginForm}
+        updated={update}
+      />
       <Vedio user={user} />
       <Gallery />
       <Places />
@@ -105,11 +114,7 @@ const Index = (props) => {
       <Review />
       <Feedback user={user} updated={update} />
       <Footer />
-      {login && (
-        <LoginPage
-          formType={props.formType}
-        />
-      )}
+      {login && <LoginPage formType={props.formType} updated={update}/>}
     </>
   );
 };

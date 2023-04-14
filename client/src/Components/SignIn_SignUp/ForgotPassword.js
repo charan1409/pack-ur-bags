@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Cookies from "js-cookie";
+
 import "./LoginForm.css";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
@@ -42,6 +44,8 @@ function ForgotPassword(props) {
         .then((resp) => {
           if (resp.status === 200) {
             localStorage.setItem("user", resp.data);
+            Cookies.set("user", resp.data.token, { expires: 1 });
+            props.updated()
             navigate("/index");
           } else {
             setLoginError([true, resp.data.error]);

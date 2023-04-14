@@ -24,10 +24,10 @@ function LoginPage(props) {
             </span>
           </div>
           <>
-            {props.formType === "login" && <LoginForm />}
-            {props.formType === "register" && <RegisterForm />}
+            {props.formType === "login" && <LoginForm updated={props.updated}/>}
+            {props.formType === "register" && <RegisterForm updated={props.updated}/>}
             {props.formType === "verify" && <VerificationForm />}
-            {props.formType === "forgot" && <ForgotPasswordForm />}
+            {props.formType === "forgot" && <ForgotPasswordForm updated={props.updated}/>}
           </>
         </div>
       </div>

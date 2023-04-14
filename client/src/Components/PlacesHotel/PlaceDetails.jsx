@@ -60,7 +60,7 @@ function App(props) {
       });
   }, [id,navigate]);
   const bookFunc = ()=>{
-    if (cookies.user && user) {
+    if (cookies.user !== undefined && user) {
       axios.get(`http://localhost:9000/book/booking/${id}`)
       .then((resp)=>{
         if(resp.status === 200){

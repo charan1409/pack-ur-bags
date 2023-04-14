@@ -14,7 +14,7 @@ router.use(cookieparser());
 
 //login Page
 router.get("/loguser/:id", TokenVerifier, async (req, res) => {
-  if (!req.user) res.status(201).json("req.user is null");
+  if (!req.user) res.status(201).json({msg:"Invalid credentials"});
   else {
     const inname = req.params.id;
     const user = await User.findOne({ username: inname })
@@ -37,6 +37,26 @@ router.get("/loguser/:id", TokenVerifier, async (req, res) => {
   }
 });
 
+router.get("/loguser",TokenVerifier, async (req, res) => {
+  if (!req.user) res.status(201).json({msg:"Invalid credentials"});
+  else {
+    const email = req.user.id;
+    const user = await User.findOne({ email: email })
+      .populate("givenfeedback")
+      .exec();
+    const data = {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      role: user.role,
+      image: "http://localhost:9000/profileImgs/" + user.image,
+      imagegiven: user.imagegiven,
+      feedbackgiven: user.feedbackgiven,
+    };
+    res.status(200).json(data);
+  }
+});
+
 //  login handle
 router.post("/login", async (req, res) => {
   const inname = req.body.username;
@@ -47,7 +67,7 @@ router.post("/login", async (req, res) => {
       username: user.username,
       role: user.role,
     };
-    const token = jwt.sign({ id: user.username }, process.env.TOKEN, {
+    const token = jwt.sign({ id: user.email }, process.env.TOKEN, {
       expiresIn: "1d",
     });
     res.status(200).json({ user: data, token: token });
@@ -88,7 +108,7 @@ router.post("/register", async (req, res) => {
           username: user.username,
           role: user.role,
         };
-        const token = jwt.sign({ id: user.username }, process.env.TOKEN, {
+        const token = jwt.sign({ id: user.email }, process.env.TOKEN, {
           expiresIn: "1d",
         });
         res
@@ -199,7 +219,7 @@ router.post("/forgotpassword", async (req, res) => {
           username: user.username,
           role: user.role,
         };
-        const token = jwt.sign({ id: user.username }, process.env.TOKEN, {
+        const token = jwt.sign({ id: user.email }, process.env.TOKEN, {
           expiresIn: "1d",
         });
         res

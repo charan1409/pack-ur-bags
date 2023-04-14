@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import "./Dropdown.css";
 
 function Dropdown(props) {
   const [dropdown, setDropdown] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -34,16 +36,18 @@ function Dropdown(props) {
             >
               My tours
             </Link>
-            <Link
-              to="/"
+            <h2
               className="submenu-item"
               onClick={() => {
                 localStorage.removeItem("user");
+                Cookies.remove("user");
                 setDropdown(false);
+                if (typeof props.updated === 'function') props.updated()
+                navigate("/");
               }}
             >
               Logout
-            </Link>
+            </h2>
           </li>
         </ul>
       ) : (
@@ -55,16 +59,18 @@ function Dropdown(props) {
             onClick={() => setDropdown(!dropdown)}
           >
             <li>
-              <Link
-                to="/"
+              <h2
                 className="submenu-item"
                 onClick={() => {
                   localStorage.removeItem("user");
+                  Cookies.remove("user");
                   setDropdown(false);
+                  if (typeof props.updated === 'function') props.updated()
+                  navigate("/");
                 }}
               >
                 Logout
-              </Link>
+              </h2>
             </li>
           </ul>
         </>

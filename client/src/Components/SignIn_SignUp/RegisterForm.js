@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate, useParams, Navigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import { useNavigate, useParams } from "react-router-dom";
+import Cookies from "js-cookie";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
@@ -8,7 +8,6 @@ import axios from "axios";
 
 function RegisterForm(props) {
   const { id } = useParams();
-  const [cookies, setCookie] = useCookies(["user","redirectLink"]);
   const navigate = useNavigate();
   const [registerError, setRegisterError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
@@ -62,11 +61,12 @@ function RegisterForm(props) {
           });
           alert(resp.data.msg);
           localStorage.setItem("user", JSON.stringify(resp.data.user));
-          if(cookies.redirectLink){
-            console.log(cookies.redirectLink);
-            navigate(cookies.redirectLink);
+          Cookies.set("user", resp.data.token, { expires: 1 });
+          if(Cookies.get("redirectLink")){
+            navigate(Cookies.get("redirectLink"));
           } else{
-            return <Navigate to="/index" />;
+            props.updated();
+            navigate("/index");
           }
         }
       });
