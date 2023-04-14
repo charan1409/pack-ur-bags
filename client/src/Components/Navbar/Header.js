@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import { useCookies } from "react-cookie";
 import Dropdown from "./Dropdown";
 import { useNavigate } from "react-router-dom";
 
@@ -8,6 +9,7 @@ import "./Navbar.css";
 
 const Header = (props) => {
   const navigate = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const [dropdown, setDropdown] = useState(false);
   const [path, setpath] = useState("");
 
@@ -64,7 +66,8 @@ const Header = (props) => {
               <h2
                 onClick={() => {
                   localStorage.removeItem("user");
-                  navigate("/");
+                  removeCookie("user");
+                  return <Navigate to="/" />;
                 }}
               >
                 Logout

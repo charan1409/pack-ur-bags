@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
@@ -7,7 +7,7 @@ import Btn from "../Btn";
 import axios from "axios";
 
 function Form(props) {
-  const [cookies, setCookie] = useCookies(["user"]);
+  const [cookies, setCookie] = useCookies(["user","redirectLink"]);
   const [loginError, setLoginError] = useState([false, ""]);
   const [userinfo, setUserinfo] = useState({
     username: "",
@@ -46,7 +46,12 @@ function Form(props) {
             ) {
               navigate("/admin");
             } else {
-              navigate("/index");
+              if(cookies.redirectLink){
+                console.log(cookies.redirectLink);
+                navigate(cookies.redirectLink);
+              } else{
+                return <Navigate to="/index" />;
+              }
             }
           } else {
             setLoginError([true, "Something went wrong"]);
@@ -93,8 +98,7 @@ function Form(props) {
         <br></br>
         <h2
           onClick={() => {
-            props.changeFormType("forgot");
-            // navigate("/verification/forgotpassword");
+            navigate("/verification/forgotpassword");
           }}
         >
           Forgot Password?

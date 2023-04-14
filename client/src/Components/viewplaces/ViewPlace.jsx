@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import { useCookies } from "react-cookie";
+
 import Heading from "./ViewplacesComponents/Heading";
 import "./style.css";
 import Header from "../Navbar/Header";
 import Components from "./ViewplacesComponents/PlacesComponent";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
 
 const navItems = [
@@ -33,6 +34,8 @@ function ViewPlace(props) {
   const params = useParams();
   const [category, setCategory] = useState(params.id);
   const [loading, setLoading] = useState(false);
+
+  const [cookies,setCookie] = useCookies(["user","redirectLink"]);
 
   useEffect(() => {
     // const userL = JSON.parse(localStorage.getItem("user"));
@@ -99,7 +102,12 @@ function ViewPlace(props) {
                   details={x.details}
                   price={x.price}
                   onClickBook={() => {
-                    navigate(`/book/${x.id}`);
+                    if (cookies.user) {
+                      navigate(`/book/${x.id}`);
+                    } else{
+                      setCookie("redirectLink",`/book/${x.id}`,{path:"/", maxAge: 300 });
+                      navigate("/login");
+                    }
                   }}
                   onClick={() => {
                     navigate(`/placedetails/${x.id}`);

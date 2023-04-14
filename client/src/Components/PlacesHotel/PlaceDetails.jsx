@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
+import { useCookies } from "react-cookie";
+
 import Img from "../viewplaces/ViewplacesComponents/Img";
 import Place from "../viewplaces/ViewplacesComponents/Details";
 import Rating from "../viewplaces/ViewplacesComponents/Rating";
@@ -32,6 +34,7 @@ const navItems = [
   },
 ];
 function App(props) {
+  const [cookies,setCookie] = useCookies(["user","redirectLink"]);
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [placedata, setPlacedata] = useState();
@@ -57,7 +60,7 @@ function App(props) {
       });
   }, [id,navigate]);
   const bookFunc = ()=>{
-    if(user){
+    if (cookies.user && user) {
       axios.get(`http://localhost:9000/book/booking/${id}`)
       .then((resp)=>{
         if(resp.status === 200){
@@ -66,8 +69,9 @@ function App(props) {
           navigate('/error');
         }
       })
-    }else{
-      navigate('/login');
+    } else{
+      setCookie("redirectLink",`/book/${id}`,{path:"/", maxAge: 300 });
+      navigate("/login");
     }
   }
   return (
