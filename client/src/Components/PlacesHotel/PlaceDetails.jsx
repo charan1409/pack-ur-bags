@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
+import "./Itenary.css";
 import Cookies from "js-cookie";
 
 import Img from "../viewplaces/ViewplacesComponents/Img";
@@ -74,6 +75,23 @@ function App(props) {
       navigate("/login");
     }
   };
+
+  const [day1Visible, setDay1Visible] = useState(false);
+  const [day2Visible, setDay2Visible] = useState(false);
+  const [day3Visible, setDay3Visible] = useState(false);
+
+  const toggleDay1Visibility = () => {
+    setDay1Visible(!day1Visible);
+  };
+
+  const toggleDay2Visibility = () => {
+    setDay2Visible(!day2Visible);
+  };
+
+  const toggleDay3Visibility = () => {
+    setDay3Visible(!day3Visible);
+  };
+
   return (
     <div>
       <Header
@@ -102,10 +120,60 @@ function App(props) {
                   </div>
                 </div>
                 <Info details={placedata.details} />
+
+                <h1>Itinerary</h1>
+                <div className="itinerary-container">
+                  <div className="day-container">
+                    <h3 onClick={toggleDay1Visibility}>Day 1</h3>
+                    {day1Visible && (
+                      <ul>
+                        <li>Arrive at your hotel</li>
+                        <li>Visit the local market</li>
+                        <li>Lunch at a local restaurant</li>
+                        <li>Explore the city's main attractions</li>
+                        <li>Dinner at a local restaurant</li>
+                      </ul>
+                    )}
+                  </div>
+                  <div className="day-container">
+                    <h3 onClick={toggleDay2Visibility}>Day 2</h3>
+                    {day2Visible && (
+                      <ul>
+                        <li>Breakfast at your hotel</li>
+                        <li>Visit a nearby historic site</li>
+                        <li>Lunch at a local restaurant</li>
+                        <li>Relax at the beach</li>
+                        <li>Dinner at a local restaurant</li>
+                      </ul>
+                    )}
+                  </div>
+                  <div className="day-container">
+                    <h3 onClick={toggleDay3Visibility}>Day 3</h3>
+                    {day3Visible && (
+                      <ul>
+                        <li>Breakfast at your hotel</li>
+                        <li>Explore the city's museums</li>
+                        <li>Lunch at a local restaurant</li>
+                        <li>Shopping at the local markets</li>
+                        <li>Dinner at a local restaurant</li>
+                      </ul>
+                    )}
+                  </div>
+                </div>
+
                 {placedata.reviews.length !== 0 ? (
                   <>
-                  <hr style={{width: "95%", height:"5px", backgroundColor: "gray", marginLeft:"2%"}} />
-                    <h3 style={{fontSize: "25px",marginLeft:"30px"}}>Reviews:</h3>
+                    <hr
+                      style={{
+                        width: "95%",
+                        height: "5px",
+                        backgroundColor: "gray",
+                        marginLeft: "2%",
+                      }}
+                    />
+                    <h3 style={{ fontSize: "25px", marginLeft: "30px" }}>
+                      Reviews:
+                    </h3>
                     {placedata.reviews.map((review, index) => {
                       return (
                         <Review
