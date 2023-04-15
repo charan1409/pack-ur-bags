@@ -22,6 +22,14 @@ const placeSchema = new mongoose.Schema({
   availability: Boolean,
   buseType: String,
   days: String,
+  threeDay: {
+    type: Object,
+    default: {},
+  },
+  fiveDay: {
+    type: Object,
+    default: {},
+  },
 });
 const place = mongoose.model("place", placeSchema);
 module.exports = place;

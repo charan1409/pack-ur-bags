@@ -34,6 +34,7 @@ const navItems = [
 ];
 function App(props) {
   const navigate = useNavigate();
+  const [days, setDays] = useState("threeDay")
   const [user, setUser] = useState(null);
   const [placedata, setPlacedata] = useState();
   const [loading, setLoading] = useState(false);
@@ -79,6 +80,8 @@ function App(props) {
   const [day1Visible, setDay1Visible] = useState(false);
   const [day2Visible, setDay2Visible] = useState(false);
   const [day3Visible, setDay3Visible] = useState(false);
+  const [day4Visible, setDay4Visible] = useState(false);
+  const [day5Visible, setDay5Visible] = useState(false);
 
   const toggleDay1Visibility = () => {
     setDay1Visible(!day1Visible);
@@ -90,6 +93,14 @@ function App(props) {
 
   const toggleDay3Visibility = () => {
     setDay3Visible(!day3Visible);
+  };
+
+  const toggleDay4Visibility = () => {
+    setDay4Visible(!day4Visible);
+  };
+
+  const toggleDay5Visibility = () => {
+    setDay5Visible(!day5Visible);
   };
 
   return (
@@ -116,50 +127,135 @@ function App(props) {
                         rating={placedata.rating}
                       />
                     </div>
-                    <Btn type="button" onClick={bookFunc} value="Book" />
+                    {/* <Btn type="button" onClick={bookFunc} value="Book" /> */}
                   </div>
                 </div>
                 <Info details={placedata.details} />
 
                 <h1>Itinerary</h1>
-                <div className="itinerary-container">
-                  <div className="day-container">
-                    <h3 onClick={toggleDay1Visibility}>Day 1</h3>
-                    {day1Visible && (
-                      <ul>
-                        <li>Arrive at your hotel</li>
-                        <li>Visit the local market</li>
-                        <li>Lunch at a local restaurant</li>
-                        <li>Explore the city's main attractions</li>
-                        <li>Dinner at a local restaurant</li>
-                      </ul>
-                    )}
-                  </div>
-                  <div className="day-container">
-                    <h3 onClick={toggleDay2Visibility}>Day 2</h3>
-                    {day2Visible && (
-                      <ul>
-                        <li>Breakfast at your hotel</li>
-                        <li>Visit a nearby historic site</li>
-                        <li>Lunch at a local restaurant</li>
-                        <li>Relax at the beach</li>
-                        <li>Dinner at a local restaurant</li>
-                      </ul>
-                    )}
-                  </div>
-                  <div className="day-container">
-                    <h3 onClick={toggleDay3Visibility}>Day 3</h3>
-                    {day3Visible && (
-                      <ul>
-                        <li>Breakfast at your hotel</li>
-                        <li>Explore the city's museums</li>
-                        <li>Lunch at a local restaurant</li>
-                        <li>Shopping at the local markets</li>
-                        <li>Dinner at a local restaurant</li>
-                      </ul>
-                    )}
-                  </div>
+                <div>
+                  <button
+                    className="btn1"
+                    onClick={() => {
+                      setDays("threeDay");
+                    }}
+                  >
+                    3-day
+                  </button>
+                  <button
+                    className="btn1"
+                    onClick={() => {
+                      setDays("fiveDay");
+                    }}
+                  >
+                    5-day
+                  </button>
                 </div>
+                {days === "threeDay" && (
+                  <div className="itinerary-container">
+                    <div className="day-container">
+                      <h3 onClick={toggleDay1Visibility}>Day 1</h3>
+                      {day1Visible && (
+                        <ul>
+                          <li>Arrive at your hotel</li>
+                          <li>Visit the local market</li>
+                          <li>Lunch at a local restaurant</li>
+                          <li>Explore the city's main attractions</li>
+                          <li>Dinner at a local restaurant</li>
+                        </ul>
+                      )}
+                    </div>
+                    <div className="day-container">
+                      <h3 onClick={toggleDay2Visibility}>Day 2</h3>
+                      {day2Visible && (
+                        <ul>
+                          <li>Breakfast at your hotel</li>
+                          <li>Visit a nearby historic site</li>
+                          <li>Lunch at a local restaurant</li>
+                          <li>Relax at the beach</li>
+                          <li>Dinner at a local restaurant</li>
+                        </ul>
+                      )}
+                    </div>
+                    <div className="day-container">
+                      <h3 onClick={toggleDay3Visibility}>Day 3</h3>
+                      {day3Visible && (
+                        <ul>
+                          <li>Breakfast at your hotel</li>
+                          <li>Explore the city's museums</li>
+                          <li>Lunch at a local restaurant</li>
+                          <li>Shopping at the local markets</li>
+                          <li>Dinner at a local restaurant</li>
+                        </ul>
+                      )}
+                    </div>
+                    <Btn type="button" onClick={bookFunc} value="Book" />
+                  </div>)}
+                {days === "fiveDay" && (
+                  <div className="itinerary-container">
+                    <div className="day-container">
+                      <h3 onClick={toggleDay1Visibility}>Day 1</h3>
+                      {day1Visible && (
+                        
+                        <ul>
+                          <li>Arrive at your hotel</li>
+                          <li>Visit the local market</li>
+                          <li>Lunch at a local restaurant</li>
+                          <li>Explore the city's main attractions</li>
+                          <li>Dinner at a local restaurant</li>
+                        </ul>
+                      )}
+                    </div>
+                    <div className="day-container">
+                      <h3 onClick={toggleDay2Visibility}>Day 2</h3>
+                      {day2Visible && (
+                        <ul>
+                          <li>Breakfast at your hotel</li>
+                          <li>Visit a nearby historic site</li>
+                          <li>Lunch at a local restaurant</li>
+                          <li>Relax at the beach</li>
+                          <li>Dinner at a local restaurant</li>
+                        </ul>
+                      )}
+                    </div>
+                    <div className="day-container">
+                      <h3 onClick={toggleDay3Visibility}>Day 3</h3>
+                      {day3Visible && (
+                        <ul>
+                          <li>Breakfast at your hotel</li>
+                          <li>Explore the city's museums</li>
+                          <li>Lunch at a local restaurant</li>
+                          <li>Shopping at the local markets</li>
+                          <li>Dinner at a local restaurant</li>
+                        </ul>
+                      )}
+                    </div>
+                    <div className="day-container">
+                      <h3 onClick={toggleDay4Visibility}>Day 4</h3>
+                      {day3Visible && (
+                        <ul>
+                          <li>Breakfast at your hotel</li>
+                          <li>Explore the city's museums</li>
+                          <li>Lunch at a local restaurant</li>
+                          <li>Shopping at the local markets</li>
+                          <li>Dinner at a local restaurant</li>
+                        </ul>
+                      )}
+                    </div>
+                    <div className="day-container">
+                      <h3 onClick={toggleDay5Visibility}>Day 5</h3>
+                      {day3Visible && (
+                        <ul>
+                          <li>Breakfast at your hotel</li>
+                          <li>Explore the city's museums</li>
+                          <li>Lunch at a local restaurant</li>
+                          <li>Shopping at the local markets</li>
+                          <li>Dinner at a local restaurant</li>
+                        </ul>
+                      )}
+                    </div>
+                    <Btn type="button" onClick={bookFunc} value="Book" />
+                  </div>)}
 
                 {placedata.reviews.length !== 0 ? (
                   <>

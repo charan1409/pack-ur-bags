@@ -95,14 +95,16 @@ router.post("/place/:id",upload.single('photo'), async(req, res) => {
       price: req.body.price,
       details: req.body.details,
       category: req.body.category,
-      busType: req.body.busType,
-      days: req.body.days,
       reviews: [],
       availability: true,
+      threeDay: JSON.parse(req.body.threeDay),
+      fiveDay: JSON.parse(req.body.fiveDay),
     });
+    console.log(JSON.parse(req.body.threeDay));
     await User.findOne({ username: username }).then((user) => {
       if(user.role === "admin"){
         newplace.save().then(() => {
+          console.log(newplace)
           res.status(200).json({ success: "place added Successfully" });
         });
       } else{
