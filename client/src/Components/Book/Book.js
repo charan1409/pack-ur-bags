@@ -43,6 +43,7 @@ function App(props) {
       .get(`http://localhost:9000/places/placedetails/${id}`)
       .then((resp) => {
         if (resp.status === 200) {
+          console.log(resp.data);
           setPlacedata(resp.data);
         } else {
           navigate("/error");
@@ -79,14 +80,14 @@ function App(props) {
         <div className="box1">
           {placedata ? (
             <div className="details">
-              <h2>From: {placedata.placeDetails.from}</h2>
-              <h2>To: {placedata.placeDetails.to}</h2>
-              <h2>Price per person: ₹{placedata.placeDetails.price}</h2>
+              <h2>From: {placedata.from}</h2>
+              <h2>To: {placedata.to}</h2>
+              <h2>Price per person: ₹{placedata.price}</h2>
             </div>
           ):<h2>Enjoy your trip</h2>}
         </div>
         <div className="box2">
-          <Form onSubmit={clicked} price={placedata?placedata.placeDetails.price:0} days={placedata?placedata.placeDetails.days:0}/>
+          <Form onSubmit={clicked} price={placedata?placedata.price:0} days={placedata?placedata.days:0}/>
         </div>
       </div>
     </div>

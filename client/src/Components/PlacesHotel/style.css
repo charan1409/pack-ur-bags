@@ -73,94 +73,8 @@ a {
     font-size: 20px;
 }
 
-.modal-bg {
-    height: 100vh;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    top: 0;
-    left: 0;
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibilty 0s, opacity 0.5s;
-}
-
-.bg-active {
-    visibility: visible;
-    opacity: 1;
-}
-
-.modal-bg .review-submit {
-    position: relative;
-    background-color: #fff;
-    height: 50%;
-    width: 40%;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-}
-
-.modal-bg .review-submit span {
-    position: absolute;
-    display: flex;
-    top: 0px;
-    right: 0px;
-    font-size: 20px;
-    width: 60px;
-    height: 40px;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.modal-bg .review-submit span:hover {
-    background-color: rgba(255, 0, 0, 0.734);
-    color: #fff;
-}
-
-.modal-bg .review-submit h2 {
-    text-align: center;
-    font-size: 25px; 
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.modal-bg .review-submit form {
-    padding: 20px 30px;
-}
-
-.modal-bg .review-submit label {
-    font-size: 18px;
-    margin-top: 5px;
-    text-transform: none;
-}
-
-.modal-bg .review-submit select {
-    border: 1px solid rgba(25, 19, 19, 0.764);
-    border-radius: 10px;
-    padding: 5px;
-    font-size: 15px;
-    text-transform: none;
-    cursor: pointer;
-}
-
-.modal-bg .review-submit textarea {
-    border: 3px solid rgba(25, 19, 19, 0.764);
-    border-radius: 10px;
-    margin-top: 10px;
-    padding: 5px;
-    font-size: 15px;
-    text-transform: none;
-}
-
 .place-box .review {
-    margin-top: 20px;
-    border-top: 2px solid rgba(28, 27, 27, 0.5);
-    padding: 20px;
+    padding: 7px;
 }
 
 .place-box .review h3 {
@@ -172,7 +86,7 @@ a {
     border: 2px solid rgba(0, 0, 0, 0.5);
     border-radius: 20px;
     box-sizing: border-box;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 20px;
     position: relative;
     padding: 10px;
@@ -195,6 +109,7 @@ a {
 .place-box .review .content p {
     margin-top: 10px;
     font-size: 12px;
+    text-transform: none;
  }
 
 .place-box .button {

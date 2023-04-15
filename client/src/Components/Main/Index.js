@@ -68,7 +68,6 @@ const Index = (props) => {
   }, [updated]);
   useEffect(() => {
     if (Cookies.get("user")) {
-      console.log("this is gonna redirect to index");
       axios.get(`http://localhost:9000/users/loguser`).then((resp) => {
         if (resp.status === 200) {
           if (resp.data.role === "admin" || resp.data.role === "root") {

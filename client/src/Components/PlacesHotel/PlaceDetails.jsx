@@ -104,7 +104,8 @@ function App(props) {
                 <Info details={placedata.details} />
                 {placedata.reviews.length !== 0 ? (
                   <>
-                    <h3>Reviews:</h3>
+                  <hr style={{width: "95%", height:"5px", backgroundColor: "gray", marginLeft:"2%"}} />
+                    <h3 style={{fontSize: "25px",marginLeft:"30px"}}>Reviews:</h3>
                     {placedata.reviews.map((review, index) => {
                       return (
                         <Review
