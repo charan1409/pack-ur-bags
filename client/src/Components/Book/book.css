@@ -112,15 +112,15 @@
   font-family: 'Nunito', sans-serif;
 }
 
-.book .row form .Passengers .box1 label {
+.passname label {
   font-size: 2rem;
   color: #666;
   width: 100%;
   padding: 0%;
 }
-.book .row form .Passengers .box1 label select{
+.passname select{
   font-size: 2rem;
-  width: 100%;
+  /* width: 100%; */
   margin: 0;
   text-align: center;
   margin-top: 8px;
@@ -138,4 +138,17 @@
   font-size: 2rem;
   color: #333;
   text-transform: none;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.passname select {
+  width: 15%;
+  padding: 1rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+  color: #333;
+  text-transform: none;
+  margin-left: 2%;
+  margin-right: 2%;
 }

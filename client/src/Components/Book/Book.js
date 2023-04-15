@@ -177,7 +177,7 @@ function App(props) {
             <h2>Enjoy your trip</h2>
           )}
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="passname">
           {passengers.map((passenger, index) => (
             <div key={index}>
               <label htmlFor={`name${index}`}>Name:</label>
@@ -206,17 +206,23 @@ function App(props) {
                 id={`age${index}`}
                 value={passenger.age}
                 onChange={(event) => handlePassengerChange(index, event)}
+                style={{width:"70px"}}
               />
               <button
                 type="button"
                 onClick={() => handleDeletePassenger(index)}
               >
-                Delete
+                <i className="fas fa-trash-alt"
+                style={{color:"red",fontSize:"20px", cursor:"pointer", padding:"5px"}}
+                ></i>
               </button>
             </div>
           ))}
           <button type="button" onClick={handleAddPassenger}>
-            Add Passenger
+            {/* Add Passenger */}
+            <i className="fas fa-user-plus"
+            style={{color:"green",fontSize:"20px", cursor:"pointer", padding:"5px"}}
+            ></i>
           </button>
           <br />
           <br />
@@ -242,7 +248,8 @@ function App(props) {
           </select>
           <br />
           <br />
-          <button type="submit">Book</button>
+          <button type="submit" className="btn">Book
+          </button>
         </form>
       </div>
     </div>
