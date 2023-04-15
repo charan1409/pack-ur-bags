@@ -101,16 +101,16 @@ function Edit() {
                     {passengerDetails.map((passenger, key) => {
                         return (
                             <div className='edit-input' key={key}>
-                                <label>Name: </label>
-                                <input type="text" name='name' value={passenger.name} onChange={(e) => setPassengerDetails(update(key, e))} />
+                                <label style={{width: "30%"}}>Name: </label>
+                                <input type="text" name='name' value={passenger.name} onChange={(e) => setPassengerDetails(update(key, e))} style={{width: "80%"}}/>
                                 <label name='gender' value={passenger.gender} >Gender:
                                     <select name="gender" onChange={(e) => setPassengerDetails(update(key, e))}>
                                         <option value="male">male</option>
                                         <option value="female">female</option>
                                     </select>
                                 </label>
-                                <label>Age: </label>
-                                <input type="text" name='age' value={passenger.age} onChange={(e) => setPassengerDetails(update(key, e))} />
+                                <label style={{width: "30%"}}>Age: </label>
+                                <input type="text" name='age' value={passenger.age} onChange={(e) => setPassengerDetails(update(key, e))} style={{width: "30%"}} />
                                 <button onClick={(e) => {
                                     e.preventDefault();
                                     let regpass = tours.passengers;
@@ -130,7 +130,13 @@ function Edit() {
                                         gender: "male",
                                         age: "",
                                     });
-                                }}><i className="fas fa-trash-alt"></i></button>
+                                }}><i className="fas fa-trash-alt"
+                                    style={{
+                                        color: "red",
+                                        fontSize: "1.5rem",
+                                        cursor: "pointer",
+                                    }}
+                                ></i></button>
                             </div>
                         )
                     })}
@@ -168,7 +174,7 @@ function Edit() {
                                 value={passenger.age}
                                 type={"number"}
                                 name="age"
-                                holder={"Enter age"}
+                                holder={"age"}
                                 min={3}
                                 max={70}
                                 onChange={onChangeField}
@@ -226,7 +232,9 @@ function Edit() {
                             alert("You cannot select a date from within 3 days from today");
                         }
                     }
-                    } /><br/>
+                    } 
+                    />
+                    <br/>
                     <h2>Total price: {tours.passengers ? tours.passengers.length * tours.price : 0}</h2>
                     <Btn type="submit" value="Update" />
                 </form>

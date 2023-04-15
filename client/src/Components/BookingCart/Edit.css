@@ -36,7 +36,7 @@
 }
 
 .main .edit-box .edit-input input{
-    width: 100%;
+    /* width: 100%; */
     padding: 1rem;
     border: 0.1rem solid rgba(0, 0, 0, 0.1);
     justify-content: center;
@@ -47,7 +47,7 @@
 
 .main .edit-box .Passengers {
     /* border: 5px solid rgba(0, 0, 0, 0.607); */
-    padding: 1rem;
+    padding: 2rem;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
