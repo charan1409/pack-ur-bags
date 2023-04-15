@@ -29,10 +29,12 @@ app.use(
     parameterLimit: 50000,
   })
 );
-app.use(cors({
-  origin: "http://localhost:3000",
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 
 //connect to mongo
 mongoose
@@ -67,12 +69,14 @@ const swaggerOptions = {
       contact: {
         name: "Travel API",
       },
-      servers: [{
-        url: "http://localhost:9000"
-      }],
+      servers: [
+        {
+          url: "http://localhost:9000",
+        },
+      ],
     },
   },
-  apis: ["./index.js","./routes/*.js"],
+  apis: ["./index.js", "./routes/*.js"],
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -95,7 +99,6 @@ app.listen(port, function () {
   console.log("server is running on the port 9000");
 });
 
-
 // Swagger Testing --------------------------------------------------------------------------------
 /**
  * @swagger
@@ -107,7 +110,6 @@ app.listen(port, function () {
  *          200:
  *              description: To test Get Method
  */
-
 
 // Admin --------------------------------------------------------------------------------------------
 /**
@@ -122,7 +124,7 @@ app.listen(port, function () {
  *              description: To test Get Method
  *              content:
  *                  application/json:
- *                    schema: 
+ *                    schema:
  *                     type: object
  *                    properties:
  */
@@ -169,11 +171,10 @@ app.listen(port, function () {
  *              description: To test Get Method
  *              content:
  *                  application/json:
- *                    schema: 
+ *                    schema:
  *                     type: object
  *                    properties:
  */
-
 
 /**
  * @swagger
@@ -194,9 +195,8 @@ app.listen(port, function () {
  *              description: User Deleted
  *          500:
  *              description: Error
- * 
+ *
  */
-
 
 // Book --------------------------------------------------------------------------------------------
 /**
@@ -245,35 +245,33 @@ app.listen(port, function () {
  *              description: Internal Server Error
  */
 
-
 // index --------------------------------------------------------------------------------------------
 /**
-* @swagger
-* /index/fd:
-*  post:
-*     summary: Give feedback
-*     description: Give feedback
-*     tags: [Index]
-*     requestBody:
-*         required: true
-*         content:
-*             application/json:
-*                 schema:
-*                     type: object
-*                     properties:
-*                         username:
-*                             type: string
-*                         fdbk:
-*                             type: string
-*     responses:
-*         200:
-*             description: Added Successfully
-*         404:
-*             description: Not Found
-*         500:
-*             description: Internal Server Error
-*/
-
+ * @swagger
+ * /index/fd:
+ *  post:
+ *     summary: Give feedback
+ *     description: Give feedback
+ *     tags: [Index]
+ *     requestBody:
+ *         required: true
+ *         content:
+ *             application/json:
+ *                 schema:
+ *                     type: object
+ *                     properties:
+ *                         username:
+ *                             type: string
+ *                         fdbk:
+ *                             type: string
+ *     responses:
+ *         200:
+ *             description: Added Successfully
+ *         404:
+ *             description: Not Found
+ *         500:
+ *             description: Internal Server Error
+ */
 
 // payment--------------------------------------------------------------------------------------------
 /**
@@ -323,46 +321,46 @@ app.listen(port, function () {
  */
 
 /**
-* @swagger
-* /payment/post/{id}:
-*  post:
-*     summary: Doing Payment for a particular booking
-*     description: Doing Payment for a particular booking
-*     tags: [Payment]
-*     parameters:
-*          - in: path
-*            name: id
-*            required: true;
-*            description:  String
-*            schema:
-*               type: string
-*     requestBody:
-*         required: true
-*         content:
-*             application/json:
-*                 schema:
-*                     type: object
-*                     properties:
-*                         username:
-*                             type: string
-*                         number:
-*                             type: string
-*                         name:
-*                             type: string
-*                         expmonth:
-*                             type: string
-*                         expyear:
-*                             type: string
-*                         cvv:
-*                             type: string
-*     responses:
-*         200:
-*             description: Added Successfully
-*         404:
-*             description: Not Found
-*         500:
-*             description: Internal Server Error
-*/
+ * @swagger
+ * /payment/post/{id}:
+ *  post:
+ *     summary: Doing Payment for a particular booking
+ *     description: Doing Payment for a particular booking
+ *     tags: [Payment]
+ *     parameters:
+ *          - in: path
+ *            name: id
+ *            required: true;
+ *            description:  String
+ *            schema:
+ *               type: string
+ *     requestBody:
+ *         required: true
+ *         content:
+ *             application/json:
+ *                 schema:
+ *                     type: object
+ *                     properties:
+ *                         username:
+ *                             type: string
+ *                         number:
+ *                             type: string
+ *                         name:
+ *                             type: string
+ *                         expmonth:
+ *                             type: string
+ *                         expyear:
+ *                             type: string
+ *                         cvv:
+ *                             type: string
+ *     responses:
+ *         200:
+ *             description: Added Successfully
+ *         404:
+ *             description: Not Found
+ *         500:
+ *             description: Internal Server Error
+ */
 
 /**
  * @swagger
@@ -386,7 +384,6 @@ app.listen(port, function () {
  *          500:
  *              description: Internal Server Error
  */
-
 
 // places--------------------------------------------------------------------------------------------
 
@@ -438,118 +435,118 @@ app.listen(port, function () {
 
 // profile--------------------------------------------------------------------------------------------
 /**
-* @swagger
-* /profile/edit:
-*  post:
-*     summary: This is used to edit profile
-*     description: This is used to edit profile
-*     tags: [Profile]
-*     requestBody:
-*         required: true
-*         content:
-*             application/json:
-*                 schema:
-*                     type: object
-*                     properties:
-*                         username:
-*                             type: string
-*                         name:
-*                             type: string
-*                         phonenumber:
-*                             type: string
-*                         gender:
-*                             type: string
-*                         email:  
-*                             type: string
-*     responses:
-*         200:
-*             description: Added Successfully
-*         404:
-*             description: Not Found
-*         500:
-*             description: Internal Server Error
-*/
+ * @swagger
+ * /profile/edit:
+ *  post:
+ *     summary: This is used to edit profile
+ *     description: This is used to edit profile
+ *     tags: [Profile]
+ *     requestBody:
+ *         required: true
+ *         content:
+ *             application/json:
+ *                 schema:
+ *                     type: object
+ *                     properties:
+ *                         username:
+ *                             type: string
+ *                         name:
+ *                             type: string
+ *                         phonenumber:
+ *                             type: string
+ *                         gender:
+ *                             type: string
+ *                         email:
+ *                             type: string
+ *     responses:
+ *         200:
+ *             description: Added Successfully
+ *         404:
+ *             description: Not Found
+ *         500:
+ *             description: Internal Server Error
+ */
 
 /**
-* @swagger
-* /profile/changepass:
-*  post:
-*     summary: This is used to change password
-*     description: This is used to change password
-*     tags: [Profile]
-*     requestBody:
-*         required: true
-*         content:
-*             application/json:
-*                 schema:
-*                     type: object
-*                     properties:
-*                         email:  
-*                             type: string
-*                         oldpassword:
-*                             type: string
-*                         newpassword:
-*                             type: string
-*     responses:
-*         200:
-*             description: Added Successfully
-*         404:
-*             description: Not Found
-*         500:
-*             description: Internal Server Error
-*/
+ * @swagger
+ * /profile/changepass:
+ *  post:
+ *     summary: This is used to change password
+ *     description: This is used to change password
+ *     tags: [Profile]
+ *     requestBody:
+ *         required: true
+ *         content:
+ *             application/json:
+ *                 schema:
+ *                     type: object
+ *                     properties:
+ *                         email:
+ *                             type: string
+ *                         oldpassword:
+ *                             type: string
+ *                         newpassword:
+ *                             type: string
+ *     responses:
+ *         200:
+ *             description: Added Successfully
+ *         404:
+ *             description: Not Found
+ *         500:
+ *             description: Internal Server Error
+ */
 
 /**
-* @swagger
-* /profile/remove:
-*  post:
-*     summary: This is used to remove profile image 
-*     description: This is used to remove profile image
-*     tags: [Profile]
-*     requestBody:
-*         required: true
-*         content:
-*             application/json:
-*                 schema:
-*                     type: object
-*                     properties:
-*                         email:  
-*                             type: string
-*     responses:
-*         200:
-*             description: Added Successfully
-*         404:
-*             description: Not Found
-*         500:
-*             description: Internal Server Error
-*/
+ * @swagger
+ * /profile/remove:
+ *  post:
+ *     summary: This is used to remove profile image
+ *     description: This is used to remove profile image
+ *     tags: [Profile]
+ *     requestBody:
+ *         required: true
+ *         content:
+ *             application/json:
+ *                 schema:
+ *                     type: object
+ *                     properties:
+ *                         email:
+ *                             type: string
+ *     responses:
+ *         200:
+ *             description: Added Successfully
+ *         404:
+ *             description: Not Found
+ *         500:
+ *             description: Internal Server Error
+ */
 
 /**
-* @swagger
-* /profile/feedback:
-*  post:
-*     summary: This is used to change feedback from profile page
-*     description: This is used to change feedback from profile page
-*     tags: [Profile]
-*     requestBody:
-*         required: true
-*         content:
-*             application/json:
-*                 schema:
-*                     type: object
-*                     properties:
-*                         username:  
-*                             type: string
-*                         feedback:
-*                             type: string
-*     responses:
-*         200:
-*             description: Added Successfully
-*         404:
-*             description: Not Found
-*         500:
-*             description: Internal Server Error
-*/
+ * @swagger
+ * /profile/feedback:
+ *  post:
+ *     summary: This is used to change feedback from profile page
+ *     description: This is used to change feedback from profile page
+ *     tags: [Profile]
+ *     requestBody:
+ *         required: true
+ *         content:
+ *             application/json:
+ *                 schema:
+ *                     type: object
+ *                     properties:
+ *                         username:
+ *                             type: string
+ *                         feedback:
+ *                             type: string
+ *     responses:
+ *         200:
+ *             description: Added Successfully
+ *         404:
+ *             description: Not Found
+ *         500:
+ *             description: Internal Server Error
+ */
 
 /**
  * @swagger
@@ -570,9 +567,8 @@ app.listen(port, function () {
  *              description: User Deleted
  *          500:
  *              description: Error
- * 
+ *
  */
-
 
 // users--------------------------------------------------------------------------------------------
 
@@ -600,28 +596,28 @@ app.listen(port, function () {
  */
 
 /**
-* @swagger
-* /users/login:
-*  post:
-*     summary: This API is used to login and whether the user present or not
-*     description: This API is used to login and whether the user present or not
-*     tags: [Users]
-*     requestBody:
-*         required: true
-*         content:
-*             application/json:
-*                 schema:
-*                     type: object
-*                     properties:
-*                         username:
-*                             type: string
-*                         password:
-*                             type: string
-*     responses:
-*         200:
-*             description: Added Successfully
-*         404:
-*             description: Not Found
-*         500:
-*             description: Internal Server Error
-*/
+ * @swagger
+ * /users/login:
+ *  post:
+ *     summary: This API is used to login and whether the user present or not
+ *     description: This API is used to login and whether the user present or not
+ *     tags: [Users]
+ *     requestBody:
+ *         required: true
+ *         content:
+ *             application/json:
+ *                 schema:
+ *                     type: object
+ *                     properties:
+ *                         username:
+ *                             type: string
+ *                         password:
+ *                             type: string
+ *     responses:
+ *         200:
+ *             description: Added Successfully
+ *         404:
+ *             description: Not Found
+ *         500:
+ *             description: Internal Server Error
+ */
