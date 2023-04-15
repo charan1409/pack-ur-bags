@@ -48,7 +48,7 @@ const Review = () => {
               return (
                 <SwiperSlide key={key}>
                   <ReviewComp
-                    link={"http://localhost:9000/profileImgs/" + item.userDetails.image}
+                    link={item.userDetails.image}
                     name={item.userDetails.username}
                     data={item.feedback}
                   />

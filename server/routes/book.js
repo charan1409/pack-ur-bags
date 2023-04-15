@@ -6,7 +6,6 @@ router.use(cookieparser());
 const book = require('../schemas/booking');
 const User = require('../schemas/user');
 const Place = require('../schemas/place');
-// const verifier = require('../routes/verifier');
 
 router.get('/booking/:id',(req,res)=>{
     const placeid = req.params.id;
@@ -25,12 +24,12 @@ router.get('/book/:id', (req, res) => {
     })
 })
 
-router.post('/book/:id',async (req,res)=>{
+router.post('/booking/:id',async (req,res)=>{
     const id=Date.now()+""+Math.floor(Math.random()*10);
     const placeid=req.params.id;
     const username=req.body.username;
-    const fromdate=req.body.fromdate;
-    const todate=req.body.todate;
+    const fromdate=req.body.fromDate;
+    const todate=req.body.toDate;
     const paymentDone=req.body.paymentDone;
     const numberOfpassengers=req.body.numberOfpassengers;
     const passengers=req.body.passengers;
@@ -45,7 +44,6 @@ router.post('/book/:id',async (req,res)=>{
         passengers:passengers,
         placedetails:place
     })
-
     newBooking.save().then(book=>{
         res.status(200).json(id)
     })

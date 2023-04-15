@@ -34,7 +34,7 @@ const Feedbacks = () => {
               return (
                 <div className="place-box1">
                   <div className="feed-pic">
-                    <img src={"http://localhost:9000/profileImgs/"+feedback.userDetails.image} alt={"image"} />
+                    <img src={feedback.userDetails.image} alt={"image"} />
                   </div>
                   <div className="place-details">
                     <h1>{feedback.userDetails.username}</h1>

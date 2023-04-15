@@ -35,7 +35,6 @@ const Tours = (props) => {
     axios
       .get(`http://localhost:9000/payment/mybookings/${userL.username}`)
       .then((resp) => {
-        console.log(resp.data);
         setLoading(false);
         return setTours(resp.data);
       });
