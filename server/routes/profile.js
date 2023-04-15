@@ -10,11 +10,37 @@ router.use(cookieparser());
 const OTP = require("../schemas/otp");
 const User = require("../schemas/user");
 const Feedback = require("../schemas/feedback");
-const book = require("../schemas/booking");
+const TokenVerifier = require("../routes/TokenVerifier");
 
-// const verifier = require("../routes/verifier");
+router.get("/profileDetails/:id",TokenVerifier, async (req, res) => {
+  const username = req.params.id;
+  const verifiedEmail = req.user.id;
+  const user = await User.findOne({ username: username }).populate({
+    path: "tourReviews",
+    populate: { path: "place" },
+  }).populate("givenfeedback").exec();
+  if(user.email != verifiedEmail){
+    res.status(201).json({ error: "Invalid Email" });
+  } else{
+    const data = {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      role: user.role,
+      image: "http://localhost:9000/profileImgs/" + user.image,
+      imagegiven: user.imagegiven,
+      feedbackgiven: user.feedbackgiven,
+      givenfeedback: user.givenfeedback,
+      name: user.name,
+      phonenumber: user.phonenumber,
+      gender: user.gender,
+      tourReviews: user.tourReviews,
+    };
+    res.status(200).json(data);
+  }
+});
 
-router.post("/edit", async (req, res) => {
+router.post("/edit",TokenVerifier, async (req, res) => {
   const email = req.body.email;
   const name = req.body.name;
   const gender = req.body.gender;
@@ -41,9 +67,8 @@ router.post("/edit", async (req, res) => {
   }
 });
 
-router.post("/changepass", async (req, res) => {
+router.post("/changepass",TokenVerifier, async (req, res) => {
   const email = req.body.email;
-  const otp = req.body.otp;
   const pass = req.body.oldpassword;
   const pass1 = req.body.newpassword;
   const user = await User.findOne({ email: email });
@@ -98,7 +123,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-router.post("/upload", upload.single("image"), async (req, res) => {
+router.post("/upload",TokenVerifier, upload.single("image"), async (req, res) => {
   const email = req.body.email;
   const user = await User.findOne({ email: email });
   if (user) {
@@ -122,7 +147,7 @@ router.post("/upload", upload.single("image"), async (req, res) => {
   }
 });
 
-router.post("/remove", async (req, res) => {
+router.post("/remove",TokenVerifier, async (req, res) => {
   const email = req.body.email;
   const newvals = { image: "default.png", imagegiven: false };
   const user = await User.findOne({ email: email });
@@ -150,7 +175,7 @@ router.post("/remove", async (req, res) => {
   }
 });
 
-router.post("/feedback", async (req, res) => {
+router.post("/feedback",TokenVerifier, async (req, res) => {
   const id = req.body.id;
   const username = req.body.username;
   const feedback = req.body.feedback;
@@ -170,7 +195,7 @@ router.post("/feedback", async (req, res) => {
 });
 
 // For deleting feedback
-router.delete("/deletefeedback/:id", async (req, res) => {
+router.delete("/deletefeedback/:id",TokenVerifier, async (req, res) => {
   const id = req.params.id;
   const fd = await Feedback.findOne({ _id: id })
   .populate('userDetails')

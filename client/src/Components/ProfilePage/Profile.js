@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import Header from "../Navbar/Header";
 import "./clientprofile.css";
 import Tabledata from "./Tabledata";
 import Edityourprofile from "./Edityourprofile";
 import ChangePassword from "./ChangePassword";
-import axios from "axios";
+import Review from "./TourReviews";
 
 const navItems = [
   {
@@ -39,7 +41,7 @@ function Profile(props) {
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
     axios
-      .get(`http://localhost:9000/users/loguser/${userL.username}`)
+      .get(`http://localhost:9000/profile/profileDetails/${userL.username}`)
       .then(async (resp) => {
         localStorage.setItem("user", JSON.stringify(resp.data));
         if (resp.data) return setUser(resp.data);
@@ -213,8 +215,7 @@ function Profile(props) {
         <hr style={{ height: "5px", backgroundColor: "black" }} />
         <div className="latest-upcoming-booking" style={{ height: "150px" }}>
           <h2>
-            Your latest upcoming booking will appear here with view all booking
-            buttons
+            You don't have any near upcoming bookings.
           </h2>
         </div>
 
@@ -273,9 +274,23 @@ function Profile(props) {
         </div>
         <hr style={{ height: "5px", backgroundColor: "black" }} />
 
-        <div className="user-reviews" style={{ height: "150px" }}>
-          <h2>Your reviews to your tours will appear here with edit option.</h2>
-        </div>
+        {user.username && user.tourReviews.length !== 0 ? (
+                  <>
+                    {user.tourReviews.map((review,index) => {
+                      return (
+                        <Review
+                          key={index}
+                          from={review.place.from}
+                          to={review.place.to}
+                          rating={review.rating}
+                          review={review.review}
+                        />
+                      );
+                    })}
+                  </>
+                ) : (
+                  <h1>No reviews yet</h1>
+                )}
         <hr style={{ height: "5px", backgroundColor: "black" }} />
 
         <div>

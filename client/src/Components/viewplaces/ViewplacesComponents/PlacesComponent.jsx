@@ -1,5 +1,4 @@
 import React from "react";
-import Rating from "./Rating";
 import Img from "./Img";
 import Details from "./Details";
 import Btn from "../../Btn";

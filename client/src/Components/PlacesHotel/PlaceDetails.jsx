@@ -5,7 +5,6 @@ import Cookies from "js-cookie";
 
 import Img from "../viewplaces/ViewplacesComponents/Img";
 import Place from "../viewplaces/ViewplacesComponents/Details";
-import Rating from "../viewplaces/ViewplacesComponents/Rating";
 import Info from "./Info";
 import Review from "./Review";
 import Header from "../Navbar/Header";
@@ -105,7 +104,8 @@ function App(props) {
                 <Info details={placedata.details} />
                 {placedata.reviews.length !== 0 ? (
                   <>
-                    {placedata.reviews.map((review,index) => {
+                    <h3>Reviews:</h3>
+                    {placedata.reviews.map((review, index) => {
                       return (
                         <Review
                           key={index}

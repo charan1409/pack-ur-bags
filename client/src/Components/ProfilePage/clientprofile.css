@@ -185,6 +185,24 @@ h1 {
   overflow: hidden;
 }
 
+.profileTourReviews{
+  border: 1px solid black;
+  margin: 10px 0px 10px 0px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.profileTourReviews h5{
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.profileTourReviews p{
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: none;
+}
+
 .pass-modal-bg .edit-form form{
   display: flex;
   flex-direction: column;

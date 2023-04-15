@@ -3,7 +3,6 @@ import React from "react";
 function Review(props) {
   return (
     <div className="review" id="reviews">
-      <h3>Reviews:</h3>
       <div className="content">
         <img src={props.image} alt={props.alt} />
         <h5>{props.username}</h5>

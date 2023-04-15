@@ -36,6 +36,14 @@ function ViewPlace(props) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const userL = JSON.parse(localStorage.getItem("user"));
+    if (userL) {
+      axios
+        .get(`http://localhost:9000/users/loguser/${userL.username}`)
+        .then((resp) => {
+          return setUser(resp.data);
+        });
+    }
     axios
       .get(`http://localhost:9000/places/places/${category}`)
       .then((resp) => {
