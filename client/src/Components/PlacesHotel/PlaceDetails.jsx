@@ -105,12 +105,18 @@ function App(props) {
                 <Info details={placedata.details} />
                 {placedata.reviews.length !== 0 ? (
                   <>
-                    {placedata.reviews.map((review) => {
-                      <Review
-                        image={"http://localhost:9000/profileImgs/"+review.user.image}
-                        username={review.user.username}
-                        review={review.review}
-                      />;
+                    {placedata.reviews.map((review,index) => {
+                      return (
+                        <Review
+                          key={index}
+                          image={
+                            "http://localhost:9000/profileImgs/" +
+                            review.user.image
+                          }
+                          username={review.user.username}
+                          review={review.review}
+                        />
+                      );
                     })}
                   </>
                 ) : (
