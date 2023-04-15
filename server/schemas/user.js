@@ -7,7 +7,11 @@ const UserSchema=new mongoose.Schema({
     phonenumber:String,
     email:String,
     gender:String,
-    image:String,
+    image:{
+        type:String,
+        default:'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-symbol-image-default-avatar-profile-icon-vector-social-media-user-symbol-209498286.jpg',
+        trim:true
+    },
     role:String,
     imagegiven:Boolean,
     feedbackgiven:Boolean,

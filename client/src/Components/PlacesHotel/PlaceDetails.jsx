@@ -275,7 +275,7 @@ function App(props) {
                         <Review
                           key={index}
                           image={
-                            "http://localhost:9000/profileImgs/" +
+                            // "http://localhost:9000/profileImgs/" +
                             review.user.image
                           }
                           username={review.user.username}

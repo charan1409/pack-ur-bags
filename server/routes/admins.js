@@ -1,14 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-const { check, validationResult, cookie } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const cookieparser = require("cookie-parser");
 router.use(cookieparser());
 const url = require("url");
 const multer = require('multer');
 const path = require("path");
-const fs = require("fs");
+const cloudinaryconfig = require('../cloudconfig')
 
 const book = require("../schemas/booking");
 const User = require("../schemas/user");
@@ -59,8 +58,6 @@ router.get("/users", (req, res) => {
 router.delete("/delete/:id", async (req, res) => {
   let username = req.params.id;
   await User.findOneAndDelete({ username: username }, async (err, doc) => {
-    const prof = doc.image
-    if(prof !== "default.png") fs.unlink(prof)
     await book.deleteMany({ username: username });
     await fdb.deleteOne({username: doc.username});
     if (err) {
@@ -87,11 +84,20 @@ router.post("/place/:id",upload.single('photo'), async(req, res) => {
     res.status(201).json({ error: "error occurred" });
   } else {
     let username = req.params.id;
+    const cloudinary_response = await cloudinaryconfig.v2.uploader.upload(
+      req.file.path, {
+				upload_preset: "Post2022",
+			}
+    ).catch(err => {
+      console.log(err);
+      res.status(201).json({ error: "error uploading image." });
+      return
+    });
     const newplace = new Place({
       id: req.body.id,
       from: req.body.from,
       to: req.body.to,
-      photo: "http://localhost:9000/places/"+req.file.filename,
+      photo: cloudinary_response.secure_url,
       price: req.body.price,
       details: req.body.details,
       category: req.body.category,
@@ -127,8 +133,6 @@ router.get("/packages", (req, res) => {
 router.delete("/deleteplace/:id", async (req, res) => {
   let id = req.params.id;
   Place.findOneAndDelete({ id: id }, async (err, doc) => {
-    // const prof = doc.photo
-    // if(prof !== "default.png") fs.unlink(prof)
     if (err) {
       console.log(err);
     } else {

@@ -7,6 +7,7 @@ const bcrypt = require("bcryptjs");
 const cookieparser = require("cookie-parser");
 router.use(cookieparser());
 
+const cloudinaryconfig = require('../cloudconfig')
 const OTP = require("../schemas/otp");
 const User = require("../schemas/user");
 const Feedback = require("../schemas/feedback");
@@ -27,7 +28,7 @@ router.get("/profileDetails/:id",TokenVerifier, async (req, res) => {
       username: user.username,
       email: user.email,
       role: user.role,
-      image: "http://localhost:9000/profileImgs/" + user.image,
+      image: user.image,
       imagegiven: user.imagegiven,
       feedbackgiven: user.feedbackgiven,
       givenfeedback: user.givenfeedback,
@@ -124,24 +125,26 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 router.post("/upload",TokenVerifier, upload.single("image"), async (req, res) => {
+  console.log(req.body);
   const email = req.body.email;
   const user = await User.findOne({ email: email });
   if (user) {
+    const cloudinary_response = await cloudinaryconfig.v2.uploader.upload(
+      req.file.path, {
+				upload_preset: "Post2022",
+			}
+    ).catch(err => {
+      console.log(err);
+      res.status(201).json({ error: "error uploading image." });
+      return
+    });
     await User.findOneAndUpdate(
       { email: email },
-      { image: req.file.filename, imagegiven: true },
-      async function (err) {
-        if (err) throw err;
-        await Feedback.findOneAndUpdate(
-          { username: user.username },
-          { image: req.file.filename },
-          async function (err) {
-            if (err) throw err;
-          }
-        );
-        res.status(200).json({ succ: "profile updated successfully." });
-      }
-    );
+      { image: cloudinary_response.secure_url, imagegiven: true }).then(res=>{
+        return res.status(200).json({ succ: "profile updated successfully." });
+      }).catch(err=>{
+        return res.status(201).json({ error: "error uploading image." });
+      })
   } else {
     res.status(201).json({ error: "user not found." });
   }
@@ -149,7 +152,7 @@ router.post("/upload",TokenVerifier, upload.single("image"), async (req, res) =>
 
 router.post("/remove",TokenVerifier, async (req, res) => {
   const email = req.body.email;
-  const newvals = { image: "default.png", imagegiven: false };
+  const newvals = { image: "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-symbol-image-default-avatar-profile-icon-vector-social-media-user-symbol-209498286.jpg", imagegiven: false };
   const user = await User.findOne({ email: email });
   if (user) {
     await User.findOneAndUpdate(
@@ -157,17 +160,10 @@ router.post("/remove",TokenVerifier, async (req, res) => {
       newvals,
       async function (err) {
         if (err) throw err;
-        fs.unlink("./public/profileImgs/" + user.image, (err) => {
-          if (err) throw err;
-        });
-        Feedback.findOneAndUpdate(
-          { username: user.username },
-          { image: "default.png" },
-          async function (err) {
-            if (err) throw err;
-          }
-        );
-        res.status(200).json({ succ: "profile updated successfully" });
+       
+        else {
+            res.status(200).json({ succ: "profile updated successfully." });
+        }
       }
     );
   } else {

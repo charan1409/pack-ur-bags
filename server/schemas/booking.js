@@ -16,7 +16,10 @@ const bookSchema=new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'payment'
     },
-    reviewGiven: Boolean
+    reviewGiven: {
+        type: Boolean,
+        default: false
+    }
 });
 const booking=mongoose.model('book',bookSchema);
 module.exports=booking;

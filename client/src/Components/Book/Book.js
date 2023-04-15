@@ -29,38 +29,120 @@ const navItems = [
 function App(props) {
   const navigate = useNavigate();
   const [user, setUser] = useState({});
-  const {id} = useParams();
+  const { id } = useParams();
   const [placedata, setPlacedata] = useState();
+  const [passengers, setPassengers] = useState([
+    { name: "", gender: "Male", age: "" },
+  ]);
+  const [fromDate, setFromDate] = useState("");
+  const [numberOfDays, setNumberOfDays] = useState("threeDay");
+  const [errors, setErrors] = useState([]);
+
+  const handleAddPassenger = () => {
+    if (
+      passengers[passengers.length - 1].name !== "" &&
+      passengers[passengers.length - 1].age !== ""
+    ) {
+      setPassengers([...passengers, { name: "", gender: "Male", age: "" }]);
+    } else {
+      alert("Please fill the previous passenger details");
+    }
+  };
+
+  const handlePassengerChange = (index, event) => {
+    const { name, value } = event.target;
+    const newPassengers = [...passengers];
+    newPassengers[index][name] = value;
+    setPassengers(newPassengers);
+  };
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
     axios
       .get(`http://localhost:9000/users/loguser/${userL.username}`)
       .then((resp) => {
-        if(resp.data) return setUser(resp.data);
-        else navigate("/error")
+        if (resp.data) return setUser(resp.data);
+        else navigate("/error");
       });
     axios
       .get(`http://localhost:9000/places/placedetails/${id}`)
       .then((resp) => {
         if (resp.status === 200) {
-          console.log(resp.data);
           setPlacedata(resp.data);
         } else {
           navigate("/error");
         }
       });
-  }, [id,navigate]);
+  }, [id, navigate]);
 
-  function clicked(event) {
-    event.preventDefault();
-    axios.get(`http://localhost:9000/book/booking/${id}`).then((resp) => {
-      if (resp.status === 200) {
-        navigate(`/payment/${id}`);
-      } else {
-        navigate("/error");
+  const validatePassengers = () => {
+    const errors = [];
+
+    passengers.forEach((passenger, index) => {
+      if (!passenger.name) {
+        errors.push(`Name is required for passenger ${index + 1}`);
+      }
+
+      if (!passenger.gender) {
+        errors.push(`Gender is required for passenger ${index + 1}`);
+      }
+
+      if (!passenger.age) {
+        errors.push(`Age is required for passenger ${index + 1}`);
+      }
+
+      if(fromDate === "") {
+        errors.push(`Please select a date`);
       }
     });
-  }
+
+    setErrors(errors);
+
+    return errors.length === 0;
+  };
+
+  const handleFromDateChange = (e) => {
+    setFromDate(e.target.value);
+  };
+
+  const handleDeletePassenger = (index) => {
+    const newPassengers = [...passengers];
+    newPassengers.splice(index, 1);
+    setPassengers(newPassengers);
+  };
+
+  const today = new Date();
+  today.setDate(today.getDate() + 2);
+  const minDate = today.toISOString().split("T")[0];
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const isValid = validatePassengers();
+    if (isValid) {
+      const toDate = new Date(fromDate);
+      if (numberOfDays === "threeDay") {
+        toDate.setDate(toDate.getDate() + 3);
+      } else if (numberOfDays === "fiveDay") {
+        toDate.setDate(toDate.getDate() + 5);
+      }
+      const booking = {
+        passengers: passengers,
+        fromDate: fromDate,
+        username: user.username,
+        toDate: toDate.toISOString().slice(0, 10),
+        numberOfpassengers: passengers.length,
+        paymentDone: false,
+      };
+      axios
+        .post(`http://localhost:9000/book/booking/${id}`, booking)
+        .then((resp) => {
+          if (resp.status === 200) {
+            navigate(`/payment/${resp.data}`);
+          } else {
+            navigate("/error");
+          }
+        });
+    }
+  };
   return (
     <div className="book">
       <Header user={user} navItems={navItems} />
@@ -76,6 +158,13 @@ function App(props) {
           <span>W</span>
         </h1>
       </div>
+      {errors.length > 0 && (
+        <ul>
+          {errors.map((error,index) => (
+            <li key={index}>{error}</li>
+          ))}
+        </ul>
+      )}
       <div className="row">
         <div className="box1">
           {placedata ? (
@@ -84,11 +173,77 @@ function App(props) {
               <h2>To: {placedata.to}</h2>
               <h2>Price per person: ₹{placedata.price}</h2>
             </div>
-          ):<h2>Enjoy your trip</h2>}
+          ) : (
+            <h2>Enjoy your trip</h2>
+          )}
         </div>
-        <div className="box2">
-          <Form onSubmit={clicked} price={placedata?placedata.price:0} days={placedata?placedata.days:0}/>
-        </div>
+        <form onSubmit={handleSubmit}>
+          {passengers.map((passenger, index) => (
+            <div key={index}>
+              <label htmlFor={`name${index}`}>Name:</label>
+              <input
+                type="text"
+                name="name"
+                id={`name${index}`}
+                value={passenger.name}
+                onChange={(event) => handlePassengerChange(index, event)}
+              />
+              <label htmlFor={`gender${index}`}>Gender:</label>
+              <select
+                name="gender"
+                id={`gender${index}`}
+                value={passenger.gender}
+                onChange={(event) => handlePassengerChange(index, event)}
+              >
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+              <label htmlFor={`age${index}`}>Age:</label>
+              <input
+                type="number"
+                name="age"
+                id={`age${index}`}
+                value={passenger.age}
+                onChange={(event) => handlePassengerChange(index, event)}
+              />
+              <button
+                type="button"
+                onClick={() => handleDeletePassenger(index)}
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+          <button type="button" onClick={handleAddPassenger}>
+            Add Passenger
+          </button>
+          <br />
+          <br />
+          <label>
+            From Date:
+            <input
+              type="date"
+              value={fromDate}
+              min={minDate}
+              onChange={handleFromDateChange}
+            />
+          </label>
+          <br />
+          <br />
+          <label>Number of Days:</label>
+          <select
+            name="numberOfDays"
+            value={numberOfDays}
+            onChange={(e) => setNumberOfDays(e.target.value)}
+          >
+            <option value="threeDay">Three Day</option>
+            <option value="fiveDay">five Day</option>
+          </select>
+          <br />
+          <br />
+          <button type="submit">Book</button>
+        </form>
       </div>
     </div>
   );
