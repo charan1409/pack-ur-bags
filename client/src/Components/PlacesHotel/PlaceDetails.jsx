@@ -96,8 +96,8 @@ function App(props) {
                         to={placedata.to}
                         details={placedata.status}
                         price={placedata.price}
+                        rating={placedata.rating}
                       />
-                      <Rating />
                     </div>
                     <Btn type="button" onClick={bookFunc} value="Book" />
                   </div>

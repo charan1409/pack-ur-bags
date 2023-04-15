@@ -95,6 +95,7 @@ function ViewPlace(props) {
                   to={x.to}
                   details={x.details}
                   price={x.price}
+                  rating={x.rating}
                   onClickBook={() => {
                     if (!Cookies.get("user")) {
                       var date = new Date();

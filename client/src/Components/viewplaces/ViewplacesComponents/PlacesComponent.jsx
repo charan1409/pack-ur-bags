@@ -11,8 +11,7 @@ function Components(props) {
       <Img photo={props.photo} alt="image related to place" />
       <div className="place-details">
         <div>
-        <Details price={props.price} from={props.from} to={props.to} details={props.details} />
-        <Rating rate={props.rate} />
+        <Details price={props.price} from={props.from} to={props.to} details={props.details} rating={props.rating}/>
         </div>
         <div className="button-holder">
           <div>
