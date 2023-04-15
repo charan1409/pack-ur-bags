@@ -20,8 +20,18 @@ function AddPlaces(props) {
     price: "",
     details: "",
     category: "",
-    busType: "",
-    days: 0,
+    threeDay:{
+      day1:"",
+      day2:"",
+      day3:""
+    },
+    fiveDay:{
+      day1:"",
+      day2:"",
+      day3:"",
+      day4:"",
+      day5:""
+    }
   });
 
   useEffect(() => {
@@ -36,8 +46,8 @@ function AddPlaces(props) {
             price: resp.data.price,
             details: resp.data.details,
             category: resp.data.category,
-            busType: resp.data.busType,
-            days: resp.data.days,
+            threeDay:resp.data.threeDay,
+            fiveDay:resp.data.fiveDay
           };
           setplaceinfo(pl);
           console.log("dfkgo" + placeinfo.from);
@@ -54,6 +64,30 @@ function AddPlaces(props) {
     setplaceinfo(nextFieldState);
   };
 
+  const onUpdateField2 = (e) => {
+    const nextFieldState1 = {
+      ...placeinfo.threeDay,
+      [e.target.name]: e.target.value,
+    };
+    const nextFieldState = {
+      ...placeinfo,
+      threeDay: nextFieldState1,
+    };
+    setplaceinfo(nextFieldState);
+  };
+
+  const onUpdateField3 = (e) => {
+    const nextFieldState1 = {
+      ...placeinfo.fiveDay,
+      [e.target.name]: e.target.value,
+    };
+    const nextFieldState = {
+      ...placeinfo,
+      fiveDay: nextFieldState1,
+    };
+    setplaceinfo(nextFieldState);
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
     const fd = new FormData();
@@ -62,14 +96,17 @@ function AddPlaces(props) {
     fd.append("to", placeinfo.to);
     fd.append("details", placeinfo.details);
     fd.append("category", placeinfo.category);
-    fd.append("busType", placeinfo.busType);
-    fd.append("days", placeinfo.days);
     fd.append("photo", image);
+    fd.append("threeDay", JSON.stringify(placeinfo.threeDay));
+    fd.append("fiveDay", JSON.stringify(placeinfo.fiveDay));
     axios
       .post(`http://localhost:9000/admins/place/${user.username}`, fd, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((resp) => {
+        for (const entry of fd.entries()) {
+          console.log(entry[0], entry[1]);
+        }
         if (resp.status === 200) {
           setplaceinfo({
             from: "",
@@ -77,6 +114,18 @@ function AddPlaces(props) {
             price: "",
             details: "",
             category: "",
+            threeDay:{
+              day1:"",
+              day2:"",
+              day3:""
+            },
+            fiveDay:{
+              day1:"",
+              day2:"",
+              day3:"",
+              day4:"",
+              day5:""
+            }
           });
           setImage();
           alert(resp.data.success);
@@ -148,9 +197,83 @@ function AddPlaces(props) {
             name={"category"}
             value={placeinfo.category}
             onChange={onUpdateField}
-          />
+          /><br/>
 
-          <select name="days" onChange={onUpdateField} style={{marginLeft: "30%"}}>
+          <h2>Three day</h2><br/>
+          <label htmlFor="day1">Day1: </label>
+          <input
+            placeholder={"Day1"}
+            leftIcon={"bi bi-card-text"}
+            type={"text"}
+            name={"day1"}
+            value={placeinfo.threeDay.day1}
+            onChange={onUpdateField2}
+          />
+          <label htmlFor="day2">Day2: </label>
+          <input
+            placeholder={"Day2"}
+            leftIcon={"bi bi-card-text"}
+            type={"text"}
+            name={"day2"}
+            value={placeinfo.threeDay.day2}
+            onChange={onUpdateField2}
+          />
+          <label htmlFor="day3">Day3: </label>
+          <input
+            placeholder={"Day3"}
+            leftIcon={"bi bi-card-text"}
+            type={"text"}
+            name={"day3"}
+            value={placeinfo.threeDay.day3}
+            onChange={onUpdateField2}
+          />
+          <h2>Five day</h2><br/>
+          <label htmlFor="day1">Day1: </label>
+          <input
+            placeholder={"Day1"}
+            leftIcon={"bi bi-card-text"}
+            type={"text"}
+            name={"day1"}
+            value={placeinfo.fiveDay.day1}
+            onChange={onUpdateField3}
+          />
+          <label htmlFor="day2">Day2: </label>
+          <input
+            placeholder={"Day2"}
+            leftIcon={"bi bi-card-text"}
+            type={"text"}
+            name={"day2"}
+            value={placeinfo.fiveDay.day2}
+            onChange={onUpdateField3}
+          />
+          <label htmlFor="day3">Day3: </label>
+          <input
+            placeholder={"Day3"}
+            leftIcon={"bi bi-card-text"}
+            type={"text"}
+            name={"day3"}
+            value={placeinfo.fiveDay.day3}
+            onChange={onUpdateField3}
+          />
+          <label htmlFor="day4">Day4: </label>
+          <input
+            placeholder={"Day4"}
+            leftIcon={"bi bi-card-text"}
+            type={"text"}
+            name={"day4"}
+            value={placeinfo.fiveDay.day4}
+            onChange={onUpdateField3}
+          />
+          <label htmlFor="day5">Day5: </label>
+          <input
+            placeholder={"Day5"}
+            leftIcon={"bi bi-card-text"}
+            type={"text"}
+            name={"day5"}
+            value={placeinfo.fiveDay.day5}
+            onChange={onUpdateField3}
+          />
+          {/* <select name="days" onChange={onUpdateField} style={{marginLeft: "30%"}}>
             <option>No.of days</option>
             {days.map((option, index) => {
               return <option key={index}>{option}</option>;
@@ -161,14 +284,14 @@ function AddPlaces(props) {
             {busType.map((option, index) => {
               return <option key={index}>{option}</option>;
             })}
-          </select>
+          </select> */}
           <input
             style={{marginLeft: "30%"}}
             placeholder="choose picture"
             type="file"
             name="photo"
             onChange={(e) => setImage(e.target.files[0])}
-          />
+          /><br/>
           <Btn type="submit" value="Add" />
         </form>
       </div>
