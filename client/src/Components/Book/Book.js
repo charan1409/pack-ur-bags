@@ -43,8 +43,10 @@ function App(props) {
       passengers[passengers.length - 1].age !== ""
     ) {
       setPassengers([...passengers, { name: "", gender: "Male", age: "" }]);
-    } else {
-      alert("Please fill the previous passenger details");
+    } else if(passengers.length >= 10){
+      errors.push("Maximum 10 passengers are allowed");
+    }else {
+      errors.push("Please fill the previous passenger details");
     }
   };
 
