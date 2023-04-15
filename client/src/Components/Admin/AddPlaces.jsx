@@ -9,8 +9,6 @@ import { navItems } from "./NavItems";
 function AddPlaces(props) {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
-  const days = ["Three", "Five", "Both"];
-  const busType = ["AC", "NON-AC", "Both"];
   const { id } = useParams();
 
   const [image, setImage] = useState();
