@@ -213,13 +213,6 @@ function Profile(props) {
       </div>
       <div className="profile-down">
         <hr style={{ height: "5px", backgroundColor: "black" }} />
-        <div className="latest-upcoming-booking" style={{ height: "150px" }}>
-          <h2>
-            You don't have any near upcoming bookings.
-          </h2>
-        </div>
-
-        <hr style={{ height: "5px", backgroundColor: "black" }} />
         <div className="user-feedback" >
           <h2>
             {user.givenfeedback ? (
