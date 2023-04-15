@@ -232,7 +232,7 @@ function App(props) {
                     </div>
                     <div className="day-container">
                       <h3 onClick={toggleDay4Visibility}>Day 4</h3>
-                      {day3Visible && (
+                      {day4Visible && (
                         <ul>
                           <li>Breakfast at your hotel</li>
                           <li>Explore the city's museums</li>
@@ -244,7 +244,7 @@ function App(props) {
                     </div>
                     <div className="day-container">
                       <h3 onClick={toggleDay5Visibility}>Day 5</h3>
-                      {day3Visible && (
+                      {day5Visible && (
                         <ul>
                           <li>Breakfast at your hotel</li>
                           <li>Explore the city's museums</li>
