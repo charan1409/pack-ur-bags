@@ -10,7 +10,6 @@ router.get("/pay/:id", (req, res) => {
     .exec((err, bookings) => {
       if (err) res.status(201).json({ error: "Some error incurred." });
       else {
-        console.log(bookings);
         res.status(200).json(bookings);
       }
     });
@@ -21,7 +20,6 @@ router.get("/mybookings/:id", async (req, res) => {
   Book.find({ username: username, paymentDone: false })
     .populate("placedetails")
     .exec((err, bookings) => {
-      console.log(bookings);
       if (err) res.status(201).json({ error: "Some error incurred." });
       else {
         res.status(200).json(bookings);
@@ -138,7 +136,6 @@ router.delete("/deleteBooking/:id", async (req, res) => {
   let bookid = req.params.id;
   const booking = await Book.findOne({ id: bookid }).populate("paymentDetails").exec();
   try {
-    console.log(booking);
     Book.findOneAndDelete({ id: bookid }).then((book) => {
       Pay.findOneAndDelete({ bookid: bookid }).then((pay) => {
         res.status(200).json({ msg: "Booking cancelled and your amount will be refunded" });

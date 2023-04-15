@@ -171,9 +171,7 @@ router.post("/generateOTP", async (req, res) => {
     }
     transporter.sendMail(message, (error, info) => {
       if (error) {
-        console.log(error);
-      } else {
-        console.log(`Email sent: ${info.response}`);
+        res.status(500).json({ msg: "Error sending OTP" });
       }
     });
     newOTP.save().then((otp) => {
