@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "AxiosConfig";
+import axios from "./AxiosConfig";
 
 import ScrollTop from "./Components/ScrollTop";
 import Index from "./Components/Main/Index";
