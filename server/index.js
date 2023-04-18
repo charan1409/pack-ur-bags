@@ -31,7 +31,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    // origin: "http://localhost:3000",s
     credentials: true,
   })
 );
@@ -72,6 +72,7 @@ const swaggerOptions = {
       servers: [
         {
           url: "http://localhost:9000",
+          url: "https://backend-packurbags.onrender.com",
         },
       ],
     },
