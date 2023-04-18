@@ -7,22 +7,26 @@ const bcrypt = require("bcryptjs");
 const cookieparser = require("cookie-parser");
 router.use(cookieparser());
 
-const cloudinaryconfig = require('../cloudconfig')
+const cloudinaryconfig = require("../cloudconfig");
 const OTP = require("../schemas/otp");
 const User = require("../schemas/user");
 const Feedback = require("../schemas/feedback");
 const TokenVerifier = require("../routes/TokenVerifier");
+const { error } = require("console");
 
-router.get("/profileDetails/:id",TokenVerifier, async (req, res) => {
+router.get("/profileDetails/:id", TokenVerifier, async (req, res) => {
   const username = req.params.id;
   const verifiedEmail = req.user.id;
-  const user = await User.findOne({ username: username }).populate({
-    path: "tourReviews",
-    populate: { path: "place" },
-  }).populate("givenfeedback").exec();
-  if(user.email != verifiedEmail){
+  const user = await User.findOne({ username: username })
+    .populate({
+      path: "tourReviews",
+      populate: { path: "place" },
+    })
+    .populate("givenfeedback")
+    .exec();
+  if (user.email != verifiedEmail) {
     res.status(201).json({ error: "Invalid Email" });
-  } else{
+  } else {
     const data = {
       id: user.id,
       username: user.username,
@@ -41,7 +45,7 @@ router.get("/profileDetails/:id",TokenVerifier, async (req, res) => {
   }
 });
 
-router.post("/edit",TokenVerifier, async (req, res) => {
+router.post("/edit", TokenVerifier, async (req, res) => {
   const email = req.body.email;
   const name = req.body.name;
   const gender = req.body.gender;
@@ -68,7 +72,7 @@ router.post("/edit",TokenVerifier, async (req, res) => {
   }
 });
 
-router.post("/changepass",TokenVerifier, async (req, res) => {
+router.post("/changepass", TokenVerifier, async (req, res) => {
   const email = req.body.email;
   const pass = req.body.oldpassword;
   const pass1 = req.body.newpassword;
@@ -124,35 +128,47 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-router.post("/upload",TokenVerifier, upload.single("image"), async (req, res) => {
-  console.log(req.body);
-  const email = req.body.email;
-  const user = await User.findOne({ email: email });
-  if (user) {
-    const cloudinary_response = await cloudinaryconfig.v2.uploader.upload(
-      req.file.path, {
-				upload_preset: "Post2022",
-			}
-    ).catch(err => {
-      console.log(err);
-      res.status(201).json({ error: "error uploading image." });
-      return
-    });
-    await User.findOneAndUpdate(
-      { email: email },
-      { image: cloudinary_response.secure_url, imagegiven: true }).then(res=>{
-        return res.status(200).json({ succ: "profile updated successfully." });
-      }).catch(err=>{
-        return res.status(201).json({ error: "error uploading image." });
-      })
-  } else {
-    res.status(201).json({ error: "user not found." });
+router.post(
+  "/upload",
+  TokenVerifier,
+  upload.single("image"),
+  async (req, res) => {
+    const email = req.body.email;
+    const user = await User.findOne({ email: email });
+    if (user) {
+      const cloudinary_response = await cloudinaryconfig.v2.uploader
+        .upload(req.file.path, {
+          upload_preset: "Post2022",
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(201).json({ error: "error uploading image." });
+          return;
+        });
+      User.findOneAndUpdate(
+        { email: email },
+        { image: cloudinary_response.secure_url, imagegiven: true }
+      )
+        .then((updated) => {
+          res.status(200).json({ succ: "profile updated successfully." });
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(201).json({ error: "error uploading image." });
+        });
+    } else {
+      res.status(201).json({ error: "user not found." });
+    }
   }
-});
+);
 
-router.post("/remove",TokenVerifier, async (req, res) => {
+router.post("/remove", TokenVerifier, async (req, res) => {
   const email = req.body.email;
-  const newvals = { image: "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-symbol-image-default-avatar-profile-icon-vector-social-media-user-symbol-209498286.jpg", imagegiven: false };
+  const newvals = {
+    image:
+      "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-symbol-image-default-avatar-profile-icon-vector-social-media-user-symbol-209498286.jpg",
+    imagegiven: false,
+  };
   const user = await User.findOne({ email: email });
   if (user) {
     await User.findOneAndUpdate(
@@ -160,9 +176,8 @@ router.post("/remove",TokenVerifier, async (req, res) => {
       newvals,
       async function (err) {
         if (err) throw err;
-       
         else {
-            res.status(200).json({ succ: "profile updated successfully." });
+          res.status(200).json({ succ: "profile updated successfully." });
         }
       }
     );
@@ -171,7 +186,7 @@ router.post("/remove",TokenVerifier, async (req, res) => {
   }
 });
 
-router.post("/feedback",TokenVerifier, async (req, res) => {
+router.post("/feedback", TokenVerifier, async (req, res) => {
   const id = req.body.id;
   const username = req.body.username;
   const feedback = req.body.feedback;
@@ -179,7 +194,7 @@ router.post("/feedback",TokenVerifier, async (req, res) => {
   if (user) {
     await Feedback.findOneAndUpdate(
       { _id: id },
-      { feedback: feedback},
+      { feedback: feedback },
       async function (err) {
         if (err) res.status(401).json({ succ: "Some error occurred." });
         res.status(200).json({ succ: "feedback submitted successfully" });
@@ -191,16 +206,14 @@ router.post("/feedback",TokenVerifier, async (req, res) => {
 });
 
 // For deleting feedback
-router.delete("/deletefeedback/:id",TokenVerifier, async (req, res) => {
+router.delete("/deletefeedback/:id", TokenVerifier, async (req, res) => {
   const id = req.params.id;
-  const fd = await Feedback.findOne({ _id: id })
-  .populate('userDetails')
-  .exec();
+  const fd = await Feedback.findOne({ _id: id }).populate("userDetails").exec();
   await Feedback.findOneAndDelete({ _id: id }, async function (err) {
     if (err) res.status(401).json({ succ: "Some error occurred." });
     await User.findOneAndUpdate(
       { username: fd.userDetails.username },
-      { feedbackgiven: false,$unset: { referencedDocument: '' } },
+      { feedbackgiven: false, $unset: { referencedDocument: "" } },
       async function (err) {
         if (err) res.status(401).json({ succ: "Some error occurred." });
         else res.status(200).json({ succ: "feedback deleted successfully" });
