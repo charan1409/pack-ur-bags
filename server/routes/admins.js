@@ -106,11 +106,9 @@ router.post("/place/:id",upload.single('photo'), async(req, res) => {
       threeDay: JSON.parse(req.body.threeDay),
       fiveDay: JSON.parse(req.body.fiveDay),
     });
-    console.log(JSON.parse(req.body.threeDay));
     await User.findOne({ username: username }).then((user) => {
-      if(user.role === "admin"){
+      if(user.role === "admin" || user.role === "root"){
         newplace.save().then(() => {
-          console.log(newplace)
           res.status(200).json({ success: "place added Successfully" });
         });
       } else{

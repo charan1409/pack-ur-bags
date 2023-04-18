@@ -48,7 +48,6 @@ function AddPlaces(props) {
             fiveDay:resp.data.fiveDay
           };
           setplaceinfo(pl);
-          console.log("dfkgo" + placeinfo.from);
         }
       });
     }

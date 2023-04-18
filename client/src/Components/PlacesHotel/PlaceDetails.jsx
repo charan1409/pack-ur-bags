@@ -157,11 +157,7 @@ function App(props) {
                       <h3 onClick={toggleDay1Visibility}>Day 1</h3>
                       {day1Visible && (
                         <ul>
-                          <li>Arrive at your hotel</li>
-                          <li>Visit the local market</li>
-                          <li>Lunch at a local restaurant</li>
-                          <li>Explore the city's main attractions</li>
-                          <li>Dinner at a local restaurant</li>
+                          <li>{placedata.threeDay.day1}</li>
                         </ul>
                       )}
                     </div>
@@ -169,11 +165,7 @@ function App(props) {
                       <h3 onClick={toggleDay2Visibility}>Day 2</h3>
                       {day2Visible && (
                         <ul>
-                          <li>Breakfast at your hotel</li>
-                          <li>Visit a nearby historic site</li>
-                          <li>Lunch at a local restaurant</li>
-                          <li>Relax at the beach</li>
-                          <li>Dinner at a local restaurant</li>
+                          <li>{placedata.threeDay.day2}</li>
                         </ul>
                       )}
                     </div>
@@ -181,11 +173,7 @@ function App(props) {
                       <h3 onClick={toggleDay3Visibility}>Day 3</h3>
                       {day3Visible && (
                         <ul>
-                          <li>Breakfast at your hotel</li>
-                          <li>Explore the city's museums</li>
-                          <li>Lunch at a local restaurant</li>
-                          <li>Shopping at the local markets</li>
-                          <li>Dinner at a local restaurant</li>
+                          <li>{placedata.threeDay.day3}</li>
                         </ul>
                       )}
                     </div>
@@ -198,11 +186,7 @@ function App(props) {
                       {day1Visible && (
                         
                         <ul>
-                          <li>Arrive at your hotel</li>
-                          <li>Visit the local market</li>
-                          <li>Lunch at a local restaurant</li>
-                          <li>Explore the city's main attractions</li>
-                          <li>Dinner at a local restaurant</li>
+                          <li>{placedata.fiveDay.day1}</li>
                         </ul>
                       )}
                     </div>
@@ -210,11 +194,7 @@ function App(props) {
                       <h3 onClick={toggleDay2Visibility}>Day 2</h3>
                       {day2Visible && (
                         <ul>
-                          <li>Breakfast at your hotel</li>
-                          <li>Visit a nearby historic site</li>
-                          <li>Lunch at a local restaurant</li>
-                          <li>Relax at the beach</li>
-                          <li>Dinner at a local restaurant</li>
+                          <li>{placedata.fiveDay.day2}</li>
                         </ul>
                       )}
                     </div>
@@ -222,11 +202,7 @@ function App(props) {
                       <h3 onClick={toggleDay3Visibility}>Day 3</h3>
                       {day3Visible && (
                         <ul>
-                          <li>Breakfast at your hotel</li>
-                          <li>Explore the city's museums</li>
-                          <li>Lunch at a local restaurant</li>
-                          <li>Shopping at the local markets</li>
-                          <li>Dinner at a local restaurant</li>
+                          <li>{placedata.fiveDay.day3}</li>
                         </ul>
                       )}
                     </div>
@@ -234,11 +210,7 @@ function App(props) {
                       <h3 onClick={toggleDay4Visibility}>Day 4</h3>
                       {day4Visible && (
                         <ul>
-                          <li>Breakfast at your hotel</li>
-                          <li>Explore the city's museums</li>
-                          <li>Lunch at a local restaurant</li>
-                          <li>Shopping at the local markets</li>
-                          <li>Dinner at a local restaurant</li>
+                          <li>{placedata.fiveDay.day4}</li>
                         </ul>
                       )}
                     </div>
@@ -246,11 +218,7 @@ function App(props) {
                       <h3 onClick={toggleDay5Visibility}>Day 5</h3>
                       {day5Visible && (
                         <ul>
-                          <li>Breakfast at your hotel</li>
-                          <li>Explore the city's museums</li>
-                          <li>Lunch at a local restaurant</li>
-                          <li>Shopping at the local markets</li>
-                          <li>Dinner at a local restaurant</li>
+                          <li>{placedata.fiveDay.day5}</li>
                         </ul>
                       )}
                     </div>
