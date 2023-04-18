@@ -31,13 +31,18 @@ app.use(
 );
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://frontend-packurbags.onrender.com/",
-    ],
     credentials: true,
   })
 );
+// app.use(
+//   cors({
+//     origin: [
+//       "https://frontend-packurbags.onrender.com/",
+//       "http://localhost:3000",
+//     ],
+//     credentials: true,
+//   })
+// );
 
 //connect to mongo
 mongoose
