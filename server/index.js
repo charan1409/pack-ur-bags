@@ -34,15 +34,23 @@ app.use(
     credentials: true,
   })
 );
-// app.use(
-//   cors({
-//     origin: [
-//       "https://frontend-packurbags.onrender.com/",
-//       "http://localhost:3000",
-//     ],
-//     credentials: true,
-//   })
-// );
+app.use((req, res, next) => {
+
+  res.header("Access-Control-Allow-Origin", "https://frontend-packurbags.onrender.com/");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+
+  // cors({
+  //   origin: [
+  //     "https://frontend-packurbags.onrender.com/",
+  //     "http://localhost:3000",
+  //   ],
+  //   credentials: true,
+  // })
+  next();
+}
+
+  
+);
 
 //connect to mongo
 mongoose
