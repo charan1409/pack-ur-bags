@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 import Header from "../Navbar/Header";
 import "./ViewAll.css";
 import Loading from "../Loading/Loading";
@@ -12,7 +12,7 @@ const ViewAll = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`http://localhost:9000/payment/mybookings/${id}`).then((resp) => {
+    axios.get(`payment/mybookings/${id}`).then((resp) => {
       if (resp.status !== 200) {
         alert(resp.data.msg);
       } else {

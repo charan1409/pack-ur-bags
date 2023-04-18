@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 import Header from "../Navbar/Header";
 import "./Feedbacks.css";
 import Loading from "../Loading/Loading";
@@ -10,7 +10,7 @@ const Feedbacks = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:9000/admins/feedbacks").then((resp) => {
+    axios.get("admins/feedbacks").then((resp) => {
       if (resp.status !== 200) {
         alert(resp.data.msg);
       } else {

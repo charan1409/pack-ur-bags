@@ -6,7 +6,7 @@ import "../Main/main.css";
 import img1 from "./img/chip.png";
 import img2 from "./img/visa.png";
 import Header from "../Navbar/Header";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 
 const Payment = () => {
   const navigate = useNavigate();
@@ -16,13 +16,11 @@ const Payment = () => {
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
     const fetchData = () => {
-      axios
-        .get(`http://localhost:9000/users/loguser/${userL.username}`)
-        .then((resp) => {
-          if (resp.data) setUser(resp.data);
-          else navigate("/error");
-        });
-      axios.get(`http://localhost:9000/payment/pay/${id}`).then((resp) => {
+      axios.get(`users/loguser/${userL.username}`).then((resp) => {
+        if (resp.data) setUser(resp.data);
+        else navigate("/error");
+      });
+      axios.get(`payment/pay/${id}`).then((resp) => {
         setDetails(resp.data);
       });
     };
@@ -51,16 +49,14 @@ const Payment = () => {
     setMonth("");
     setYear("");
     setCvv("");
-    axios
-      .post(`http://localhost:9000/payment/pay/${id}`, payment_data)
-      .then((resp) => {
-        if (resp.status === 200) {
-          alert(resp.data.msg);
-          navigate(`/index`);
-        } else {
-          navigate("/error");
-        }
-      });
+    axios.post(`payment/pay/${id}`, payment_data).then((resp) => {
+      if (resp.status === 200) {
+        alert(resp.data.msg);
+        navigate(`/index`);
+      } else {
+        navigate("/error");
+      }
+    });
   };
 
   function number_space() {
@@ -91,7 +87,7 @@ const Payment = () => {
     <>
       <Header user={user} navItems={navItems} />
       <div className="payment-container">
-       {details && (
+        {details && (
           <div className="bill-container">
             <div className="bill">
               <h1 className="head-tag">BILL</h1>
@@ -123,7 +119,9 @@ const Payment = () => {
                   </td>
                 </tr> */}
               </table>
-              <h1 className="head-tag2">Price: {details.numberOfpassengers * details.placedetails.price}</h1>
+              <h1 className="head-tag2">
+                Price: {details.numberOfpassengers * details.placedetails.price}
+              </h1>
             </div>
           </div>
         )}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 
 import Header from "../Navbar/Header";
 import "./clientprofile.css";
@@ -40,13 +40,11 @@ function Profile(props) {
 
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
-    axios
-      .get(`http://localhost:9000/profile/profileDetails/${userL.username}`)
-      .then(async (resp) => {
-        localStorage.setItem("user", JSON.stringify(resp.data));
-        if (resp.data) return setUser(resp.data);
-        else navigate("/error");
-      });
+    axios.get(`profile/profileDetails/${userL.username}`).then(async (resp) => {
+      localStorage.setItem("user", JSON.stringify(resp.data));
+      if (resp.data) return setUser(resp.data);
+      else navigate("/error");
+    });
     setEdit(false);
   }, [updated, setEdit]);
 
@@ -59,25 +57,7 @@ function Profile(props) {
       const fd = new FormData();
       fd.append("image", e.target.files[0], e.target.files[0].name);
       fd.append("email", user.email);
-      await axios
-        .post("http://localhost:9000/profile/upload", fd)
-        .then((resp) => {
-          if (resp.status === 200) {
-            update();
-            alert(resp.data.succ);
-          } else {
-            navigate("/error");
-          }
-        });
-    }
-  };
-  const imgDeleteHandler = async () => {
-    const fd = {
-      email: user.email,
-    };
-    await axios
-      .post("http://localhost:9000/profile/remove", fd)
-      .then((resp) => {
+      await axios.post("profile/upload", fd).then((resp) => {
         if (resp.status === 200) {
           update();
           alert(resp.data.succ);
@@ -85,6 +65,20 @@ function Profile(props) {
           navigate("/error");
         }
       });
+    }
+  };
+  const imgDeleteHandler = async () => {
+    const fd = {
+      email: user.email,
+    };
+    await axios.post("profile/remove", fd).then((resp) => {
+      if (resp.status === 200) {
+        update();
+        alert(resp.data.succ);
+      } else {
+        navigate("/error");
+      }
+    });
   };
 
   const changeFeedback = async (e) => {
@@ -94,21 +88,19 @@ function Profile(props) {
       username: user.username,
       feedback: feedback,
     };
-    await axios
-      .post("http://localhost:9000/profile/feedback", fd)
-      .then((resp) => {
-        if (resp.status === 200) {
-          update();
-          alert(resp.data.succ);
-        } else {
-          navigate("/error");
-        }
-      });
+    await axios.post("profile/feedback", fd).then((resp) => {
+      if (resp.status === 200) {
+        update();
+        alert(resp.data.succ);
+      } else {
+        navigate("/error");
+      }
+    });
   };
 
   const deleteFeedback = async () => {
     await axios
-      .delete(`http://localhost:9000/profile/deletefeedback/${user.givenfeedback._id}`)
+      .delete(`profile/deletefeedback/${user.givenfeedback._id}`)
       .then((resp) => {
         if (resp.status === 200) {
           update();
@@ -184,7 +176,7 @@ function Profile(props) {
                     className="btn_profile"
                     onClick={() => {
                       axios
-                        .post("http://localhost:9000/users/generateOTP", {
+                        .post("users/generateOTP", {
                           email: user.email,
                           keyword: "change password",
                         })
@@ -213,7 +205,7 @@ function Profile(props) {
       </div>
       <div className="profile-down">
         <hr style={{ height: "5px", backgroundColor: "black" }} />
-        <div className="user-feedback" >
+        <div className="user-feedback">
           <h2>
             {user.givenfeedback ? (
               <div className="">
@@ -268,22 +260,22 @@ function Profile(props) {
         <hr style={{ height: "5px", backgroundColor: "black" }} />
 
         {user.username && user.tourReviews.length !== 0 ? (
-                  <>
-                    {user.tourReviews.map((review,index) => {
-                      return (
-                        <Review
-                          key={index}
-                          from={review.place.from}
-                          to={review.place.to}
-                          rating={review.rating}
-                          review={review.review}
-                        />
-                      );
-                    })}
-                  </>
-                ) : (
-                  <h1>No reviews yet</h1>
-                )}
+          <>
+            {user.tourReviews.map((review, index) => {
+              return (
+                <Review
+                  key={index}
+                  from={review.place.from}
+                  to={review.place.to}
+                  rating={review.rating}
+                  review={review.review}
+                />
+              );
+            })}
+          </>
+        ) : (
+          <h1>No reviews yet</h1>
+        )}
         <hr style={{ height: "5px", backgroundColor: "black" }} />
 
         <div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 import { useNavigate } from "react-router-dom";
 
 import "./main.css";
@@ -17,17 +17,15 @@ const Feedback = (props) => {
         username: props.user.username,
         fdbk: fdbk,
       };
-      axios
-        .post("http://localhost:9000/index/fd", feedback_data)
-        .then((resp) => {
-          if (resp.status === 200) {
-            props.updated();
-            setFdbk("");
-            return alert("Thank's for giving your feedback😎");
-          } else {
-            navigate("/error");
-          }
-        });
+      axios.post("index/fd", feedback_data).then((resp) => {
+        if (resp.status === 200) {
+          props.updated();
+          setFdbk("");
+          return alert("Thank's for giving your feedback😎");
+        } else {
+          navigate("/error");
+        }
+      });
     }
   };
 

@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 import "./Admin.css";
 import Header from "../Navbar/Header";
-import {navItems} from "./NavItems";
+import { navItems } from "./NavItems";
 
 function Admin() {
   const navigate = useNavigate();
@@ -13,22 +13,18 @@ function Admin() {
   const [state, setState] = useState([]);
   const [datanotfound, setdatanotfound] = useState(true);
   const fetchUsers = useCallback(async () => {
-    await axios
-      .get(`http://localhost:9000/admins/users?role=${role}`)
-      .then((res) => {
-        return setData(res.data);
-      });
+    await axios.get(`admins/users?role=${role}`).then((res) => {
+      return setData(res.data);
+    });
   }, [role]);
   useEffect(() => {
     fetchUsers();
   }, [fetchUsers]);
 
   async function Deluser(a) {
-    await axios
-      .delete(`http://localhost:9000/admins/delete/${a}`)
-      .then((resp) => {
-        alert(resp.data.msg);
-      });
+    await axios.delete(`admins/delete/${a}`).then((resp) => {
+      alert(resp.data.msg);
+    });
     fetchUsers("user");
   }
   return (
@@ -96,9 +92,14 @@ function Admin() {
                       <td className="admin">{x.username}</td>
                       <td className="admin">{x.email}</td>
                       {role === "user" && (
-                        <td style={{"cursor":"pointer"}} onClick={() => {
-                          navigate(`/viewtours/${x.username}`);
-                        }}>view tours</td>
+                        <td
+                          style={{ cursor: "pointer" }}
+                          onClick={() => {
+                            navigate(`/viewtours/${x.username}`);
+                          }}
+                        >
+                          view tours
+                        </td>
                       )}
                       <td style={{ textAlign: "center" }}>
                         <i
@@ -117,9 +118,14 @@ function Admin() {
                       <td className="admin">{x.username}</td>
                       <td className="admin">{x.email}</td>
                       {role === "user" && (
-                        <td style={{"cursor":"pointer"}} onClick={() => {
-                          navigate(`/viewtours/${x.username}`);
-                        }}>view tours</td>
+                        <td
+                          style={{ cursor: "pointer" }}
+                          onClick={() => {
+                            navigate(`/viewtours/${x.username}`);
+                          }}
+                        >
+                          view tours
+                        </td>
                       )}
                       <td>
                         <i

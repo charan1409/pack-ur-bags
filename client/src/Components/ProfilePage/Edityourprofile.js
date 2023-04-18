@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 
 function Edityourprofile(props) {
   // on change userinfo refresh page once
@@ -28,19 +28,16 @@ function Edityourprofile(props) {
     if (/\s/.test(userinfo.username)) {
       alert("username shouldn't have spaces.");
     } else {
-      axios
-        .post(`http://localhost:9000/profile/edit`, userinfo)
-        .then((resp) => {
-          if (resp.status !== 200) alert(resp.data.error);
-          else {
-            axios.get(`http://localhost:9000/users/loguser/${user.username}`)
-            .then(async (response) => {
-              if(response.status !== 200) navigate("/error")
-              else props.updated()
-            })
-            alert(resp.data.succ);
-          }
-        });
+      axios.post(`profile/edit`, userinfo).then((resp) => {
+        if (resp.status !== 200) alert(resp.data.error);
+        else {
+          axios.get(`users/loguser/${user.username}`).then(async (response) => {
+            if (response.status !== 200) navigate("/error");
+            else props.updated();
+          });
+          alert(resp.data.succ);
+        }
+      });
     }
   };
   return (

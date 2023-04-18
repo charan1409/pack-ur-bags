@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 import "./style.css";
 import "./Itenary.css";
 import Cookies from "js-cookie";
@@ -34,7 +34,7 @@ const navItems = [
 ];
 function App(props) {
   const navigate = useNavigate();
-  const [days, setDays] = useState("threeDay")
+  const [days, setDays] = useState("threeDay");
   const [user, setUser] = useState(null);
   const [placedata, setPlacedata] = useState();
   const [loading, setLoading] = useState(false);
@@ -43,26 +43,22 @@ function App(props) {
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
     if (userL) {
-      axios
-        .get(`http://localhost:9000/users/loguser/${userL.username}`)
-        .then((resp) => {
-          return setUser(resp.data);
-        });
-    }
-    axios
-      .get(`http://localhost:9000/places/placedetails/${id}`)
-      .then((resp) => {
-        if (resp.status === 200) {
-          setPlacedata(resp.data);
-          setLoading(true);
-        } else {
-          navigate("/error");
-        }
+      axios.get(`users/loguser/${userL.username}`).then((resp) => {
+        return setUser(resp.data);
       });
+    }
+    axios.get(`places/placedetails/${id}`).then((resp) => {
+      if (resp.status === 200) {
+        setPlacedata(resp.data);
+        setLoading(true);
+      } else {
+        navigate("/error");
+      }
+    });
   }, [id, navigate]);
   const bookFunc = () => {
     if (Cookies.get("user") && user) {
-      axios.get(`http://localhost:9000/book/booking/${id}`).then((resp) => {
+      axios.get(`book/booking/${id}`).then((resp) => {
         if (resp.status === 200) {
           navigate(`/book/${id}`);
         } else {
@@ -178,13 +174,13 @@ function App(props) {
                       )}
                     </div>
                     <Btn type="button" onClick={bookFunc} value="Book" />
-                  </div>)}
+                  </div>
+                )}
                 {days === "fiveDay" && (
                   <div className="itinerary-container">
                     <div className="day-container">
                       <h3 onClick={toggleDay1Visibility}>Day 1</h3>
                       {day1Visible && (
-                        
                         <ul>
                           <li>{placedata.fiveDay.day1}</li>
                         </ul>
@@ -223,7 +219,8 @@ function App(props) {
                       )}
                     </div>
                     <Btn type="button" onClick={bookFunc} value="Book" />
-                  </div>)}
+                  </div>
+                )}
 
                 {placedata.reviews.length !== 0 ? (
                   <>
@@ -243,7 +240,7 @@ function App(props) {
                         <Review
                           key={index}
                           image={
-                            // "http://localhost:9000/profileImgs/" +
+                            // "profileImgs/" +
                             review.user.image
                           }
                           username={review.user.username}

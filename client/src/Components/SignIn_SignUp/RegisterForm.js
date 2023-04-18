@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 
 function RegisterForm(props) {
   const { id } = useParams();
@@ -50,7 +50,7 @@ function RegisterForm(props) {
         role: "user",
       };
       console.log(id);
-      axios.post("http://localhost:9000/users/register", user).then((resp) => {
+      axios.post("users/register", user).then((resp) => {
         if (resp.status !== 200) {
           setRegisterError([true, resp.data.msg]);
         } else {
@@ -62,9 +62,9 @@ function RegisterForm(props) {
           alert(resp.data.msg);
           localStorage.setItem("user", JSON.stringify(resp.data.user));
           Cookies.set("user", resp.data.token, { expires: 1 });
-          if(Cookies.get("redirectLink")){
+          if (Cookies.get("redirectLink")) {
             navigate(Cookies.get("redirectLink"));
-          } else{
+          } else {
             props.updated();
             navigate("/index");
           }

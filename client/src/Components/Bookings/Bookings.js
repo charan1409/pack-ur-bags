@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "../Navbar/Header";
 import "./Trans.css";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 import Loading from "../Loading/Loading";
 import Btn from "../Btn";
 import { useNavigate, useParams } from "react-router-dom";
@@ -15,27 +15,23 @@ const Transaction = (props) => {
   const [giveFeedback, setGiveFeedback] = useState(false);
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
-  const [update,setUpdate] = useState(false);
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
-    axios
-      .get(`http://localhost:9000/users/loguser/${userL.username}`)
-      .then((resp) => {
-        return setUser(resp.data);
-      });
-    axios
-      .get(`http://localhost:9000/payment/getTransactions/${userL.username}`)
-      .then((resp) => {
-        setLoading(false);
-        return setTrans(resp.data);
-      });
+    axios.get(`users/loguser/${userL.username}`).then((resp) => {
+      return setUser(resp.data);
+    });
+    axios.get(`payment/getTransactions/${userL.username}`).then((resp) => {
+      setLoading(false);
+      return setTrans(resp.data);
+    });
     if (id) {
       setGiveFeedback(true);
     } else {
       setGiveFeedback(false);
     }
-  }, [id,update]);
+  }, [id, update]);
 
   const navItems = [
     {
@@ -65,7 +61,7 @@ const Transaction = (props) => {
       review: review,
     };
     axios
-      .post("http://localhost:9000/places/review", new_review)
+      .post("places/review", new_review)
       .then((resp) => {
         alert(resp.data.msg);
         setUpdate(!update);
@@ -162,7 +158,7 @@ const Transaction = (props) => {
                                   onClick={() => {
                                     axios
                                       .delete(
-                                        `http://localhost:9000/payment/deleteBooking/${item.id}`
+                                        `payment/deleteBooking/${item.id}`
                                       )
                                       .then((resp) => {
                                         alert(resp.data.msg);

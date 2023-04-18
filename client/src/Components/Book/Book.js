@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "./book.css";
 import Header from "../Navbar/Header";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -43,9 +43,9 @@ function App(props) {
       passengers[passengers.length - 1].age !== ""
     ) {
       setPassengers([...passengers, { name: "", gender: "Male", age: "" }]);
-    } else if(passengers.length >= 10){
+    } else if (passengers.length >= 10) {
       errors.push("Maximum 10 passengers are allowed");
-    }else {
+    } else {
       errors.push("Please fill the previous passenger details");
     }
   };
@@ -58,21 +58,17 @@ function App(props) {
   };
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
-    axios
-      .get(`http://localhost:9000/users/loguser/${userL.username}`)
-      .then((resp) => {
-        if (resp.data) return setUser(resp.data);
-        else navigate("/error");
-      });
-    axios
-      .get(`http://localhost:9000/places/placedetails/${id}`)
-      .then((resp) => {
-        if (resp.status === 200) {
-          setPlacedata(resp.data);
-        } else {
-          navigate("/error");
-        }
-      });
+    axios.get(`users/loguser/${userL.username}`).then((resp) => {
+      if (resp.data) return setUser(resp.data);
+      else navigate("/error");
+    });
+    axios.get(`places/placedetails/${id}`).then((resp) => {
+      if (resp.status === 200) {
+        setPlacedata(resp.data);
+      } else {
+        navigate("/error");
+      }
+    });
   }, [id, navigate]);
 
   const validatePassengers = () => {
@@ -91,7 +87,7 @@ function App(props) {
         errors.push(`Age is required for passenger ${index + 1}`);
       }
 
-      if(fromDate === "") {
+      if (fromDate === "") {
         errors.push(`Please select a date`);
       }
     });
@@ -133,15 +129,13 @@ function App(props) {
         numberOfpassengers: passengers.length,
         paymentDone: false,
       };
-      axios
-        .post(`http://localhost:9000/book/booking/${id}`, booking)
-        .then((resp) => {
-          if (resp.status === 200) {
-            navigate(`/payment/${resp.data}`);
-          } else {
-            navigate("/error");
-          }
-        });
+      axios.post(`book/booking/${id}`, booking).then((resp) => {
+        if (resp.status === 200) {
+          navigate(`/payment/${resp.data}`);
+        } else {
+          navigate("/error");
+        }
+      });
     }
   };
   return (
@@ -161,7 +155,7 @@ function App(props) {
       </div>
       {errors.length > 0 && (
         <ul>
-          {errors.map((error,index) => (
+          {errors.map((error, index) => (
             <li key={index}>{error}</li>
           ))}
         </ul>
@@ -207,22 +201,34 @@ function App(props) {
                 id={`age${index}`}
                 value={passenger.age}
                 onChange={(event) => handlePassengerChange(index, event)}
-                style={{width:"70px"}}
+                style={{ width: "70px" }}
               />
               <button
                 type="button"
                 onClick={() => handleDeletePassenger(index)}
               >
-                <i className="fas fa-trash-alt"
-                style={{color:"red",fontSize:"20px", cursor:"pointer", padding:"5px"}}
+                <i
+                  className="fas fa-trash-alt"
+                  style={{
+                    color: "red",
+                    fontSize: "20px",
+                    cursor: "pointer",
+                    padding: "5px",
+                  }}
                 ></i>
               </button>
             </div>
           ))}
           <button type="button" onClick={handleAddPassenger}>
             {/* Add Passenger */}
-            <i className="fas fa-user-plus"
-            style={{color:"green",fontSize:"20px", cursor:"pointer", padding:"5px"}}
+            <i
+              className="fas fa-user-plus"
+              style={{
+                color: "green",
+                fontSize: "20px",
+                cursor: "pointer",
+                padding: "5px",
+              }}
             ></i>
           </button>
           <br />
@@ -249,7 +255,8 @@ function App(props) {
           </select>
           <br />
           <br />
-          <button type="submit" className="btn">Book
+          <button type="submit" className="btn">
+            Book
           </button>
         </form>
       </div>

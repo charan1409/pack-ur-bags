@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 import { useNavigate, useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -38,18 +38,14 @@ function ViewPlace(props) {
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
     if (userL) {
-      axios
-        .get(`http://localhost:9000/users/loguser/${userL.username}`)
-        .then((resp) => {
-          return setUser(resp.data);
-        });
-    }
-    axios
-      .get(`http://localhost:9000/places/places/${category}`)
-      .then((resp) => {
-        setPlacesData(resp.data);
-        setLoading(true);
+      axios.get(`users/loguser/${userL.username}`).then((resp) => {
+        return setUser(resp.data);
       });
+    }
+    axios.get(`places/places/${category}`).then((resp) => {
+      setPlacesData(resp.data);
+      setLoading(true);
+    });
   }, [category]);
   return (
     <div className="viewAllPlaces">

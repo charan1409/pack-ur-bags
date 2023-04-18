@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 
 import "./main.css";
 import Upward from "./Upward";
@@ -57,18 +57,16 @@ const Index = (props) => {
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
     if (userL) {
-      axios
-        .get(`http://localhost:9000/users/loguser/${userL.username}`)
-        .then((resp) => {
-          if (resp.status === 200) return setUser(resp.data);
-        });
+      axios.get(`users/loguser/${userL.username}`).then((resp) => {
+        if (resp.status === 200) return setUser(resp.data);
+      });
     } else {
       setUser(null);
     }
   }, [updated]);
   useEffect(() => {
     if (Cookies.get("user")) {
-      axios.get(`http://localhost:9000/users/loguser`).then((resp) => {
+      axios.get(`users/loguser`).then((resp) => {
         if (resp.status === 200) {
           if (resp.data.role === "admin" || resp.data.role === "root") {
             navigate("/admin");
@@ -83,11 +81,9 @@ const Index = (props) => {
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
     if (userL) {
-      axios
-        .get(`http://localhost:9000/users/loguser/${userL.username}`)
-        .then((resp) => {
-          if (resp.status === 200) return setUser(resp.data);
-        });
+      axios.get(`users/loguser/${userL.username}`).then((resp) => {
+        if (resp.status === 200) return setUser(resp.data);
+      });
     } else {
       setUser(null);
     }
@@ -113,7 +109,7 @@ const Index = (props) => {
       <Review />
       <Feedback user={user} updated={update} />
       <Footer />
-      {login && <LoginPage formType={props.formType} updated={update}/>}
+      {login && <LoginPage formType={props.formType} updated={update} />}
     </>
   );
 };

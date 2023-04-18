@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../Navbar/Header";
 import Btn from "../Btn";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 import "./AddPlaces.css";
 import { navItems } from "./NavItems";
 
@@ -18,23 +18,23 @@ function AddPlaces(props) {
     price: "",
     details: "",
     category: "",
-    threeDay:{
-      day1:"",
-      day2:"",
-      day3:""
+    threeDay: {
+      day1: "",
+      day2: "",
+      day3: "",
     },
-    fiveDay:{
-      day1:"",
-      day2:"",
-      day3:"",
-      day4:"",
-      day5:""
-    }
+    fiveDay: {
+      day1: "",
+      day2: "",
+      day3: "",
+      day4: "",
+      day5: "",
+    },
   });
 
   useEffect(() => {
     if (props.keyType === "edit") {
-      axios.get(`http://localhost:9000/admins/place/${id}`).then((resp) => {
+      axios.get(`admins/place/${id}`).then((resp) => {
         if (resp.status !== 200) {
           alert(resp.data.msg);
         } else {
@@ -44,8 +44,8 @@ function AddPlaces(props) {
             price: resp.data.price,
             details: resp.data.details,
             category: resp.data.category,
-            threeDay:resp.data.threeDay,
-            fiveDay:resp.data.fiveDay
+            threeDay: resp.data.threeDay,
+            fiveDay: resp.data.fiveDay,
           };
           setplaceinfo(pl);
         }
@@ -97,7 +97,7 @@ function AddPlaces(props) {
     fd.append("threeDay", JSON.stringify(placeinfo.threeDay));
     fd.append("fiveDay", JSON.stringify(placeinfo.fiveDay));
     axios
-      .post(`http://localhost:9000/admins/place/${user.username}`, fd, {
+      .post(`admins/place/${user.username}`, fd, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((resp) => {
@@ -111,18 +111,18 @@ function AddPlaces(props) {
             price: "",
             details: "",
             category: "",
-            threeDay:{
-              day1:"",
-              day2:"",
-              day3:""
+            threeDay: {
+              day1: "",
+              day2: "",
+              day3: "",
             },
-            fiveDay:{
-              day1:"",
-              day2:"",
-              day3:"",
-              day4:"",
-              day5:""
-            }
+            fiveDay: {
+              day1: "",
+              day2: "",
+              day3: "",
+              day4: "",
+              day5: "",
+            },
           });
           setImage();
           alert(resp.data.success);
@@ -134,7 +134,7 @@ function AddPlaces(props) {
   return (
     <div>
       <Header user={true} navItems={navItems} />
-        <h1>Add place</h1>
+      <h1>Add place</h1>
       <div className="add">
         <form
           onSubmit={submitHandler}
@@ -153,38 +153,40 @@ function AddPlaces(props) {
             />
           </label>
 
-          <label htmlFor="to" style={{marginLeft: "30%"}}>
+          <label htmlFor="to" style={{ marginLeft: "30%" }}>
             To:
-          <input
-            placeholder={"to"}
-            leftIcon={"bi bi-geo-alt-fill"}
-            type={"text"}
-            name={"to"}
-            value={placeinfo.to}
-            onChange={onUpdateField}
-          />
+            <input
+              placeholder={"to"}
+              leftIcon={"bi bi-geo-alt-fill"}
+              type={"text"}
+              name={"to"}
+              value={placeinfo.to}
+              onChange={onUpdateField}
+            />
           </label>
-          <label htmlFor="price"> Price:
-          <input
-            placeholder={"price"}
-            leftIcon={"bi bi-cash"}
-            type={"number"}
-            name={"price"}
-            value={placeinfo.price}
-            onChange={onUpdateField}
-          />
+          <label htmlFor="price">
+            {" "}
+            Price:
+            <input
+              placeholder={"price"}
+              leftIcon={"bi bi-cash"}
+              type={"number"}
+              name={"price"}
+              value={placeinfo.price}
+              onChange={onUpdateField}
+            />
           </label>
 
-          <label htmlFor="details" style={{marginLeft: "30%"}}>
+          <label htmlFor="details" style={{ marginLeft: "30%" }}>
             Details:
-          <input
-            placeholder={"details"}
-            leftIcon={"bi bi-card-text"}
-            type={"text"}
-            name={"details"}
-            value={placeinfo.details}
-            onChange={onUpdateField}
-          />
+            <input
+              placeholder={"details"}
+              leftIcon={"bi bi-card-text"}
+              type={"text"}
+              name={"details"}
+              value={placeinfo.details}
+              onChange={onUpdateField}
+            />
           </label>
 
           <input
@@ -194,9 +196,11 @@ function AddPlaces(props) {
             name={"category"}
             value={placeinfo.category}
             onChange={onUpdateField}
-          /><br/>
+          />
+          <br />
 
-          <h2>Three day</h2><br/>
+          <h2>Three day</h2>
+          <br />
           <label htmlFor="day1">Day1: </label>
           <input
             placeholder={"Day1"}
@@ -224,7 +228,8 @@ function AddPlaces(props) {
             value={placeinfo.threeDay.day3}
             onChange={onUpdateField2}
           />
-          <h2>Five day</h2><br/>
+          <h2>Five day</h2>
+          <br />
           <label htmlFor="day1">Day1: </label>
           <input
             placeholder={"Day1"}
@@ -283,12 +288,13 @@ function AddPlaces(props) {
             })}
           </select> */}
           <input
-            style={{marginLeft: "30%"}}
+            style={{ marginLeft: "30%" }}
             placeholder="choose picture"
             type="file"
             name="photo"
             onChange={(e) => setImage(e.target.files[0])}
-          /><br/>
+          />
+          <br />
           <Btn type="submit" value="Add" />
         </form>
       </div>

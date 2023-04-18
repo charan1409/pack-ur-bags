@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 import { useNavigate } from "react-router-dom";
 import ReviewComp from "./ReviewComp";
 import { Pagination, Scrollbar, A11y } from "swiper";
@@ -12,7 +12,7 @@ const Review = () => {
   const navigate = useNavigate();
   const [feedback, setFeedback] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:9000/index/fd").then((resp) => {
+    axios.get("index/fd").then((resp) => {
       if (resp.status === 200) {
         return setFeedback(resp.data);
       } else {

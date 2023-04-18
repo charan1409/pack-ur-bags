@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../Navbar/Header";
 import "./Cart.css";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 import Btn from "../Btn";
 import Loading from "../Loading/Loading";
 
@@ -32,21 +32,17 @@ const Tours = (props) => {
   const [tours, setTours] = useState([]);
   const userL = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
-    axios
-      .get(`http://localhost:9000/payment/mybookings/${userL.username}`)
-      .then((resp) => {
-        setLoading(false);
-        return setTours(resp.data);
-      });
+    axios.get(`payment/mybookings/${userL.username}`).then((resp) => {
+      setLoading(false);
+      return setTours(resp.data);
+    });
   }, [userL.username, setTours]);
 
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
-    axios
-      .get(`http://localhost:9000/users/loguser/${userL.username}`)
-      .then((resp) => {
-        return setUser(resp.data);
-      });
+    axios.get(`users/loguser/${userL.username}`).then((resp) => {
+      return setUser(resp.data);
+    });
   }, []);
 
   return (
@@ -120,9 +116,7 @@ const Tours = (props) => {
                                   type="button"
                                   onClick={() => {
                                     axios
-                                      .delete(
-                                        `http://localhost:9000/places/delete/${item.id}`
-                                      )
+                                      .delete(`places/delete/${item.id}`)
                                       .then((resp) => {
                                         alert(resp.data.message);
                                         window.location.reload();

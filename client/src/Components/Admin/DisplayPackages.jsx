@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 import { useNavigate } from "react-router-dom";
 
 import { navItems } from "./NavItems";
@@ -12,7 +12,7 @@ const DisplayPackages = () => {
   const [packages, setPackages] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:9000/admins/packages").then((resp) => {
+    axios.get("admins/packages").then((resp) => {
       if (resp.status !== 200) {
         alert(resp.data.msg);
       } else {
@@ -23,7 +23,7 @@ const DisplayPackages = () => {
 
   async function Deluser(a) {
     await axios
-      .delete(`http://localhost:9000/admins/delete/${a}`)
+      .delete(`admins/delete/${a}`)
       .then((resp) => {
         alert(resp.data.msg);
       });
@@ -86,7 +86,7 @@ const DisplayPackages = () => {
                           <i
                             className="fas fa-trash-alt del"
                             onClick={() => {
-                              axios.delete('http://localhost:9000/admins/deleteplace/'+x.id).then((resp)=>{
+                              axios.delete('admins/deleteplace/'+x.id).then((resp)=>{
                                 alert(resp.data.msg);
                                 window.location.reload();
                               })
@@ -115,7 +115,7 @@ const DisplayPackages = () => {
                           <i
                             className="fas fa-trash-alt del"
                             onClick={() => {
-                              axios.delete('http://localhost:9000/admins/deleteplace/'+x.id).then((resp)=>{
+                              axios.delete('admins/deleteplace/'+x.id).then((resp)=>{
                                 alert(resp.data.msg);
                               })
                             }}

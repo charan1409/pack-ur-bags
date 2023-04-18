@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../../AxiosConfig";
 
 function ChangePassword(props) {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -20,14 +20,15 @@ function ChangePassword(props) {
     if (
       !password.oldpassword &&
       !password.newpassword &&
-      !password.conpassword && !password.otp
+      !password.conpassword &&
+      !password.otp
     ) {
       alert("Enter all fields.");
     } else if (password.newpassword !== password.conpassword) {
       alert("new passwords doesn't match.");
     } else {
       await axios
-        .post(`http://localhost:9000/profile/changepass`, password)
+        .post(`profile/changepass`, password)
         .then((resp) => {
           if (resp.status !== 200) alert(resp.data.msg);
           else {
@@ -52,7 +53,7 @@ function ChangePassword(props) {
       <form onSubmit={handleSubmit}>
         <label htmlFor="otp">
           Enter OTP:
-          <input 
+          <input
             type="text"
             className="tbox"
             name="otp"
@@ -60,7 +61,8 @@ function ChangePassword(props) {
             value={password.otp}
             onChange={change}
           />
-        </label><br/>
+        </label>
+        <br />
         <label htmlFor="oldpassword">
           Old Password:
           <input
