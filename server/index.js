@@ -32,7 +32,7 @@ app.use(
 
 app.use(
   cors({
-    origin: ["http://localhost:3000/", "https://frontend-packurbags.onrender.com/"],
+    origin: ["http://localhost:3000", "https://frontend-packurbags.onrender.com"],
     credentials: true,
   })
 );
