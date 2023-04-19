@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const cookieparser = require("cookie-parser");
 router.use(cookieparser());
+const client = require("../utils/Redis");
 
 const User = require("../schemas/user");
 const Place = require("../schemas/place");
@@ -10,18 +11,33 @@ const Book = require("../schemas/booking");
 
 router.get("/places/:id", async (req, res) => {
   const category = req.params.id;
-  if (category === "all") {
-    await Place.find({}, (err, data) => {
-      if (err) res.status(201).json({ error: "some error incurred." });
-      res.status(200).json(data);
-    });
-  } else if (category) {
-    await Place.find({ category: category }, (err, data) => {
-      if (err) res.status(201).json({ error: "some error incurred." });
-      res.status(200).json(data);
-    });
-  } else res.status(201).json({ error: "some error incurred." });
-  //   }
+  const cachedData = await client.get(category);
+  if (cachedData) {
+    res.send(JSON.parse(cachedData));
+  } else {
+    if (category === "all") {
+      const cacheDataPlaces = await client.get("places");
+      if (cacheDataPlaces) {
+        res.send(JSON.parse(cacheDataPlaces));
+      } else {
+        await Place.find({}, (err, data) => {
+          if (err) res.status(201).json({ error: "some error incurred." });
+          else {
+            client.set("places", JSON.stringify(data));
+            res.status(200).json(data);
+          }
+        });
+      }
+    } else if (category) {
+      await Place.find({ category: category }, async (err, data) => {
+        if (err) res.status(201).json({ error: "some error incurred." });
+        else {
+          await client.set(category, JSON.stringify(data));
+          res.status(200).json(data);
+        }
+      });
+    } else res.status(201).json({ error: "some error incurred." });
+  }
 });
 
 router.get("/placedetails/:id", async (req, res) => {

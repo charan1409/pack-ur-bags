@@ -4,7 +4,6 @@ const cookieparser = require('cookie-parser');
 router.use(cookieparser());
 
 const book = require('../schemas/booking');
-const User = require('../schemas/user');
 const Place = require('../schemas/place');
 
 router.get('/booking/:id',(req,res)=>{

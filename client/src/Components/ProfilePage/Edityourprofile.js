@@ -33,7 +33,15 @@ function Edityourprofile(props) {
         else {
           Axios.get(`users/loguser/${user.username}`).then(async (response) => {
             if (response.status !== 200) navigate("/error");
-            else props.updated();
+            else {
+              const user = JSON.parse(localStorage.getItem("user"))
+              const data = {
+                username: userinfo.username,
+                role: user.role,
+              }
+              localStorage.setItem("user", JSON.stringify(data));
+              props.updated();
+            }
           });
           alert(resp.data.succ);
         }
