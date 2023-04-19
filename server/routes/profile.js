@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
-const fs = require("fs");
 const bcrypt = require("bcryptjs");
 const cookieparser = require("cookie-parser");
 router.use(cookieparser());
@@ -12,7 +11,6 @@ const OTP = require("../schemas/otp");
 const User = require("../schemas/user");
 const Feedback = require("../schemas/feedback");
 const TokenVerifier = require("../routes/TokenVerifier");
-const { error } = require("console");
 
 router.get("/profileDetails/:id", TokenVerifier, async (req, res) => {
   const username = req.params.id;
@@ -24,25 +22,21 @@ router.get("/profileDetails/:id", TokenVerifier, async (req, res) => {
     })
     .populate("givenfeedback")
     .exec();
-  if (user.email != verifiedEmail) {
-    res.status(201).json({ error: "Invalid Email" });
-  } else {
-    const data = {
-      id: user.id,
-      username: user.username,
-      email: user.email,
-      role: user.role,
-      image: user.image,
-      imagegiven: user.imagegiven,
-      feedbackgiven: user.feedbackgiven,
-      givenfeedback: user.givenfeedback,
-      name: user.name,
-      phonenumber: user.phonenumber,
-      gender: user.gender,
-      tourReviews: user.tourReviews,
-    };
-    res.status(200).json(data);
-  }
+  const data = {
+    id: user.id,
+    username: user.username,
+    email: user.email,
+    role: user.role,
+    image: user.image,
+    imagegiven: user.imagegiven,
+    feedbackgiven: user.feedbackgiven,
+    givenfeedback: user.givenfeedback,
+    name: user.name,
+    phonenumber: user.phonenumber,
+    gender: user.gender,
+    tourReviews: user.tourReviews,
+  };
+  res.status(200).json(data);
 });
 
 router.post("/edit", TokenVerifier, async (req, res) => {
