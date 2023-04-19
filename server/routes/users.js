@@ -7,13 +7,13 @@ const cookieparser = require("cookie-parser");
 
 const TokenVerifier = require("./TokenVerifier");
 const User = require("../schemas/user");
-const FeedBack = require("../schemas/feedback");
 const OTP = require("../schemas/otp");
 
 router.use(cookieparser());
 
 //login Page
 router.get("/loguser/:id", TokenVerifier, async (req, res) => {
+  if(req.user.msg) res.status(201).json({msg:req.user.msg});
   if (!req.user) res.status(201).json({msg:"Invalid credentials"});
   else {
     const inname = req.params.id;
