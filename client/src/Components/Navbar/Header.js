@@ -59,14 +59,16 @@ const Header = (props) => {
                 onMouseLeave={() => setDropdown(false)}
               >
                 <img src={props.user.image} alt="profile_img" />
-                {dropdown && <Dropdown role={props.user.role} updated={props.updated}/>}
+                {dropdown && (
+                  <Dropdown role={props.user.role} updated={props.updated} />
+                )}
               </div>
             ) : (
               <h2
                 onClick={() => {
                   localStorage.removeItem("user");
                   Cookies.remove("user");
-                  if (typeof props.updated === 'function') props.updated()
+                  if (typeof props.updated === "function") props.updated();
                   navigate("/");
                 }}
               >
@@ -80,7 +82,7 @@ const Header = (props) => {
             aria-hidden="true"
             id="login-btn"
             onClick={() => {
-              navigate("/login")
+              navigate("/login");
             }}
           ></i>
         )}

@@ -80,8 +80,11 @@ const Index = (props) => {
 
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
+    console.log("asd", userL);
+    console.log("Cookies", Cookies.get("user"));
     if (userL) {
       Axios.get(`users/loguser/${userL.username}`).then((resp) => {
+        console.log(resp.data, "asd");
         if (resp.status === 200) return setUser(resp.data);
       });
     } else {
@@ -92,6 +95,7 @@ const Index = (props) => {
   const update = () => {
     setUpdated(!updated);
   };
+  console.log(user);
   return (
     <>
       <Upward />
