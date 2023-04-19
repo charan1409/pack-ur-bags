@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "./book.css";
 import Header from "../Navbar/Header";
-import axios from "../../AxiosConfig";
+import Axios from "../../AxiosConfig";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -58,11 +58,11 @@ function App(props) {
   };
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
-    axios.get(`users/loguser/${userL.username}`).then((resp) => {
+    Axios.get(`users/loguser/${userL.username}`).then((resp) => {
       if (resp.data) return setUser(resp.data);
       else navigate("/error");
     });
-    axios.get(`places/placedetails/${id}`).then((resp) => {
+    Axios.get(`places/placedetails/${id}`).then((resp) => {
       if (resp.status === 200) {
         setPlacedata(resp.data);
       } else {
@@ -129,7 +129,7 @@ function App(props) {
         numberOfpassengers: passengers.length,
         paymentDone: false,
       };
-      axios.post(`book/booking/${id}`, booking).then((resp) => {
+      Axios.post(`book/booking/${id}`, booking).then((resp) => {
         if (resp.status === 200) {
           navigate(`/payment/${resp.data}`);
         } else {

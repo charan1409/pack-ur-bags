@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
-import axios from "../../AxiosConfig";
+import Axios from "../../AxiosConfig";
 
 function ForgotPassword(props) {
   const { id } = useParams();
@@ -36,7 +36,7 @@ function ForgotPassword(props) {
       setLoginError([true, "Passwords do not match"]);
     } else {
       setLoginError([false, ""]);
-      axios
+      Axios
         .post("users/forgotpassword", {
           email: id,
           password: userinfo.password1,

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../Navbar/Header";
 import "./Cart.css";
-import axios from "../../AxiosConfig";
+import Axios from "../../AxiosConfig";
 import Btn from "../Btn";
 import Loading from "../Loading/Loading";
 
@@ -32,7 +32,7 @@ const Tours = (props) => {
   const [tours, setTours] = useState([]);
   const userL = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
-    axios.get(`payment/mybookings/${userL.username}`).then((resp) => {
+    Axios.get(`payment/mybookings/${userL.username}`).then((resp) => {
       setLoading(false);
       return setTours(resp.data);
     });
@@ -40,7 +40,7 @@ const Tours = (props) => {
 
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
-    axios.get(`users/loguser/${userL.username}`).then((resp) => {
+    Axios.get(`users/loguser/${userL.username}`).then((resp) => {
       return setUser(resp.data);
     });
   }, []);
@@ -115,7 +115,7 @@ const Tours = (props) => {
                                   value="Delete"
                                   type="button"
                                   onClick={() => {
-                                    axios
+                                    Axios
                                       .delete(`places/delete/${item.id}`)
                                       .then((resp) => {
                                         alert(resp.data.message);

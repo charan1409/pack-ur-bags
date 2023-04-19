@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "../../AxiosConfig";
+import Axios from "../../AxiosConfig";
 import { useNavigate } from "react-router-dom";
 
 import "./main.css";
@@ -17,7 +17,7 @@ const Feedback = (props) => {
         username: props.user.username,
         fdbk: fdbk,
       };
-      axios.post("index/fd", feedback_data).then((resp) => {
+      Axios.post("index/fd", feedback_data).then((resp) => {
         if (resp.status === 200) {
           props.updated();
           setFdbk("");

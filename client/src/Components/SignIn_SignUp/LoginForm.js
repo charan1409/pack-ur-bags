@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
-import axios from "../../AxiosConfig";
+import Axios from "../../AxiosConfig";
 
 function Form(props) {
   const [loginError, setLoginError] = useState([false, ""]);
@@ -34,7 +34,7 @@ function Form(props) {
       setLoginError([true, "Invalid password"]);
     } else {
       setLoginError([false, ""]);
-      axios.post("users/login", userinfo).then((resp) => {
+      Axios.post("users/login", userinfo).then((resp) => {
         if (resp.status === 200) {
           localStorage.setItem("user", JSON.stringify(resp.data.user));
           Cookies.set("user", resp.data.token, { expires: 1 });

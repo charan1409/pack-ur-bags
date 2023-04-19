@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Btn from "../Btn";
-import axios from "../../AxiosConfig";
+import Axios from "../../AxiosConfig";
 import "./Addadmin.css";
 import Header from "../Navbar/Header";
 import { navItems } from "./NavItems";
@@ -48,7 +48,7 @@ function Addadmin(props) {
         password: userinfo.password,
         role: "admin",
       };
-      axios.post("users/register", user).then((resp) => {
+      Axios.post("users/register", user).then((resp) => {
         if (resp.status !== 200) {
           alert(resp.data.msg);
         } else {

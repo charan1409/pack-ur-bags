@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "../../AxiosConfig";
+import Axios from "../../AxiosConfig";
 import "./style.css";
 import "./Itenary.css";
 import Cookies from "js-cookie";
@@ -43,11 +43,11 @@ function App(props) {
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
     if (userL) {
-      axios.get(`users/loguser/${userL.username}`).then((resp) => {
+      Axios.get(`users/loguser/${userL.username}`).then((resp) => {
         return setUser(resp.data);
       });
     }
-    axios.get(`places/placedetails/${id}`).then((resp) => {
+    Axios.get(`places/placedetails/${id}`).then((resp) => {
       if (resp.status === 200) {
         setPlacedata(resp.data);
         setLoading(true);
@@ -58,7 +58,7 @@ function App(props) {
   }, [id, navigate]);
   const bookFunc = () => {
     if (Cookies.get("user") && user) {
-      axios.get(`book/booking/${id}`).then((resp) => {
+      Axios.get(`book/booking/${id}`).then((resp) => {
         if (resp.status === 200) {
           navigate(`/book/${id}`);
         } else {

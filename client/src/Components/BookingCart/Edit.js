@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import axios from "axios";
+import Axios from "../../AxiosConfig";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -51,7 +51,7 @@ function Edit() {
   };
   const SubmitHandle = (e) => {
     e.preventDefault();
-    axios
+    Axios
       .put(`payment/bookings/${id.id}`, {
         fromdate: tours.fromdate,
         passengers: passengerDetails,
@@ -63,7 +63,7 @@ function Edit() {
   };
 
   useEffect(() => {
-    axios.get(`payment/bookings/${id.id}`).then((resp) => {
+    Axios.get(`payment/bookings/${id.id}`).then((resp) => {
       setPassengerDetails(resp.data.passengers);
       setLoading(false);
       return setTours(resp.data);
@@ -90,7 +90,7 @@ function Edit() {
   ];
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
-    axios.get(`users/loguser/${userL.username}`).then((resp) => {
+    Axios.get(`users/loguser/${userL.username}`).then((resp) => {
       return setUser(resp.data);
     });
   }, []);
@@ -140,7 +140,7 @@ function Edit() {
                     console.log("first", temp);
                     temp.splice(key, 1);
                     console.log("second ", temp);
-                    axios
+                    Axios
                       .put(`payment/updatePassengers/${tours.id}`, {
                         passengers: temp,
                       })
@@ -227,7 +227,7 @@ function Edit() {
                   console.log(passenger);
                   temp = [...temp, passenger];
                   console.log("second ", temp);
-                  axios
+                  Axios
                     .put(`payment/updatePassengers/${tours.id}`, {
                       passengers: temp,
                     })

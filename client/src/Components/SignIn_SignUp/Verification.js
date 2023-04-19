@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
-import axios from "../../AxiosConfig";
+import Axios from "../../AxiosConfig";
 
 function Verification(props) {
   const { id } = useParams();
@@ -22,7 +22,7 @@ function Verification(props) {
     ) {
       setLoginError([true, "Invalid Email"]);
     }
-    axios
+    Axios
       .post("users/verify", { email: email, otp: otp })
       .then((res) => {
         if (res.status === 200) {
@@ -65,7 +65,7 @@ function Verification(props) {
           type={"button"}
           value={"Send OTP"}
           onClick={() => {
-            axios
+            Axios
               .post("users/generateOTP", {
                 email: email,
                 keyword: id,

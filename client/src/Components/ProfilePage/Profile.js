@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../../AxiosConfig";
+import Axios from "../../AxiosConfig";
 
 import Header from "../Navbar/Header";
 import "./clientprofile.css";
@@ -40,7 +40,7 @@ function Profile(props) {
 
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
-    axios.get(`profile/profileDetails/${userL.username}`).then(async (resp) => {
+    Axios.get(`profile/profileDetails/${userL.username}`).then(async (resp) => {
       localStorage.setItem("user", JSON.stringify(resp.data));
       if (resp.data) return setUser(resp.data);
       else navigate("/error");
@@ -57,7 +57,7 @@ function Profile(props) {
       const fd = new FormData();
       fd.append("image", e.target.files[0], e.target.files[0].name);
       fd.append("email", user.email);
-      await axios.post("profile/upload", fd).then((resp) => {
+      await Axios.post("profile/upload", fd).then((resp) => {
         if (resp.status === 200) {
           update();
           alert(resp.data.succ);
@@ -71,7 +71,7 @@ function Profile(props) {
     const fd = {
       email: user.email,
     };
-    await axios.post("profile/remove", fd).then((resp) => {
+    await Axios.post("profile/remove", fd).then((resp) => {
       if (resp.status === 200) {
         update();
         alert(resp.data.succ);
@@ -88,7 +88,7 @@ function Profile(props) {
       username: user.username,
       feedback: feedback,
     };
-    await axios.post("profile/feedback", fd).then((resp) => {
+    await Axios.post("profile/feedback", fd).then((resp) => {
       if (resp.status === 200) {
         update();
         alert(resp.data.succ);
@@ -99,7 +99,7 @@ function Profile(props) {
   };
 
   const deleteFeedback = async () => {
-    await axios
+    await Axios
       .delete(`profile/deletefeedback/${user.givenfeedback._id}`)
       .then((resp) => {
         if (resp.status === 200) {
@@ -175,7 +175,7 @@ function Profile(props) {
                   <button
                     className="btn_profile"
                     onClick={() => {
-                      axios
+                      Axios
                         .post("users/generateOTP", {
                           email: user.email,
                           keyword: "change password",

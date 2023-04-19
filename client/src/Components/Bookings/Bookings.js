@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "../Navbar/Header";
 import "./Trans.css";
-import axios from "../../AxiosConfig";
+import Axios from "../../AxiosConfig";
 import Loading from "../Loading/Loading";
 import Btn from "../Btn";
 import { useNavigate, useParams } from "react-router-dom";
@@ -19,10 +19,10 @@ const Transaction = (props) => {
 
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
-    axios.get(`users/loguser/${userL.username}`).then((resp) => {
+    Axios.get(`users/loguser/${userL.username}`).then((resp) => {
       return setUser(resp.data);
     });
-    axios.get(`payment/getTransactions/${userL.username}`).then((resp) => {
+    Axios.get(`payment/getTransactions/${userL.username}`).then((resp) => {
       setLoading(false);
       return setTrans(resp.data);
     });
@@ -60,7 +60,7 @@ const Transaction = (props) => {
       rating: rating,
       review: review,
     };
-    axios
+    Axios
       .post("places/review", new_review)
       .then((resp) => {
         alert(resp.data.msg);
@@ -156,7 +156,7 @@ const Transaction = (props) => {
                                   value="Cancel"
                                   className="btn btn-danger"
                                   onClick={() => {
-                                    axios
+                                    Axios
                                       .delete(
                                         `payment/deleteBooking/${item.id}`
                                       )

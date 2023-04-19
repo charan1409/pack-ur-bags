@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "../../AxiosConfig";
+import Axios from "../../AxiosConfig";
 
 function ChangePassword(props) {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -27,7 +27,7 @@ function ChangePassword(props) {
     } else if (password.newpassword !== password.conpassword) {
       alert("new passwords doesn't match.");
     } else {
-      await axios
+      await Axios
         .post(`profile/changepass`, password)
         .then((resp) => {
           if (resp.status !== 200) alert(resp.data.msg);

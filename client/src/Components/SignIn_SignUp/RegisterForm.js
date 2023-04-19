@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import "./LoginForm.css";
 import InputBox from "./InputBox";
 import Btn from "../Btn";
-import axios from "../../AxiosConfig";
+import Axios from "../../AxiosConfig";
 
 function RegisterForm(props) {
   const { id } = useParams();
@@ -50,7 +50,7 @@ function RegisterForm(props) {
         role: "user",
       };
       console.log(id);
-      axios.post("users/register", user).then((resp) => {
+      Axios.post("users/register", user).then((resp) => {
         if (resp.status !== 200) {
           setRegisterError([true, resp.data.msg]);
         } else {

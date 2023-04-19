@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../../AxiosConfig";
+import Axios from "../../AxiosConfig";
 import "./Admin.css";
 import Header from "../Navbar/Header";
 import { navItems } from "./NavItems";
@@ -13,7 +13,7 @@ function Admin() {
   const [state, setState] = useState([]);
   const [datanotfound, setdatanotfound] = useState(true);
   const fetchUsers = useCallback(async () => {
-    await axios.get(`admins/users?role=${role}`).then((res) => {
+    await Axios.get(`admins/users?role=${role}`).then((res) => {
       return setData(res.data);
     });
   }, [role]);
@@ -22,7 +22,7 @@ function Admin() {
   }, [fetchUsers]);
 
   async function Deluser(a) {
-    await axios.delete(`admins/delete/${a}`).then((resp) => {
+    await Axios.delete(`admins/delete/${a}`).then((resp) => {
       alert(resp.data.msg);
     });
     fetchUsers("user");

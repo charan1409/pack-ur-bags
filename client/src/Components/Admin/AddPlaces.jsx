@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../Navbar/Header";
 import Btn from "../Btn";
-import axios from "../../AxiosConfig";
+import Axios from "../../AxiosConfig";
 import "./AddPlaces.css";
 import { navItems } from "./NavItems";
 
@@ -34,7 +34,7 @@ function AddPlaces(props) {
 
   useEffect(() => {
     if (props.keyType === "edit") {
-      axios.get(`admins/place/${id}`).then((resp) => {
+      Axios.get(`admins/place/${id}`).then((resp) => {
         if (resp.status !== 200) {
           alert(resp.data.msg);
         } else {
@@ -96,7 +96,7 @@ function AddPlaces(props) {
     fd.append("photo", image);
     fd.append("threeDay", JSON.stringify(placeinfo.threeDay));
     fd.append("fiveDay", JSON.stringify(placeinfo.fiveDay));
-    axios
+    Axios
       .post(`admins/place/${user.username}`, fd, {
         headers: { "Content-Type": "multipart/form-data" },
       })

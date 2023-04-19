@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import axios from "../../AxiosConfig";
+import Axios from "../../AxiosConfig";
 
 import "./main.css";
 import Upward from "./Upward";
@@ -57,7 +57,7 @@ const Index = (props) => {
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
     if (userL) {
-      axios.get(`users/loguser/${userL.username}`).then((resp) => {
+      Axios.get(`users/loguser/${userL.username}`).then((resp) => {
         if (resp.status === 200) return setUser(resp.data);
       });
     } else {
@@ -66,7 +66,7 @@ const Index = (props) => {
   }, [updated]);
   useEffect(() => {
     if (Cookies.get("user")) {
-      axios.get(`users/loguser`).then((resp) => {
+      Axios.get(`users/loguser`).then((resp) => {
         if (resp.status === 200) {
           if (resp.data.role === "admin" || resp.data.role === "root") {
             navigate("/admin");
@@ -81,7 +81,7 @@ const Index = (props) => {
   useEffect(() => {
     const userL = JSON.parse(localStorage.getItem("user"));
     if (userL) {
-      axios.get(`users/loguser/${userL.username}`).then((resp) => {
+      Axios.get(`users/loguser/${userL.username}`).then((resp) => {
         if (resp.status === 200) return setUser(resp.data);
       });
     } else {
