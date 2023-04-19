@@ -15,7 +15,7 @@ const TokenVerifier = async (req, res, next) => {
       next();
     }
   } catch (error) {
-    req.user = { msg: error.message}
+    req.user = { msg: req.cookies.user}
     next();
   }
 };
