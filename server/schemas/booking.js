@@ -21,5 +21,6 @@ const bookSchema=new mongoose.Schema({
         default: false
     }
 });
+bookSchema.index({ username: 1});
 const booking=mongoose.model('book',bookSchema);
 module.exports=booking;

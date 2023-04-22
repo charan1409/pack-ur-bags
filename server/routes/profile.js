@@ -9,6 +9,7 @@ router.use(cookieparser());
 const cloudinaryconfig = require("../cloudconfig");
 const OTP = require("../schemas/otp");
 const User = require("../schemas/user");
+const Book = require("../schemas/booking");
 const Feedback = require("../schemas/feedback");
 const TokenVerifier = require("../routes/TokenVerifier");
 
@@ -60,7 +61,12 @@ router.post("/edit", TokenVerifier, async (req, res) => {
       newvals,
       async function (err) {
         if (err) throw err;
-        res.status(200).json({ succ: "profile updated successfully." });
+        else{
+          Book.updateMany({username:username},{$set:{username:username}},function(err){
+            if(err) throw err;
+          })
+          res.status(200).json({ succ: "profile updated successfully." });
+        }
       }
     );
   }

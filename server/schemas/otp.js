@@ -6,5 +6,6 @@ const OTPSchema = new mongoose.Schema({
     OTPTime: Number,
     keyword: String,
 });
+OTPSchema.index({ email: 1});
 const OTP = mongoose.model('OTP', OTPSchema);
 module.exports = OTP;
