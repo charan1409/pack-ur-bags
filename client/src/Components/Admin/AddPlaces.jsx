@@ -104,9 +104,6 @@ function AddPlaces(props) {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((resp) => {
-        for (const entry of fd.entries()) {
-          console.log(entry[0], entry[1]);
-        }
         if (resp.status === 200) {
           setplaceinfo({
             from: "",

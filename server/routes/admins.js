@@ -94,7 +94,7 @@ router.post("/place/:id", upload.single("photo"), async (req, res) => {
       .upload(req.file.path, {
         upload_preset: "Post2022",
       })
-      .catch((err) => {
+      .catch((err) => { 
         console.log(err);
         res.status(201).json({ error: "error uploading image." });
         return;
@@ -112,9 +112,9 @@ router.post("/place/:id", upload.single("photo"), async (req, res) => {
       threeDay: JSON.parse(req.body.threeDay),
       fiveDay: JSON.parse(req.body.fiveDay),
     });
-    await User.findOne({ username: username }).then((user) => {
+    await User.findOne({ username: username }).then(async (user) => {
       if (user.role === "admin" || user.role === "root") {
-        const place = Place.findOne({ id: req.body.id });
+        const place = await Place.findOne({ id: newplace.id });
         if (place) {
           Place.findOneAndUpdate({ id: req.body.id }, newplace, (err, doc) => {
             if (err) {
