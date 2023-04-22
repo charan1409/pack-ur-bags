@@ -133,7 +133,7 @@ function App(props) {
         if (resp.status === 200) {
           navigate(`/payment/${resp.data}`);
         } else {
-          navigate("/error");
+          alert(resp.data.stat)
         }
       });
     }
