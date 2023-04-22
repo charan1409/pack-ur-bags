@@ -3,3 +3,4 @@ server/node_modules/
 server/.env
 server/access.log
 server/public/profileImgs/
+server/public/places/

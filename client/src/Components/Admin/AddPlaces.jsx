@@ -8,6 +8,7 @@ import { navItems } from "./NavItems";
 
 function AddPlaces(props) {
   const user = JSON.parse(localStorage.getItem("user"));
+  const [btnValue, setBtnValue] = useState("Add");
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -47,6 +48,7 @@ function AddPlaces(props) {
             threeDay: resp.data.threeDay,
             fiveDay: resp.data.fiveDay,
           };
+          setBtnValue("Update");
           setplaceinfo(pl);
         }
       });
@@ -190,16 +192,6 @@ function AddPlaces(props) {
             />
           </label>
 
-          {/* <input
-            placeholder={"category"}
-            leftIcon={"bi bi-card-text"}
-            type={"text"}
-            name={"category"}
-            value={placeinfo.category}
-            onChange={onUpdateField}
-          /> */}
-
-          {/* change to the select statement */}
           <label htmlFor="category">
             {" "}
             Category:
@@ -317,7 +309,7 @@ function AddPlaces(props) {
             onChange={(e) => setImage(e.target.files[0])}
           />
           <br />
-          <Btn type="submit" value="Add" />
+          <Btn type="submit" value={btnValue} />
         </form>
       </div>
     </div>

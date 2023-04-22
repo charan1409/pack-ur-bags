@@ -5,9 +5,9 @@ const jwt = require("jsonwebtoken");
 const cookieparser = require("cookie-parser");
 router.use(cookieparser());
 const url = require("url");
-const multer = require('multer');
+const multer = require("multer");
 const path = require("path");
-const cloudinaryconfig = require('../cloudconfig');
+const cloudinaryconfig = require("../cloudconfig");
 const client = require("../utils/Redis");
 
 const book = require("../schemas/booking");
@@ -17,24 +17,24 @@ const Place = require("../schemas/place");
 
 // Feedbacks display for admin
 router.get("/feedbacks", async (req, res) => {
-  await fdb.find()
-  .sort({ createdAt: -1 })
-  .populate('userDetails')
-  .exec((err, feedbacks) => {
-    if (err) {
-      console.error(err);
-      return;
-    } else{
-      res.status(200).json(feedbacks);
-    }
-  });
+  await fdb
+    .find()
+    .sort({ createdAt: -1 })
+    .populate("userDetails")
+    .exec((err, feedbacks) => {
+      if (err) {
+        console.error(err);
+        return;
+      } else {
+        res.status(200).json(feedbacks);
+      }
+    });
 });
-
 
 //get tours of username
 router.get("/tours/:id", (req, res) => {
   let username = req.params.id;
-  book.find({username: username}, (err, data) => {
+  book.find({ username: username }, (err, data) => {
     if (data) {
       res.status(200).json(data);
     } else {
@@ -60,7 +60,7 @@ router.delete("/delete/:id", async (req, res) => {
   let username = req.params.id;
   await User.findOneAndDelete({ username: username }, async (err, doc) => {
     await book.deleteMany({ username: username });
-    await fdb.deleteOne({username: doc.username});
+    await fdb.deleteOne({ username: username });
     if (err) {
       console.log(err);
     } else {
@@ -71,30 +71,34 @@ router.delete("/delete/:id", async (req, res) => {
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-      cb(null, './public/places')
+    cb(null, "./public/places");
   },
   filename: function (req, file, callback) {
-      callback(null, Date.now() + Math.floor(Math.random() * 10) + path.extname(file.originalname));
-  }
+    callback(
+      null,
+      Date.now() +
+        Math.floor(Math.random() * 10) +
+        path.extname(file.originalname)
+    );
+  },
 });
 
-const upload = multer({storage:storage})
+const upload = multer({ storage: storage });
 
-router.post("/place/:id",upload.single('photo'), async(req, res) => {
-  console.log(req.body.price);
+router.post("/place/:id", upload.single("photo"), async (req, res) => {
   if (!req.params.id) {
     res.status(201).json({ error: "error occurred" });
   } else {
     let username = req.params.id;
-    const cloudinary_response = await cloudinaryconfig.v2.uploader.upload(
-      req.file.path, {
-				upload_preset: "Post2022",
-			}
-    ).catch(err => {
-      console.log(err);
-      res.status(201).json({ error: "error uploading image." });
-      return
-    });
+    const cloudinary_response = await cloudinaryconfig.v2.uploader
+      .upload(req.file.path, {
+        upload_preset: "Post2022",
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(201).json({ error: "error uploading image." });
+        return;
+      });
     const newplace = new Place({
       id: req.body.id,
       from: req.body.from,
@@ -109,18 +113,36 @@ router.post("/place/:id",upload.single('photo'), async(req, res) => {
       fiveDay: JSON.parse(req.body.fiveDay),
     });
     await User.findOne({ username: username }).then((user) => {
-      if(user.role === "admin" || user.role === "root"){
-        newplace.save().then(() => {
-          Place.find({}, (err, data) => {
-            if (data) {
-              client.set("places", JSON.stringify(data));
+      if (user.role === "admin" || user.role === "root") {
+        const place = Place.findOne({ id: req.body.id });
+        if (place) {
+          Place.findOneAndUpdate({ id: req.body.id }, newplace, (err, doc) => {
+            if (err) {
+              console.log(err);
             } else {
-              res.status(201).json({ msg: "error occurred" });
+              res.status(200).json({ msg: "place updated Successfully" });
             }
           });
-          res.status(200).json({ success: "place added Successfully" });
-        });
-      } else{
+        } else {
+          newplace.save().then(() => {
+            Place.find({}, (err, data) => {
+              if (data) {
+                client.set("places", JSON.stringify(data));
+              } else {
+                res.status(201).json({ msg: "error occurred" });
+              }
+            });
+            Place.find({ category: req.body.category }, (err, data) => {
+              if (data) {
+                client.set(req.body.category, JSON.stringify(data));
+              } else {
+                res.status(201).json({ msg: "error occurred" });
+              }
+            });
+            res.status(200).json({ success: "place added Successfully" });
+          });
+        }
+      } else {
         res.status(201).json({ error: "error occurred" });
       }
     });
@@ -143,6 +165,20 @@ router.delete("/deleteplace/:id", async (req, res) => {
     if (err) {
       console.log(err);
     } else {
+      Place.find({}, (err, data) => {
+        if (data) {
+          client.set("places", JSON.stringify(data));
+        } else {
+          res.status(201).json({ msg: "error occurred" });
+        }
+      });
+      Place.find({ category: doc.category }, (err, data) => {
+        if (data) {
+          client.set(doc.category, JSON.stringify(data));
+        } else {
+          res.status(201).json({ msg: "error occurred" });
+        }
+      });
       res.status(200).json({ msg: `place deleted` });
     }
   });
@@ -150,7 +186,7 @@ router.delete("/deleteplace/:id", async (req, res) => {
 
 router.put("/updateplace/:id", async (req, res) => {
   let id = req.params.id;
-  Place.findOneAndUpdate({ id: id}, async (err, doc) => {
+  Place.findOneAndUpdate({ id: id }, async (err, doc) => {
     if (err) {
       console.log(err);
     } else {
@@ -169,6 +205,5 @@ router.get("/place/:id", (req, res) => {
     }
   });
 });
-
 
 module.exports = router;
