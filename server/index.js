@@ -98,7 +98,7 @@ app.use("/book", require("./routes/book"));
 app.use("/admins", require("./routes/admins"));
 app.use("/payment", require("./routes/payments"));
 
-app.listen(port, function () {
+module.exports = app.listen(port, function () {
   console.log("server is running on the port 9000");
 });
 
