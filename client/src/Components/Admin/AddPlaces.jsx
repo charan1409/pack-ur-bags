@@ -104,9 +104,6 @@ function AddPlaces(props) {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((resp) => {
-        for (const entry of fd.entries()) {
-          console.log(entry[0], entry[1]);
-        }
         if (resp.status === 200) {
           setplaceinfo({
             from: "",
@@ -200,13 +197,14 @@ function AddPlaces(props) {
               value={placeinfo.category}
               onChange={onUpdateField}
             >
+              <option value="">select</option>
               <option value="beach">beach</option>
               <option value="island">island</option>
               <option value="hillstation">hillstation</option>
               <option value="forest">forest</option>
               <option value="winter">winter</option>
               <option value="cultural">cultural</option>
-              <option value="desert">desert</option>
+              <option value="piligrimage">Piligrimage</option>
               <option value="countryside">countryside</option>
             </select>
           </label>
