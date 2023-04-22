@@ -74,7 +74,7 @@ function ViewPlace(props) {
                 <option value="beach">beach</option>
                 <option value="island">island</option>
                 <option value="countryside">countryside</option>
-                <option value="desert">desert</option>
+                <option value="piligrimage">Piligrimage</option>
                 <option value="forest">forest</option>
                 <option value="cultural">cultural</option>
                 <option value="winter">winter</option>
