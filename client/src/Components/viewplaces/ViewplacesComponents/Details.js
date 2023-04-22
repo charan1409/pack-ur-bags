@@ -7,10 +7,17 @@ function Details(props) {
         {props.from} - {props.to}
       </h2>
       <h2>₹{props.price} per person</h2>
-      {props.rating && <h3 style={{ fontSize: "20px" }}>
-        {props.rating}{" "}
-        <i className="bi bi-star-fill" style={{ color: "#fac102" }}></i>
-      </h3>}
+      {props.rating ? (
+        <h3 style={{ fontSize: "20px" }}>
+          {props.rating}{" "}
+          <i className="bi bi-star-fill" style={{ color: "#fac102" }}></i>
+        </h3>
+      ) : 
+      (
+        <h3 style={{ fontSize: "20px" }}>
+          No Reviews Yet
+        </h3>
+      )}
       <p>{props.details}</p>
     </div>
   );

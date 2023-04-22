@@ -108,6 +108,7 @@ function Edityourprofile(props) {
             placeholder="Enter your phone number"
             onChange={onUpdateField}
             value={userinfo.phonenumber}
+            maxLength="10"
           />
         </label>
         <button type="submit" className="btn_profile" value="save changes">

@@ -15,7 +15,7 @@ function AddPlaces(props) {
   const [placeinfo, setplaceinfo] = useState({
     from: "",
     to: "",
-    price: "",
+    price: 0,
     details: "",
     category: "",
     threeDay: {
@@ -93,6 +93,7 @@ function AddPlaces(props) {
     fd.append("to", placeinfo.to);
     fd.append("details", placeinfo.details);
     fd.append("category", placeinfo.category);
+    fd.append("price", placeinfo.price);
     fd.append("photo", image);
     fd.append("threeDay", JSON.stringify(placeinfo.threeDay));
     fd.append("fiveDay", JSON.stringify(placeinfo.fiveDay));
@@ -108,7 +109,7 @@ function AddPlaces(props) {
           setplaceinfo({
             from: "",
             to: "",
-            price: "",
+            price: 0,
             details: "",
             category: "",
             threeDay: {
@@ -189,14 +190,35 @@ function AddPlaces(props) {
             />
           </label>
 
-          <input
+          {/* <input
             placeholder={"category"}
             leftIcon={"bi bi-card-text"}
             type={"text"}
             name={"category"}
             value={placeinfo.category}
             onChange={onUpdateField}
-          />
+          /> */}
+
+          {/* change to the select statement */}
+          <label htmlFor="category">
+            {" "}
+            Category:
+            <select
+              name="category"
+              value={placeinfo.category}
+              onChange={onUpdateField}
+            >
+              <option value="beach">beach</option>
+              <option value="island">island</option>
+              <option value="hillstation">hillstation</option>
+              <option value="forest">forest</option>
+              <option value="winter">winter</option>
+              <option value="cultural">cultural</option>
+              <option value="desert">desert</option>
+              <option value="countryside">countryside</option>
+            </select>
+          </label>
+
           <br />
 
           <h2>Three day</h2>

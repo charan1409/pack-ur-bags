@@ -7,7 +7,8 @@ router.use(cookieparser());
 const url = require("url");
 const multer = require('multer');
 const path = require("path");
-const cloudinaryconfig = require('../cloudconfig')
+const cloudinaryconfig = require('../cloudconfig');
+const client = require("../utils/Redis");
 
 const book = require("../schemas/booking");
 const User = require("../schemas/user");
@@ -80,6 +81,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage:storage})
 
 router.post("/place/:id",upload.single('photo'), async(req, res) => {
+  console.log(req.body.price);
   if (!req.params.id) {
     res.status(201).json({ error: "error occurred" });
   } else {
@@ -109,6 +111,13 @@ router.post("/place/:id",upload.single('photo'), async(req, res) => {
     await User.findOne({ username: username }).then((user) => {
       if(user.role === "admin" || user.role === "root"){
         newplace.save().then(() => {
+          Place.find({}, (err, data) => {
+            if (data) {
+              client.set("places", JSON.stringify(data));
+            } else {
+              res.status(201).json({ msg: "error occurred" });
+            }
+          });
           res.status(200).json({ success: "place added Successfully" });
         });
       } else{

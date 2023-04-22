@@ -100,10 +100,6 @@ const Payment = () => {
                   <th>To</th>
                   <td>{details.placedetails.to}</td>
                 </tr>
-                {/* <tr>
-                  <th>Number of days</th>
-                  <td>{details.placedetails.days}</td>
-                </tr> */}
                 <tr>
                   <th>Total passengers</th>
                   <td>{details.numberOfpassengers}</td>
@@ -112,12 +108,6 @@ const Payment = () => {
                   <th>Price per passenger</th>
                   <td>{details.placedetails.price}</td>
                 </tr>
-                {/* <tr>
-                  <th>Total Price</th>
-                  <td>
-                    {details.numberOfpassengers * details.placedetails.price}
-                  </td>
-                </tr> */}
               </table>
               <h1 className="head-tag2">
                 Price: {details.numberOfpassengers * details.placedetails.price}
