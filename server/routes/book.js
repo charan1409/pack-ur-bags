@@ -14,6 +14,7 @@ router.get('/booking/:id',(req,res)=>{
         else res.status(400).json({stat:"Not found"})
     })
 })
+
 router.get('/book/:id', (req, res) => {
     const placeid = req.params.id;
     Place.findOne({ id: placeid})
