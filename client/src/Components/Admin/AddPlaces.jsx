@@ -203,7 +203,7 @@ function AddPlaces(props) {
               <option value="forest">forest</option>
               <option value="winter">winter</option>
               <option value="cultural">cultural</option>
-              <option value="desert">desert</option>
+              <option value="piligrimage">Piligrimage</option>
               <option value="countryside">countryside</option>
             </select>
           </label>
