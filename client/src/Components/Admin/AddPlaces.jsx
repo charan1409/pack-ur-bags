@@ -197,6 +197,7 @@ function AddPlaces(props) {
               value={placeinfo.category}
               onChange={onUpdateField}
             >
+              <option value="">select</option>
               <option value="beach">beach</option>
               <option value="island">island</option>
               <option value="hillstation">hillstation</option>
