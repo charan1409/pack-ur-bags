@@ -1,30 +1,55 @@
-# project
+# PACK UR BAGS
 
-COURSE NAME : FFSD
-GROUP NO : 17
+Our website is a one-stop destination for family package tours. We provide a diverse range of tour packages for families, including both domestic and international destinations. Our goal is to ensure a hassle-free and enjoyable travel experience for our customers, and our team of experienced travel experts work hard to curate each tour package with care.
 
-GROUP MEMBERS:
+## Website Links
 
-1. RAHUL VARMA
-2. CHARAN KUMAR
-3. KAMAL SAI
-4. ROHITH KUMAR
-5. NIKHIL
+- Backend URLs: 
+  - https://backend-packurbags.onrender.com/
+  - https://backend-packurbags.azurewebsites.net/
+- Frontend URL: 
+  - https://frontend-packurbags.onrender.com/
 
-CLONE The Project Using the link: **https://github.com/charan14092003/project.git**
-Open Git Bash in Your PC and use the command **git clone https://github.com/charan14092003/project.git**
+## Team
 
-Open the project in vscode and for running the app
+The Pack ur Bags project is developed and maintained by the following team members:
+ 
+- Rahul Varma, S20200010212
+- Charan Kumar, S20200010084
+- Kamal Sai, S20200010233
+- Rohith Kumar, S20200010201
+- Nikhil Kumar, S20200010099
 
-1) open new terminal and run the following commands
+## Getting Started
 
-   1) cd server (for changing directory)
-   2) npm i (for installing required packages)
-   3) npm start (for starting the server)
-2) open another new terminal and run the following commands
+To run the Celestial project, follow the instructions below:
 
-   1) cd client (for changing directory)
-   2) npm i (for installing required packages)
-   3) npm start (for starting the server)
+1. Clone the project from the GitHub repository: `https://github.com/charan1409/project`
 
-   After that client server will start and you can see the web application automatically in your default browser.
+2. Open two terminals.
+
+3. In each terminal, `cd` into the `client` and `server` folders respectively.
+
+4. In both folders, run `npm install` to install the required dependencies.
+
+5. In both terminals, run `npm start` to start the client and server.
+
+## Configuration
+
+The following configuration details are required to run the Pack UR Bags project:
+
+```
+- `URL`: Enter the MongoDB URL.
+- `CLOUD_NAME`: Enter your Cloudinary cloud name.
+- `API_KEY`: Enter your Cloudinary API key.
+- `API_SECRET`: Enter your Cloudinary API secret key.
+- `JWT_SECRET`: Enter your secret key for JSON Web Tokens.
+- `REDIS_SERVER`: Enter your Redis server URL.
+- `REDIS_PORT`: Enter your Redis server port.
+- `REDIS_PASSWORD`: Enter your Redis server password.
+```
+
+## Contributing
+
+Pack UR Bags is an open-source project, and we welcome contributions from the community. To contribute, please fork the project, make your changes, and submit a pull request. 
+
