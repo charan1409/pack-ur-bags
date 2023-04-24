@@ -44,6 +44,10 @@ router.post('/booking/:id',async (req,res)=>{
         passengers:passengers,
         placedetails:place
     })
+    const bookings = await book.find({fromdate:fromdate});
+    if((bookings.length + newBooking.numberOfpassengers)>30){
+        res.status(400).json({stat:`Sorry, only ${30-bookings.length} seats are available for the selected date`})
+    }
     newBooking.save().then(book=>{
         res.status(200).json(id)
     })
