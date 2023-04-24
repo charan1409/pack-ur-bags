@@ -29,7 +29,7 @@ jobs:
           cd client
           npm run build
       - name: Deploy to Render
-        uses: renderinc/render-deploy-action@v1.3.3
+        uses: renderinc/actions-deploy@v1.3.3
         with:
           renderEmail: ${{ secrets.RENDER_EMAIL }}
           renderPassword: ${{ secrets.RENDER_PASSWORD }}
