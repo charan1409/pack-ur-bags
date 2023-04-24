@@ -2,9 +2,12 @@ import axios from "axios";
 
 const getBaseUrl = () => {
   let url;
-  switch ("asdf") {
+  switch ("azure") {
     case "production":
       url = "https://backend-packurbags.onrender.com/";
+      break;
+    case "azure":
+      url = "https://backend-packurbags.azurewebsites.net/";
       break;
     case "development":
     default:
