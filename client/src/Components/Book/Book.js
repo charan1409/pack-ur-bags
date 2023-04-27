@@ -44,9 +44,9 @@ function App(props) {
     ) {
       setPassengers([...passengers, { name: "", gender: "Male", age: "" }]);
     } else if (passengers.length >= 10) {
-      errors.push("Maximum 10 passengers are allowed");
+      alert("Maximum 10 passengers are allowed");
     } else {
-      errors.push("Please fill the previous passenger details");
+      alert("Please fill the previous passenger details");
     }
   };
 
@@ -76,19 +76,19 @@ function App(props) {
 
     passengers.forEach((passenger, index) => {
       if (!passenger.name) {
-        errors.push(`Name is required for passenger ${index + 1}`);
+        alert(`Name is required for passenger ${index + 1}`);
       }
 
       if (!passenger.gender) {
-        errors.push(`Gender is required for passenger ${index + 1}`);
+        alert(`Gender is required for passenger ${index + 1}`);
       }
 
       if (!passenger.age) {
-        errors.push(`Age is required for passenger ${index + 1}`);
+        alert(`Age is required for passenger ${index + 1}`);
       }
 
       if (fromDate === "") {
-        errors.push(`Please select a date`);
+        alert(`Please select a date`);
       }
     });
 
@@ -203,20 +203,23 @@ function App(props) {
                 onChange={(event) => handlePassengerChange(index, event)}
                 style={{ width: "70px" }}
               />
-              <button
-                type="button"
-                onClick={() => handleDeletePassenger(index)}
-              >
-                <i
-                  className="fas fa-trash-alt"
-                  style={{
-                    color: "red",
-                    fontSize: "20px",
-                    cursor: "pointer",
-                    padding: "5px",
-                  }}
-                ></i>
-              </button>
+              {index !== 0 && (
+                <button
+                  type="button"
+                  onClick={() => handleDeletePassenger(index)}
+                >
+                  {/* Delete Passenger */}
+                  <i
+                    className="fas fa-user-minus"
+                    style={{
+                      color: "red",
+                      fontSize: "20px",
+                      cursor: "pointer",
+                      padding: "5px",
+                    }}
+                  ></i>
+                </button>
+              )}
             </div>
           ))}
           <button type="button" onClick={handleAddPassenger}>
