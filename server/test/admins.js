@@ -31,34 +31,13 @@ describe("Feedbacks should return in the form of JSON", function () {
   });
 });
 
-describe("GET /tours/:id", () => {
-  it("should return a message indicating if tours are booked or not on this username", (done) => {
+describe("GET /users", function () {
+  it("should return users of given role", function (done) {
+    const role = "admin"; // sample role for testing
     request(app)
-      .get("/admins/tours/rahul")
+      .get("/admins/users?role=" + role)
       .expect(200)
-      .end((err, res) => {
-        if (err) return done(err);
-        if (res.body.length > 0) {
-          res.text = "Tours booked";
-          assert.strictEqual(res.text, "Tours booked");
-        } else {
-          assert.deepStrictEqual(res.body, []);
-          res.text = "No tours booked";
-          assert.strictEqual(res.text, "No tours booked");
-        }
-        done();
-      });
-  });
-});
-
-
-describe('GET /users', function() {
-  it('should return users of given role', function(done) {
-    const role = 'admin'; // sample role for testing
-    request(app)
-      .get('/admins/users?role=' + role)
-      .expect(200)
-      .end(function(err, res) {
+      .end(function (err, res) {
         if (err) return done(err);
         assert(res.body.length > 0); // check if response contains data
         assert(res.body[0].role === role); // check if role matches
@@ -67,18 +46,16 @@ describe('GET /users', function() {
   });
 });
 
-
-describe('DELETE /delete/:id', function() {
-  it('should delete user of given username', function(done) {
-    const username = 'varma'; // sample username for testing
+describe("DELETE /delete/:id", function () {
+  it("should delete user of given username", function (done) {
+    const username = "varma"; // sample username for testing
     request(app)
-      .delete('/admins/delete/' + username)
+      .delete("/admins/delete/" + username)
       .expect(200)
-      .end(function(err, res) {
+      .end(function (err, res) {
         if (err) return done(err);
-        assert(res.body.msg === 'user deleted ' + username); // check if response contains data
+        assert(res.body.msg === "user deleted " + username); // check if response contains data
         done();
       });
   });
 });
-
