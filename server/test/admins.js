@@ -48,7 +48,7 @@ describe("GET /users", function () {
 
 describe("DELETE /delete/:id", function () {
   it("should delete user of given username", function (done) {
-    const username = "varma"; // sample username for testing
+    const username = "nikhil"; // sample username for testing
     request(app)
       .delete("/admins/delete/" + username)
       .expect(200)
